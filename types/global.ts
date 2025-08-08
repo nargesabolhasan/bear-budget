@@ -1,9 +1,9 @@
 import { SvgIconComponent } from "@mui/icons-material";
 
-export const enum TransactionEnum {
-  Income,
-  Expense,
-  Installment,
+export enum TransactionEnum {
+  INCOME = "Income",
+  EXPENSE = "Expense",
+  SAVE = "Save",
 }
 
 export type IconOption = {
@@ -15,7 +15,7 @@ export type IconOption = {
 
 export type TagType = {
   id: string;
-  name: string;
+  name: string | undefined;
   transactionType: TransactionEnum;
-  icon: IconOption[string];
+  icon: string | null;
 };

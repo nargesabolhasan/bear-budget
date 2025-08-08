@@ -1,23 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { IconButton } from "@mui/material";
 import { IconOption } from "@/types/global";
 
 interface IconPickerProps {
   icons: Array<IconOption[string]>;
-  onSelect: (iconId: string | null) => void;
+  onChange: (iconId: string | null) => void;
+  value: string | null;
 }
 
-const IconPicker: React.FC<IconPickerProps> = ({ onSelect, icons }) => {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
+const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
     const button = (e.target as HTMLElement).closest(".icon-picker-item");
     if (button) {
       const buttonId = button.getAttribute("data-icon-id");
-      setSelectedId(buttonId);
-      onSelect(buttonId);
+
+      onChange(buttonId);
     }
   };
 
@@ -32,12 +31,12 @@ const IconPicker: React.FC<IconPickerProps> = ({ onSelect, icons }) => {
         const Icon = item.icon;
         return (
           <IconButton
+            key={item.id}
             className={"icon-picker-item focus:bg-blue-500"}
             data-icon-id={item.id}
-            color={selectedId === item.id ? "primary" : "default"}
+            color={value === item.id ? "primary" : "default"}
             sx={{
-              border:
-                selectedId === item.id ? "2px solid" : "1px solid lightgray",
+              border: value === item.id ? "2px solid" : "1px solid lightgray",
               borderRadius: 2,
               flexDirection: "column",
             }}
