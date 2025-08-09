@@ -29,3 +29,9 @@ export type TagType = {
   icon: string;
   color: ColorOption;
 };
+
+export type NavItemType = {
+  label: string;
+  key: string;
+  href: string;
+};
