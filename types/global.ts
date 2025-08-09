@@ -1,4 +1,8 @@
 import { SvgIconComponent } from "@mui/icons-material";
+import HomeIcon from "@mui/icons-material/Home";
+import FaceIcon from "@mui/icons-material/Face";
+import StarIcon from "@mui/icons-material/Star";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export enum TransactionEnum {
   INCOME = "Income",
@@ -7,15 +11,21 @@ export enum TransactionEnum {
 }
 
 export type IconOption = {
-  [key: string]: {
-    id: string;
-    icon: SvgIconComponent;
-  };
+  id: string;
+  icon: SvgIconComponent;
+};
+
+export type IconOptionMap = Map<string, IconOption>;
+
+export type ColorOption = {
+  id: number;
+  color: string;
 };
 
 export type TagType = {
   id: string;
-  name: string | undefined;
+  name: string;
   transactionType: TransactionEnum;
-  icon: string | null;
+  icon: string;
+  color: ColorOption;
 };

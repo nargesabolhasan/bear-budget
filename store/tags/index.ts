@@ -1,18 +1,25 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, devtools } from "zustand/middleware";
 import { TagStore } from "@/store/tags/type";
 import { TagType } from "@/types/global";
+
 export const useTagsStore = create<TagStore>()(
-  persist(
-    (set, get) => ({
-      tags: [],
-      createTag: (tag: TagType) => set({ tags: [...get().tags, tag] }),
-      removeTag: (id: string) =>
-        set({ tags: get().tags.filter((tag) => tag.id !== id) }),
-      clear: () => set({ tags: [] }),
-    }),
-    {
-      name: "tags",
-    }
+  devtools(
+    persist(
+      (set, get) => ({
+        tags: [],
+        createTag: (tag: TagType) =>
+          set({ tags: [...get().tags, tag] }, false, "createTag"),
+        removeTag: (id: string) =>
+          set(
+            { tags: get().tags.filter((tag) => tag.id !== id) },
+            false,
+            "removeTag"
+          ),
+        clear: () => set({ tags: [] }, false, "clear"),
+      }),
+      { name: "tags" }
+    ),
+    { name: "TagsStore" }
   )
 );

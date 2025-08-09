@@ -5,10 +5,13 @@ import { IconButton } from "@mui/material";
 import { IconOption } from "@/types/global";
 
 interface IconPickerProps {
-  icons: Array<IconOption[string]>;
+  icons: IconOption[];
   onChange: (iconId: string | null) => void;
   value: string | null;
 }
+
+export const PICKER_WRAPPER_CLASS =
+  "bg-gray-100 border border-gray-200 rounded-md shadow-sm p-3 flex items-center justify-center gap-3";
 
 const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -21,13 +24,8 @@ const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
   };
 
   return (
-    <div
-      onClick={handleSelect}
-      className={
-        "bg-gray-100 border border-gray-200 rounded-md shadow-sm p-3 flex items-center justify-center gap-3"
-      }
-    >
-      {icons.map((item: IconOption[string]) => {
+    <div onClick={handleSelect} className={PICKER_WRAPPER_CLASS}>
+      {icons.map((item) => {
         const Icon = item.icon;
         return (
           <IconButton
