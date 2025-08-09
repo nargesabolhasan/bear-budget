@@ -51,7 +51,7 @@ const CreateTagForm = () => {
 
   return (
     <form
-      className={"p-3 mx-auto flex flex-col gap-4 w-full md:w-1/2"}
+      className={"flex flex-col gap-4 w-full"}
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller

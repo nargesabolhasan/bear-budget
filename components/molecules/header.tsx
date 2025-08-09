@@ -4,17 +4,15 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
   Box,
   Drawer,
+  IconButton,
   List,
-  ListItem,
-  ListItemText,
-  useTheme,
-  useMediaQuery,
   MenuItem,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavItemType } from "@/types/global";
