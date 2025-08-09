@@ -2,77 +2,94 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Button, Drawer, Grid, Layout, Menu, Typography } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  useTheme,
+  useMediaQuery,
+  MenuItem,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { NavItemType } from "@/types/global";
 
-const { Header } = Layout;
-const { useBreakpoint } = Grid;
-
-export type HeaderType = {
-  navItems: NavItemType[];
+export type HeaderProps = {
   title?: string;
+  navItems: NavItemType[];
 };
-export default function IHeader({
-  navItems,
-  title = "Bear budget",
-}: HeaderType) {
+
+const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const screens = useBreakpoint();
 
-  const isMobile = !screens.md;
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
+  };
 
-  const menuItems = navItems.map(({ label, key, href }) => ({
-    key,
-    label: <Link href={href}>{label}</Link>,
-  }));
+  const drawer = (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {navItems.map((item) => (
+          <MenuItem key={item.key}>
+            <Link href={item.href}>{item.label}</Link>
+          </MenuItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   return (
-    <Header
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 20px",
-        backgroundColor: "#001529",
-      }}
-    >
-      <Typography.Title level={3} style={{ color: "#fff", margin: 0 }}>
-        {title}
-      </Typography.Title>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            {title}
+          </Typography>
 
-      {isMobile ? (
-        <>
-          <Button
-            type="text"
-            icon={<MenuOutlined style={{ color: "#fff", fontSize: 24 }} />}
-            onClick={() => setDrawerOpen(true)}
-          />
-          <Drawer
-            title="Menu"
-            placement="right"
-            onClose={() => setDrawerOpen(false)}
-            open={drawerOpen}
-          >
-            <Menu
-              mode="vertical"
-              items={menuItems}
-              onClick={() => setDrawerOpen(false)}
-            />
-          </Drawer>
-        </>
-      ) : (
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          selectable={false}
-          items={menuItems}
-          style={{ backgroundColor: "transparent" }}
-        />
-      )}
-    </Header>
+          {isMobile ? (
+            <>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+              >
+                {drawer}
+              </Drawer>
+            </>
+          ) : (
+            <Box className={"flex gap-3"}>
+              {navItems.map((item) => (
+                <Link key={item.key} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+            </Box>
+          )}
+        </Toolbar>
+      </AppBar>
+    </>
   );
-}
+};
+
+export default IHeader;

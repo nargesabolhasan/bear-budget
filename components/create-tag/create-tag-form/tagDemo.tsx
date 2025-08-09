@@ -11,10 +11,10 @@ const TagDemo = ({ icon, name, color, transactionType }: TagFormData) => {
         "transition-all delay-500 flex flex-col gap-2 mx-auto justify-center items-center bg-gray-100 p-4 rounded-lg"
       }
     >
-      <h3 className={"flex gap-2"}>
-        You are creating this tag as :
-        <b className={"italic"}>{transactionType}</b>
-      </h3>
+      <div className={"flex flex-col gap-2 items-start w-full"}>
+        <h3 className={"flex gap-1 flex-row"}>new tag demo :</h3>
+        <b className={"italic"}>type : {transactionType}</b>
+      </div>
       <i
         className={twMerge(
           "size-[50px] rounded-full flex justify-center items-center",
