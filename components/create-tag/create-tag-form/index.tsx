@@ -15,6 +15,7 @@ import { useTagsStore } from "@/store/tags";
 import { v4 as uuidv4 } from "uuid";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "sonner";
 
 const CreateTagForm = () => {
   const schema = yup.object({
@@ -45,6 +46,7 @@ const CreateTagForm = () => {
   const { createTag } = useTagsStore();
   const onSubmit = (formData: TagFormData) => {
     createTag({ id: uuidv4(), ...formData });
+    toast.success(`${formData[FormTagEnum.NAME]} tag generated successfully!`);
   };
 
   return (
