@@ -1,7 +1,7 @@
 "use client";
 
-import { Toaster } from "sonner";
+import {Toaster} from "sonner";
 
 export default function GlobalToaster() {
-  return <Toaster position="top-center" />;
+    return <Toaster position="top-center" closeButton={true}/>;
 }

@@ -5,9 +5,10 @@ import GlobalToaster from "@/components/atoms/toaster";
 import "antd/dist/reset.css";
 import IHeader from "@/components/molecules/header";
 import { navItems } from "@/constant/navItems";
+import DialogContainer from "@/components/molecules/dialogContainer";
 
 export const metadata = {
-  title: "Income and Expenses",
+  title: "Bear Budget",
   description: "Using App Router, TS, MUI and Tailwind",
   icons: {
     icon: "/favicon.svg",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <IHeader navItems={navItems} />
           {children}
           <GlobalToaster />
+          <DialogContainer />
         </ThemeRegistry>
       </body>
     </html>

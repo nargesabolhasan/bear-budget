@@ -8,14 +8,20 @@ export const useTagsStore = create<TagStore>()(
     persist(
       (set, get) => ({
         tags: [],
-        createTag: (tag: TagType) =>
+        createTag: (tag) =>
           set({ tags: [...get().tags, tag] }, false, "createTag"),
-        removeTag: (id: string) =>
+        removeTag: (id) =>
           set(
             { tags: get().tags.filter((tag) => tag.id !== id) },
             false,
             "removeTag"
           ),
+          editTag: (id,data) =>{
+            const updatedList=get().tags.map((tag: TagType) => {
+               return tag.id ===id ?{...tag,...data}:tag
+            })
+              set({tags:updatedList},false,"editTag");
+          },
         clear: () => set({ tags: [] }, false, "clear"),
       }),
       { name: "tags" }

@@ -3,7 +3,15 @@ import { TagFormData } from "@/components/create-tag/create-tag-form/type";
 import twMerge from "@/libs/utils";
 import { iconList } from "@/constant/icons";
 
-const TagDemo = ({ icon, name, color, transactionType }: TagFormData) => {
+const TagDemo = ({
+  demoTitle,
+  icon,
+  name,
+  color,
+  transactionType,
+}: TagFormData & {
+  demoTitle?: string;
+}) => {
   const Icon = iconList.get(icon || "0")?.icon;
   return (
     <div
@@ -12,7 +20,7 @@ const TagDemo = ({ icon, name, color, transactionType }: TagFormData) => {
       }
     >
       <div className={"flex flex-col gap-2 items-start w-full"}>
-        <h3 className={"flex gap-1 flex-row"}>new tag demo :</h3>
+        {demoTitle && <h3 className={"flex gap-1 flex-row"}>{demoTitle}</h3>}
         <b className={"italic"}>type : {transactionType}</b>
       </div>
       <i
