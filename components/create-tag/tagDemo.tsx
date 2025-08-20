@@ -1,5 +1,5 @@
 import React from "react";
-import { TagFormData } from "@/components/create-tag/create-tag-form/type";
+import { TagFormData } from "@/components/create-tag/type";
 import twMerge from "@/libs/utils";
 import { iconList } from "@/constant/icons";
 

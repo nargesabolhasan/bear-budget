@@ -1,13 +1,11 @@
 "use client";
 
 import React, { use } from "react";
-import CreateTagForm from "@/components/create-tag/create-tag-form";
+import CreateTagForm from "@/components/create-tag";
 import { useTagsStore } from "@/store/tags";
-import {
-  FormTagEnum,
-  TagFormData,
-} from "@/components/create-tag/create-tag-form/type";
+import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
 import { toast } from "sonner";
+import { FORMS_WRAPPER_CLASS } from "@/constant";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -31,7 +29,7 @@ const EditTagPage = ({ params }: Props) => {
   };
 
   return (
-    <div className={"mx-auto p-3 w-full md:w-1/2"}>
+    <div className={FORMS_WRAPPER_CLASS}>
       <CreateTagForm submitHandler={submitHandler} {...defaultValue} />
     </div>
   );

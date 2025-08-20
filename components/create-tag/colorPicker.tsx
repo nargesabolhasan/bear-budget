@@ -1,7 +1,7 @@
 import React from "react";
 import twMerge from "@/libs/utils";
 import { ColorOption } from "@/types/global";
-import { PICKER_WRAPPER_CLASS } from "@/components/create-tag/create-tag-form/iconPicker";
+import { PICKER_WRAPPER_CLASS } from "@/constant";
 
 export type ColorPickerType = {
   colorList: ColorOption[];

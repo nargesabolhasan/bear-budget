@@ -3,15 +3,13 @@
 import React from "react";
 import { IconButton } from "@mui/material";
 import { IconOption } from "@/types/global";
+import { PICKER_WRAPPER_CLASS } from "@/constant";
 
 interface IconPickerProps {
   icons: IconOption[];
   onChange: (iconId: string | null) => void;
   value: string | null;
 }
-
-export const PICKER_WRAPPER_CLASS =
-  "bg-gray-100 border border-gray-200 rounded-md shadow-sm p-3 flex items-center justify-center gap-3";
 
 const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -5,7 +5,7 @@ export const tagRoutes = {
 };
 export const translationRoutes = {
   translationList: { name: "Transactions", href: "/translation-list" },
-  addTranslation: { name: "New Transaction", href: "/add-translation" },
+  addTranslation: { name: "New Transaction", href: "/add-transaction" },
 };
 export const budgetRoutes = {
   createBudget: { name: "New Budget", href: "/create-budget" },

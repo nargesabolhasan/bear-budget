@@ -2,7 +2,6 @@ import "./globals.css";
 import { ReactNode } from "react";
 import ThemeRegistry from "../components/ThemeRegistry";
 import GlobalToaster from "@/components/atoms/toaster";
-import "antd/dist/reset.css";
 import IHeader from "@/components/molecules/header";
 import { navItems } from "@/constant/navItems";
 import DialogContainer from "@/components/molecules/dialogContainer";

@@ -3,14 +3,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import FaceIcon from "@mui/icons-material/Face";
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export enum TransactionEnum {
   INCOME = "Income",
   EXPENSE = "Expense",
   SAVE = "Save",
-  LOANED="Loaned",
-  DEBT="Debt"
+  LOANED = "Loaned",
+  DEBT = "Debt",
 }
 
 export type IconOption = {
@@ -33,6 +33,14 @@ export type TagType = {
   color: ColorOption;
 };
 
+export type TransactionType = {
+  id: string;
+  amount: string;
+  tag: string;
+  date: string;
+  description?: string;
+};
+
 export type NavItemType = {
   label: string;
   key: string;
@@ -46,7 +54,7 @@ export type DialogDataProps = {
   showCancelButton?: boolean;
   cancelButtonText?: string;
   confirmButtonText?: string;
-  hint?: string|ReactNode;
+  hint?: string | ReactNode;
   cancelHandler?: () => void;
   confirmHandler?: () => void;
 };

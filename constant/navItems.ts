@@ -1,4 +1,4 @@
-import { budgetRoutes, tagRoutes } from "@/constant/routes";
+import { budgetRoutes, tagRoutes, translationRoutes } from "@/constant/routes";
 
 export const navItems = [
   { label: "Home", key: "/", href: "/" },
@@ -16,5 +16,10 @@ export const navItems = [
     label: budgetRoutes.budgetList.name,
     key: budgetRoutes.budgetList.href,
     href: budgetRoutes.budgetList.href,
+  },
+  {
+    label: translationRoutes.addTranslation.name,
+    key: translationRoutes.addTranslation.href,
+    href: translationRoutes.addTranslation.href,
   },
 ];

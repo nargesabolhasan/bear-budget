@@ -8,7 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { TagType } from "@/types/global";
-import TagDemo from "@/components/create-tag/create-tag-form/tagDemo";
+import TagDemo from "@/components/create-tag/tagDemo";
 import { tagRoutes } from "@/constant/routes";
 
 const TagList = () => {
