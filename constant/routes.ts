@@ -6,6 +6,7 @@ export const tagRoutes = {
 export const translationRoutes = {
   translationList: { name: "Transactions", href: "/translation-list" },
   addTranslation: { name: "New Transaction", href: "/add-transaction" },
+  editTransaction: (id: string) => `/add-transaction/${id}`,
 };
 export const budgetRoutes = {
   createBudget: { name: "New Budget", href: "/create-budget" },

@@ -12,7 +12,7 @@ import TagDemo from "@/components/create-tag/tagDemo";
 import { tagRoutes } from "@/constant/routes";
 
 const TagList = () => {
-  const { tags, removeTag } = useTagsStore();
+  const { tags, removeTag, clear } = useTagsStore();
 
   const handleDelete = (tag: TagType) => {
     openDialog({
@@ -26,6 +26,14 @@ const TagList = () => {
       confirmHandler: () => {
         removeTag(tag.id);
       },
+    });
+  };
+
+  const clearAllTags = () => {
+    openDialog({
+      title: "Clear All",
+      hint: "Do you want to remove all tags ?",
+      confirmHandler: () => clear(),
     });
   };
 
@@ -59,6 +67,10 @@ const TagList = () => {
           />
         </div>
       ))}
+      <IconButton onClick={clearAllTags}>
+        delete all transactions
+        <DeleteIcon />
+      </IconButton>
     </div>
   );
 };

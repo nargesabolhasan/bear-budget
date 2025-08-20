@@ -21,17 +21,20 @@ const schema = yup.object({
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
 });
 
-const TransactionForm = ({ submitHandler }: TransactionProps) => {
+const TransactionForm = ({
+  submitHandler,
+  ...props
+}: TransactionProps & Partial<TransactionFormData>) => {
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<TransactionFormData>({
     defaultValues: {
-      [FormTransactionEnum.AMOUNT]: "",
-      [FormTransactionEnum.TAG]: "",
-      [FormTransactionEnum.DATE]: "",
-      [FormTransactionEnum.DESCRIPTION]: "",
+      [FormTransactionEnum.AMOUNT]: props.amount || "",
+      [FormTransactionEnum.TAG]: props.tag || "",
+      [FormTransactionEnum.DATE]: props.date || "",
+      [FormTransactionEnum.DESCRIPTION]: props.description || "",
     },
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -67,13 +70,6 @@ const TransactionForm = ({ submitHandler }: TransactionProps) => {
         control={control}
         defaultValue=""
         render={({ field }) => (
-          // <ITextField
-          //   {...field}
-          //   label="Tag"
-          //   fullWidth
-          //   error={!!errors[FormTransactionEnum.TAG]}
-          //   helperText={errors[FormTransactionEnum.TAG]?.message}
-          // />
           <TagPicker
             value={field.value}
             onChange={field.onChange}
