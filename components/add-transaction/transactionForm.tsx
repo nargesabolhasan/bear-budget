@@ -12,6 +12,8 @@ import { Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
+import TagPicker from "@/components/add-transaction/tagPicker";
+import { useTagsStore } from "@/store/tags";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -34,6 +36,8 @@ const TransactionForm = ({ submitHandler }: TransactionProps) => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
+  const { tags } = useTagsStore();
 
   const onSubmit = (formData: TransactionFormData) => {
     submitHandler?.(formData);
@@ -63,12 +67,17 @@ const TransactionForm = ({ submitHandler }: TransactionProps) => {
         control={control}
         defaultValue=""
         render={({ field }) => (
-          <ITextField
-            {...field}
-            label="Tag"
-            fullWidth
-            error={!!errors[FormTransactionEnum.TAG]}
-            helperText={errors[FormTransactionEnum.TAG]?.message}
+          // <ITextField
+          //   {...field}
+          //   label="Tag"
+          //   fullWidth
+          //   error={!!errors[FormTransactionEnum.TAG]}
+          //   helperText={errors[FormTransactionEnum.TAG]?.message}
+          // />
+          <TagPicker
+            value={field.value}
+            onChange={field.onChange}
+            items={tags}
           />
         )}
       />
@@ -76,11 +85,7 @@ const TransactionForm = ({ submitHandler }: TransactionProps) => {
         control={control}
         name="date"
         rules={{ required: true }}
-        render={({
-          field: { onChange, name, value },
-          fieldState: { invalid, isDirty },
-          formState: { errors },
-        }) => (
+        render={({ field: { onChange, value }, formState: { errors } }) => (
           <>
             <IDatePicker
               value={value || ""}
