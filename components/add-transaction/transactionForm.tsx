@@ -109,7 +109,7 @@ const TransactionForm = ({ submitHandler }: TransactionProps) => {
           />
         )}
       />
-      <Button variant={"contained"} type="submit" disabled={isValid}>
+      <Button variant={"contained"} type="submit" disabled={!isValid}>
         Submit
       </Button>
     </form>
