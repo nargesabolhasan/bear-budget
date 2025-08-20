@@ -22,4 +22,9 @@ export const navItems = [
     key: translationRoutes.addTranslation.href,
     href: translationRoutes.addTranslation.href,
   },
+  {
+    label: translationRoutes.translationList.name,
+    key: translationRoutes.translationList.href,
+    href: translationRoutes.translationList.href,
+  },
 ];
