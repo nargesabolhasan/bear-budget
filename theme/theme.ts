@@ -1,10 +1,17 @@
-// theme.ts
 import { createTheme } from "@mui/material/styles";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     danger: true;
-    warning: true;
+  }
+}
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    danger: Palette["primary"];
+  }
+  interface PaletteOptions {
+    danger?: PaletteOptions["primary"];
   }
 }
 
@@ -12,7 +19,6 @@ const theme = createTheme({
   palette: {
     primary: { main: "#4CAF50" },
     secondary: { main: "#FF5722" },
-    //@ts-ignore
     danger: { main: "#ef4444", contrastText: "#fff" },
     warning: { main: "#facc15", contrastText: "#fff" },
   },
@@ -24,9 +30,7 @@ const theme = createTheme({
           style: {
             backgroundColor: "#ef4444",
             color: "#fff",
-            "&:hover": {
-              backgroundColor: "#dc2626",
-            },
+            "&:hover": { backgroundColor: "#dc2626" },
           },
         },
         {
