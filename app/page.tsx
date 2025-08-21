@@ -5,7 +5,7 @@ import IButton from "@/components/atoms/button";
 export default function Home() {
   return (
     <main>
-      <IButton colorType="warning" variant="outlined" sizeType="small">
+      <IButton variant="contained" sizeType="small">
         Delete
       </IButton>
     </main>
