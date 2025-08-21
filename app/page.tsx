@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@mui/material";
+import IButton from "@/components/atoms/button";
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center h-screen bg-gray-100">
-      <Button variant="contained" color="primary">
-        MUI + Tailwind + App Router
-      </Button>
+    <main>
+      <IButton colorType="warning" variant="outlined" sizeType="small">
+        Delete
+      </IButton>
     </main>
   );
 }

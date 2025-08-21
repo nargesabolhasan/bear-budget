@@ -1,10 +1,10 @@
 import "./globals.css";
 import { ReactNode } from "react";
-import ThemeRegistry from "../components/ThemeRegistry";
 import GlobalToaster from "@/components/atoms/toaster";
 import IHeader from "@/components/molecules/header";
 import { navItems } from "@/constant/navItems";
 import DialogContainer from "@/components/molecules/dialogContainer";
+import IThemeProvider from "@/theme/themeProvider";
 
 export const metadata = {
   title: "Bear Budget",
@@ -18,12 +18,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>
+        <IThemeProvider>
           <IHeader navItems={navItems} />
           {children}
           <GlobalToaster />
           <DialogContainer />
-        </ThemeRegistry>
+        </IThemeProvider>
       </body>
     </html>
   );
