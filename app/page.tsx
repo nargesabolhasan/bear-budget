@@ -12,18 +12,6 @@ export default function Home() {
       </section>
       <section className={"flex flex-row gap-4 italic"}>
         <h2>hello user</h2>
-        <IButton variant="outlined" size={"medium"} color={"secondary"}>
-          Delete
-        </IButton>{" "}
-        <IButton variant="contained" size={"small"} color={"disabled"}>
-          Delete
-        </IButton>
-        <IButton variant="contained" size={"large"} color={"disabled"}>
-          Delete
-        </IButton>
-        <div className="bg-primary text-black px-4 py-2 rounded-lg hover:bg-primary">
-          Click Me
-        </div>
       </section>
     </main>
   );

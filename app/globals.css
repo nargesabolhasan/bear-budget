@@ -1,27 +1,22 @@
+@import "./colors.css";
 @import "tailwindcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
-
 
 @font-face {
     font-family: "inter";
     src: url("/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
     font-weight: 400;
-    font-style: italic;
+    font-style: normal;
 }
 
 @font-face {
     font-family: "inter";
     src: url("/fonts/inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-    font-weight: 400;
-    font-style:normal;
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
@@ -31,15 +26,11 @@
     font-style: normal;
 }
 
-
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
     :root {
         --background: #0a0a0a;
         --foreground: #ededed;
@@ -49,7 +40,11 @@
 body {
     background: var(--background);
     color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
     font-family: "Inter" , "Vazirmatn", sans-serif !important;
 }
+
 
 

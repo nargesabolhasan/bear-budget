@@ -1,0 +1,19 @@
+@theme inline {
+    --color-primary: #4CAF50;
+    --color-hover_primary: #1f5e22;
+    --color-danger: #F44336;
+    --color-hover_danger: #dc2626;
+    --color-warning: #FFC107;
+    --color-hover_warning: #eab308;
+    --color-neutral: #FAFAFA;
+    --color-neutral_light: #F5F5F5;
+    --color-neutral_dark: #E0E0E0;
+    --color-placeholder: #616161;
+    --color-placeholder_light: #9E9E9E;
+    --color-placeholder_dark: #212121;
+    --color-secondary: #FF9800;
+    --color-green: #4CAF50;
+    --color-brown: #6D4C41;
+    --color-info: #2196F3;
+    --color-success: #4CAF50;
+}
