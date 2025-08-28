@@ -55,16 +55,31 @@ const TransactionForm = ({
         name={FormTransactionEnum.AMOUNT}
         control={control}
         defaultValue=""
-        render={({ field }) => (
-          <ITextField
-            {...field}
-            label="Amount"
-            fullWidth
-            error={!!errors[FormTransactionEnum.AMOUNT]}
-            helperText={errors[FormTransactionEnum.AMOUNT]?.message}
-          />
-        )}
+        render={({ field }) => {
+          const { onChange, value, ...rest } = field;
+
+          return (
+            <ITextField
+              {...rest}
+              value={
+                value === "" || value === null
+                  ? ""
+                  : new Intl.NumberFormat("en-US").format(Number(value))
+              }
+              onChange={(e) => {
+                const raw = e.target.value.replace(/,/g, "");
+                const numberValue = raw === "" ? "" : Number(raw);
+                onChange(numberValue);
+              }}
+              label="Amount"
+              fullWidth
+              error={!!errors[FormTransactionEnum.AMOUNT]}
+              helperText={errors[FormTransactionEnum.AMOUNT]?.message}
+            />
+          );
+        }}
       />
+
       <Controller
         name={FormTransactionEnum.TAG}
         control={control}
