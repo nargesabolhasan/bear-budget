@@ -5,24 +5,24 @@
         aria-hidden="true" role="img"
 >
     <!-- ears -->
-    <circle cx="6.2" cy="6.2" r="2.6" fill="#8B5E3C"/>
-    <circle cx="17.8" cy="6.2" r="2.6" fill="#8B5E3C"/>
+    <circle cx="6.2" cy="7" r="3.5" fill="#cca07e"/>
+    <circle cx="17.8" cy="7" r="3.5" fill="#cca07e"/>
 
     <!-- head -->
     <path d="M4.5 11.2c0-3.7 3.2-6.7 7.5-6.7s7.5 3 7.5 6.7c0 4.7-3.3 7.8-7.5 7.8s-7.5-3.1-7.5-7.8z"
-          fill="#8B5E3C" stroke="#5C4033"/>
+          fill="#cca07e" stroke="#5C4033"/>
 
     <!-- snout -->
-    <ellipse cx="12" cy="13.8" rx="4.2" ry="3.2" fill="#D2B48C" stroke="#5C4033"/>
+    <ellipse cx="12" cy="13.8" rx="4.2" ry="3.2" fill="#D2B48C" stroke="#5C4033" stroke-width="0.5"/>
 
     <!-- nose -->
     <path d="M12 12.6c.9 0 1.6.5 1.6 1.1s-.7 1.1-1.6 1.1-1.6-.5-1.6-1.1.7-1.1 1.6-1.1z"
           fill="#5C4033"/>
 
     <!-- mouth -->
-    <path d="M12 14.7v.6m0 0c-.6.6-1.6.9-2.6.6m2.6-.6c.6.6 1.6.9 2.6.6" />
+    <path d="M12 14.7v.6m0 0c-.6.6-1.6.9-2.6.6m2.6-.6c.6.6 1.6.9 2.6.6" stroke-width="1"/>
 
     <!-- eyes -->
-    <circle cx="9.1" cy="10.5" r="0.7" fill="#3B2F2F"/>
-    <circle cx="14.9" cy="10.5" r="0.7" fill="#3B2F2F"/>
+    <circle cx="9.1" cy="11" r="0.7" fill="#3B2F2F"/>
+    <circle cx="14.9" cy="11" r="0.7" fill="#3B2F2F"/>
 </svg>
