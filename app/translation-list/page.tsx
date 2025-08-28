@@ -11,7 +11,7 @@ import { openDialog } from "@/components/molecules/dialogContainer";
 import { Render } from "@/utils/render";
 import EmptyList from "@/components/molecules/emptyList";
 import { useRouter } from "next/navigation";
-import { currencyFormater } from "@/utils/utils";
+import { convertToCurrency } from "@/utils/utils";
 
 const TransactionList = () => {
   const { transactions, removeTransaction, clearAll } = useTransactionStore();
@@ -62,7 +62,7 @@ const TransactionList = () => {
             <Link href={translationRoutes.editTransaction(transaction.id)}>
               <EditIcon />
             </Link>
-            <span>{currencyFormater(transaction.amount)}</span>
+            <span>{convertToCurrency(transaction.amount)}</span>
             <span>{transaction.date}</span>
             <span>{transaction.tag}</span>
             <span>{transaction.description}</span>

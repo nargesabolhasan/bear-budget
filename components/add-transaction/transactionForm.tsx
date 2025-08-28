@@ -14,6 +14,7 @@ import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
 import TagPicker from "@/components/add-transaction/tagPicker";
 import { useTagsStore } from "@/store/tags";
+import { convertToCurrency } from "@/utils/utils";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -64,7 +65,7 @@ const TransactionForm = ({
               value={
                 value === "" || value === null
                   ? ""
-                  : new Intl.NumberFormat("en-US").format(Number(value))
+                  : convertToCurrency(Number(value))
               }
               onChange={(e) => {
                 const raw = e.target.value.replace(/,/g, "");
