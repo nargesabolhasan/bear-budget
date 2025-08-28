@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import IButton from "@/components/atoms/button";
-import { color } from "@mui/system";
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
         <IButton variant="contained" size={"large"} color={"disabled"}>
           Delete
         </IButton>
-        <div className="bg-brand text-black px-4 py-2 rounded-lg hover:bg-primary">
+        <div className="bg-primary text-black px-4 py-2 rounded-lg hover:bg-primary">
           Click Me
         </div>
       </section>

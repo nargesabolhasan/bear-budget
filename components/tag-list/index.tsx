@@ -9,10 +9,14 @@ import { IconButton } from "@mui/material";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { TagType } from "@/types/global";
 import TagDemo from "@/components/create-tag/tagDemo";
-import { tagRoutes } from "@/constant/routes";
+import { tagRoutes, translationRoutes } from "@/constant/routes";
+import EmptyList from "@/components/molecules/emptyList";
+import { Render } from "@/utils/render";
+import { useRouter } from "next/navigation";
 
 const TagList = () => {
   const { tags, removeTag, clear } = useTagsStore();
+  const router = useRouter();
 
   const handleDelete = (tag: TagType) => {
     openDialog({
@@ -43,34 +47,41 @@ const TagList = () => {
         "mx-auto w-full md:w-1/2 grid grid-cols-2 md:grid-cols-4 flex-wrap gap-4"
       }
     >
-      {tags.map((item) => (
-        <div
-          className={
-            "bg-gray-100 flex flex-col gap-4 w-full rounded-md justify-start items-center"
-          }
-          key={item.id}
-        >
-          <span className={"flex flex-row gap-3"}>
-            <IconButton onClick={() => handleDelete(item)}>
-              <DeleteIcon />
-            </IconButton>
+      <Render
+        when={tags.length !== 0}
+        fallback={
+          <EmptyList onAddItem={() => router.push(tagRoutes.createTag.href)} />
+        }
+      >
+        {tags.map((item) => (
+          <div
+            className={
+              "bg-gray-100 flex flex-col gap-4 w-full rounded-md justify-start items-center"
+            }
+            key={item.id}
+          >
+            <span className={"flex flex-row gap-3"}>
+              <IconButton onClick={() => handleDelete(item)}>
+                <DeleteIcon />
+              </IconButton>
 
-            <Link href={tagRoutes.editTag(item.id)}>
-              <EditIcon />
-            </Link>
-          </span>
-          <TagDemo
-            name={item.name}
-            transactionType={item.transactionType}
-            icon={item.icon}
-            color={item.color}
-          />
-        </div>
-      ))}
-      <IconButton onClick={clearAllTags}>
-        delete all transactions
-        <DeleteIcon />
-      </IconButton>
+              <Link href={tagRoutes.editTag(item.id)}>
+                <EditIcon />
+              </Link>
+            </span>
+            <TagDemo
+              name={item.name}
+              transactionType={item.transactionType}
+              icon={item.icon}
+              color={item.color}
+            />
+          </div>
+        ))}
+        <IconButton onClick={clearAllTags}>
+          delete all tags
+          <DeleteIcon />
+        </IconButton>
+      </Render>
     </div>
   );
 };

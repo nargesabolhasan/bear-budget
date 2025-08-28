@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "@mui/material";
-import twMerge from "@/libs/utils";
+import twMerge from "@/utils/utils";
 
 export type SizeButtonProps = "small" | "medium" | "large";
 export type VariantButtonProps = "outlined" | "contained" | "text";

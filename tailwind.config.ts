@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { tailwindColors } from "@/theme/tailwind-colors";
 
 const config: Config = {
   content: [
@@ -8,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: "#4f46e5",
+        ...tailwindColors,
       },
       spacing: {
         "72": "18rem",

@@ -1,5 +1,5 @@
 import React from "react";
-import twMerge from "@/libs/utils";
+import twMerge from "@/utils/utils";
 import { ColorOption } from "@/types/global";
 import { PICKER_WRAPPER_CLASS } from "@/constant";
 
