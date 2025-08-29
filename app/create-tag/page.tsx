@@ -5,7 +5,7 @@ import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { useTagsStore } from "@/store/tags";
-import { FORMS_WRAPPER_CLASS } from "@/constant";
+import { FORMS_WRAPPER_CLASS } from "@/constant/className";
 
 const CreateTagPage = () => {
   const { createTag } = useTagsStore();

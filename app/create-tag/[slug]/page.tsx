@@ -5,7 +5,7 @@ import CreateTagForm from "@/components/create-tag";
 import { useTagsStore } from "@/store/tags";
 import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
 import { toast } from "sonner";
-import { FORMS_WRAPPER_CLASS } from "@/constant";
+import { FORMS_WRAPPER_CLASS } from "@/constant/className";
 
 type Props = {
   params: Promise<{ slug: string }>;

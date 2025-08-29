@@ -9,4 +9,8 @@ export interface TransactionStore {
     data: Partial<TransactionType>
   ) => void;
   clearAll: () => void;
+  groupedByType: () => Record<
+    string,
+    { transactions: TransactionType[]; totalAmount: number }
+  >;
 }
