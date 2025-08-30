@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, MenuItem, Select } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import IconPicker from "@/components/create-tag/iconPicker";
 import { iconList } from "@/constant/icons";
 import { Controller, useForm } from "react-hook-form";
