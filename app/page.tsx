@@ -8,7 +8,7 @@ import { convertToCurrency } from "@/utils/utils";
 export default function Home() {
   const { groupedByType } = useTransactionStore();
   const grouped = groupedByType();
-  console.log(grouped);
+
   return (
     <main>
       <section className={"flex flex-row gap-4 italic"}>

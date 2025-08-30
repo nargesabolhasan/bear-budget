@@ -8,13 +8,15 @@ import {
   TransactionFormData,
   TransactionProps,
 } from "@/components/add-transaction/type";
-import { Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
 import TagPicker from "@/components/add-transaction/tagPicker";
 import { useTagsStore } from "@/store/tags";
 import { convertToCurrency } from "@/utils/utils";
+import IAccordion from "@/components/molecules/accordion";
+import useIconCount from "@/hooks/useIconCount";
+import IButton from "@/components/atoms/button";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -42,6 +44,51 @@ const TransactionForm = ({
   });
 
   const { tags } = useTagsStore();
+  const tagsCount = useIconCount(110, ".tag-wrapper");
+
+  const accordionItem = [
+    {
+      id: 1,
+      panel: "tag-picker",
+      panelHeaderId: "tag-picker-header",
+      ariaControl: "tag-picker-aria",
+      summary: (
+        <div className={"h-full w-full flex flex-col gap-3"}>
+          <h4 className={"text-placeholder"}>select tag</h4>
+          <Controller
+            name={FormTransactionEnum.TAG}
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TagPicker
+                value={field.value}
+                onChange={field.onChange}
+                tagList={tags.slice(0, tagsCount)}
+              />
+            )}
+          />
+        </div>
+      ),
+      detail: (
+        <>
+          {tags.slice(tagsCount).length !== 0 && (
+            <Controller
+              name={FormTransactionEnum.TAG}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TagPicker
+                  value={field.value}
+                  onChange={field.onChange}
+                  tagList={tags.slice(tagsCount)}
+                />
+              )}
+            />
+          )}
+        </>
+      ),
+    },
+  ];
 
   const onSubmit = (formData: TransactionFormData) => {
     submitHandler?.(formData);
@@ -81,17 +128,11 @@ const TransactionForm = ({
         }}
       />
 
-      <Controller
-        name={FormTransactionEnum.TAG}
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <TagPicker
-            value={field.value}
-            onChange={field.onChange}
-            items={tags}
-          />
-        )}
+      <IAccordion
+        items={accordionItem}
+        detailClassName={"py-3! pr-5!"}
+        showExpandIcon={tags.slice(tagsCount).length !== 0}
+        className={"p-4 border border-gray-300"}
       />
       <Controller
         control={control}
@@ -126,9 +167,14 @@ const TransactionForm = ({
           />
         )}
       />
-      <Button variant={"contained"} type="submit" disabled={!isValid}>
-        Submit
-      </Button>
+      <IButton
+        variant={"contained"}
+        type="submit"
+        disabled={!isValid}
+        title={"Submit"}
+        size={"large"}
+        className={"w-full"}
+      />
     </form>
   );
 };

@@ -49,7 +49,7 @@ const CreateTagForm = ({
   });
 
   const iconCount = useIconCount(57);
-  const colorCount = useIconCount(57, "color-wrapper");
+  const colorCount = useIconCount(57, ".color-wrapper");
 
   const onSubmit = (formData: TagFormData) => {
     submitHandler(formData);
@@ -132,6 +132,7 @@ const CreateTagForm = ({
     <form
       className={"flex flex-col gap-4 w-full"}
       onSubmit={handleSubmit(onSubmit)}
+      dir={"auto"}
     >
       <Controller
         name={FormTagEnum.NAME}
@@ -171,6 +172,7 @@ const CreateTagForm = ({
         transactionType={watch(FormTagEnum.TRANSACTION_TYPE)}
         icon={watch(FormTagEnum.ICON)}
         color={watch(FormTagEnum.COLOR)}
+        className={"w-full"}
       />
       <IButton
         className={"w-full"}

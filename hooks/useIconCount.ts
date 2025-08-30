@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 const useIconCount = (
   iconSize: number = 40,
-  wrapperId = "icon-wrapper"
+  wrapperId = ".icon-wrapper"
 ): number => {
   const [iconCount, setIconCount] = useState<number>(0);
 
   useEffect(() => {
-    const calculateIconCount = (wrapper: HTMLElement | null) => {
+    const calculateIconCount = (wrapper: Element | null) => {
       if (wrapper) {
         const wrapperWidth = wrapper.clientWidth;
         const count = Math.floor(wrapperWidth / iconSize);
@@ -15,7 +15,7 @@ const useIconCount = (
       }
     };
 
-    const wrapper = document.getElementById(wrapperId);
+    const wrapper = document.querySelector(wrapperId);
     if (wrapper) {
       calculateIconCount(wrapper);
 
