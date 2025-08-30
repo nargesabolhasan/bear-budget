@@ -7,13 +7,13 @@ export type VariantButtonProps = "outlined" | "contained" | "text";
 export type ColorButtonProps = "primary" | "secondary" | "disabled";
 
 export type IButtonProps = Omit<ButtonProps, "variant" | "color" | "size"> & {
-  children?: React.ReactNode;
+  title?: React.ReactNode | string;
   variant?: VariantButtonProps;
   size?: SizeButtonProps;
   color?: ColorButtonProps;
 };
 const IButton = ({
-  children,
+  title,
   variant = "contained",
   size = "medium",
   color = "primary",
@@ -25,26 +25,29 @@ const IButton = ({
     text: "!bg-transparent !border-none",
   };
   const colorMapper: Record<ColorButtonProps, string> = {
-    primary: "!bg-primary !border !border-primary !text-primary",
-    secondary: "!bg-secondary !border !border-secondary !text-secondary",
+    primary: "!bg-primary !border !border-primary !text-inherit",
+    secondary: "!bg-secondary !border !border-secondary !text-inherit",
     disabled:
-      "!bg-placeholder_light !border !border-placeholder_light !text-placeholder_light",
+      "!bg-placeholder_light !border !border-placeholder_light !text-inherit",
   };
   const sizeMapper: Record<SizeButtonProps, string> = {
-    small: "w-[40px] !text-xs",
-    medium: "w-[80px] !text-md",
-    large: "w-[150] !text-lg",
+    small: "!px-5 h-[30px] !text-xs",
+    medium: "!px-10 h-[40px] !text-md",
+    large: "!px-14 h-[50px] !text-lg",
   };
   return (
     <Button
       {...props}
       className={twMerge(
-        colorMapper[color],
+        "w-fit",
+        props.disabled ? colorMapper.disabled : colorMapper[color],
         sizeMapper[size],
-        variantMapper[variant]
+        variantMapper[variant],
+        props.className
       )}
+      sx={{ textTransform: "none", ...props.sx }}
     >
-      {children}
+      {title}
     </Button>
   );
 };
