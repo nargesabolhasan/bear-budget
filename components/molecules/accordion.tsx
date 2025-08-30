@@ -11,6 +11,7 @@ export type AccordionProps = {
   summeryClassName?: string;
   detailClassName?: string;
   ExpandMoreIconComponent?: IconOption["icon"];
+  showExpandIcon?: boolean;
 };
 
 const IAccordion = ({
@@ -19,6 +20,7 @@ const IAccordion = ({
   summeryClassName,
   detailClassName,
   ExpandMoreIconComponent = ExpandMoreIcon,
+  showExpandIcon = true,
 }: AccordionProps) => {
   const [expanded, setExpanded] = useState<string | false>(false);
 
@@ -52,7 +54,7 @@ const IAccordion = ({
                 margin: 0,
               },
             }}
-            expandIcon={<ExpandMoreIconComponent />}
+            expandIcon={showExpandIcon && <ExpandMoreIconComponent />}
             aria-controls={item.ariaControl}
             id={item.panelHeaderId}
             className={summeryClassName}
