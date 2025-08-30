@@ -4,15 +4,23 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import { IconOption } from "@/types/global";
 import { PICKER_WRAPPER_CLASS } from "@/constant/className";
+import twMerge from "@/utils/utils";
 
 interface IconPickerProps {
   icons: IconOption[];
   onChange: (iconId: string | null) => void;
   value: string | null;
+  className?: string;
 }
 
-const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
+const IconPicker: React.FC<IconPickerProps> = ({
+  onChange,
+  icons,
+  value,
+  className,
+}) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const button = (e.target as HTMLElement).closest(".icon-picker-item");
     if (button) {
       const buttonId = button.getAttribute("data-icon-id");
@@ -22,7 +30,11 @@ const IconPicker: React.FC<IconPickerProps> = ({ onChange, icons, value }) => {
   };
 
   return (
-    <div onClick={handleSelect} className={PICKER_WRAPPER_CLASS}>
+    <div
+      id={"icon-wrapper"}
+      onClick={handleSelect}
+      className={twMerge(PICKER_WRAPPER_CLASS, className && className)}
+    >
       {icons.map((item) => {
         const Icon = item.icon;
         return (

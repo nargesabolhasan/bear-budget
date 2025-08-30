@@ -15,6 +15,7 @@ const ColorPicker = ({
   onChange,
 }: ColorPickerType) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const button = (e.target as HTMLButtonElement).closest(
       ".color-picker-item"
     );
@@ -29,14 +30,18 @@ const ColorPicker = ({
   };
 
   return (
-    <div onClick={handleSelect} className={PICKER_WRAPPER_CLASS}>
+    <div
+      id={"color-wrapper"}
+      onClick={handleSelect}
+      className={PICKER_WRAPPER_CLASS}
+    >
       {colorList.map((color) => (
         <div
           key={color.id}
           data-color={color.color}
           data-color-id={color.id}
           className={twMerge(
-            `color-picker-item w-[50px] h-[50px] rounded-full`,
+            `color-picker-item w-[40px] h-[40px] rounded-full`,
             value?.id === color.id && "border border-gray-900",
             color.color
           )}

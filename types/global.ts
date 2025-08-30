@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FaceIcon from "@mui/icons-material/Face";
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export enum TransactionEnum {
   INCOME = "Income",
@@ -64,3 +64,17 @@ export type DialogDataProps = {
 };
 
 export type OpenDialogFunc = (data: DialogDataProps) => void;
+
+export type AccordionItemsType = {
+  id: string | number;
+  panel: string;
+  ariaControl: string;
+  panelHeaderId: string;
+  summary: string | ReactNode;
+  detail: string | ReactNode;
+  onExpandPanel?: (
+    event: React.SyntheticEvent,
+    isExpanded: boolean,
+    panel: string
+  ) => void;
+};

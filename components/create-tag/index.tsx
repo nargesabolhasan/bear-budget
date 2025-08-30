@@ -13,6 +13,8 @@ import TagDemo from "@/components/create-tag/tagDemo";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ITextField from "@/components/atoms/textField";
+import IAccordion from "@/components/molecules/accordion";
+import useIconCount from "@/hooks/useIconCount";
 
 const CreateTagForm = ({
   submitHandler,
@@ -45,9 +47,79 @@ const CreateTagForm = ({
     mode: "onChange",
   });
 
+  const iconCount = useIconCount(57);
+  const colorCount = useIconCount(57, "color-wrapper");
+
   const onSubmit = (formData: TagFormData) => {
     submitHandler(formData);
   };
+
+  const items = [
+    {
+      id: 1,
+      panel: "panel-icon",
+      summary: (
+        <Controller
+          control={control}
+          name={FormTagEnum.ICON}
+          render={({ field }) => (
+            <IconPicker
+              icons={Array.from(iconList.values()).slice(0, iconCount)}
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
+        />
+      ),
+      detail: (
+        <Controller
+          control={control}
+          name={FormTagEnum.ICON}
+          render={({ field }) => (
+            <IconPicker
+              icons={Array.from(iconList.values()).slice(iconCount)}
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
+        />
+      ),
+      ariaControl: "panel-icon-aria",
+      panelHeaderId: "panel-icon-header",
+    },
+    {
+      id: 2,
+      panel: "panel-color",
+      summary: (
+        <Controller
+          control={control}
+          name={FormTagEnum.COLOR}
+          render={({ field }) => (
+            <ColorPicker
+              colorList={colorList.slice(0, colorCount)}
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
+        />
+      ),
+      detail: (
+        <Controller
+          control={control}
+          name={FormTagEnum.COLOR}
+          render={({ field }) => (
+            <ColorPicker
+              colorList={colorList.slice(colorCount)}
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
+        />
+      ),
+      ariaControl: "panel-color-aria",
+      panelHeaderId: "panel-color-header",
+    },
+  ];
 
   return (
     <form
@@ -68,28 +140,7 @@ const CreateTagForm = ({
           />
         )}
       />
-      <Controller
-        control={control}
-        name={FormTagEnum.ICON}
-        render={({ field }) => (
-          <IconPicker
-            icons={Array.from(iconList.values())}
-            value={field.value}
-            onChange={field.onChange}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name={FormTagEnum.COLOR}
-        render={({ field }) => (
-          <ColorPicker
-            colorList={colorList}
-            value={field.value}
-            onChange={field.onChange}
-          />
-        )}
-      />
+      <IAccordion items={items} summeryClassName={"m-0!"} className={"p-4"} />
       <Controller
         control={control}
         name={FormTagEnum.TRANSACTION_TYPE}
