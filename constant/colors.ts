@@ -24,8 +24,8 @@ const colors = [
   "bg-green-200",
   "bg-green-300",
   "bg-green-400",
-  "bg-olive",
-  "bg-olive_darb",
+  "bg-olive text-white",
+  "bg-olive_darb text-white",
   "bg-olivine",
 
   // Teals
@@ -83,10 +83,10 @@ const colors = [
   "bg-gray-400",
 
   // Browns
-  "bg-yellow-800", // Light brown
+  "bg-yellow-800 text-white", // Light brown
   "bg-yellow-500", // Medium brown
-  "bg-yellow-900", // Slightly darker brown
-  "bg-orange-950", // Darker brown
+  "bg-yellow-900 text-white", // Slightly darker brown
+  "bg-orange-950 text-white", // Darker brown
   "bg-burly-wood",
 ];
 

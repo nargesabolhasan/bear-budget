@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ITextField from "@/components/atoms/textField";
 import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
+import IButton from "@/components/atoms/button";
 
 const CreateTagForm = ({
   submitHandler,
@@ -171,9 +172,14 @@ const CreateTagForm = ({
         icon={watch(FormTagEnum.ICON)}
         color={watch(FormTagEnum.COLOR)}
       />
-      <Button variant={"contained"} type="submit" disabled={!isValid}>
-        Submit
-      </Button>
+      <IButton
+        className={"w-full"}
+        variant={"contained"}
+        type="submit"
+        size={"large"}
+        disabled={!isValid}
+        title={"Submit"}
+      />
     </form>
   );
 };
