@@ -31,16 +31,19 @@ const IconPicker: React.FC<IconPickerProps> = ({
 
   return (
     <div
-      id={"icon-wrapper"}
       onClick={handleSelect}
-      className={twMerge(PICKER_WRAPPER_CLASS, className && className)}
+      className={twMerge(
+        "icon-wrapper",
+        PICKER_WRAPPER_CLASS,
+        className && className
+      )}
     >
       {icons.map((item) => {
         const Icon = item.icon;
         return (
           <IconButton
             key={item.id}
-            className={"icon-picker-item focus:bg-blue-500"}
+            className={"icon-picker-item"}
             data-icon-id={item.id}
             color={value === item.id ? "primary" : "default"}
             sx={{

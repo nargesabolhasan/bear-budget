@@ -31,9 +31,8 @@ const ColorPicker = ({
 
   return (
     <div
-      id={"color-wrapper"}
       onClick={handleSelect}
-      className={PICKER_WRAPPER_CLASS}
+      className={twMerge("color-wrapper", PICKER_WRAPPER_CLASS)}
     >
       {colorList.map((color) => (
         <div
@@ -42,7 +41,7 @@ const ColorPicker = ({
           data-color-id={color.id}
           className={twMerge(
             `color-picker-item w-[40px] h-[40px] rounded-full`,
-            value?.id === color.id && "border border-gray-900",
+            value?.id === color.id && "border border-dark",
             color.color
           )}
         />
