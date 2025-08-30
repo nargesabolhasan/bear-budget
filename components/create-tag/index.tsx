@@ -59,17 +59,20 @@ const CreateTagForm = ({
       id: 1,
       panel: "panel-icon",
       summary: (
-        <Controller
-          control={control}
-          name={FormTagEnum.ICON}
-          render={({ field }) => (
-            <IconPicker
-              icons={Array.from(iconList.values()).slice(0, iconCount)}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
+        <div className={"h-full w-full flex flex-col gap-2"}>
+          <h4>select icon</h4>
+          <Controller
+            control={control}
+            name={FormTagEnum.ICON}
+            render={({ field }) => (
+              <IconPicker
+                icons={Array.from(iconList.values()).slice(0, iconCount)}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        </div>
       ),
       detail: (
         <Controller
@@ -91,17 +94,20 @@ const CreateTagForm = ({
       id: 2,
       panel: "panel-color",
       summary: (
-        <Controller
-          control={control}
-          name={FormTagEnum.COLOR}
-          render={({ field }) => (
-            <ColorPicker
-              colorList={colorList.slice(0, colorCount)}
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
+        <div className={"h-full w-full flex flex-col gap-2"}>
+          <h4>select color</h4>
+          <Controller
+            control={control}
+            name={FormTagEnum.COLOR}
+            render={({ field }) => (
+              <ColorPicker
+                colorList={colorList.slice(0, colorCount)}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        </div>
       ),
       detail: (
         <Controller
@@ -140,7 +146,11 @@ const CreateTagForm = ({
           />
         )}
       />
-      <IAccordion items={items} summeryClassName={"m-0!"} className={"p-4"} />
+      <IAccordion
+        items={items}
+        summeryClassName={"m-0! h-fit"}
+        className={"p-4 border border-gray-300"}
+      />
       <Controller
         control={control}
         name={FormTagEnum.TRANSACTION_TYPE}

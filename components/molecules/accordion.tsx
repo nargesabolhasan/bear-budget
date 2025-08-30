@@ -30,13 +30,20 @@ const IAccordion = ({
     };
 
   return (
-    <div>
+    <>
       {items.map((item) => (
         <Accordion
           key={`I-Accordion-item-${item.id}`}
           expanded={expanded === item.panel}
           onChange={handleChange(item.panel, item?.onExpandPanel)}
           className={className}
+          sx={{
+            boxShadow: 0,
+            borderRadius: "8px",
+            "&:before": {
+              display: "none",
+            },
+          }}
         >
           <AccordionSummary
             sx={{
@@ -62,7 +69,7 @@ const IAccordion = ({
           </AccordionDetails>
         </Accordion>
       ))}
-    </div>
+    </>
   );
 };
 
