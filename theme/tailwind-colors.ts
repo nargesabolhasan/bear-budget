@@ -16,4 +16,8 @@ export const tailwindColors = {
   brown: "#6D4C41",
   info: "#2196F3",
   success: "#4CAF50",
+  burly_wood: "#DEB887",
+  olive: "#808000",
+  olive_darb: "#6b8e23",
+  olivine: "#9ab973",
 };
