@@ -9,7 +9,7 @@ export const tailwindColors = {
   neutral_light: "#F5F5F5",
   neutral_dark: "#E0E0E0",
   placeholder: "#616161",
-  placeholder_light: "#9E9E9E",
+  placeholder_light: "#d9d9d9",
   placeholder_dark: "#212121",
   secondary: "#FF9800",
   green: "#4CAF50",
@@ -20,4 +20,5 @@ export const tailwindColors = {
   olive: "#808000",
   olive_darb: "#6b8e23",
   olivine: "#9ab973",
+  dark: "#050505",
 };

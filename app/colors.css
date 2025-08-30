@@ -9,7 +9,7 @@
     --color-neutral_light: #F5F5F5;
     --color-neutral_dark: #E0E0E0;
     --color-placeholder: #616161;
-    --color-placeholder_light: #9E9E9E;
+    --color-placeholder_light: #d9d9d9;
     --color-placeholder_dark: #212121;
     --color-secondary: #FF9800;
     --color-green: #4CAF50;
@@ -20,5 +20,6 @@
     --color-olive:#808000;
     --color-olive_darb:#6b8e23;
     --color-olivine:#9ab973;
+    --color-dark:#050505
 
 }
