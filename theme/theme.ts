@@ -21,6 +21,7 @@ declare module "@mui/material/styles" {
 }
 
 const theme = createTheme({
+  direction: "rtl",
   palette: {
     primary: { main: tailwindColors.primary },
     danger: { main: tailwindColors.danger, contrastText: "#fff" },
