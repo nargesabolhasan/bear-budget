@@ -7,7 +7,7 @@ import { tagRoutes } from "@/constant/routes";
 import EmptyList from "@/components/molecules/emptyList";
 import { Render } from "@/utils/render";
 import { useRouter } from "next/navigation";
-import TagListDemo from "@/components/tag-list/tagList";
+import TagListDemo from "@/components/tag-list/tagListComponent";
 import TagListHeader from "@/components/tag-list/tagListHeader";
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
 
@@ -38,7 +38,7 @@ const TagList = () => {
           clearAllTags={clearAllTags}
           handleAddMore={goToCreateTags}
         />
-        <TagListDemo tagList={tags} />
+        <TagListDemo />
         <ScrollToBottom />
       </Render>
     </div>

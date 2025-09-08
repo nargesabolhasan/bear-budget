@@ -4,7 +4,6 @@ import { TagType } from "@/types/global";
 import React from "react";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { tagRoutes } from "@/constant/routes";
 import { useTagsStore } from "@/store/tags";
@@ -13,9 +12,7 @@ import { iconList } from "@/constant/icons";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
-type Props = { tagList: TagType[] };
-
-const TagListDemo = ({ tagList }: Props) => {
+const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
 
   const handleDelete = (tag: TagType) => {
