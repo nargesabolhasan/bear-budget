@@ -34,11 +34,13 @@ const TagListDemo = ({ tagList }: Props) => {
   };
 
   return (
-    <ul className={"p-2 flex flex-col gap-1"}>
-      {Object.entries(groupedByType()).map(([tagType, tags]) => (
-        <div className={"flex flex-col gap-2"}>
+    <ul className={"flex flex-col gap-1"}>
+      {Object.entries(groupedByType()).map(([tagType, tags], index) => (
+        <div className={"flex flex-col gap-2"} key={`${tagType}-${index}`}>
           <h2
-            className={"font-bold my-2 p-2 text-center bg-olivine rounded-md"}
+            className={
+              "mx-auto w-1/2 font-bold my-2 p-2 text-center bg-primary rounded-full"
+            }
           >
             {tagType}
           </h2>
@@ -49,7 +51,7 @@ const TagListDemo = ({ tagList }: Props) => {
               <li
                 key={`tag-list-${tag.id}`}
                 className={
-                  "flex justify-between items-center gap-2 p-2 border border-olivine rounded-lg"
+                  "flex justify-between items-center gap-2 p-2 border border-primary rounded-lg"
                 }
               >
                 <span className={"grow grid grid-cols-3 items-center"}>
@@ -64,16 +66,18 @@ const TagListDemo = ({ tagList }: Props) => {
                   <h3 className={"col-span-2"}> {tag.name}</h3>
                 </span>
                 <span
-                  className={"flex flex-row gap-2 justify-between items-center"}
+                  className={
+                    "flex flex-row gap-3 justify-between items-center print:hidden"
+                  }
                 >
                   <IconButton onClick={() => handleDelete(tag)}>
-                    <DeleteRoundedIcon className={"text-olivine"} />
+                    <DeleteRoundedIcon className={"text-primary"} />
                   </IconButton>
 
                   <Link href={tagRoutes.editTag(tag.id)}>
                     <BorderColorRoundedIcon
                       fontSize="medium"
-                      className={"text-olivine"}
+                      className={"text-primary"}
                     />
                   </Link>
                 </span>

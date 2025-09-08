@@ -2,14 +2,14 @@
 
 import React from "react";
 import { useTagsStore } from "@/store/tags";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { tagRoutes } from "@/constant/routes";
 import EmptyList from "@/components/molecules/emptyList";
 import { Render } from "@/utils/render";
 import { useRouter } from "next/navigation";
 import TagListDemo from "@/components/tag-list/tagList";
+import TagListHeader from "@/components/tag-list/tagListHeader";
+import ScrollToBottom from "@/components/molecules/scrollToBottom";
 
 const TagList = () => {
   const { tags, clear } = useTagsStore();
@@ -22,21 +22,24 @@ const TagList = () => {
       confirmHandler: () => clear(),
     });
   };
+  const goToCreateTags = () => {
+    router.push(tagRoutes.createTag.href);
+  };
 
   return (
-    <div className={"mx-auto w-full md:w-1/2 flex flex-col gap-3"}>
+    <div className={"p-4 mx-auto w-full md:w-1/2 flex flex-col gap-3"}>
       <Render
         when={tags.length !== 0}
         fallback={
           <EmptyList onAddItem={() => router.push(tagRoutes.createTag.href)} />
         }
       >
+        <TagListHeader
+          clearAllTags={clearAllTags}
+          handleAddMore={goToCreateTags}
+        />
         <TagListDemo tagList={tags} />
-
-        <IconButton onClick={clearAllTags}>
-          delete all tags
-          <DeleteIcon />
-        </IconButton>
+        <ScrollToBottom />
       </Render>
     </div>
   );
