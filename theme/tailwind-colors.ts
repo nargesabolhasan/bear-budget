@@ -1,5 +1,6 @@
 export const tailwindColors = {
-  primary: "#4CAF50",
+  // primary: "#4CAF50",
+  primary: "#9ab973",
   hover_primary: "#1f5e22",
   danger: "#F44336",
   hover_danger: "#dc2626",
@@ -20,6 +21,5 @@ export const tailwindColors = {
   burly_wood: "#DEB887",
   olive: "#808000",
   olive_darb: "#6b8e23",
-  olivine: "#9ab973",
   dark: "#050505",
 };

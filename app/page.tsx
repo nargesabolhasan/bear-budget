@@ -21,7 +21,7 @@ export default function Home() {
             <li key={index}>
               {key}
               {" : "}
-              {convertToCurrency(value.totalAmount)} {"=>"}
+              {convertToCurrency(value.totalAmount)} {"=> count: "}
               {value.transactions.length}
             </li>
           ))}

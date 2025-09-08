@@ -1,5 +1,6 @@
 @theme inline {
-    --color-primary: #4CAF50;
+    /*--color-primary: #4CAF50;*/
+    --color-primary: #9ab973;
     --color-hover_primary: #1f5e22;
     --color-danger: #F44336;
     --color-hover_danger: #dc2626;
@@ -20,7 +21,6 @@
     --color-burly-wood:#DEB887;
     --color-olive:#808000;
     --color-olive_darb:#6b8e23;
-    --color-olivine:#9ab973;
     --color-dark:#050505
 
 }
