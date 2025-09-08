@@ -191,8 +191,9 @@ const CreateTagForm = ({
         type="submit"
         size={"large"}
         disabled={!isValid}
-        title={"Submit"}
-      />
+      >
+        Submit
+      </IButton>
     </form>
   );
 };

@@ -179,10 +179,11 @@ const TransactionForm = ({
         variant={"contained"}
         type="submit"
         disabled={!isValid}
-        title={"Submit"}
         size={"large"}
         className={"w-full"}
-      />
+      >
+        Submit
+      </IButton>
     </form>
   );
 };
