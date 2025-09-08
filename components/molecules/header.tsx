@@ -57,42 +57,40 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   );
 
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            {title}
-          </Typography>
+    <AppBar position="static" className={"print:!hidden"}>
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          {title}
+        </Typography>
 
-          {isMobile ? (
-            <>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-              >
-                <MenuIcon />
-              </IconButton>
+        {isMobile ? (
+          <>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
+            >
+              <MenuIcon />
+            </IconButton>
 
-              <Drawer
-                anchor="left"
-                open={drawerOpen}
-                onClose={toggleDrawer(false)}
-              >
-                {drawer}
-              </Drawer>
-            </>
-          ) : (
-            <Box className={"flex gap-3"}>
-              {navItems.map((item) => (
-                <DesktopNavItem key={item.key} item={item} />
-              ))}
-            </Box>
-          )}
-        </Toolbar>
-      </AppBar>
-    </>
+            <Drawer
+              anchor="left"
+              open={drawerOpen}
+              onClose={toggleDrawer(false)}
+            >
+              {drawer}
+            </Drawer>
+          </>
+        ) : (
+          <Box className={"flex gap-3"}>
+            {navItems.map((item) => (
+              <DesktopNavItem key={item.key} item={item} />
+            ))}
+          </Box>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
 
