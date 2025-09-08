@@ -7,13 +7,12 @@ export type VariantButtonProps = "outlined" | "contained" | "text";
 export type ColorButtonProps = "primary" | "secondary" | "disabled";
 
 export type IButtonProps = Omit<ButtonProps, "variant" | "color" | "size"> & {
-  title?: React.ReactNode | string;
   variant?: VariantButtonProps;
   size?: SizeButtonProps;
   color?: ColorButtonProps;
 };
 const IButton = ({
-  title,
+  children,
   variant = "contained",
   size = "medium",
   color = "primary",
@@ -47,7 +46,7 @@ const IButton = ({
       )}
       sx={{ textTransform: "none", ...props.sx }}
     >
-      {title}
+      {children}
     </Button>
   );
 };
