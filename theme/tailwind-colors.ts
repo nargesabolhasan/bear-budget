@@ -10,6 +10,7 @@ export const tailwindColors = {
   neutral_dark: "#E0E0E0",
   placeholder: "#616161",
   placeholder_light: "#d9d9d9",
+  placeholder_light2: "#c9c5c5",
   placeholder_dark: "#212121",
   secondary: "#FF9800",
   green: "#4CAF50",
