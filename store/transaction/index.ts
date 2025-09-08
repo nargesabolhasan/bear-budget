@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { TransactionType } from "@/types/global";
 import { TransactionStore } from "@/store/transaction/type";
-import { useTagsStore } from "@/store/tags"; // 👈 import tag store
+import { useTagsStore } from "@/store/tags";
 
 export const useTransactionStore = create<TransactionStore>()(
   devtools(

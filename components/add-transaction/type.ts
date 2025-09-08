@@ -1,7 +1,9 @@
 import { TransactionType } from "@/types/global";
+import { ReactNode } from "react";
 
 export type TransactionProps = {
   submitHandler: (transaction: TransactionFormData) => void;
+  title?: string | ReactNode;
 };
 
 export const enum FormTransactionEnum {

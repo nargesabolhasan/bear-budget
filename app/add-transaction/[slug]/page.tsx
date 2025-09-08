@@ -7,6 +7,7 @@ import {
   FormTransactionEnum,
   TransactionFormData,
 } from "@/components/add-transaction/type";
+import BackButton from "@/components/molecules/backButton";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,7 +28,18 @@ const EditTransaction = ({ params }: Props) => {
       </span>
     );
   };
-  return <TransactionForm submitHandler={submitHandler} {...defaultValue} />;
+  return (
+    <TransactionForm
+      title={
+        <span className={"flex flex-row"}>
+          <BackButton />
+          <h4 className={"text-center grow"}>Edit Transaction</h4>
+        </span>
+      }
+      submitHandler={submitHandler}
+      {...defaultValue}
+    />
+  );
 };
 
 export default EditTransaction;

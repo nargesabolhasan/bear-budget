@@ -30,8 +30,9 @@ const TagPicker = ({ tagList, value = "", onChange }: tagPickerType) => {
     >
       {tagList.map((tag) => (
         <TagDemo
+          key={tag.id}
           className={twMerge(
-            "tag-picker-item w-[100px] p-2!",
+            "tag-picker-item w-[100px] p-2! hover:bg-placeholder_light2",
             value === tag.id &&
               "bg-placeholder_light border-solid border-2 border-dark!"
           )}

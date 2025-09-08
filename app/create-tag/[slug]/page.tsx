@@ -6,6 +6,7 @@ import { useTagsStore } from "@/store/tags";
 import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
 import { toast } from "sonner";
 import { FORMS_WRAPPER_CLASS } from "@/constant/className";
+import BackButton from "@/components/molecules/backButton";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -30,7 +31,16 @@ const EditTagPage = ({ params }: Props) => {
 
   return (
     <div className={FORMS_WRAPPER_CLASS}>
-      <CreateTagForm submitHandler={submitHandler} {...defaultValue} />
+      <CreateTagForm
+        submitHandler={submitHandler}
+        title={
+          <span className={"flex flex-row"}>
+            <BackButton />
+            <h4 className={"text-center grow"}>Edit Tag</h4>
+          </span>
+        }
+        {...defaultValue}
+      />
     </div>
   );
 };

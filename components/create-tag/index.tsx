@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 import { MenuItem, Select } from "@mui/material";
 import IconPicker from "@/components/create-tag/iconPicker";
 import { iconList } from "@/constant/icons";
@@ -16,11 +16,16 @@ import ITextField from "@/components/atoms/textField";
 import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
+import { Render } from "@/utils/render";
 
 const CreateTagForm = ({
   submitHandler,
+  title,
   ...props
-}: Partial<TagFormData> & { submitHandler: (data: TagFormData) => void }) => {
+}: Partial<TagFormData> & {
+  submitHandler: (data: TagFormData) => void;
+  title?: string | ReactNode;
+}) => {
   const schema = yup.object({
     [FormTagEnum.NAME]: yup.string().required("name is required"),
     [FormTagEnum.ICON]: yup.string().required("icon is required"),
@@ -134,6 +139,12 @@ const CreateTagForm = ({
       onSubmit={handleSubmit(onSubmit)}
       dir={"auto"}
     >
+      <Render
+        when={!!title}
+        fallback={<h4 className={"text-center"}>Create Tag</h4>}
+      >
+        {title}
+      </Render>
       <Controller
         name={FormTagEnum.NAME}
         control={control}

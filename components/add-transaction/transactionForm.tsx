@@ -17,6 +17,7 @@ import { convertToCurrency } from "@/utils/utils";
 import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
+import { Render } from "@/utils/render";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -26,6 +27,7 @@ const schema = yup.object({
 
 const TransactionForm = ({
   submitHandler,
+  title,
   ...props
 }: TransactionProps & Partial<TransactionFormData>) => {
   const {
@@ -99,6 +101,12 @@ const TransactionForm = ({
       onSubmit={handleSubmit(onSubmit)}
       className={"w-full flex flex-col gap-3 p-3"}
     >
+      <Render
+        when={!!title}
+        fallback={<h4 className={"text-center"}>Add new Transaction</h4>}
+      >
+        {title}
+      </Render>
       <Controller
         name={FormTransactionEnum.AMOUNT}
         control={control}
