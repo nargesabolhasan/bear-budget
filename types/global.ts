@@ -36,7 +36,10 @@ export type TagType = {
 export type TransactionType = {
   id: string;
   amount: string;
-  tag: string;
+  tag: {
+    name: string;
+    id: string;
+  };
   date: string;
   description?: string;
 };

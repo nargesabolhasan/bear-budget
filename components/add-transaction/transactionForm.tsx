@@ -21,7 +21,13 @@ import { Render } from "@/utils/render";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
-  [FormTransactionEnum.TAG]: yup.string().required("Tag is required"),
+  [FormTransactionEnum.TAG]: yup
+    .object()
+    .shape({
+      name: yup.string().required(),
+      id: yup.string().required(),
+    })
+    .required("Tag is required"),
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
 });
 
@@ -37,7 +43,7 @@ const TransactionForm = ({
   } = useForm<TransactionFormData>({
     defaultValues: {
       [FormTransactionEnum.AMOUNT]: props.amount || "",
-      [FormTransactionEnum.TAG]: props.tag || "",
+      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "" },
       [FormTransactionEnum.DATE]: props.date || "",
       [FormTransactionEnum.DESCRIPTION]: props.description || "",
     },
@@ -60,7 +66,6 @@ const TransactionForm = ({
           <Controller
             name={FormTransactionEnum.TAG}
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <TagPicker
                 value={field.value}
@@ -77,7 +82,6 @@ const TransactionForm = ({
             <Controller
               name={FormTransactionEnum.TAG}
               control={control}
-              defaultValue=""
               render={({ field }) => (
                 <TagPicker
                   value={field.value}

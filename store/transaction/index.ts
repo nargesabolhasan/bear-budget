@@ -50,7 +50,7 @@ export const useTransactionStore = create<TransactionStore>()(
           > = {};
 
           transactions.forEach((tx) => {
-            const tag = tagMap[tx.tag];
+            const tag = tagMap[tx.tag.id];
             if (!tag) return;
 
             const type = tag.transactionType;

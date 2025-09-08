@@ -24,6 +24,7 @@ const TagDemo = ({
         className && className
       )}
       data-tag-id={dataTagId}
+      data-tag-name={name}
       dir={"auto"}
     >
       <div className={"flex flex-col gap-2 items-start w-full"}>
