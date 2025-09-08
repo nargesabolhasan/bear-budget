@@ -41,10 +41,6 @@ export type TransactionType = {
   description?: string;
 };
 
-export type GroupedTransactionType = Partial<
-  Record<TransactionEnum, TransactionType[]>
->;
-
 export type NavItemType = {
   label: string;
   key: string;

@@ -41,19 +41,17 @@ const IconPicker: React.FC<IconPickerProps> = ({
       {icons.map((item) => {
         const Icon = item.icon;
         return (
-          <IconButton
+          <div
             key={item.id}
-            className={"icon-picker-item"}
+            className={twMerge(
+              "icon-picker-item border bg-neutral border-placeholder_light p-2 rounded-lg hover:bg-placeholder_light",
+              value === item.id && "border-dark! bg-placeholder_light"
+            )}
             data-icon-id={item.id}
             color={value === item.id ? "primary" : "default"}
-            sx={{
-              border: value === item.id ? "2px solid" : "1px solid lightgray",
-              borderRadius: 2,
-              flexDirection: "column",
-            }}
           >
             <Icon />
-          </IconButton>
+          </div>
         );
       })}
     </div>
