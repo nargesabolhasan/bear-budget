@@ -1,4 +1,14 @@
-import { TransactionType } from "@/types/global";
+import { TransactionEnum, TransactionType } from "@/types/global";
+
+export type TransactionInfoType = {
+  transactions: TransactionType[];
+  totalAmount: number;
+};
+
+export type GroupedTransactionType = Record<
+  TransactionEnum,
+  TransactionInfoType
+>;
 
 export interface TransactionStore {
   transactions: TransactionType[];
@@ -9,8 +19,5 @@ export interface TransactionStore {
     data: Partial<TransactionType>
   ) => void;
   clearAll: () => void;
-  groupedByType: () => Record<
-    string,
-    { transactions: TransactionType[]; totalAmount: number }
-  >;
+  groupedByType: () => GroupedTransactionType;
 }
