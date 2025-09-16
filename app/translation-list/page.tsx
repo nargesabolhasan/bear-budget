@@ -10,7 +10,9 @@ import { useRouter } from "next/navigation";
 import SuperGroupList from "@/components/transaction-list/super-group-view";
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
 import { TransactionInfoType } from "@/store/transaction/type";
-import FilterButtons from "@/components/molecules/filterButtons";
+import FilterButtons, {
+  NavItemsType,
+} from "@/components/molecules/filterButtons";
 import AllTransactions from "@/components/transaction-list/all-view";
 
 const enum ViewEnums {
@@ -19,10 +21,23 @@ const enum ViewEnums {
   GROUPED,
 }
 
-const navItems = [
+const contextMenuItems = [
+  { id: 1, title: TransactionEnum.INCOME },
+  { id: 2, title: TransactionEnum.EXPENSE },
+  { id: 3, title: TransactionEnum.DEBT },
+  { id: 4, title: TransactionEnum.LOANED },
+  { id: 5, title: TransactionEnum.SAVE },
+];
+
+const navItems: NavItemsType[] = [
   { id: ViewEnums.SUPERGROUP, title: "Sort by group" },
   { id: ViewEnums.ALL, title: "All" },
-  { id: ViewEnums.GROUPED, title: "Grouped" },
+  {
+    id: ViewEnums.GROUPED,
+    title: "Grouped",
+    showContextMenu: true,
+    contextMenu: contextMenuItems,
+  },
 ];
 
 const TransactionList = () => {
