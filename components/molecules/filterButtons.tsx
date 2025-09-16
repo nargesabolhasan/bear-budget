@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from "react";
+"use client";
+import React, { Fragment } from "react";
 import IButton from "@/components/atoms/button";
 import ContextMenu, {
   ContextMenuProps,
 } from "@/components/molecules/contextMenu";
 import { Render } from "@/utils/render";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export type NavItemsType = {
   id: number;
@@ -16,11 +18,17 @@ type FilterButtonProps = {
   navItems: NavItemsType[];
   activeId: number;
   onChange: (id: number) => void;
+  selectedMenuFilter: string;
+  setSelectedMenuFilter: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const FilterButtons = ({ navItems, activeId, onChange }: FilterButtonProps) => {
-  const [contextButtonTitle, setContextButtonTitle] = useState<string>("");
-
+const FilterButtons = ({
+  navItems,
+  activeId,
+  onChange,
+  selectedMenuFilter,
+  setSelectedMenuFilter,
+}: FilterButtonProps) => {
   const NavButton = ({
     item,
     index,
@@ -39,12 +47,13 @@ const FilterButtons = ({ navItems, activeId, onChange }: FilterButtonProps) => {
       variant={isActive ? "contained" : "outlined"}
       size={"small"}
     >
-      {(showContextMenu && contextButtonTitle) || item.title}
+      {(showContextMenu && selectedMenuFilter) || item.title}
+      {showContextMenu && <ArrowDropDownIcon />}
     </IButton>
   );
 
   const handleSelectItem = (item: ContextMenuProps[number]) => {
-    setContextButtonTitle(item.title);
+    setSelectedMenuFilter(item.title);
   };
 
   return (
@@ -62,6 +71,7 @@ const FilterButtons = ({ navItems, activeId, onChange }: FilterButtonProps) => {
               <ContextMenu
                 menuItems={item?.contextMenu as ContextMenuProps}
                 onSelectAction={handleSelectItem}
+                defaultSelect={0}
               >
                 <NavButton
                   isActive={isActive}

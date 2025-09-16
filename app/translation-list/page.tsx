@@ -15,6 +15,7 @@ import FilterButtons, {
 } from "@/components/molecules/filterButtons";
 import AllTransactions from "@/components/transaction-list/all-view";
 import { filterTransactionList } from "@/constant";
+import GroupedTransaction from "@/components/transaction-list/grouped-view";
 
 const enum ViewEnums {
   SUPERGROUP,
@@ -35,8 +36,13 @@ const navItems: NavItemsType[] = [
 
 const TransactionList = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.SUPERGROUP);
+  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
+
   const { transactions, removeTransaction, clearAll, groupedByType } =
     useTransactionStore();
+
+  const groupedTransactions = groupedByType();
+
   const router = useRouter();
 
   const handleDelete = (transaction: TransactionType) => {
@@ -72,14 +78,23 @@ const TransactionList = () => {
           },
           {
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
-            render: <div>Grouped view coming soon</div>,
+            render: (
+              <GroupedTransaction
+                transactionType={selectedMenuFilter || TransactionEnum.INCOME}
+                transactions={
+                  (selectedMenuFilter &&
+                    groupedTransactions?.[selectedMenuFilter]) ||
+                  groupedTransactions.Income
+                }
+              />
+            ),
           },
           {
             when: viewMode === ViewEnums.SUPERGROUP && transactions.length > 0,
             render: (
               <SuperGroupList
                 groupedItems={
-                  Object.entries(groupedByType()) as [
+                  Object.entries(groupedTransactions) as [
                     TransactionEnum,
                     TransactionInfoType
                   ][]
@@ -98,6 +113,8 @@ const TransactionList = () => {
           activeId={viewMode}
           onChange={(id) => setViewMode(id)}
           navItems={navItems}
+          selectedMenuFilter={selectedMenuFilter}
+          setSelectedMenuFilter={setSelectedMenuFilter}
         />
         <ScrollToBottom />
       </Render>

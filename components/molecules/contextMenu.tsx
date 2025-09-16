@@ -12,15 +12,19 @@ type Props = {
   menuItems: ContextMenuProps;
   children: React.ReactNode;
   onSelectAction?: (item: ContextMenuProps[number]) => void;
+  defaultSelect?: number | string;
 };
 
 export default function ContextMenu({
   children,
   menuItems,
   onSelectAction,
+  defaultSelect = 0,
 }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [selectedId, setSelectedId] = React.useState<number | null>(null);
+  const [selectedId, setSelectedId] = React.useState<number | string>(
+    defaultSelect
+  );
 
   const open = Boolean(anchorEl);
 
@@ -39,8 +43,8 @@ export default function ContextMenu({
       </div>
       <Menu
         id="basic-menu"
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "top", horizontal: "left" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

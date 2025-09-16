@@ -14,7 +14,7 @@ const TransactionItems = ({ transactionList, transactionType }: Props) => {
   return (
     <ul
       className={
-        "flex flex-col gap-3 border-2 border-dashed border-primary border-t-0 rounded-b-lg p-3"
+        "flex flex-col items-center justify-center gap-3 border-2 border-dashed border-primary border-t-0 rounded-b-lg p-3"
       }
     >
       {transactionList.map((transaction) => (
