@@ -1,7 +1,10 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { TransactionType } from "@/types/global";
-import { TransactionStore } from "@/store/transaction/type";
+import {
+  GroupedTransactionType,
+  TransactionStore,
+} from "@/store/transaction/type";
 import { useTagsStore } from "@/store/tags";
 
 export const useTransactionStore = create<TransactionStore>()(
@@ -44,10 +47,7 @@ export const useTransactionStore = create<TransactionStore>()(
 
           const tagMap = Object.fromEntries(tags.map((t) => [t.id, t]));
 
-          const grouped: Record<
-            string,
-            { transactions: TransactionType[]; totalAmount: number }
-          > = {};
+          const grouped: GroupedTransactionType = {};
 
           transactions.forEach((tx) => {
             const tag = tagMap[tx.tag.id];

@@ -6,7 +6,7 @@ export type TransactionInfoType = {
 };
 
 export type GroupedTransactionType = Record<
-  TransactionEnum,
+  TransactionEnum | string,
   TransactionInfoType
 >;
 
