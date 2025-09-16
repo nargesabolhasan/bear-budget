@@ -14,20 +14,13 @@ import FilterButtons, {
   NavItemsType,
 } from "@/components/molecules/filterButtons";
 import AllTransactions from "@/components/transaction-list/all-view";
+import { filterTransactionList } from "@/constant";
 
 const enum ViewEnums {
   SUPERGROUP,
   ALL,
   GROUPED,
 }
-
-const contextMenuItems = [
-  { id: 1, title: TransactionEnum.INCOME },
-  { id: 2, title: TransactionEnum.EXPENSE },
-  { id: 3, title: TransactionEnum.DEBT },
-  { id: 4, title: TransactionEnum.LOANED },
-  { id: 5, title: TransactionEnum.SAVE },
-];
 
 const navItems: NavItemsType[] = [
   { id: ViewEnums.SUPERGROUP, title: "Sort by group" },
@@ -36,7 +29,7 @@ const navItems: NavItemsType[] = [
     id: ViewEnums.GROUPED,
     title: "Grouped",
     showContextMenu: true,
-    contextMenu: contextMenuItems,
+    contextMenu: filterTransactionList(),
   },
 ];
 
