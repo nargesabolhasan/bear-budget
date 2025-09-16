@@ -1,8 +1,4 @@
 import { SvgIconComponent } from "@mui/icons-material";
-import HomeIcon from "@mui/icons-material/Home";
-import FaceIcon from "@mui/icons-material/Face";
-import StarIcon from "@mui/icons-material/Star";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import React, { ReactNode } from "react";
 
 export enum TransactionEnum {

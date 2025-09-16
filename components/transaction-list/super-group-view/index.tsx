@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import TransactionItems from "@/components/transaction-list/super-group-view/transactionItems";
-import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum } from "@/types/global";
 import twMerge, { convertToCurrency } from "@/utils/utils";
 import { TransactionInfoType } from "@/store/transaction/type";
@@ -11,8 +10,6 @@ type Props = {
 };
 
 const SuperGroupList = ({ groupedItems }: Props) => {
-  const { groupedByType } = useTransactionStore();
-
   return (
     <ul className={"flex flex-col gap-3 mx-auto w-fit"}>
       {groupedItems.map(([type, items], index) => (

@@ -1,6 +1,5 @@
 import React from "react";
 import IButton from "@/components/atoms/button";
-import twMerge from "@/utils/utils";
 
 export type navItems = {
   id: number;
