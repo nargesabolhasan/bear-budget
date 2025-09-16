@@ -1,20 +1,34 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useTransactionStore } from "@/store/transaction";
-import { tagRoutes, translationRoutes } from "@/constant/routes";
-import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import Link from "next/link";
-import { TransactionType } from "@/types/global";
+import { translationRoutes } from "@/constant/routes";
+import { TransactionEnum, TransactionType } from "@/types/global";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { Render } from "@/utils/render";
 import EmptyList from "@/components/molecules/emptyList";
 import { useRouter } from "next/navigation";
-import { convertToCurrency } from "@/utils/utils";
+import SuperGroupList from "@/components/transaction-list/super-group-view";
+import ScrollToBottom from "@/components/molecules/scrollToBottom";
+import { TransactionInfoType } from "@/store/transaction/type";
+import FilterButtons from "@/components/molecules/filterButtons";
+import AllTransactions from "@/components/transaction-list/all-view";
+
+const enum ViewEnums {
+  SUPERGROUP,
+  ALL,
+  GROUPED,
+}
+
+const navItems = [
+  { id: ViewEnums.SUPERGROUP, title: "Sort by group" },
+  { id: ViewEnums.ALL, title: "All" },
+  { id: ViewEnums.GROUPED, title: "Grouped" },
+];
 
 const TransactionList = () => {
-  const { transactions, removeTransaction, clearAll } = useTransactionStore();
+  const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.SUPERGROUP);
+  const { transactions, removeTransaction, clearAll, groupedByType } =
+    useTransactionStore();
   const router = useRouter();
 
   const handleDelete = (transaction: TransactionType) => {
@@ -23,7 +37,7 @@ const TransactionList = () => {
       hint: (
         <span>
           Remove : <strong>{transaction.amount}</strong> as
-          <strong>{transaction.tag}</strong>
+          <strong>{transaction.tag.name}</strong>
         </span>
       ),
       confirmHandler: () => {
@@ -41,37 +55,43 @@ const TransactionList = () => {
   };
 
   return (
-    <div className={"grid grid-cols-4 gap-x-2 gap-y-4 border border-gray-400"}>
+    <div>
       <Render
-        when={transactions.length !== 0}
+        items={[
+          {
+            when: viewMode === ViewEnums.ALL && transactions.length > 0,
+            render: <AllTransactions transactions={transactions} />,
+          },
+          {
+            when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
+            render: <div>Grouped view coming soon</div>,
+          },
+          {
+            when: viewMode === ViewEnums.SUPERGROUP && transactions.length > 0,
+            render: (
+              <SuperGroupList
+                groupedItems={
+                  Object.entries(groupedByType()) as [
+                    TransactionEnum,
+                    TransactionInfoType
+                  ][]
+                }
+              />
+            ),
+          },
+        ]}
         fallback={
           <EmptyList
             onAddItem={() => router.push(translationRoutes.addTranslation.href)}
           />
         }
       >
-        {transactions.map((transaction, index) => (
-          <div
-            key={transaction.id}
-            className={"flex flex-col gap-3 p-2 text-blue-500"}
-          >
-            <IconButton onClick={() => handleDelete(transaction)}>
-              <DeleteIcon />
-            </IconButton>
-
-            <Link href={translationRoutes.editTransaction(transaction.id)}>
-              <EditIcon />
-            </Link>
-            <span>{convertToCurrency(transaction.amount)}</span>
-            <span>{transaction.date}</span>
-            <span>{transaction.tag}</span>
-            <span>{transaction.description}</span>
-          </div>
-        ))}
-        <IconButton onClick={clearAllTransactions}>
-          delete all transactions
-          <DeleteIcon />
-        </IconButton>
+        <FilterButtons
+          activeId={viewMode}
+          onChange={(id) => setViewMode(id)}
+          navItems={navItems}
+        />
+        <ScrollToBottom />
       </Render>
     </div>
   );
