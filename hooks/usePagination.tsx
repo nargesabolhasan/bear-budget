@@ -1,3 +1,4 @@
+"use client";
 import { useState, useMemo } from "react";
 
 export default function usePaginationData<T>(list: T[], rowsPerPage: number) {
