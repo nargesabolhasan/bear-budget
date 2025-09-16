@@ -1,6 +1,11 @@
 @theme inline {
     /*--color-primary: #4CAF50;*/
     --color-primary: #9ab973;
+    --color-primary_light: #bdcfa7;
+    --color-light_lavender: #e3bad7;
+    --color-secondary:#e5a473;
+    --color-pastel_blue:#b7c8f7;
+    --color-light_mint:#b7f7bd;
     --color-hover_primary: #1f5e22;
     --color-danger: #F44336;
     --color-hover_danger: #dc2626;
@@ -13,7 +18,7 @@
     --color-placeholder_light: #d9d9d9;
     --color-placeholder_light2: #c9c5c5;
     --color-placeholder_dark: #212121;
-    --color-secondary: #FF9800;
+    /*--color-secondary: #FF9800;*/
     --color-green: #4CAF50;
     --color-brown: #6D4C41;
     --color-info: #2196F3;
@@ -21,6 +26,6 @@
     --color-burly-wood:#DEB887;
     --color-olive:#808000;
     --color-olive_darb:#6b8e23;
-    --color-dark:#050505
+    --color-dark:#050505;
 
 }

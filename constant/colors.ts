@@ -26,6 +26,7 @@ const colors = [
   "bg-green-400",
   "bg-olive text-white",
   "bg-olive_darb text-white",
+  "bg-primary_light",
   "bg-primary",
 
   // Teals
