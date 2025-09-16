@@ -2,21 +2,18 @@
 
 import React from "react";
 import twMerge from "@/utils/utils";
-import { TagType } from "@/types/global";
+import { TagInfoTransaction, TagType } from "@/types/global";
 import TagDemo from "@/components/create-tag/tagDemo";
 
 export type tagPickerType = {
   tagList: TagType[];
-  onChange: ({ id, name }: { id: TagType["id"]; name: string }) => void;
-  value: {
-    id: TagType["id"];
-    name: string;
-  };
+  onChange: ({ id, name, type }: TagInfoTransaction) => void;
+  value: TagInfoTransaction;
 };
 
 const TagPicker = ({
   tagList,
-  value = { id: "", name: "" },
+  value = { id: "", name: "", type: "" },
   onChange,
 }: tagPickerType) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -25,7 +22,8 @@ const TagPicker = ({
     if (button) {
       const id = button.getAttribute("data-tag-id") || "";
       const name = button.getAttribute("data-tag-name") || "";
-      onChange({ id, name });
+      const type = button.getAttribute("data-tag-type") || "";
+      onChange({ id, name, type });
     }
   };
 

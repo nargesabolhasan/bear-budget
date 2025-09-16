@@ -33,13 +33,16 @@ export type TagType = {
   color: ColorOption;
 };
 
+export type TagInfoTransaction = {
+  id: TagType["id"];
+  name: string;
+  type: string;
+};
+
 export type TransactionType = {
   id: string;
   amount: string;
-  tag: {
-    name: string;
-    id: string;
-  };
+  tag: TagInfoTransaction;
   date: string;
   description?: string;
 };

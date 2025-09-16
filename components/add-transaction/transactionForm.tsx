@@ -26,6 +26,7 @@ const schema = yup.object({
     .shape({
       name: yup.string().required(),
       id: yup.string().required(),
+      type: yup.string().required(),
     })
     .required("Tag is required"),
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
@@ -43,7 +44,7 @@ const TransactionForm = ({
   } = useForm<TransactionFormData>({
     defaultValues: {
       [FormTransactionEnum.AMOUNT]: props.amount || "",
-      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "" },
+      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "", type: "" },
       [FormTransactionEnum.DATE]: props.date || "",
       [FormTransactionEnum.DESCRIPTION]: props.description || "",
     },
