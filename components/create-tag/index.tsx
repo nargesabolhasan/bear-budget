@@ -27,7 +27,10 @@ const CreateTagForm = ({
   title?: string | ReactNode;
 }) => {
   const schema = yup.object({
-    [FormTagEnum.NAME]: yup.string().required("name is required"),
+    [FormTagEnum.NAME]: yup
+      .string()
+      .required("name is required")
+      .max(40, "must be less than 40 characters!"),
     [FormTagEnum.ICON]: yup.string().required("icon is required"),
     [FormTagEnum.COLOR]: yup.mixed<ColorOption>().required("color is required"),
     [FormTagEnum.TRANSACTION_TYPE]: yup

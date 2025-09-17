@@ -7,13 +7,13 @@ import TagDemo from "@/components/create-tag/tagDemo";
 
 export type tagPickerType = {
   tagList: TagType[];
-  onChange: ({ id, name, type }: TagInfoTransaction) => void;
-  value: TagInfoTransaction;
+  onChange: ({ id, name, type, icon }: TagInfoTransaction) => void;
+  value: { id: string; name: string };
 };
 
 const TagPicker = ({
   tagList,
-  value = { id: "", name: "", type: "" },
+  value = { id: "", name: "" },
   onChange,
 }: tagPickerType) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -23,7 +23,8 @@ const TagPicker = ({
       const id = button.getAttribute("data-tag-id") || "";
       const name = button.getAttribute("data-tag-name") || "";
       const type = button.getAttribute("data-tag-type") || "";
-      onChange({ id, name, type });
+      const icon = button.getAttribute("data-tag-icon") || "";
+      onChange({ id, name, type, icon });
     }
   };
 

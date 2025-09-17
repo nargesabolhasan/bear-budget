@@ -30,6 +30,9 @@ const schema = yup.object({
     })
     .required("Tag is required"),
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
+  [FormTransactionEnum.DESCRIPTION]: yup
+    .string()
+    .max(100, "Description must be less than 100 characters"),
 });
 
 const TransactionForm = ({
@@ -44,10 +47,11 @@ const TransactionForm = ({
   } = useForm<TransactionFormData>({
     defaultValues: {
       [FormTransactionEnum.AMOUNT]: props.amount || "",
-      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "", type: "" },
+      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "" },
       [FormTransactionEnum.DATE]: props.date || "",
       [FormTransactionEnum.DESCRIPTION]: props.description || "",
     },
+    //@ts-ignore
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -103,6 +107,7 @@ const TransactionForm = ({
 
   return (
     <form
+      //@ts-ignore
       onSubmit={handleSubmit(onSubmit)}
       className={"w-full flex flex-col gap-3 p-3"}
     >
@@ -174,9 +179,11 @@ const TransactionForm = ({
           <ITextField
             {...field}
             label="Description"
+            multiline
+            rows={5}
             fullWidth
-            error={!!errors[FormTransactionEnum.AMOUNT]}
-            helperText={errors[FormTransactionEnum.AMOUNT]?.message}
+            error={!!errors[FormTransactionEnum.DESCRIPTION]}
+            helperText={errors[FormTransactionEnum.DESCRIPTION]?.message}
           />
         )}
       />
