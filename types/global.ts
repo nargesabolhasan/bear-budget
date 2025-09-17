@@ -33,6 +33,7 @@ export type TagInfoTransaction = {
   id: TagType["id"];
   name: string;
   type: string;
+  icon: string;
 };
 
 export type TransactionType = {
