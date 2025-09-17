@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
 import { TransactionInfoType } from "@/store/transaction/type";
-import TransactionItems from "@/components/transaction-list/super-group-view/transactionItems";
+import TransactionItems from "@/components/transaction-list/transactionItems";
 import { TransactionEnum } from "@/types/global";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
-import { convertToCurrency } from "@/utils/utils";
+import twMerge, { convertToCurrency } from "@/utils/utils";
+import { groupedStyles } from "@/utils/transactionGroupedStyles";
+import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 
 type Props = {
   transactions: TransactionInfoType;
@@ -19,13 +21,32 @@ const GroupedTransaction = ({ transactions, transactionType }: Props) => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h3 className={"font-semibold"}>{transactionType}</h3>
-      <h3 className="flex flex-row gap-3">
-        <h4>Total amount :</h4>
-        {convertToCurrency(transactions.totalAmount)}
-      </h3>
-      <TransactionItems transactionList={paginated} />
+    <div
+      className={"w-[300px] flex flex-col items-center justify-center mx-auto"}
+    >
+      <div
+        className={twMerge(
+          "text-xl w-full p-3 rounded-lg flex flex-row justify-between",
+          groupedStyles(transactionType)
+        )}
+      >
+        <span className={"flex flex-row gap-3 items-center"}>
+          <i>{transactionTypeIcon(transactionType)}</i>
+          <h3 className={"font-semibold"}>{transactionType}</h3>
+        </span>
+
+        <h3 className="flex flex-row gap-3">
+          {convertToCurrency(transactions.totalAmount)}
+        </h3>
+      </div>
+
+      <TransactionItems
+        transactionList={paginated}
+        showPrimaryBG={false}
+        showTransactionType={false}
+        showTagIcon
+        showDivider
+      />
       <IPagination
         count={pageCount}
         page={page}
