@@ -3,7 +3,7 @@ import React from "react";
 import DatePicker, { CalendarProps, DateObject } from "react-multi-date-picker";
 import "react-multi-date-picker/styles/layouts/prime.css";
 import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+import persian_en from "react-date-object/locales/persian_en";
 import twMerge from "@/utils/utils";
 
 export type IDatePickerProps = Omit<CalendarProps, "value" | "onChange"> & {
@@ -38,11 +38,11 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
           onChange?.(date?.isValid ? date : "");
         }}
         format={language === "en" ? "MM/DD/YYYY" : "YYYY/MM/DD"}
-        currentDate={value}
+        currentDate={value as DateObject | undefined}
         {...(language === "fa"
           ? {
               calendar: persian,
-              locale: persian_fa,
+              locale: persian_en,
             }
           : {})}
       />
