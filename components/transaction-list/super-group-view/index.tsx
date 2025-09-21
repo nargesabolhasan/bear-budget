@@ -22,7 +22,7 @@ const SuperGroupList = ({ groupedItems }: Props) => {
             groupedStyles(type, "border")
           )}
         >
-          <TransactionHeader title={type} totalAmount={items.totalAmount} />
+          <TransactionHeader title={type} totalAmount={items?.totalAmount} />
           <TransactionItems
             transactionList={items.transactions}
             showTransactionType={false}

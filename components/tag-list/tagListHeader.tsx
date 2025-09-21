@@ -12,7 +12,7 @@ type Props = {
 
 const TagListHeader = ({ clearAllTags, handleAddMore }: Props) => {
   return (
-    <div className={"mt-4 flex flex-row justify-between print:hidden"}>
+    <div className={"mt-4 flex flex-row justify-between print:hidden gap-1"}>
       <PrintComponent />
       <CreateTagButton handleAddMore={handleAddMore} />
       <IButton

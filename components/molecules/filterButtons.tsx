@@ -57,7 +57,11 @@ const FilterButtons = ({
   };
 
   return (
-    <nav className={"flex flex-row gap-3 justify-center my-5"}>
+    <nav
+      className={
+        "rounded-lg p-2 bg-neutral_light flex flex-row gap-3 justify-center my-5"
+      }
+    >
       {navItems.map((item, index) => {
         const isActive = activeId === item.id;
         return (

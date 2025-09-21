@@ -2,11 +2,7 @@ import React from "react";
 import TagList from "@/components/tag-list";
 
 const TagListPage = () => {
-  return (
-    <div>
-      <TagList />
-    </div>
-  );
+  return <TagList />;
 };
 
 export default TagListPage;

@@ -16,6 +16,8 @@ import FilterButtons, {
 import AllTransactions from "@/components/transaction-list/all-view";
 import { filterTransactionList } from "@/constant";
 import GroupedTransaction from "@/components/transaction-list/grouped-view";
+import IButton from "@/components/atoms/button";
+import TagListHeader from "@/components/tag-list/tagListHeader";
 
 const enum ViewEnums {
   SUPERGROUP,
@@ -24,11 +26,11 @@ const enum ViewEnums {
 }
 
 const navItems: NavItemsType[] = [
-  { id: ViewEnums.SUPERGROUP, title: "Sort by group" },
+  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
   { id: ViewEnums.ALL, title: "All" },
   {
     id: ViewEnums.GROUPED,
-    title: "Grouped",
+    title: "Filter",
     showContextMenu: true,
     contextMenu: filterTransactionList(),
   },
@@ -69,7 +71,7 @@ const TransactionList = () => {
   };
 
   return (
-    <div>
+    <div className={"p-1 w-fit mx-auto"}>
       <Render
         items={[
           {
@@ -109,13 +111,21 @@ const TransactionList = () => {
           />
         }
       >
-        <FilterButtons
-          activeId={viewMode}
-          onChange={(id) => setViewMode(id)}
-          navItems={navItems}
-          selectedMenuFilter={selectedMenuFilter}
-          setSelectedMenuFilter={setSelectedMenuFilter}
-        />
+        <header className={"bg-neutral_light mt-[70px]"}>
+          <TagListHeader
+            clearAllTags={clearAllTransactions}
+            handleAddMore={() => {
+              router.push(translationRoutes.addTranslation.href);
+            }}
+          />
+          <FilterButtons
+            activeId={viewMode}
+            onChange={(id) => setViewMode(id)}
+            navItems={navItems}
+            selectedMenuFilter={selectedMenuFilter}
+            setSelectedMenuFilter={setSelectedMenuFilter}
+          />
+        </header>
         <ScrollToBottom />
       </Render>
     </div>

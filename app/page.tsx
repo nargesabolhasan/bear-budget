@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useTransactionStore } from "@/store/transaction";
-import { keys } from "@mui/system";
 import { convertToCurrency } from "@/utils/utils";
 
 export default function Home() {
@@ -21,8 +20,8 @@ export default function Home() {
             <li key={index}>
               {key}
               {" : "}
-              {convertToCurrency(value.totalAmount)} {"=> count: "}
-              {value.transactions.length}
+              {convertToCurrency(value?.totalAmount)} {"=> count: "}
+              {value?.transactions.length}
             </li>
           ))}
         </ul>

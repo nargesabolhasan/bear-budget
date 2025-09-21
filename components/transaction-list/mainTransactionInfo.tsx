@@ -33,7 +33,7 @@ const MainTransactionInfo = ({
                 )}
               />
             )}
-            <span className={"text-xl font-bold"}>{tag.name}</span>
+            <span className={"text-lg"}>{tag.name}</span>
           </span>
           <time className={"text-sm text-placeholder"}>{date}</time>
         </div>

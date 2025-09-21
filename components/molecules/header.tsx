@@ -57,7 +57,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   );
 
   return (
-    <AppBar position="static" className={"print:!hidden"}>
+    <AppBar position="fixed" className={"print:!hidden"}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           {title}

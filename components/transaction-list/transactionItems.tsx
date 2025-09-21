@@ -25,7 +25,7 @@ const TransactionItems = ({
   return (
     <ul
       className={twMerge(
-        "flex flex-col items-center justify-center gap-3 p-1 rounded-lg",
+        "flex flex-col items-center justify-center gap-3 px-1 py-3 rounded-lg",
         showPrimaryBG && "bg-primary_light"
       )}
     >
@@ -33,7 +33,7 @@ const TransactionItems = ({
         <li
           key={`${transaction.id}-list-item`}
           className={twMerge(
-            "w-[300px] flex flex-col rounded-lg bg-neutral_light",
+            "w-[280px] flex flex-col rounded-lg bg-neutral_light",
             showDivider && "border",
             showDivider && groupedStyles(transaction.tag.type, "border")
           )}

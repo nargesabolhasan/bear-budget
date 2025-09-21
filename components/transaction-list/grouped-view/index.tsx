@@ -16,14 +16,12 @@ type Props = {
 
 const GroupedTransaction = ({ transactions, transactionType }: Props) => {
   const { paginated, page, setPage, pageCount } = usePaginationData(
-    transactions.transactions,
+    transactions?.transactions,
     ROWS_PER_PAGE
   );
 
   return (
-    <div
-      className={"w-[300px] flex flex-col items-center justify-center mx-auto"}
-    >
+    <div className={"w-fit flex flex-col items-center justify-center mx-auto"}>
       <div
         className={twMerge(
           "text-xl w-full p-3 rounded-lg flex flex-row justify-between",
@@ -36,7 +34,7 @@ const GroupedTransaction = ({ transactions, transactionType }: Props) => {
         </span>
 
         <h3 className="flex flex-row gap-3">
-          {convertToCurrency(transactions.totalAmount)}
+          {convertToCurrency(transactions?.totalAmount)}
         </h3>
       </div>
 

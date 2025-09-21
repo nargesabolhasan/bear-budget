@@ -27,7 +27,9 @@ const TagList = () => {
   };
 
   return (
-    <div className={"p-4 mx-auto w-full md:w-1/2 flex flex-col gap-3"}>
+    <div
+      className={"mt-[50px] p-4 mx-auto w-full md:w-1/2 flex flex-col gap-3"}
+    >
       <Render
         when={tags.length !== 0}
         fallback={
