@@ -30,9 +30,9 @@ const IButton = ({
       "!bg-placeholder_light !border !border-placeholder_light !text-inherit",
   };
   const sizeMapper: Record<SizeButtonProps, string> = {
-    small: "!px-5 h-[30px] !text-xs",
-    medium: "!px-10 h-[40px] !text-md",
-    large: "!px-14 h-[50px] !text-lg",
+    small: "!px-5 min-h-[30px] !text-xs",
+    medium: "!px-10 min-h-[40px] !text-md",
+    large: "!px-14 min-h-[50px] !text-lg",
   };
   return (
     <Button
