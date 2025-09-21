@@ -15,7 +15,21 @@ export const useTransactionStore = create<TransactionStore>()(
 
         addTransaction: (transaction) =>
           set(
-            { transactions: [...get().transactions, transaction] },
+            (state) => {
+              const newTransactionDate = new Date(transaction.date);
+              const updatedTransactions = [...state.transactions];
+
+              const index = updatedTransactions.findIndex(
+                (t) => new Date(t.date) < newTransactionDate
+              );
+              if (index === -1) {
+                updatedTransactions.push(transaction);
+              } else {
+                updatedTransactions.splice(index, 0, transaction);
+              }
+
+              return { transactions: updatedTransactions };
+            },
             false,
             "addTransaction"
           ),

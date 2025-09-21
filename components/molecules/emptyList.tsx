@@ -10,27 +10,23 @@ type Props = {
 };
 
 const EmptyList = ({
-  title = "empty list",
+  title = "Add items",
   hint = "this list is empty try to add new item!",
   IconComponent = FormatListBulletedAddIcon,
   onAddItem,
 }: Props) => {
   return (
-    <section>
-      <div>
-        {IconComponent && (
-          <i
-            className={"size-10"}
-            onClick={() => {
-              onAddItem?.();
-            }}
-          >
-            {<IconComponent />}
-          </i>
-        )}
+    <section className={"mt-[80px]"}>
+      <div
+        className={"text-xl flex flex-row justify-center"}
+        onClick={() => {
+          onAddItem?.();
+        }}
+      >
+        {IconComponent && <i className={"size-10"}>{<IconComponent />}</i>}
         <h3>{title}</h3>
-        <p>{hint}</p>
       </div>
+      <p>{hint}</p>
     </section>
   );
 };

@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={"!bg-neutral_light"}>
         <IThemeProvider>
           <IHeader navItems={navItems} />
-          {children}
+          <main className={"mt-[60px]"}>{children}</main>
           <GlobalToaster />
           <DialogContainer />
         </IThemeProvider>

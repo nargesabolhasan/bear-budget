@@ -111,7 +111,7 @@ const TransactionList = () => {
           />
         }
       >
-        <header className={"bg-neutral_light mt-[70px]"}>
+        <header className={"bg-neutral_light"}>
           <TagListHeader
             clearAllTags={clearAllTransactions}
             handleAddMore={() => {
