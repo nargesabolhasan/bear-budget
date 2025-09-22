@@ -44,7 +44,7 @@ const FilterButtons = ({
       key={`nav-items-${index}-${item.id}`}
       role="tab"
       onClick={() => onChange(item.id)}
-      variant={isActive ? "contained" : "outlined"}
+      variant={isActive ? "contained" : "text"}
       size={"small"}
     >
       {(showContextMenu && selectedMenuFilter) || item.title}
@@ -59,7 +59,7 @@ const FilterButtons = ({
   return (
     <nav
       className={
-        "rounded-lg p-2 bg-neutral_light flex flex-row gap-3 justify-center my-5"
+        "border border-primary w-full rounded-lg bg-primary_light flex flex-row gap-3 justify-between my-5"
       }
     >
       {navItems.map((item, index) => {
