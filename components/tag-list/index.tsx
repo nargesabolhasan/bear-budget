@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import TagListDemo from "@/components/tag-list/tagListComponent";
 import TagListHeader from "@/components/tag-list/tagListHeader";
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
+import { toast } from "sonner";
 
 const TagList = () => {
   const { tags, clear } = useTagsStore();
@@ -19,7 +20,10 @@ const TagList = () => {
     openDialog({
       title: "Clear All",
       hint: "Do you want to remove all tags ?",
-      confirmHandler: () => clear(),
+      confirmHandler: () => {
+        clear();
+        toast.success(<span>Deleted successfully.</span>);
+      },
     });
   };
   const goToCreateTags = () => {

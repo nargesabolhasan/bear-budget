@@ -17,6 +17,7 @@ import AllTransactions from "@/components/transaction-list/all-view";
 import { filterTransactionList } from "@/constant";
 import TagListHeader from "@/components/tag-list/tagListHeader";
 import FilterView from "@/components/transaction-list/filters-view";
+import { toast } from "sonner";
 
 const enum ViewEnums {
   SUPERGROUP,
@@ -49,7 +50,10 @@ const TransactionList = () => {
     openDialog({
       title: "Clear All",
       hint: "Do you want to remove all transaction ?",
-      confirmHandler: () => clearAll(),
+      confirmHandler: () => {
+        clearAll();
+        toast.success(<span>Deleted successfully.</span>);
+      },
     });
   };
 
