@@ -26,7 +26,7 @@ const EmptyList = ({
         {IconComponent && <i className={"size-10"}>{<IconComponent />}</i>}
         <h3>{title}</h3>
       </div>
-      <p className={"select-none"}>{hint}</p>
+      <p className={"select-none text-center"}>{hint}</p>
     </section>
   );
 };
