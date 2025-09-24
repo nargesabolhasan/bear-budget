@@ -61,9 +61,9 @@ const IAccordion = ({
             }}
             expandIcon={
               showExpandIcon && (
-                <IconButton>
+                <span className={"p-2"}>
                   <ExpandMoreIconComponent />
-                </IconButton>
+                </span>
               )
             }
             aria-controls={item.ariaControl}
