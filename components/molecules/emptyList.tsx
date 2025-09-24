@@ -18,7 +18,7 @@ const EmptyList = ({
   return (
     <section className={"mt-[80px]"}>
       <div
-        className={"text-xl flex flex-row justify-center"}
+        className={"cursor-pointer text-xl flex flex-row justify-center"}
         onClick={() => {
           onAddItem?.();
         }}
@@ -26,7 +26,7 @@ const EmptyList = ({
         {IconComponent && <i className={"size-10"}>{<IconComponent />}</i>}
         <h3>{title}</h3>
       </div>
-      <p>{hint}</p>
+      <p className={"select-none"}>{hint}</p>
     </section>
   );
 };
