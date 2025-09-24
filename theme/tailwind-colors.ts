@@ -6,6 +6,7 @@ export const tailwindColors = {
   light_mint: "#b7f7bd",
   hover_primary: "#1f5e22",
   danger: "#F44336",
+  danger_light: "#f5c9c6",
   hover_danger: "#dc2626",
   hover_warning: "#ebe8a9",
   warning: "#f0d889",

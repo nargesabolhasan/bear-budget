@@ -11,6 +11,7 @@ import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 
 import ContextMenu from "@/components/molecules/contextMenu";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
   const { removeTransaction } = useTransactionStore();
@@ -28,6 +29,7 @@ const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
       ),
       confirmHandler: () => {
         removeTransaction(transaction.id);
+        toast.success(<span>Deleted successfully.</span>);
       },
     });
   };

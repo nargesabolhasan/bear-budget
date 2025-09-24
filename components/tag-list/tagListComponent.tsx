@@ -11,6 +11,7 @@ import twMerge from "@/utils/utils";
 import { iconList } from "@/constant/icons";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { toast } from "sonner";
 
 const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
@@ -26,6 +27,7 @@ const TagListDemo = () => {
       ),
       confirmHandler: () => {
         removeTag(tag.id);
+        toast.success(<span>Deleted successfully.</span>);
       },
     });
   };
