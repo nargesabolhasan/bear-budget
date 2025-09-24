@@ -6,13 +6,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { TransactionEnum } from "@/types/global";
 import twMerge from "@/utils/utils";
 
-export type ContextMenuProps = { id: number; title: TransactionEnum }[];
+export type ContextMenuProps = {
+  id: number;
+  title: TransactionEnum | string | React.ReactNode;
+  onClick?: () => void;
+}[];
 
 type Props = {
   menuItems: ContextMenuProps;
   children: React.ReactNode;
   onSelectAction?: (item: ContextMenuProps[number]) => void;
   defaultSelect?: number | string;
+  className?: string;
+  resetAfterSelect?: boolean;
 };
 
 export default function ContextMenu({
@@ -20,6 +26,8 @@ export default function ContextMenu({
   menuItems,
   onSelectAction,
   defaultSelect = 0,
+  resetAfterSelect = false,
+  className,
 }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedId, setSelectedId] = React.useState<number | string>(
@@ -38,7 +46,11 @@ export default function ContextMenu({
 
   return (
     <div>
-      <div id="basic-button" onClick={handleClick}>
+      <div
+        id="basic-button"
+        onClick={handleClick}
+        className={twMerge("w-fit", className)}
+      >
         {children}
       </div>
       <Menu
@@ -59,8 +71,11 @@ export default function ContextMenu({
             key={`menu-item-${item.id}`}
             onClick={() => {
               handleClose();
-              setSelectedId(item.id);
+              if (!resetAfterSelect) {
+                setSelectedId(item.id);
+              }
               onSelectAction?.(item);
+              item?.onClick?.();
             }}
             className={twMerge(
               "!text-sm",

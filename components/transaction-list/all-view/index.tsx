@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { TransactionType } from "@/types/global";
-import TransactionItems from "@/components/transaction-list/transactionItems";
+import TransactionItems from "@/components/transaction-list";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 

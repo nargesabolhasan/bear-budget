@@ -1,4 +1,4 @@
-import { budgetRoutes, tagRoutes, translationRoutes } from "@/constant/routes";
+import { budgetRoutes, tagRoutes, transactionRoutes } from "@/constant/routes";
 
 export const navItems = [
   { label: "Home", key: "/", href: "/" },
@@ -18,13 +18,13 @@ export const navItems = [
     href: budgetRoutes.budgetList.href,
   },
   {
-    label: translationRoutes.addTranslation.name,
-    key: translationRoutes.addTranslation.href,
-    href: translationRoutes.addTranslation.href,
+    label: transactionRoutes.addTranslation.name,
+    key: transactionRoutes.addTranslation.href,
+    href: transactionRoutes.addTranslation.href,
   },
   {
-    label: translationRoutes.translationList.name,
-    key: translationRoutes.translationList.href,
-    href: translationRoutes.translationList.href,
+    label: transactionRoutes.translationList.name,
+    key: transactionRoutes.translationList.href,
+    href: transactionRoutes.translationList.href,
   },
 ];

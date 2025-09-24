@@ -3,7 +3,7 @@ export const tagRoutes = {
   tagList: { name: "Tags", href: "/tag-list" },
   editTag: (id: string) => `/create-tag/${id}`,
 };
-export const translationRoutes = {
+export const transactionRoutes = {
   translationList: { name: "Transactions", href: "/translation-list" },
   addTranslation: { name: "New Transaction", href: "/add-transaction" },
   editTransaction: (id: string) => `/add-transaction/${id}`,

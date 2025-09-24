@@ -6,6 +6,7 @@ import ContextMenu, {
 } from "@/components/molecules/contextMenu";
 import { Render } from "@/utils/render";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { TransactionEnum } from "@/types/global";
 
 export type NavItemsType = {
   id: number;
@@ -53,7 +54,7 @@ const FilterButtons = ({
   );
 
   const handleSelectItem = (item: ContextMenuProps[number]) => {
-    setSelectedMenuFilter(item.title);
+    setSelectedMenuFilter(item.title as TransactionEnum);
   };
 
   return (

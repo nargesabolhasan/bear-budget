@@ -1,6 +1,7 @@
 import React from "react";
 import MainTransactionTitle from "@/components/transaction-list/mainTransactionTitle";
 import { TransactionType } from "@/types/global";
+import ActionButtons from "@/components/transaction-list/actionButtons";
 
 type Props = {
   transaction: TransactionType;
@@ -9,7 +10,7 @@ type Props = {
 
 const MainTransactionInfo = ({ transaction, showTagIcon }: Props) => {
   return (
-    <div className={"p-3 grow"}>
+    <div className={"p-3 grow flex flex-col items-end"}>
       <MainTransactionTitle
         tag={transaction.tag}
         amount={transaction.amount}
@@ -24,6 +25,7 @@ const MainTransactionInfo = ({ transaction, showTagIcon }: Props) => {
       <p className={"text-placeholder text-pretty break-words"}>
         {transaction.description}
       </p>
+      <ActionButtons transaction={transaction} />
     </div>
   );
 };

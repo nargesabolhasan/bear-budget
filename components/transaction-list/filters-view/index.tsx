@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
 import { TransactionInfoType } from "@/store/transaction/type";
-import TransactionItems from "@/components/transaction-list/transactionItems";
+import TransactionItems from "@/components/transaction-list";
 import { TransactionEnum } from "@/types/global";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import twMerge, { convertToCurrency } from "@/utils/utils";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
+import { Render } from "@/utils/render";
 
 type Props = {
   transactions: TransactionInfoType;
@@ -36,21 +37,29 @@ const FilterView = ({ transactions, transactionType }: Props) => {
           {convertToCurrency(transactions?.totalAmount)}
         </h3>
       </div>
-
-      <TransactionItems
-        transactionList={paginated}
-        showPrimaryBG={false}
-        showTransactionHeader={false}
-        showTagIcon
-        showDivider
-      />
-      <IPagination
-        count={pageCount}
-        page={page}
-        onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
-          setPage(pageN)
+      <Render
+        when={!!transactions?.transactions}
+        fallback={
+          <span className={"p-3 w-[280px] text-center"}> ! no item</span>
         }
-      />
+      >
+        <>
+          <TransactionItems
+            transactionList={paginated}
+            showPrimaryBG={false}
+            showTransactionHeader={false}
+            showTagIcon
+            showDivider
+          />
+          <IPagination
+            count={pageCount}
+            page={page}
+            onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
+              setPage(pageN)
+            }
+          />
+        </>
+      </Render>
     </div>
   );
 };

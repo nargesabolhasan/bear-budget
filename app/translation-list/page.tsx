@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useTransactionStore } from "@/store/transaction";
-import { translationRoutes } from "@/constant/routes";
-import { TransactionEnum, TransactionType } from "@/types/global";
+import { transactionRoutes } from "@/constant/routes";
+import { TransactionEnum } from "@/types/global";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { Render } from "@/utils/render";
 import EmptyList from "@/components/molecules/emptyList";
@@ -39,27 +39,11 @@ const TransactionList = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.SUPERGROUP);
   const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
 
-  const { transactions, removeTransaction, clearAll, groupedByType } =
-    useTransactionStore();
+  const { transactions, clearAll, groupedByType } = useTransactionStore();
 
   const groupedTransactions = groupedByType();
 
   const router = useRouter();
-
-  const handleDelete = (transaction: TransactionType) => {
-    openDialog({
-      title: "Remove transaction",
-      hint: (
-        <span>
-          Remove : <strong>{transaction.amount}</strong> as
-          <strong>{transaction.tag.name}</strong>
-        </span>
-      ),
-      confirmHandler: () => {
-        removeTransaction(transaction.id);
-      },
-    });
-  };
 
   const clearAllTransactions = () => {
     openDialog({
@@ -106,7 +90,7 @@ const TransactionList = () => {
         ]}
         fallback={
           <EmptyList
-            onAddItem={() => router.push(translationRoutes.addTranslation.href)}
+            onAddItem={() => router.push(transactionRoutes.addTranslation.href)}
           />
         }
       >
@@ -114,7 +98,7 @@ const TransactionList = () => {
           <TagListHeader
             clearAllTags={clearAllTransactions}
             handleAddMore={() => {
-              router.push(translationRoutes.addTranslation.href);
+              router.push(transactionRoutes.addTranslation.href);
             }}
           />
           <FilterButtons

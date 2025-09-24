@@ -22,7 +22,7 @@ const MainTransactionTitle = ({
 
   return (
     <>
-      <div className={"flex flex-row gap-3 justify-between items-start"}>
+      <div className={"w-full flex flex-row gap-3 justify-between items-start"}>
         <div className={"flex flex-col gap-1"}>
           <span className={"flex flex-row justify-start items-center gap-1"}>
             {showTagIcon && (

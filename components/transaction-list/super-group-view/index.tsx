@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import TransactionItems from "@/components/transaction-list/transactionItems";
+import TransactionItems from "@/components/transaction-list";
 import { TransactionEnum } from "@/types/global";
 import twMerge from "@/utils/utils";
 import { TransactionInfoType } from "@/store/transaction/type";
