@@ -44,6 +44,7 @@ const TransactionForm = ({
 }: TransactionProps & Partial<TransactionFormData>) => {
   const {
     control,
+    reset,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<TransactionFormData>({
@@ -114,6 +115,7 @@ const TransactionForm = ({
 
   const onSubmit = (formData: TransactionFormData) => {
     submitHandler?.(formData);
+    reset();
   };
 
   return (
