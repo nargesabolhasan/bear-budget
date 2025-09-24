@@ -41,7 +41,8 @@ const ColorPicker = ({
           data-color-id={color.id}
           className={twMerge(
             `color-picker-item w-[40px] h-[40px] rounded-full border border-placeholder hover:scale-130`,
-            value?.id === color.id && "border-2 border-dark!",
+            value?.id === color.id &&
+              "border-3 border-dashed !border-dark scale-130 !shadow-md shadow-placeholder",
             color.color
           )}
         />
