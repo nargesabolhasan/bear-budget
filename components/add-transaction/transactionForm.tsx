@@ -46,6 +46,7 @@ const TransactionForm = ({
     control,
     reset,
     handleSubmit,
+    watch,
     formState: { errors, isValid },
   } = useForm<TransactionFormData>({
     defaultValues: {
@@ -118,6 +119,8 @@ const TransactionForm = ({
     reset();
   };
 
+  console.log(watch(FormTransactionEnum.AMOUNT));
+
   return (
     <form
       //@ts-ignore
@@ -147,6 +150,9 @@ const TransactionForm = ({
               }
               onChange={(e) => {
                 const raw = e.target.value.replace(/,/g, "");
+                if (raw.length > 15) {
+                  return;
+                }
                 const numberValue = raw === "" ? "" : Number(raw);
                 onChange(numberValue);
               }}
@@ -154,6 +160,10 @@ const TransactionForm = ({
               fullWidth
               error={!!errors[FormTransactionEnum.AMOUNT]}
               helperText={errors[FormTransactionEnum.AMOUNT]?.message}
+              showHint={
+                watch(FormTransactionEnum.AMOUNT).toString().length === 15
+              }
+              hint={"cannot be more that 15 character!"}
             />
           );
         }}

@@ -2,15 +2,26 @@ import React from "react";
 import MainTransactionTitle from "@/components/transaction-list/mainTransactionTitle";
 import { TransactionType } from "@/types/global";
 import ActionButtons from "@/components/transaction-list/actionButtons";
+import twMerge from "@/utils/utils";
 
 type Props = {
   transaction: TransactionType;
   showTagIcon: boolean;
+  showTransactionIndicator?: boolean;
 };
 
-const MainTransactionInfo = ({ transaction, showTagIcon }: Props) => {
+const MainTransactionInfo = ({
+  transaction,
+  showTagIcon,
+  showTransactionIndicator = false,
+}: Props) => {
   return (
-    <div className={"p-3 grow flex flex-col items-end"}>
+    <div
+      className={twMerge(
+        "overflow-x-auto p-3 grow flex flex-col items-end",
+        showTransactionIndicator && "relative -left-5"
+      )}
+    >
       <MainTransactionTitle
         tag={transaction.tag}
         amount={transaction.amount}

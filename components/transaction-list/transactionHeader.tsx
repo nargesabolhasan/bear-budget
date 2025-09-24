@@ -10,7 +10,7 @@ const TransactionHeader = ({ title, totalAmount }: Props) => {
   return (
     <div
       className={twMerge(
-        "rounded-t-lg p-2 flex flex-row justify-between items-center",
+        "rounded-t-lg p-2 flex flex-row justify-between gap-3 items-center",
         groupedStyles(title)
       )}
     >
@@ -18,7 +18,15 @@ const TransactionHeader = ({ title, totalAmount }: Props) => {
         <i>{transactionTypeIcon(title)}</i>
         <h3 className={"text-xl"}>{title}</h3>
       </span>
-      {!!totalAmount && <h3>T : {convertToCurrency(totalAmount)}</h3>}
+      {!!totalAmount && (
+        <h3
+          className={
+            "text-pretty break-words whitespace-normal overflow-wrap break-all"
+          }
+        >
+          T : {convertToCurrency(totalAmount)}
+        </h3>
+      )}
     </div>
   );
 };

@@ -22,14 +22,14 @@ const FilterView = ({ transactions, transactionType }: Props) => {
   );
 
   return (
-    <div className={"w-fit flex flex-col items-center justify-center mx-auto"}>
+    <div className={"w-full flex flex-col items-center justify-center mx-auto"}>
       <div
         className={twMerge(
-          "text-xl w-full p-3 rounded-lg flex flex-row justify-between",
+          "overflow-x-auto text-lg w-full p-3 rounded-lg flex flex-row justify-between items-center gap-2",
           groupedStyles(transactionType)
         )}
       >
-        <span className={"flex flex-row gap-3 items-center"}>
+        <span className={"flex flex-row gap-2 items-center"}>
           <i>{transactionTypeIcon(transactionType)}</i>
           <h3 className={"font-semibold"}>{transactionType}</h3>
         </span>

@@ -45,5 +45,21 @@ body {
     font-family: "Inter" , "Vazirmatn", sans-serif !important;
 }
 
+/* In your styles.css or a separate CSS file */
+::-webkit-scrollbar {
+    width: 3px; /* Width of the scrollbar */
+}
 
+::-webkit-scrollbar-track {
+    background: #d4cfcf; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary); /* Thumb color */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+}
 

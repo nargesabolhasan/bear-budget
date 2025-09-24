@@ -58,7 +58,7 @@ const TransactionList = () => {
   };
 
   return (
-    <div className={"p-1 w-fit mx-auto"}>
+    <div className={"mx-auto px-3"}>
       <Render
         items={[
           {

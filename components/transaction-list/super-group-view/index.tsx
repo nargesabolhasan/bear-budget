@@ -12,7 +12,7 @@ type Props = {
 
 const SuperGroupList = ({ groupedItems }: Props) => {
   return (
-    <ul className={"flex flex-col gap-3 mx-auto w-fit"}>
+    <ul className={"w-full md:w-[300px] flex flex-col gap-3 mx-auto"}>
       {groupedItems.map(([type, items], index) => (
         <li
           key={`${type}-${index}`}

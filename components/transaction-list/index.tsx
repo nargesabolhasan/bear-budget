@@ -27,7 +27,7 @@ const TransactionItems = ({
   return (
     <ul
       className={twMerge(
-        "flex flex-col items-center justify-center gap-3 px-1 py-3 rounded-lg",
+        "w-full flex flex-col items-center justify-center gap-3 px-1 py-3 rounded-lg",
         showPrimaryBG && "bg-placeholder_light"
       )}
     >
@@ -35,7 +35,7 @@ const TransactionItems = ({
         <li
           key={`${transaction.id}-list-item`}
           className={twMerge(
-            "w-[280px] flex flex-col bg-neutral_light rounded-lg",
+            "w-full flex flex-col bg-neutral_light rounded-lg",
             showDivider && "border border-placeholder_light"
           )}
         >
@@ -43,13 +43,14 @@ const TransactionItems = ({
             <TransactionHeader title={transaction.tag.type} />
           )}
 
-          <div className={"flex flex-row items-stretch"}>
+          <div className={"flex flex-row items-stretch w-full"}>
             {showTransactionIndicator && (
               <TransactionTypeIndicator title={transaction.tag.type} />
             )}
             <MainTransactionInfo
               transaction={transaction}
               showTagIcon={showTagIcon}
+              showTransactionIndicator={showTransactionIndicator}
             />
           </div>
         </li>
