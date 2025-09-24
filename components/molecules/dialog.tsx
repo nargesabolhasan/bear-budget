@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import { DialogDataProps } from "@/types/global";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -12,6 +11,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { closeDialog } from "@/components/molecules/dialogContainer";
 import ErrorIcon from "@mui/icons-material/Error";
+import IButton from "@/components/atoms/button";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -55,24 +55,31 @@ const IDialog = ({
       <DialogTitle
         className={"flex flex-row justify-center items-center gap-2"}
       >
-        <>{props.icon || <ErrorIcon />}</>
-        {props.title}
+        <>{props.icon || <ErrorIcon color={"primary"} />}</>
+        <span className={"text-primary font-bold"}>{props.title}</span>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-slide-description">
+        <DialogContentText
+          id="alert-dialog-slide-description"
+          className={"text-center"}
+        >
           {props.hint}
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      <DialogActions className={"gap-2"}>
         {showCancelButton && (
-          <Button onClick={handleClose} ref={nextButtonRef}>
+          <IButton
+            onClick={handleClose}
+            ref={nextButtonRef}
+            variant={"outlined"}
+          >
             {props.cancelButtonText || "Cancel"}
-          </Button>
+          </IButton>
         )}
         {showConfirmButton && (
-          <Button onClick={handleOpen}>
+          <IButton onClick={handleOpen} variant="contained">
             {props.confirmButtonText || "Confirm"}
-          </Button>
+          </IButton>
         )}
       </DialogActions>
     </Dialog>
