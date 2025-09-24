@@ -43,6 +43,7 @@ const CreateTagForm = ({
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { isValid, errors },
   } = useForm<TagFormData>({
     defaultValues: {
@@ -61,6 +62,7 @@ const CreateTagForm = ({
 
   const onSubmit = (formData: TagFormData) => {
     submitHandler(formData);
+    reset();
   };
 
   const items = [
