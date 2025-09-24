@@ -22,7 +22,11 @@ const MainTransactionInfo = ({ transaction, showTagIcon }: Props) => {
           className={"opacity-30 my-2 h-0.5 border-0 rounded bg-placeholder"}
         />
       )}
-      <p className={"text-placeholder text-pretty break-words"}>
+      <p
+        className={
+          "w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all"
+        }
+      >
         {transaction.description}
       </p>
       <ActionButtons transaction={transaction} />

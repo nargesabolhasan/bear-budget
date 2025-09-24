@@ -193,7 +193,7 @@ const TransactionForm = ({
             {...field}
             label="Description"
             multiline
-            rows={5}
+            rows={3}
             fullWidth
             error={!!errors[FormTransactionEnum.DESCRIPTION]}
             helperText={errors[FormTransactionEnum.DESCRIPTION]?.message}
