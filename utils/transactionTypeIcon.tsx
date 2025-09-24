@@ -1,9 +1,9 @@
 import { TransactionEnum } from "@/types/global";
 import AddCardTwoToneIcon from "@mui/icons-material/AddCardTwoTone";
 import SavingsTwoToneIcon from "@mui/icons-material/SavingsTwoTone";
-import ShoppingCartCheckoutTwoToneIcon from "@mui/icons-material/ShoppingCartCheckoutTwoTone";
-import ProductionQuantityLimitsTwoToneIcon from "@mui/icons-material/ProductionQuantityLimitsTwoTone";
 import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+import VolunteerActivismTwoToneIcon from "@mui/icons-material/VolunteerActivismTwoTone";
+import MoneyOffIcon from "@mui/icons-material/MoneyOff";
 
 export const transactionTypeIcon = (type: TransactionEnum | string) => {
   switch (type) {
@@ -14,8 +14,8 @@ export const transactionTypeIcon = (type: TransactionEnum | string) => {
     case TransactionEnum.SAVE:
       return <SavingsTwoToneIcon />;
     case TransactionEnum.DEBT:
-      return <ProductionQuantityLimitsTwoToneIcon />;
+      return <MoneyOffIcon />;
     case TransactionEnum.LOANED:
-      return <ShoppingCartCheckoutTwoToneIcon />;
+      return <VolunteerActivismTwoToneIcon />;
   }
 };

@@ -14,7 +14,7 @@ type Props = {
   transactionType: TransactionEnum | string;
 };
 
-const GroupedTransaction = ({ transactions, transactionType }: Props) => {
+const FilterView = ({ transactions, transactionType }: Props) => {
   const { paginated, page, setPage, pageCount } = usePaginationData(
     transactions?.transactions,
     ROWS_PER_PAGE
@@ -32,7 +32,6 @@ const GroupedTransaction = ({ transactions, transactionType }: Props) => {
           <i>{transactionTypeIcon(transactionType)}</i>
           <h3 className={"font-semibold"}>{transactionType}</h3>
         </span>
-
         <h3 className="flex flex-row gap-3">
           {convertToCurrency(transactions?.totalAmount)}
         </h3>
@@ -41,7 +40,7 @@ const GroupedTransaction = ({ transactions, transactionType }: Props) => {
       <TransactionItems
         transactionList={paginated}
         showPrimaryBG={false}
-        showTransactionType={false}
+        showTransactionHeader={false}
         showTagIcon
         showDivider
       />
@@ -56,4 +55,4 @@ const GroupedTransaction = ({ transactions, transactionType }: Props) => {
   );
 };
 
-export default GroupedTransaction;
+export default FilterView;

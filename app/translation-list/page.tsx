@@ -15,9 +15,8 @@ import FilterButtons, {
 } from "@/components/molecules/filterButtons";
 import AllTransactions from "@/components/transaction-list/all-view";
 import { filterTransactionList } from "@/constant";
-import GroupedTransaction from "@/components/transaction-list/grouped-view";
-import IButton from "@/components/atoms/button";
 import TagListHeader from "@/components/tag-list/tagListHeader";
+import FilterView from "@/components/transaction-list/filters-view";
 
 const enum ViewEnums {
   SUPERGROUP,
@@ -81,7 +80,7 @@ const TransactionList = () => {
           {
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
             render: (
-              <GroupedTransaction
+              <FilterView
                 transactionType={selectedMenuFilter || TransactionEnum.INCOME}
                 transactions={
                   (selectedMenuFilter &&

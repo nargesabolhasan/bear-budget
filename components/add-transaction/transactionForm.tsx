@@ -32,7 +32,7 @@ const schema = yup.object({
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
   [FormTransactionEnum.DESCRIPTION]: yup
     .string()
-    .max(100, "Description must be less than 100 characters"),
+    .max(150, "Description must be less than 150 characters"),
 });
 
 const TransactionForm = ({

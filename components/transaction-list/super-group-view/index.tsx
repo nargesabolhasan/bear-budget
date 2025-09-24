@@ -5,7 +5,6 @@ import { TransactionEnum } from "@/types/global";
 import twMerge from "@/utils/utils";
 import { TransactionInfoType } from "@/store/transaction/type";
 import TransactionHeader from "@/components/transaction-list/transactionHeader";
-import { groupedStyles } from "@/utils/transactionGroupedStyles";
 
 type Props = {
   groupedItems: [TransactionEnum, TransactionInfoType][];
@@ -18,14 +17,13 @@ const SuperGroupList = ({ groupedItems }: Props) => {
         <li
           key={`${type}-${index}`}
           className={twMerge(
-            "rounded-2xl flex flex-col gap-3 bg-neutral_light border-5",
-            groupedStyles(type, "border")
+            "rounded-2xl p-2 flex flex-col gap-y-4 border border-placeholder_light shadow-md"
           )}
         >
           <TransactionHeader title={type} totalAmount={items?.totalAmount} />
           <TransactionItems
             transactionList={items.transactions}
-            showTransactionType={false}
+            showTransactionHeader={false}
             showPrimaryBG={false}
             showDivider
           />

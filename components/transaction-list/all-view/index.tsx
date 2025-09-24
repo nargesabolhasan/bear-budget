@@ -17,7 +17,11 @@ const AllTransactions = ({
 
   return (
     <div className={"flex flex-col gap-3"}>
-      <TransactionItems transactionList={paginated} />
+      <TransactionItems
+        transactionList={paginated}
+        showTransactionHeader={false}
+        showTransactionIndicator
+      />
       <IPagination
         count={pageCount}
         page={page}

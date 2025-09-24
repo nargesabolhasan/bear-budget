@@ -3,14 +3,16 @@ import { TransactionEnum } from "@/types/global";
 export const groupedStyles = (type: string, style: string = "bg") => {
   switch (type) {
     case TransactionEnum.INCOME:
-      return style + "-primary";
+      return style + "-primary_light";
     case TransactionEnum.EXPENSE:
-      return style + "-secondary";
+      return style + "-fuchsia-200";
     case TransactionEnum.SAVE:
-      return style + "-pastel_blue";
+      return style + "-violet-200";
     case TransactionEnum.DEBT:
       return style + "-burly-wood";
     case TransactionEnum.LOANED:
-      return style + "-warning";
+      return style + "-orange-100";
+    default:
+      return style + "-primary_light";
   }
 };

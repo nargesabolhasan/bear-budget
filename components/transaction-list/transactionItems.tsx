@@ -2,14 +2,15 @@
 
 import twMerge from "@/utils/utils";
 import { TransactionType } from "@/types/global";
-import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import TransactionHeader from "@/components/transaction-list/transactionHeader";
-import MainTransactionInfo from "@/components/transaction-list/mainTransactionInfo";
 import React from "react";
+import TransactionTypeIndicator from "@/components/transaction-list/transactionTypeIndicator";
+import MainTransactionInfo from "@/components/transaction-list/mainTransactionInfo";
 
 type Props = {
   transactionList: TransactionType[];
-  showTransactionType?: boolean;
+  showTransactionHeader?: boolean;
+  showTransactionIndicator?: boolean;
   showPrimaryBG?: boolean;
   showDivider?: boolean;
   showTagIcon?: boolean;
@@ -17,8 +18,9 @@ type Props = {
 
 const TransactionItems = ({
   transactionList,
-  showTransactionType = true,
+  showTransactionHeader = true,
   showPrimaryBG = true,
+  showTransactionIndicator = false,
   showDivider = false,
   showTagIcon = false,
 }: Props) => {
@@ -26,38 +28,29 @@ const TransactionItems = ({
     <ul
       className={twMerge(
         "flex flex-col items-center justify-center gap-3 px-1 py-3 rounded-lg",
-        showPrimaryBG && "bg-primary_light"
+        showPrimaryBG && "bg-placeholder_light"
       )}
     >
       {transactionList.map((transaction) => (
         <li
           key={`${transaction.id}-list-item`}
           className={twMerge(
-            "w-[280px] flex flex-col rounded-lg bg-neutral_light",
-            showDivider && "border",
-            showDivider && groupedStyles(transaction.tag.type, "border")
+            "w-[280px] flex flex-col bg-neutral_light rounded-lg",
+            showDivider && "border border-placeholder_light"
           )}
         >
-          {showTransactionType && (
+          {showTransactionHeader && (
             <TransactionHeader title={transaction.tag.type} />
           )}
-          <div className={"p-3"}>
+
+          <div className={"flex flex-row items-stretch"}>
+            {showTransactionIndicator && (
+              <TransactionTypeIndicator title={transaction.tag.type} />
+            )}
             <MainTransactionInfo
-              tag={transaction.tag}
-              amount={transaction.amount}
-              date={transaction.date}
+              transaction={transaction}
               showTagIcon={showTagIcon}
             />
-            {showTagIcon && !!transaction?.description && (
-              <hr
-                className={
-                  "opacity-30 my-2 h-0.5 border-0 rounded bg-placeholder"
-                }
-              />
-            )}
-            <p className={"text-placeholder text-pretty break-words"}>
-              {transaction.description}
-            </p>
           </div>
         </li>
       ))}

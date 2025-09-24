@@ -1,50 +1,30 @@
 import React from "react";
-import twMerge, { convertToCurrency } from "@/utils/utils";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { TagInfoTransaction } from "@/types/global";
-import { iconList } from "@/constant/icons";
-import { groupedStyles } from "@/utils/transactionGroupedStyles";
+import MainTransactionTitle from "@/components/transaction-list/mainTransactionTitle";
+import { TransactionType } from "@/types/global";
 
 type Props = {
-  tag: TagInfoTransaction;
-  amount: string;
-  date: string;
-  showTagIcon?: boolean;
+  transaction: TransactionType;
+  showTagIcon: boolean;
 };
 
-const MainTransactionInfo = ({
-  tag,
-  date,
-  amount,
-  showTagIcon = false,
-}: Props) => {
-  const Icon = iconList.get(tag.icon || "0")?.icon || (() => <></>);
-
+const MainTransactionInfo = ({ transaction, showTagIcon }: Props) => {
   return (
-    <>
-      <div className={"flex flex-row gap-3 justify-between items-start"}>
-        <div className={"flex flex-col gap-1"}>
-          <span className={"flex flex-row justify-start items-center gap-1"}>
-            {showTagIcon && (
-              <Icon
-                className={twMerge(
-                  "opacity-70 rounded-full p-1",
-                  groupedStyles(tag.type)
-                )}
-              />
-            )}
-            <span className={"text-lg"}>{tag.name}</span>
-          </span>
-          <time className={"text-sm text-placeholder"}>{date}</time>
-        </div>
-        <span className={"flex flex-row items-center"}>
-          <h4>
-            <AttachMoneyIcon />
-          </h4>
-          <h4>{convertToCurrency(amount)} </h4>
-        </span>
-      </div>
-    </>
+    <div className={"p-3 grow"}>
+      <MainTransactionTitle
+        tag={transaction.tag}
+        amount={transaction.amount}
+        date={transaction.date}
+        showTagIcon={showTagIcon}
+      />
+      {showTagIcon && !!transaction?.description && (
+        <hr
+          className={"opacity-30 my-2 h-0.5 border-0 rounded bg-placeholder"}
+        />
+      )}
+      <p className={"text-placeholder text-pretty break-words"}>
+        {transaction.description}
+      </p>
+    </div>
   );
 };
 
