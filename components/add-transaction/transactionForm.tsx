@@ -18,6 +18,8 @@ import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import { Render } from "@/utils/render";
+import { tagRoutes } from "@/constant/routes";
+import Link from "next/link";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -82,21 +84,30 @@ const TransactionForm = ({
         </div>
       ),
       detail: (
-        <div className={"mr-5"}>
-          {tags.slice(tagsCount).length !== 0 && (
-            <Controller
-              name={FormTransactionEnum.TAG}
-              control={control}
-              render={({ field }) => (
-                <TagPicker
-                  value={field.value}
-                  onChange={field.onChange}
-                  tagList={tags.slice(tagsCount)}
-                />
-              )}
-            />
-          )}
-        </div>
+        <Render
+          when={tags.length > 0}
+          fallback={
+            <Link href={tagRoutes.createTag.href}>
+              you have to create a new tag! click to create new one.
+            </Link>
+          }
+        >
+          <div className={"mr-5"}>
+            {tags.slice(tagsCount).length !== 0 && (
+              <Controller
+                name={FormTransactionEnum.TAG}
+                control={control}
+                render={({ field }) => (
+                  <TagPicker
+                    value={field.value}
+                    onChange={field.onChange}
+                    tagList={tags.slice(tagsCount)}
+                  />
+                )}
+              />
+            )}
+          </div>
+        </Render>
       ),
     },
   ];
