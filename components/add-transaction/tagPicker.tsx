@@ -9,12 +9,14 @@ export type tagPickerType = {
   tagList: TagType[];
   onChange: ({ id, name, type, icon }: TagInfoTransaction) => void;
   value: { id: string; name: string };
+  className?: string;
 };
 
 const TagPicker = ({
   tagList,
   value = { id: "", name: "" },
   onChange,
+  className,
 }: tagPickerType) => {
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -32,7 +34,8 @@ const TagPicker = ({
     <div
       onClick={handleSelect}
       className={twMerge(
-        "tag-wrapper w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3"
+        "tag-wrapper w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3",
+        className
       )}
     >
       {tagList.map((tag) => (

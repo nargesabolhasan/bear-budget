@@ -82,7 +82,7 @@ const TransactionForm = ({
         </div>
       ),
       detail: (
-        <>
+        <div className={"mr-5"}>
           {tags.slice(tagsCount).length !== 0 && (
             <Controller
               name={FormTransactionEnum.TAG}
@@ -96,7 +96,7 @@ const TransactionForm = ({
               )}
             />
           )}
-        </>
+        </div>
       ),
     },
   ];
