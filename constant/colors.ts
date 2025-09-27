@@ -88,7 +88,7 @@ const colors = [
   "bg-yellow-500", // Medium brown
   "bg-yellow-900 text-white", // Slightly darker brown
   "bg-orange-950 text-white", // Darker brown
-  "bg-burly-wood",
+  "bg-secondary",
 ];
 
 export const colorListGenerator = (): ColorOption[] => {

@@ -9,7 +9,7 @@ export const useTagsStore = create<TagStore>()(
       (set, get) => ({
         tags: [],
         createTag: (tag) =>
-          set({ tags: [...get().tags, tag] }, false, "createTag"),
+          set({ tags: [tag, ...get().tags] }, false, "createTag"),
         removeTag: (id) =>
           set(
             { tags: get().tags.filter((tag) => tag.id !== id) },

@@ -22,7 +22,11 @@ const FilterView = ({ transactions, transactionType }: Props) => {
   );
 
   return (
-    <div className={"w-full flex flex-col items-center justify-center mx-auto"}>
+    <div
+      className={
+        "w-full md:w-[500px] flex flex-col items-center justify-center mx-auto"
+      }
+    >
       <div
         className={twMerge(
           "overflow-x-auto text-lg w-full p-3 rounded-lg flex flex-row justify-between items-center gap-2",
