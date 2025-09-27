@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "@mui/material";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 export type SizeButtonProps = "small" | "medium" | "large";
 export type VariantButtonProps = "outlined" | "contained" | "text";
@@ -19,7 +19,7 @@ const IButton = ({
   ...props
 }: IButtonProps) => {
   const variantMapper: Record<VariantButtonProps, string> = {
-    outlined: "!bg-transparent",
+    outlined: "!bg-neutral",
     contained: "!border-none",
     text: "!bg-transparent !border-none",
   };

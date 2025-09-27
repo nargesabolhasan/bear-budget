@@ -1,6 +1,6 @@
 import React from "react";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 
 const TransactionTypeIndicator = ({ title }: { title: string }) => {

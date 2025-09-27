@@ -7,7 +7,7 @@ import Link from "next/link";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { tagRoutes } from "@/constant/routes";
 import { useTagsStore } from "@/store/tags";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";

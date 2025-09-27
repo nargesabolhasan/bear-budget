@@ -1,6 +1,6 @@
 "use client";
 
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { TransactionType } from "@/types/global";
 import TransactionHeader from "@/components/transaction-list/transactionHeader";
 import React from "react";

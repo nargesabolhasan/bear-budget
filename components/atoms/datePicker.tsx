@@ -4,7 +4,7 @@ import DatePicker, { CalendarProps, DateObject } from "react-multi-date-picker";
 import "react-multi-date-picker/styles/layouts/prime.css";
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 export type IDatePickerProps = Omit<CalendarProps, "value" | "onChange"> & {
   value?: DateObject | string;

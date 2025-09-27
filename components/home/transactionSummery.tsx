@@ -13,6 +13,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import IButton from "@/components/atoms/button";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();

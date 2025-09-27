@@ -1,5 +1,6 @@
 import React from "react";
-import twMerge, { convertToCurrency } from "@/utils/utils";
+import { convertToCurrency } from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { TransactionEnum } from "@/types/global";

@@ -2,7 +2,7 @@ import React from "react";
 import MainTransactionTitle from "@/components/transaction-list/mainTransactionTitle";
 import { TransactionType } from "@/types/global";
 import ActionButtons from "@/components/transaction-list/actionButtons";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   transaction: TransactionType;

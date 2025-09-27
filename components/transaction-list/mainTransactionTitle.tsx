@@ -1,5 +1,6 @@
 import React from "react";
-import twMerge, { convertToCurrency } from "@/utils/utils";
+import { convertToCurrency } from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { TagInfoTransaction } from "@/types/global";
 import { iconList } from "@/constant/icons";

@@ -1,6 +1,6 @@
 import React from "react";
 import { TagFormData } from "@/components/create-tag/type";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 
 const TagDemo = ({

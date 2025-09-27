@@ -4,7 +4,7 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { TransactionEnum } from "@/types/global";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 export type ContextMenuProps = {
   id: number;

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Fab } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 const ScrollToBottomButton = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);

@@ -2,7 +2,7 @@
 import React from "react";
 import TransactionItems from "@/components/transaction-list";
 import { TransactionEnum } from "@/types/global";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { TransactionInfoType } from "@/store/transaction/type";
 import TransactionHeader from "@/components/transaction-list/transactionHeader";
 

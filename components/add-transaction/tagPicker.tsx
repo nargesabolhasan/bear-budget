@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 import { TagInfoTransaction, TagType } from "@/types/global";
 import TagDemo from "@/components/create-tag/tagDemo";
 

@@ -4,7 +4,7 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import { IconOption } from "@/types/global";
 import { PICKER_WRAPPER_CLASS } from "@/constant/className";
-import twMerge from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 interface IconPickerProps {
   icons: IconOption[];
