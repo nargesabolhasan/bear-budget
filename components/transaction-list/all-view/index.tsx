@@ -4,6 +4,7 @@ import { TransactionType } from "@/types/global";
 import TransactionItems from "@/components/transaction-list";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
+import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 
 const AllTransactions = ({
   transactions,
@@ -17,6 +18,7 @@ const AllTransactions = ({
   console.log(transactions);
   return (
     <div className={"md:w-[500px] flex flex-col gap-3"}>
+      <PrinterViewTitle title={"All Transactions:"} />
       <TransactionItems
         transactionList={paginated}
         showTransactionHeader={false}

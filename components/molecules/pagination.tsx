@@ -9,7 +9,7 @@ export const PAGE_COUNT = 10;
 
 export default function IPagination({ ...props }: PaginationProps) {
   return (
-    <Stack spacing={2} className={"flex items-center my-5"}>
+    <Stack spacing={2} className={"flex items-center my-5 print:!hidden"}>
       <Pagination
         {...props}
         count={props.count || PAGE_COUNT}

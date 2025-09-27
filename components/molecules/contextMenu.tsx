@@ -45,7 +45,7 @@ export default function ContextMenu({
   };
 
   return (
-    <div>
+    <div className={"print:hidden"}>
       <div
         id="basic-button"
         onClick={handleClick}

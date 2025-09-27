@@ -10,6 +10,7 @@ import { twMerge } from "tailwind-merge";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { Render } from "@/utils/render";
+import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 
 type Props = {
   transactions: TransactionInfoType;
@@ -28,6 +29,7 @@ const FilterView = ({ transactions, transactionType }: Props) => {
         "w-full md:w-[500px] flex flex-col items-center justify-center mx-auto"
       }
     >
+      <PrinterViewTitle title={`${transactionType}s :`} />
       <div
         className={twMerge(
           "overflow-x-auto text-lg w-full p-3 rounded-lg flex flex-row justify-between items-center gap-2",
