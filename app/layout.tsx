@@ -5,6 +5,7 @@ import IHeader from "@/components/molecules/header";
 import { navItems } from "@/constant/navItems";
 import DialogContainer from "@/components/molecules/dialogContainer";
 import IThemeProvider from "@/theme/themeProvider";
+import Script from "next/script";
 
 export const metadata = {
   title: "Bear Budget",

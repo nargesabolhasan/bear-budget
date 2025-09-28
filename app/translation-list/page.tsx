@@ -18,7 +18,6 @@ import { filterTransactionList } from "@/constant";
 import TagListHeader from "@/components/tag-list/tagListHeader";
 import FilterView from "@/components/transaction-list/filters-view";
 import { toast } from "sonner";
-import PrintPageNumber from "@/components/printer-demo/printPageNumber";
 
 const enum ViewEnums {
   SUPERGROUP,
@@ -116,7 +115,6 @@ const TransactionList = () => {
         </header>
         <ScrollToBottom />
       </Render>
-      <PrintPageNumber />
     </div>
   );
 };
