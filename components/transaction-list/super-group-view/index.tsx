@@ -19,7 +19,7 @@ const SuperGroupList = ({ groupedItems }: Props) => {
         <li
           key={`${type}-${index}`}
           className={twMerge(
-            "rounded-2xl p-2 flex flex-col gap-y-4 border border-placeholder_light shadow-md"
+            "rounded-2xl p-2 flex flex-col gap-y-4 border border-placeholder_light shadow-md print:p-1"
           )}
         >
           <TransactionHeader title={type} totalAmount={items?.totalAmount} />

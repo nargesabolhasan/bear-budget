@@ -19,7 +19,8 @@ const MainTransactionInfo = ({
     <div
       className={twMerge(
         "overflow-x-auto p-3 grow flex flex-col items-end",
-        showTransactionIndicator && "relative -left-5"
+        showTransactionIndicator &&
+          "relative -left-5 print:left-0 print:border-b"
       )}
     >
       <MainTransactionTitle

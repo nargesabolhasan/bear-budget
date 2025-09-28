@@ -15,7 +15,7 @@ const AllTransactions = ({
     transactions,
     ROWS_PER_PAGE
   );
-  console.log(transactions);
+
   return (
     <div className={"md:w-[500px] flex flex-col gap-3"}>
       <PrinterViewTitle title={"All Transactions:"} />

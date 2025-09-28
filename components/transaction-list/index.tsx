@@ -35,7 +35,7 @@ const TransactionItems = ({
         <li
           key={`${transaction.id}-list-item`}
           className={twMerge(
-            "w-full flex flex-col bg-neutral_light rounded-lg",
+            "list-item-content w-full flex flex-col bg-neutral_light rounded-lg",
             showDivider && "border border-placeholder_light"
           )}
         >

@@ -119,8 +119,6 @@ const TransactionForm = ({
     reset();
   };
 
-  console.log(watch(FormTransactionEnum.AMOUNT));
-
   return (
     <form
       //@ts-ignore

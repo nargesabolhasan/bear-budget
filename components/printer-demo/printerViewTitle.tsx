@@ -4,7 +4,7 @@ const PrinterViewTitle = ({ title }: { title: string }) => {
   return (
     <div
       className={
-        "hidden print:block w-full text-center border-b border-black mb-4 pb-2"
+        "hidden print:block print:my-0 w-full text-center border-b border-black mb-4 pb-2"
       }
     >
       {title}
