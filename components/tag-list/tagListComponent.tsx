@@ -54,7 +54,7 @@ const TagListDemo = () => {
                 <li
                   key={`tag-list-${tag.id}`}
                   className={
-                    "flex justify-between items-center gap-2 p-2 border border-primary rounded-lg"
+                    "list-item-content flex justify-between items-center gap-2 p-2 border border-primary rounded-lg"
                   }
                 >
                   <span className={"grow grid grid-cols-3 items-center gap-2"}>
