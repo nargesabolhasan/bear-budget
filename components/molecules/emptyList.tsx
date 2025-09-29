@@ -16,7 +16,7 @@ const EmptyList = ({
   onAddItem,
 }: Props) => {
   return (
-    <section className={"mt-[80px]"}>
+    <section className={"mt-[80px] print:mt-0"}>
       <div
         className={"cursor-pointer text-xl flex flex-row justify-center"}
         onClick={() => {

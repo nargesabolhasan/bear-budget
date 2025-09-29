@@ -71,15 +71,29 @@ body {
             content: "Page " counter(page) " of " counter(pages);
         }
     }
-
+    body {
+        padding: 0;
+        background: none;
+        color: #000;
+    }
     ul {
         margin: 0;
         padding: 0;
     }
 
     .list-item-content {
-        page-break-inside: avoid;
-        page-break-after: auto;
+        /* Standard */
+        break-inside: avoid;
+        break-after: auto;
+
+        /* Old WebKit / Safari */
+        -webkit-column-break-inside: avoid;
+        -webkit-region-break-inside: avoid;
+
+        /* Firefox (Gecko) */
+        page-break-inside: avoid;  /* fallback for printing */
+        page-break-after: auto;    /* fallback for printing */
     }
+
 }
 

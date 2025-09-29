@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={"!bg-neutral_light"}>
         <IThemeProvider>
           <IHeader navItems={navItems} />
-          <main className={"mt-[60px] p-4"}>{children}</main>
+          <main className={"mt-[60px] p-4 print:mt-0"}>{children}</main>
           <GlobalToaster />
           <DialogContainer />
         </IThemeProvider>
