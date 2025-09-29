@@ -27,17 +27,18 @@ const NewItemCards = () => {
   const lastTag = tags[0];
   const secondTag = tags[1];
 
-  const Icon = iconList.get(lastTag.icon || "0")?.icon || (() => <></>);
-  const IconSecond = iconList.get(secondTag.icon || "0")?.icon || (() => <></>);
+  const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
+  const IconSecond =
+    iconList.get(secondTag?.icon || "0")?.icon || (() => <></>);
 
   const tableRows = [
-    { id: 1, title: "Tag", value: lastTransaction.tag.name },
+    { id: 1, title: "Tag", value: lastTransaction?.tag.name },
     {
       id: 2,
       title: "Amount",
-      value: `${convertToCurrency(lastTransaction.amount)} $`,
+      value: `${convertToCurrency(lastTransaction?.amount)} $`,
     },
-    { id: 3, title: "Date", value: lastTransaction.date },
+    { id: 3, title: "Date", value: lastTransaction?.date },
   ];
 
   const FallBack = ({ title, href }: { title: string; href: string }) => (
@@ -122,7 +123,7 @@ const NewItemCards = () => {
               "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
             }
           >
-            <Icon /> <h4 className={"grow text-start"}>{lastTag.name} </h4>
+            <Icon /> <h4 className={"grow text-start"}>{lastTag?.name} </h4>
           </span>
           <span
             className={
@@ -130,7 +131,7 @@ const NewItemCards = () => {
             }
           >
             <IconSecond />
-            <h4 className={"grow text-start"}>{secondTag.name} </h4>
+            <h4 className={"grow text-start"}>{secondTag?.name} </h4>
           </span>
           <Link
             href={tagRoutes.tagList.href}
