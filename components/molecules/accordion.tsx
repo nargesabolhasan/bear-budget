@@ -46,7 +46,7 @@ const IAccordion = ({
           className={className}
           sx={{
             boxShadow: 0,
-            borderRadius: "8px",
+            borderRadius: "20px",
             "&:before": {
               display: "none",
             },
