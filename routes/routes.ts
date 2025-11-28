@@ -11,4 +11,9 @@ export const transactionRoutes = {
 export const budgetRoutes = {
   createBudget: { name: "New Budget", href: "/create-budget" },
   budgetList: { name: "Budgets", href: "/budget-list" },
+  editBudget: (id: string) => `/create-budget/${id}`,
+};
+export const dateFilterRoutes = {
+  name: `Date Filter`,
+  href: `/date-filter`,
 };

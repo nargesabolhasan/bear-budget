@@ -55,9 +55,9 @@ export const useTransactionStore = create<TransactionStore>()(
 
         clearAll: () => set({ transactions: [] }, false, "clearAll"),
 
-        groupedByType: () => {
+        groupedByType: (data?: TransactionType[]) => {
           const { tags } = useTagsStore();
-          const transactions = get().transactions;
+          const transactions = data || get().transactions;
 
           const tagMap = Object.fromEntries(tags.map((t) => [t.id, t]));
 

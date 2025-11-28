@@ -19,5 +19,5 @@ export interface TransactionStore {
     data: Partial<TransactionType>
   ) => void;
   clearAll: () => void;
-  groupedByType: () => GroupedTransactionType;
+  groupedByType: (data?: TransactionType[]) => GroupedTransactionType;
 }

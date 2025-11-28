@@ -34,6 +34,7 @@ export type TagInfoTransaction = {
   name: string;
   type: string;
   icon: string;
+  color: string;
 };
 
 export type TransactionType = {
@@ -42,6 +43,23 @@ export type TransactionType = {
   tag: TagInfoTransaction;
   date: string;
   description?: string;
+  settled?: {
+    date: string;
+    amount?: string;
+    isSettled?: boolean;
+  };
+};
+
+export type BudgetType = {
+  id: string;
+  amount: string;
+  tag: {
+    name: string;
+    color: string;
+    icon: string;
+    id: string;
+  };
+  month: string;
 };
 
 export type NavItemType = {
@@ -77,3 +95,23 @@ export type AccordionItemsType = {
     panel: string
   ) => void;
 };
+
+export type GropedBudgetType = Map<
+  string,
+  {
+    transactions: TransactionType[];
+    totalAmount: number;
+    tag: {
+      name: string;
+      icon: string;
+      color: string;
+    };
+  }
+>;
+
+export const enum ViewEnums {
+  SUPERGROUP,
+  ALL,
+  GROUPED,
+  PREV_MONTHS,
+}

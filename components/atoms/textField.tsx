@@ -9,7 +9,18 @@ export type TextFieldType = Omit<TextFieldProps, "variant"> & {
 const ITextField = ({ ...props }: TextFieldType) => {
   return (
     <>
-      <TextField variant={"outlined"} {...props} dir={"rtl"} />
+      <TextField
+        variant={"outlined"}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "20px",
+            backgroundColor: "white",
+          },
+        }}
+        {...props}
+        dir={"rtl"}
+      />
+
       {props.showHint && (
         <p className={"text-xs text-placeholder"}>{props.hint}</p>
       )}

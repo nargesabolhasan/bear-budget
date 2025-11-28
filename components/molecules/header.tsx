@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import NextLink from "next/link";
+import Link from "next/link";
 import {
   AppBar,
   Box,
@@ -16,6 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavItemType } from "@/types/global";
+import Image from "next/image";
 
 export type HeaderProps = {
   title?: string;
@@ -32,13 +34,24 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   };
 
   const DrawerNavItem = ({ item }: { item: NavItemType }) => (
-    <MenuItem component={NextLink} href={item.href}>
+    <MenuItem
+      component={NextLink}
+      href={item.href}
+      className={
+        "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3"
+      }
+    >
       {item.label}
     </MenuItem>
   );
 
   const DesktopNavItem = ({ item }: { item: NavItemType }) => (
-    <NextLink href={item.href}>{item.label}</NextLink>
+    <NextLink
+      className={"text-brown shadow shadow-brown p-2 rounded-lg"}
+      href={item.href}
+    >
+      {item.label}
+    </NextLink>
   );
 
   const drawer = (
@@ -58,9 +71,18 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
 
   return (
     <AppBar position="fixed" className={"print:!hidden"}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          {title}
+      <Toolbar className={"flex flex-row justify-between items-center py-6"}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            fontFamily: '"PlaywriteNZGuides", sans-serif !important',
+          }}
+          className="w-fit text-brown cursor-pointer font-playwrite italic !text-2xl"
+        >
+          <Link href={"/"} className={"w-fit flex flex-row items-center"}>
+            <Image src="/favicon.svg" alt="icon" width={50} height={50} />
+            {title}
+          </Link>
         </Typography>
 
         {isMobile ? (
@@ -70,8 +92,9 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
+              className={"shadow shadow-brown p-2"}
             >
-              <MenuIcon />
+              <MenuIcon className={"text-brown"} />
             </IconButton>
 
             <Drawer

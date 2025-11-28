@@ -2,7 +2,7 @@ import React from "react";
 
 type SingleRenderProps = {
   when: boolean;
-  children: React.ReactNode; // this will be treated as "common content"
+  children: React.ReactNode;
   fallback?: React.ReactNode;
 };
 
@@ -17,14 +17,9 @@ type MultiRenderProps = {
 };
 
 type RenderProps = (SingleRenderProps | MultiRenderProps) & {
-  children?: React.ReactNode; // optional common content
+  children?: React.ReactNode;
 };
 
-/**
- * Flexible Render Component:
- * - Supports single condition OR multiple conditions
- * - `children` are treated as shared content, rendered only if a condition is true
- */
 export const Render: React.FC<RenderProps> = ({
   children,
   fallback = null,

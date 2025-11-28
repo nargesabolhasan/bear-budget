@@ -11,13 +11,14 @@ const TransactionHeader = ({ title, totalAmount }: Props) => {
   return (
     <div
       className={twMerge(
-        "rounded-t-lg p-2 flex flex-row justify-between gap-3 items-center",
-        groupedStyles(title)
+        "rounded-t-lg p-2 flex flex-row justify-between gap-3 items-center border-b border-dashed border-placeholder"
       )}
     >
       <span className={"flex flex-row items-center justify-center gap-3"}>
         <i>{transactionTypeIcon(title)}</i>
-        <h3 className={"text-xl"}>{title}</h3>
+        <h3 className={"text-xl"} style={{ fontFamily: "Satisfy" }}>
+          {title}
+        </h3>
       </span>
       {!!totalAmount && (
         <h3

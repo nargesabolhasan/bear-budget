@@ -38,13 +38,17 @@ const IButton = ({
     <Button
       {...props}
       className={twMerge(
-        "w-fit",
+        "w-fit !rounded-full",
         props.disabled ? colorMapper.disabled : colorMapper[color],
         sizeMapper[size],
         variantMapper[variant],
         props.className
       )}
-      sx={{ textTransform: "none", ...props.sx }}
+      sx={{
+        fontWeight: 400,
+        textTransform: "none",
+        ...props.sx,
+      }}
     >
       {children}
     </Button>

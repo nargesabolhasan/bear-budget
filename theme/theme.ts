@@ -27,6 +27,19 @@ const theme = createTheme({
     danger: { main: tailwindColors.danger, contrastText: "#fff" },
     warning: { main: tailwindColors.warning, contrastText: "#000" },
   },
+  typography: {
+    fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
+  },
+  components: {
+    MuiTextField: {
+      defaultProps: {
+        slotProps: {
+          input: { dir: "auto" },
+          inputLabel: { dir: "auto" },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
