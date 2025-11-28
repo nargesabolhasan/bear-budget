@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { TransactionType } from "@/types/global";
 import {
   GroupedTransactionType,
   TransactionStore,
@@ -58,23 +57,17 @@ export const useTransactionStore = create<TransactionStore>()(
           set((state) => {
             const updated = { ...state.transactions };
 
-            // 1. Find the old transaction
             const oldList = updated[oldYear]?.[oldMonth] ?? [];
             const oldTx = oldList.find((tx) => tx.id === id);
 
             if (!oldTx) return { transactions: updated };
 
-            // 2. Merge old + new data
             const newTx = { ...oldTx, ...data };
 
-            // 3. Compute new year/month from the NEW date
             const newDate = new Date(newTx.date);
             const newYear = newDate.getFullYear();
             const newMonth = newDate.getMonth() + 1;
 
-            const dateChanged = newYear !== oldYear || newMonth !== oldMonth;
-
-            // 4. If date changed → remove from old bucket
             updated[oldYear][oldMonth] = oldList.filter((t) => t.id !== id);
             if (updated[oldYear][oldMonth].length === 0) {
               delete updated[oldYear][oldMonth];
@@ -83,7 +76,6 @@ export const useTransactionStore = create<TransactionStore>()(
               }
             }
 
-            // 5. Insert into new bucket
             updated[newYear] ??= {};
             updated[newYear][newMonth] ??= [];
             updated[newYear][newMonth].push(newTx);

@@ -8,7 +8,6 @@ import { Box } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import { Controller, useForm } from "react-hook-form";
 import { convertToCurrency } from "@/utils/utils";
-import ITextField from "@/components/atoms/textField";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import IButton from "@/components/atoms/button";
@@ -50,7 +49,7 @@ const MainTransactionInfo = ({
   const {
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",

@@ -2,7 +2,7 @@
 import React from "react";
 import { TransactionInfoType } from "@/store/transaction/type";
 import { TransactionEnum } from "@/types/global";
-import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
+import { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import { convertToCurrency } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
@@ -11,7 +11,6 @@ import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { Render } from "@/utils/render";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
-import { fontFamily, fontSize } from "@mui/system";
 
 type Props = {
   transactions: TransactionInfoType;
