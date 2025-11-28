@@ -26,6 +26,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "PlaywriteNZGuides";
+    src: url("/fonts/PlaywriteNZGuides/PlaywriteNZGuides-Regular.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "satisfy";
+    src: url("/fonts/Satisfy/Satisfy-Regular.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "elms";
+    src: url("/fonts/Elms/ElmsSans-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0a0a0a;
@@ -40,10 +61,18 @@
 
 body {
     color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "elms", sans-serif;
     background: var(--background);
-    color: var(--foreground);
-    font-family: "Inter", "Vazirmatn", sans-serif !important;
+}
+
+/*----scrollbar------*/
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 
@@ -63,7 +92,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555; /* Thumb color on hover */
 }
+/*--------MUI override----------*/
+.MuiDrawer-paperAnchorLeft {
+    @apply !bg-primary_light p-2
+}
 
+/*--------print demo----------*/
 @media print {
     @page {
         size: A4 portrait;
@@ -71,11 +105,13 @@ body {
             content: "Page " counter(page) " of " counter(pages);
         }
     }
+
     body {
         padding: 0;
         background: none;
         color: #000;
     }
+
     ul {
         margin: 0;
         padding: 0;
@@ -91,8 +127,8 @@ body {
         -webkit-region-break-inside: avoid;
 
         /* Firefox (Gecko) */
-        page-break-inside: avoid;  /* fallback for printing */
-        page-break-after: auto;    /* fallback for printing */
+        page-break-inside: avoid; /* fallback for printing */
+        page-break-after: auto; /* fallback for printing */
     }
 
 }
