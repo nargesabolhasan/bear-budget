@@ -5,83 +5,123 @@ import {
   GroupedTransactionType,
   TransactionStore,
 } from "@/store/transaction/type";
-import { useTagsStore } from "@/store/tags";
 
 export const useTransactionStore = create<TransactionStore>()(
   devtools(
     persist(
       (set, get) => ({
-        transactions: [],
+        transactions: {},
 
-        addTransaction: (transaction) =>
-          set(
-            (state) => {
-              const newTransactionDate = new Date(transaction.date);
-              const updatedTransactions = [...state.transactions];
+        addTransaction: (tx) =>
+          set((state) => {
+            const d = new Date(tx.date);
+            const year = d.getFullYear();
+            const month = d.getMonth() + 1;
 
-              const index = updatedTransactions.findIndex(
-                (t) => new Date(t.date) < newTransactionDate
-              );
-              if (index === -1) {
-                updatedTransactions.push(transaction);
-              } else {
-                updatedTransactions.splice(index, 0, transaction);
+            const updated = { ...state.transactions };
+            updated[year] ??= {};
+            updated[year][month] ??= [];
+            updated[year][month].push(tx);
+
+            // optional: sort by date
+            updated[year][month].sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
+
+            return { transactions: updated };
+          }),
+
+        removeTransaction: (id, year, month) =>
+          set((state) => {
+            const updated = { ...state.transactions };
+            updated[year][month] = (updated[year][month] ?? []).filter(
+              (tx) => tx.id !== id
+            );
+            return { transactions: updated };
+          }),
+
+        removeByYearMonth: (year: number, month: number) =>
+          set((state) => {
+            const updated = { ...state.transactions };
+
+            if (updated[year]) {
+              delete updated[year][month];
+              if (Object.keys(updated[year]).length === 0) {
+                delete updated[year];
               }
-
-              return { transactions: updatedTransactions };
-            },
-            false,
-            "addTransaction"
-          ),
-
-        removeTransaction: (id) =>
-          set(
-            {
-              transactions: get().transactions.filter(
-                (transaction) => transaction.id !== id
-              ),
-            },
-            false,
-            "removeTransaction"
-          ),
-
-        editTransaction: (id, data) => {
-          const updatedList = get().transactions.map(
-            (transaction: TransactionType) =>
-              transaction.id === id ? { ...transaction, ...data } : transaction
-          );
-          set({ transactions: updatedList }, false, "editTransaction");
-        },
-
-        clearAll: () => set({ transactions: [] }, false, "clearAll"),
-
-        groupedByType: (data?: TransactionType[]) => {
-          const { tags } = useTagsStore();
-          const transactions = data || get().transactions;
-
-          const tagMap = Object.fromEntries(tags.map((t) => [t.id, t]));
-
-          const grouped: GroupedTransactionType = {};
-
-          transactions.forEach((tx) => {
-            const tag = tagMap[tx.tag.id];
-            if (!tag) return;
-
-            const type = tag.transactionType;
-
-            if (!grouped[type]) {
-              grouped[type] = { transactions: [], totalAmount: 0 };
             }
 
-            grouped[type].transactions.push(tx);
-            grouped[type].totalAmount += Number(tx.amount);
-          });
+            return { transactions: updated };
+          }),
 
-          return grouped;
+        editTransaction: (id, data, oldYear, oldMonth) =>
+          set((state) => {
+            const updated = { ...state.transactions };
+
+            // 1. Find the old transaction
+            const oldList = updated[oldYear]?.[oldMonth] ?? [];
+            const oldTx = oldList.find((tx) => tx.id === id);
+
+            if (!oldTx) return { transactions: updated };
+
+            // 2. Merge old + new data
+            const newTx = { ...oldTx, ...data };
+
+            // 3. Compute new year/month from the NEW date
+            const newDate = new Date(newTx.date);
+            const newYear = newDate.getFullYear();
+            const newMonth = newDate.getMonth() + 1;
+
+            const dateChanged = newYear !== oldYear || newMonth !== oldMonth;
+
+            // 4. If date changed → remove from old bucket
+            updated[oldYear][oldMonth] = oldList.filter((t) => t.id !== id);
+            if (updated[oldYear][oldMonth].length === 0) {
+              delete updated[oldYear][oldMonth];
+              if (Object.keys(updated[oldYear]).length === 0) {
+                delete updated[oldYear];
+              }
+            }
+
+            // 5. Insert into new bucket
+            updated[newYear] ??= {};
+            updated[newYear][newMonth] ??= [];
+            updated[newYear][newMonth].push(newTx);
+
+            // 6. Optional sorting
+            updated[newYear][newMonth].sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
+
+            return { transactions: updated };
+          }),
+
+        getTransactions: (year, month) =>
+          get().transactions[year]?.[month] ?? [],
+
+        groupedByType: (
+          year: number,
+          month: number
+        ): GroupedTransactionType => {
+          const state = get();
+          const txs = state.transactions[year]?.[month] ?? [];
+
+          return txs.reduce((acc: GroupedTransactionType, tx) => {
+            const key = tx.tag.type || "Uncategorized";
+
+            if (!acc[key]) {
+              acc[key] = { transactions: [], totalAmount: 0 };
+            }
+
+            acc[key].transactions.push(tx);
+            acc[key].totalAmount += Number(tx.amount); // convert string to number
+
+            return acc;
+          }, {});
         },
       }),
+
       { name: "transactions" }
-    ),
-    { name: "TransactionsStore" }
+    )
   )
 );

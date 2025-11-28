@@ -8,6 +8,8 @@ import {
   TransactionFormData,
 } from "@/components/add-transaction/type";
 import BackButton from "@/components/molecules/backButton";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,19 +17,27 @@ type Props = {
 
 const EditTransaction = ({ params }: Props) => {
   const { slug } = use(params);
-  const { transactions, editTransaction } = useTransactionStore();
-  const defaultValue = transactions.find((item) => item.id === slug);
+  const { editTransaction, getTransactions } = useTransactionStore();
+  const { date } = useFilteredDateContext();
+  const router = useRouter();
+
+  const defaultValue = getTransactions(date.year, date.month).find(
+    (transaction) => transaction.id === slug
+  );
 
   const submitHandler = (formData: TransactionFormData) => {
     if (!defaultValue) return;
-    editTransaction(defaultValue.id, formData);
+    editTransaction(defaultValue.id, formData, date.year, date.month);
+
     toast.success(
       <span>
         <strong>{formData[FormTransactionEnum.AMOUNT]}</strong> was updated
         successfully!
       </span>
     );
+    router.back();
   };
+
   return (
     <TransactionForm
       title={

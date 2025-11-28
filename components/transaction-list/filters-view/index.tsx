@@ -53,7 +53,7 @@ const FilterView = ({ transactions, transactionType }: Props) => {
       <Render
         when={!!transactions?.transactions}
         fallback={
-          <span className={"p-3 w-[280px] text-center"}> ! no item</span>
+          <span className={"p-3 w-[280px] text-center"}>empty group !</span>
         }
       >
         <>

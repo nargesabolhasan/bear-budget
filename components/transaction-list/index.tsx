@@ -4,10 +4,7 @@ import AllTransactions from "@/components/transaction-list/all-view";
 import FilterView from "@/components/transaction-list/filters-view";
 import { TransactionEnum, TransactionType, ViewEnums } from "@/types/global";
 import SuperGroupList from "@/components/transaction-list/super-group-view";
-import {
-  GroupedTransactionType,
-  TransactionInfoType,
-} from "@/store/transaction/type";
+
 import EmptyList from "@/components/molecules/emptyList";
 import { transactionRoutes } from "@/routes/routes";
 import TagListHeader from "@/components/tag-list/tagListHeader";
@@ -17,9 +14,12 @@ import FilterButtons, {
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { filterTransactionList } from "@/constant";
-import { useTransactionStore } from "@/store/transaction";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import {
+  GroupedTransactionType,
+  TransactionInfoType,
+} from "@/store/transaction/type";
 
 const navItems: NavItemsType[] = [
   {
@@ -41,6 +41,8 @@ type Props = {
   groupedTransactions: GroupedTransactionType;
   viewMode: ViewEnums;
   handleChangeTab: (id: number) => void;
+  clearAll: () => void;
+  dialogTitle: string;
 };
 
 const TransactionListComponent = ({
@@ -48,15 +50,16 @@ const TransactionListComponent = ({
   groupedTransactions,
   viewMode,
   handleChangeTab,
+  clearAll,
+  dialogTitle,
 }: Props) => {
   const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
-  const { clearAll } = useTransactionStore();
   const router = useRouter();
 
   const clearAllTransactions = () => {
     openDialog({
       title: "Clear All",
-      hint: "Do you want to remove all transaction ?",
+      hint: dialogTitle,
       confirmHandler: () => {
         clearAll();
         toast.success(<span>Deleted successfully.</span>);
@@ -66,6 +69,22 @@ const TransactionListComponent = ({
 
   return (
     <div className={"md:w-fit mx-auto md:px-3 pb-20 print:p-0"}>
+      <header className={"bg-neutral_light"}>
+        <TagListHeader
+          clearAllTags={clearAllTransactions}
+          handleAddMore={() => {
+            router.push(transactionRoutes.addTranslation.href);
+          }}
+        />
+        <FilterButtons
+          activeId={viewMode}
+          onChange={handleChangeTab}
+          navItems={navItems}
+          selectedMenuFilter={selectedMenuFilter}
+          setSelectedMenuFilter={setSelectedMenuFilter}
+        />
+      </header>
+      <ScrollToBottom />
       <Render
         items={[
           {
@@ -104,24 +123,7 @@ const TransactionListComponent = ({
             onAddItem={() => router.push(transactionRoutes.addTranslation.href)}
           />
         }
-      >
-        <header className={"bg-neutral_light"}>
-          <TagListHeader
-            clearAllTags={clearAllTransactions}
-            handleAddMore={() => {
-              router.push(transactionRoutes.addTranslation.href);
-            }}
-          />
-          <FilterButtons
-            activeId={viewMode}
-            onChange={handleChangeTab}
-            navItems={navItems}
-            selectedMenuFilter={selectedMenuFilter}
-            setSelectedMenuFilter={setSelectedMenuFilter}
-          />
-        </header>
-        <ScrollToBottom />
-      </Render>
+      />
     </div>
   );
 };

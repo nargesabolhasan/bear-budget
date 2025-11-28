@@ -14,8 +14,8 @@ export const getYearsRange = (lang: "fa" | "en" = "en") => {
   } else {
     currentYear = new Date().getFullYear();
   }
-  const start = currentYear - 15;
-  const end = currentYear + 15;
+  const start = lang === "fa" ? 1404 : 2025;
+  const end = currentYear + 5;
 
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 };
@@ -35,6 +35,14 @@ export const getCurrentYear = (lang: "fa" | "en" = "en"): number => {
 export const getCurrentMonthName = (locale: "fa" | "en" = "en"): string => {
   const now = new Date();
   return new Intl.DateTimeFormat(locale, { month: "long" }).format(now);
+};
+
+export const getCurrentMonthNumber = (locale: "fa" | "en" = "en"): number => {
+  const now = new DateObject({
+    date: new Date(),
+    calendar: locale === "fa" ? persian : gregorian,
+  });
+  return now.month.number;
 };
 
 type Language = "fa" | "en";

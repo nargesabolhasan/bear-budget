@@ -7,6 +7,7 @@ import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
 import { toast } from "sonner";
 import { FORMS_WRAPPER_CLASS } from "@/constant/className";
 import BackButton from "@/components/molecules/backButton";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -14,7 +15,7 @@ type Props = {
 
 const EditTagPage = ({ params }: Props) => {
   const { slug } = use(params);
-
+  const router = useRouter();
   const { tags, editTag } = useTagsStore();
   const defaultValue = tags.find((item) => item.id === slug);
 
@@ -27,6 +28,7 @@ const EditTagPage = ({ params }: Props) => {
         <strong>{formData[FormTagEnum.NAME]}</strong> was updated successfully!
       </span>
     );
+    router.back();
   };
 
   return (

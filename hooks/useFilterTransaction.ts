@@ -10,7 +10,7 @@ type Props = {
 };
 
 const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
-  const { transactions } = useTransactionStore();
+  const { getTransactions } = useTransactionStore();
   const { budgets } = useBudgetStore();
 
   const filteredTransactions = useMemo(() => {
@@ -49,7 +49,10 @@ const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
     /** ----------------------------------------------------
      * 2) MERGE TRANSACTIONS (if they exist)
      * ---------------------------------------------------- */
-    for (const transaction of transactions) {
+    for (const transaction of getTransactions(
+      getCurrentYear("fa"),
+      monthList.indexOf(filterMonth) + 1
+    )) {
       const date = new Date(transaction.date);
 
       const isSameMonth = monthList[date.getMonth()] === filterMonth;
@@ -68,7 +71,7 @@ const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
     }
 
     return map;
-  }, [filterMonth, transactions, budgets]);
+  }, [filterMonth, budgets]);
 
   return { filteredTransactions };
 };

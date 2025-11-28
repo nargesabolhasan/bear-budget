@@ -6,6 +6,7 @@ import { useBudgetStore } from "@/store/budget";
 import { BudgetType } from "@/types/global";
 import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import CreateBudget from "@/components/create-budget";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -14,6 +15,7 @@ type Props = {
 const Page = ({ params }: Props) => {
   const { slug } = use(params);
   const { budgets, editBudget } = useBudgetStore();
+  const router = useRouter();
   const defaultValue = budgets[slug];
 
   const onSubmit = (formData: Omit<BudgetType, "id">) => {
@@ -25,6 +27,7 @@ const Page = ({ params }: Props) => {
         successfully!
       </span>
     );
+    router.back();
   };
 
   return (

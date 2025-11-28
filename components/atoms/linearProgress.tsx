@@ -24,12 +24,12 @@ const ILinearProgress: React.FC<LinearProgressProps> = ({
       {label && <div className="mb-1 text-sm font-medium">{label}</div>}
 
       <div
-        className={twMerge("w-full rounded-full", remainingColor)}
+        className={twMerge("w-full rounded-full print:border", remainingColor)}
         style={{ height }}
       >
         <div
           className={twMerge(
-            "h-full rounded-full transition-all duration-300",
+            "h-full rounded-full transition-all duration-300 print:border",
             filledColor,
             value > 85 && "bg-danger_light2",
             overFlow && "bg-hover_danger"

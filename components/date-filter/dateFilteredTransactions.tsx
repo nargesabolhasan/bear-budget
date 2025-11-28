@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ScrollDatePicker from "@/components/atoms/scrollDatePicker";
 import {
   getCurrentMonthName,
@@ -8,18 +8,30 @@ import {
   PERSIAN_MONTHS,
 } from "@/utils/dateList";
 import IButton from "@/components/atoms/button";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
+
+export type DatePickerForm = { Month: string; Year: number };
 
 type Props = {
-  submitSearch: (formData: FieldValues) => void;
+  submitSearch: (formData: DatePickerForm) => void;
 };
 
 const DateFilteredTransactions = ({ submitSearch }: Props) => {
-  const { setValue, watch, handleSubmit } = useForm();
+  const { setValue, watch, handleSubmit } = useForm<DatePickerForm>();
+  const { setDate } = useFilteredDateContext();
+
+  const submitHandler = (formDate: DatePickerForm) => {
+    setDate({
+      month: PERSIAN_MONTHS.indexOf(formDate.Month) + 1,
+      year: formDate.Year,
+    });
+    submitSearch(formDate);
+  };
 
   return (
     <form
       className={"flex flex-col items-center justify-center gap-3"}
-      onSubmit={handleSubmit(submitSearch)}
+      onSubmit={handleSubmit(submitHandler)}
     >
       <section
         className={

@@ -1,23 +1,29 @@
-import { TransactionEnum, TransactionType } from "@/types/global";
+import { TransactionType } from "@/types/global";
+
+export type GroupedYM = {
+  [year: string]: {
+    [month: string]: TransactionType[];
+  };
+};
 
 export type TransactionInfoType = {
   transactions: TransactionType[];
   totalAmount: number;
 };
 
-export type GroupedTransactionType = Record<
-  TransactionEnum | string,
-  TransactionInfoType
->;
+export type GroupedTransactionType = Record<string, TransactionInfoType>;
 
 export interface TransactionStore {
-  transactions: TransactionType[];
-  addTransaction: (transaction: TransactionType) => void;
-  removeTransaction: (id: TransactionType["id"]) => void;
+  transactions: GroupedYM;
+  addTransaction: (tx: TransactionType) => void;
+  removeTransaction: (id: string, year: number, month: number) => void;
+  removeByYearMonth: (year: number, month: number) => void;
   editTransaction: (
-    id: TransactionType["id"],
-    data: Partial<TransactionType>
+    id: string,
+    data: Partial<TransactionType>,
+    year: number,
+    month: number
   ) => void;
-  clearAll: () => void;
-  groupedByType: (data?: TransactionType[]) => GroupedTransactionType;
+  getTransactions: (year: number, month: number) => TransactionType[];
+  groupedByType: (year: number, month: number) => GroupedTransactionType;
 }

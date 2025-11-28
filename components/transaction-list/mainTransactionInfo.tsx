@@ -15,6 +15,7 @@ import IButton from "@/components/atoms/button";
 import IDatePicker from "@/components/atoms/datePicker";
 import BeenhereIcon from "@mui/icons-material/Beenhere";
 import { useTransactionStore } from "@/store/transaction";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
 
 type Props = {
   transaction: TransactionType;
@@ -44,6 +45,7 @@ const MainTransactionInfo = ({
 }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const { editTransaction } = useTransactionStore();
+  const { date } = useFilteredDateContext();
 
   const {
     handleSubmit,
@@ -55,10 +57,15 @@ const MainTransactionInfo = ({
   });
 
   const onSubmit = (formData: FormTypes) => {
-    editTransaction(transaction.id, {
-      amount: "0",
-      settled: { ...formData, amount: transaction.amount },
-    });
+    editTransaction(
+      transaction.id,
+      {
+        amount: "0",
+        settled: { ...formData, amount: transaction.amount },
+      },
+      date.year,
+      date.month
+    );
     setOpen(false);
   };
 
