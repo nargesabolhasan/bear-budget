@@ -70,7 +70,7 @@ const BudgetItems = ({
         "flex flex-col border-b border-dashed border-placeholder py-4 px-3"
       }
     >
-      <div className={"w-full flex justify-end"}>
+      <div className={"w-full flex justify-end print:hidden"}>
         <ContextMenu menuItems={menuItems} resetAfterSelect>
           <MoreHorizTwoToneIcon />
         </ContextMenu>

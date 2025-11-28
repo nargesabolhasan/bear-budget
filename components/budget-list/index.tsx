@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useBudgetStore } from "@/store/budget";
 import useFilterTransaction from "@/hooks/useFilterTransaction";
 import { getCurrentMonthName, PERSIAN_MONTHS } from "@/utils/dateList";
@@ -16,6 +16,7 @@ import { Render } from "@/utils/render";
 import EventNoteTwoToneIcon from "@mui/icons-material/EventNoteTwoTone";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
+import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -67,7 +68,8 @@ const BudgetList = () => {
   return (
     <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
       {/* Header */}
-      <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2">
+      <PrinterViewTitle title={"All Budgets:"} />
+      <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">
         <IButton
           size="small"
           variant="outlined"
@@ -102,7 +104,7 @@ const BudgetList = () => {
               const budgetAmount = parseInt(budget?.amount);
 
               return (
-                <>
+                <Fragment key={tagId}>
                   {!!budgetAmount && (
                     <BudgetItems
                       handleDelete={handleDelete}
@@ -113,7 +115,7 @@ const BudgetList = () => {
                       spent={spent}
                     />
                   )}
-                </>
+                </Fragment>
               );
             }
           )}
