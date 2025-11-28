@@ -4,10 +4,12 @@ import { useTransactionStore } from "@/store/transaction";
 import { convertToCurrency } from "@/utils/utils";
 import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
 import { twMerge } from "tailwind-merge";
+import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
 
 const Summery = () => {
   const { groupedByType } = useTransactionStore();
-  const data = groupedByType() || {};
+  const data =
+    groupedByType(getCurrentYear("fa"), getCurrentMonthNumber("fa")) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
   const expense = data?.Expense?.totalAmount ?? 0;

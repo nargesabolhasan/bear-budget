@@ -16,10 +16,14 @@ import {
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import { transactionRoutes } from "@/routes/routes";
 import Link from "next/link";
+import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
-  const grouped = groupedByType();
+  const grouped = groupedByType(
+    getCurrentYear("fa"),
+    getCurrentMonthNumber("fa")
+  );
 
   return (
     <section

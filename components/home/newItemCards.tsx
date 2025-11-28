@@ -18,12 +18,16 @@ import {
   TableRow,
 } from "@mui/material";
 import { tagRoutes, transactionRoutes } from "@/routes/routes";
+import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
 
 const NewItemCards = () => {
   const { tags } = useTagsStore();
-  const { transactions } = useTransactionStore();
+  const { getTransactions } = useTransactionStore();
 
-  const lastTransaction = transactions[0];
+  const lastTransaction = getTransactions(
+    getCurrentYear("fa"),
+    getCurrentMonthNumber("fa")
+  )[0];
   const lastTag = tags[0];
   const secondTag = tags[1];
 
