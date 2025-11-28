@@ -66,7 +66,9 @@ const IDialog = ({
           {props.hint}
         </DialogContentText>
       </DialogContent>
-      <DialogActions className={"gap-2"}>
+      <DialogActions
+        className={"gap-2 flex flex-row !items-center !justify-center"}
+      >
         {showCancelButton && (
           <IButton
             onClick={handleClose}
@@ -77,7 +79,7 @@ const IDialog = ({
           </IButton>
         )}
         {showConfirmButton && (
-          <IButton onClick={handleOpen} variant="contained">
+          <IButton onClick={handleOpen} variant="contained" className={"!mr-0"}>
             {props.confirmButtonText || "Confirm"}
           </IButton>
         )}
