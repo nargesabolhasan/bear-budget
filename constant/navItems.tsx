@@ -1,9 +1,11 @@
 import {
   budgetRoutes,
-  dateFilterRoutes,
+  settingRoute,
   tagRoutes,
   transactionRoutes,
 } from "@/routes/routes";
+import { Setting2 } from "iconsax-react";
+import React from "react";
 
 export const navItems = [
   { label: "Home", key: "/", href: "/" },
@@ -36,5 +38,16 @@ export const navItems = [
     label: budgetRoutes.budgetList.name,
     key: budgetRoutes.budgetList.href,
     href: budgetRoutes.budgetList.href,
+  },
+  {
+    label: (
+      <div className={"flex gap-1 items-center"}>
+        <Setting2 size="25" color="var(--color-brown)" variant="Outline" />
+        {settingRoute.name}
+      </div>
+    ),
+    key: settingRoute.href,
+    href: settingRoute.href,
+    color: "!bg-secondary",
   },
 ];

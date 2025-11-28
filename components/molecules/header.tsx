@@ -18,6 +18,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavItemType } from "@/types/global";
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 export type HeaderProps = {
   title?: string;
@@ -37,9 +38,10 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
     <MenuItem
       component={NextLink}
       href={item.href}
-      className={
-        "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3"
-      }
+      className={twMerge(
+        "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3",
+        item.color
+      )}
     >
       {item.label}
     </MenuItem>
@@ -47,7 +49,10 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
 
   const DesktopNavItem = ({ item }: { item: NavItemType }) => (
     <NextLink
-      className={"text-brown shadow shadow-brown p-2 rounded-lg"}
+      className={twMerge(
+        "text-brown shadow shadow-brown p-2 rounded-full",
+        item.color
+      )}
       href={item.href}
     >
       {item.label}

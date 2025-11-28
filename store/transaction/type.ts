@@ -26,4 +26,5 @@ export interface TransactionStore {
   ) => void;
   getTransactions: (year: number, month: number) => TransactionType[];
   groupedByType: (year: number, month: number) => GroupedTransactionType;
+  clearAllTransactions: () => void;
 }

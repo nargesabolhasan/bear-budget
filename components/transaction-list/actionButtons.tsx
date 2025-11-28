@@ -11,10 +11,12 @@ import ContextMenu from "@/components/molecules/contextMenu";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Edit2, Trash } from "iconsax-react";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
 
 const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
   const { removeTransaction } = useTransactionStore();
   const router = useRouter();
+  const { date } = useFilteredDateContext();
 
   const handleDelete = (transaction: TransactionType) => {
     openDialog({
@@ -27,7 +29,7 @@ const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
         </span>
       ),
       confirmHandler: () => {
-        removeTransaction(transaction.id);
+        removeTransaction(transaction.id, date.year, date.month);
         toast.success(<span>Deleted successfully.</span>);
       },
     });

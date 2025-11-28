@@ -111,6 +111,11 @@ export const useTransactionStore = create<TransactionStore>()(
             return acc;
           }, {});
         },
+
+        clearAllTransactions: () =>
+          set(() => ({
+            transactions: {},
+          })),
       }),
 
       { name: "transactions" }

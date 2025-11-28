@@ -63,9 +63,10 @@ export type BudgetType = {
 };
 
 export type NavItemType = {
-  label: string;
+  label: ReactNode | string;
   key: string;
   href: string;
+  color?: string;
 };
 
 export type DialogDataProps = {

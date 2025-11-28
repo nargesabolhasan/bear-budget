@@ -17,3 +17,7 @@ export const dateFilterRoutes = {
   name: `Date Filter`,
   href: `/date-filter`,
 };
+export const settingRoute = {
+  name: `Setting`,
+  href: `/setting`,
+};
