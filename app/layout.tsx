@@ -18,10 +18,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={"!bg-neutral_light"}>
+      <body className={"!bg-neutral_light h-screen flex flex-col"}>
         <IThemeProvider>
           <IHeader navItems={navItems} />
-          <main className={"mt-[60px] p-4 print:mt-0"}>{children}</main>
+          <main className={"mt-[90px] p-2 md:p-4 print:mt-0 grow"}>
+            {children}
+          </main>
           <GlobalToaster />
           <DialogContainer />
         </IThemeProvider>

@@ -10,27 +10,26 @@ const TagDemo = ({
   color,
   transactionType,
   className,
-  dataTagId = "",
+  onClick,
 }: TagFormData & {
   demoTitle?: string;
   className?: string;
-  dataTagId?: string;
+  onClick?: () => void;
 }) => {
   const Icon = iconList.get(icon || "0")?.icon;
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-2 mx-auto justify-center items-center bg-gray-100 border border-dashed border-gray-400 p-4 rounded-lg",
+        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-lg",
         className && className
       )}
-      data-tag-id={dataTagId}
-      data-tag-name={name}
-      data-tag-type={transactionType}
-      data-tag-icon={icon}
       dir={"auto"}
+      onClick={() => {
+        onClick?.();
+      }}
     >
       <div className={"flex flex-col gap-2 items-start w-full"}>
-        {demoTitle && <h3 className={"flex gap-1 flex-row"}>{demoTitle}</h3>}
+        {demoTitle && <h3 className={"text-center w-full"}>{demoTitle}</h3>}
       </div>
       <span className={"block text-md text-dark"}>{name ?? " "}</span>
       <i

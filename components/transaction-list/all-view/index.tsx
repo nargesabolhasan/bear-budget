@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { TransactionType } from "@/types/global";
-import TransactionItems from "@/components/transaction-list";
+import TransactionItems from "@/components/transaction-list/TransactionItems";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
@@ -24,13 +24,13 @@ const AllTransactions = ({
         showTransactionHeader={false}
         showTransactionIndicator
       />
-      <IPagination
-        count={pageCount}
-        page={page}
-        onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
-          setPage(pageN)
-        }
-      />
+      {/*<IPagination*/}
+      {/*  count={pageCount}*/}
+      {/*  page={page}*/}
+      {/*  onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>*/}
+      {/*    setPage(pageN)*/}
+      {/*  }*/}
+      {/*/>*/}
     </div>
   );
 };

@@ -1,120 +1,67 @@
 "use client";
 import React, { useState } from "react";
-import { useTransactionStore } from "@/store/transaction";
-import { transactionRoutes } from "@/constant/routes";
-import { TransactionEnum } from "@/types/global";
-import { openDialog } from "@/components/molecules/dialogContainer";
-import { Render } from "@/utils/render";
-import EmptyList from "@/components/molecules/emptyList";
-import { useRouter } from "next/navigation";
-import SuperGroupList from "@/components/transaction-list/super-group-view";
-import ScrollToBottom from "@/components/molecules/scrollToBottom";
-import { TransactionInfoType } from "@/store/transaction/type";
-import FilterButtons, {
-  NavItemsType,
-} from "@/components/molecules/filterButtons";
-import AllTransactions from "@/components/transaction-list/all-view";
-import { filterTransactionList } from "@/constant";
-import TagListHeader from "@/components/tag-list/tagListHeader";
-import FilterView from "@/components/transaction-list/filters-view";
-import { toast } from "sonner";
-
-const enum ViewEnums {
-  SUPERGROUP,
-  ALL,
-  GROUPED,
-}
-
-const navItems: NavItemsType[] = [
-  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
-  { id: ViewEnums.ALL, title: "All" },
-  {
-    id: ViewEnums.GROUPED,
-    title: "Filter",
-    showContextMenu: true,
-    contextMenu: filterTransactionList(),
-  },
-];
+import TransactionListComponent from "@/components/transaction-list";
+import Modal from "@mui/material/Modal";
+import { ViewEnums } from "@/types/global";
+import useSearchTransaction from "@/hooks/useSearchTransaction";
+import { PERSIAN_MONTHS } from "@/utils/dateList";
+import Box from "@mui/material/Box";
+import DateFilteredTransactions from "@/components/date-filter/dateFilteredTransactions";
 
 const TransactionList = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.SUPERGROUP);
-  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
 
-  const { transactions, clearAll, groupedByType } = useTransactionStore();
-
-  const groupedTransactions = groupedByType();
-
-  const router = useRouter();
-
-  const clearAllTransactions = () => {
-    openDialog({
-      title: "Clear All",
-      hint: "Do you want to remove all transaction ?",
-      confirmHandler: () => {
-        clearAll();
-        toast.success(<span>Deleted successfully.</span>);
-      },
-    });
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setViewMode(ViewEnums.SUPERGROUP);
   };
 
+  const handleChangeTab = (id: number) => {
+    setViewMode(id);
+    if (id === ViewEnums.PREV_MONTHS) {
+      handleOpen();
+    }
+  };
+
+  const { submitSearch, groupedTransactions, transactionList } =
+    useSearchTransaction({
+      monthList: PERSIAN_MONTHS,
+      handleClose,
+    });
+
   return (
-    <div className={"md:w-fit mx-auto px-3 print:p-0"}>
-      <Render
-        items={[
-          {
-            when: viewMode === ViewEnums.ALL && transactions.length > 0,
-            render: <AllTransactions transactions={transactions} />,
-          },
-          {
-            when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
-            render: (
-              <FilterView
-                transactionType={selectedMenuFilter || TransactionEnum.INCOME}
-                transactions={
-                  (selectedMenuFilter &&
-                    groupedTransactions?.[selectedMenuFilter]) ||
-                  groupedTransactions.Income
-                }
-              />
-            ),
-          },
-          {
-            when: viewMode === ViewEnums.SUPERGROUP && transactions.length > 0,
-            render: (
-              <SuperGroupList
-                groupedItems={
-                  Object.entries(groupedTransactions) as [
-                    TransactionEnum,
-                    TransactionInfoType
-                  ][]
-                }
-              />
-            ),
-          },
-        ]}
-        fallback={
-          <EmptyList
-            onAddItem={() => router.push(transactionRoutes.addTranslation.href)}
-          />
-        }
+    <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <header className={"bg-neutral_light"}>
-          <TagListHeader
-            clearAllTags={clearAllTransactions}
-            handleAddMore={() => {
-              router.push(transactionRoutes.addTranslation.href);
-            }}
-          />
-          <FilterButtons
-            activeId={viewMode}
-            onChange={(id) => setViewMode(id)}
-            navItems={navItems}
-            selectedMenuFilter={selectedMenuFilter}
-            setSelectedMenuFilter={setSelectedMenuFilter}
-          />
-        </header>
-        <ScrollToBottom />
-      </Render>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "var(--color-neutral_light)",
+            borderRadius: 15,
+            boxShadow: 15,
+            p: 4,
+            width: "fit-content",
+            height: "fit-content",
+          }}
+        >
+          <DateFilteredTransactions submitSearch={submitSearch} />
+        </Box>
+      </Modal>
+      <TransactionListComponent
+        transactions={transactionList}
+        groupedTransactions={groupedTransactions}
+        handleChangeTab={handleChangeTab}
+        viewMode={viewMode}
+      />
     </div>
   );
 };

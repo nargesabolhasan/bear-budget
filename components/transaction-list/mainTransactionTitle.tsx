@@ -5,11 +5,13 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { TagInfoTransaction } from "@/types/global";
 import { iconList } from "@/constant/icons";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
+import { Render } from "@/utils/render";
 
 type Props = {
   tag: TagInfoTransaction;
   amount: string;
   date: string;
+  amountBeforeSettled?: string;
   showTagIcon?: boolean;
 };
 
@@ -17,6 +19,7 @@ const MainTransactionTitle = ({
   tag,
   date,
   amount,
+  amountBeforeSettled,
   showTagIcon = false,
 }: Props) => {
   const Icon = iconList.get(tag.icon || "0")?.icon || (() => <></>);
@@ -42,7 +45,16 @@ const MainTransactionTitle = ({
           <h4>
             <AttachMoneyIcon />
           </h4>
-          <h4>{convertToCurrency(amount)} </h4>
+          <Render
+            when={!amountBeforeSettled}
+            fallback={
+              <h4 className={"text-placeholder line-through"}>
+                {convertToCurrency(amountBeforeSettled || "")}
+              </h4>
+            }
+          >
+            <h4>{convertToCurrency(amount)} </h4>
+          </Render>
         </span>
       </div>
     </>

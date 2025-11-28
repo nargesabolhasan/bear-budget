@@ -16,7 +16,6 @@ import ITextField from "@/components/atoms/textField";
 import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
-import { Render } from "@/utils/render";
 
 const CreateTagForm = ({
   submitHandler,
@@ -144,12 +143,7 @@ const CreateTagForm = ({
       onSubmit={handleSubmit(onSubmit)}
       dir={"auto"}
     >
-      <Render
-        when={!!title}
-        fallback={<h4 className={"text-center"}>Create Tag</h4>}
-      >
-        {title}
-      </Render>
+      {title && title}
       <Controller
         name={FormTagEnum.NAME}
         control={control}
@@ -167,13 +161,21 @@ const CreateTagForm = ({
       <IAccordion
         items={items}
         summeryClassName={"m-0! h-fit"}
-        className={"p-4 border border-gray-300"}
+        className={"p-4 border border-placeholder_light"}
       />
       <Controller
         control={control}
         name={FormTagEnum.TRANSACTION_TYPE}
         render={({ field }) => (
-          <Select label="Type" {...field} value={field.value ?? ""}>
+          <Select
+            label="Type"
+            {...field}
+            value={field.value ?? ""}
+            sx={{
+              borderRadius: "20px",
+              backgroundColor: "white",
+            }}
+          >
             {Object.values(TransactionEnum).map((value) => (
               <MenuItem key={value} value={value}>
                 {value}
@@ -188,14 +190,19 @@ const CreateTagForm = ({
         transactionType={watch(FormTagEnum.TRANSACTION_TYPE)}
         icon={watch(FormTagEnum.ICON)}
         color={watch(FormTagEnum.COLOR)}
-        className={"w-full"}
+        className={"w-full md:w-1/2 rounded-4xl"}
       />
       <IButton
-        className={"w-full"}
+        className={"w-full !rounded-full"}
         variant={"contained"}
         type="submit"
         size={"large"}
         disabled={!isValid}
+        sx={{
+          fontWeight: 400,
+          flexGrow: 1,
+          fontFamily: '"Inter", sans-serif !important',
+        }}
       >
         Submit
       </IButton>

@@ -3,7 +3,7 @@
 import React from "react";
 import { useTagsStore } from "@/store/tags";
 import { openDialog } from "@/components/molecules/dialogContainer";
-import { tagRoutes } from "@/constant/routes";
+import { tagRoutes } from "@/routes/routes";
 import EmptyList from "@/components/molecules/emptyList";
 import { Render } from "@/utils/render";
 import { useRouter } from "next/navigation";
@@ -31,7 +31,9 @@ const TagList = () => {
   };
 
   return (
-    <div className={"p-4 mx-auto w-full md:w-1/2 flex flex-col gap-3"}>
+    <div
+      className={"p-1 md:p-4 mb-20 mx-auto w-full md:w-1/2 flex flex-col gap-3"}
+    >
       <Render
         when={tags.length !== 0}
         fallback={

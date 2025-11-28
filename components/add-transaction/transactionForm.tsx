@@ -11,15 +11,11 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
-import TagPicker from "@/components/add-transaction/tagPicker";
 import { useTagsStore } from "@/store/tags";
 import { convertToCurrency } from "@/utils/utils";
-import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
-import { Render } from "@/utils/render";
-import { tagRoutes } from "@/constant/routes";
-import Link from "next/link";
+import TagAccordion from "@/components/create-budget/tagAccordion";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -63,57 +59,6 @@ const TransactionForm = ({
   const { tags } = useTagsStore();
   const tagsCount = useIconCount(110, ".tag-wrapper");
 
-  const accordionItem = [
-    {
-      id: 1,
-      panel: "tag-picker",
-      panelHeaderId: "tag-picker-header",
-      ariaControl: "tag-picker-aria",
-      summary: (
-        <div className={"h-full w-full flex flex-col gap-3"}>
-          <h4 className={"text-placeholder"}>select tag</h4>
-          <Controller
-            name={FormTransactionEnum.TAG}
-            control={control}
-            render={({ field }) => (
-              <TagPicker
-                value={field.value}
-                onChange={field.onChange}
-                tagList={tags.slice(0, tagsCount)}
-              />
-            )}
-          />
-        </div>
-      ),
-      detail: (
-        <Render
-          when={tags.length > 0}
-          fallback={
-            <Link href={tagRoutes.createTag.href}>
-              you have to create a new tag! click to create new one.
-            </Link>
-          }
-        >
-          <div className={"mr-5"}>
-            {tags.slice(tagsCount).length !== 0 && (
-              <Controller
-                name={FormTransactionEnum.TAG}
-                control={control}
-                render={({ field }) => (
-                  <TagPicker
-                    value={field.value}
-                    onChange={field.onChange}
-                    tagList={tags.slice(tagsCount)}
-                  />
-                )}
-              />
-            )}
-          </div>
-        </Render>
-      ),
-    },
-  ];
-
   const onSubmit = (formData: TransactionFormData) => {
     submitHandler?.(formData);
     reset();
@@ -125,12 +70,7 @@ const TransactionForm = ({
       onSubmit={handleSubmit(onSubmit)}
       className={"w-full flex flex-col gap-3 p-3"}
     >
-      <Render
-        when={!!title}
-        fallback={<h4 className={"text-center"}>Add new Transaction</h4>}
-      >
-        {title}
-      </Render>
+      {title && title}
       <Controller
         name={FormTransactionEnum.AMOUNT}
         control={control}
@@ -167,12 +107,7 @@ const TransactionForm = ({
         }}
       />
 
-      <IAccordion
-        items={accordionItem}
-        detailClassName={"py-3! pr-5!"}
-        showExpandIcon={tags.slice(tagsCount).length !== 0}
-        className={"p-4 border border-gray-300"}
-      />
+      <TagAccordion control={control} tags={tags} tagsCount={tagsCount} />
       <Controller
         control={control}
         name="date"
@@ -213,7 +148,12 @@ const TransactionForm = ({
         type="submit"
         disabled={!isValid}
         size={"large"}
-        className={"w-full"}
+        className={"w-full !rounded-full"}
+        sx={{
+          fontWeight: 400,
+          flexGrow: 1,
+          fontFamily: '"Inter", sans-serif !important',
+        }}
       >
         Submit
       </IButton>

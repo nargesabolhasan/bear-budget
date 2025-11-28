@@ -5,14 +5,13 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { openDialog } from "@/components/molecules/dialogContainer";
-import { tagRoutes } from "@/constant/routes";
+import { tagRoutes } from "@/routes/routes";
 import { useTagsStore } from "@/store/tags";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
-import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { toast } from "sonner";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import { Edit2, Trash } from "iconsax-react";
 
 const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
@@ -40,8 +39,9 @@ const TagListDemo = () => {
         {Object.entries(groupedByType()).map(([tagType, tags], index) => (
           <div className={"flex flex-col gap-2"} key={`${tagType}-${index}`}>
             <h2
+              style={{ fontFamily: "PlaywriteNZGuides" }}
               className={
-                "mx-auto w-1/2 font-bold my-2 p-2 text-center bg-primary rounded-full"
+                "mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
               }
             >
               {tagType}
@@ -54,7 +54,7 @@ const TagListDemo = () => {
                 <li
                   key={`tag-list-${tag.id}`}
                   className={
-                    "list-item-content flex justify-between items-center gap-2 p-2 border border-primary rounded-lg"
+                    "list-item-content flex justify-between items-center gap-1 p-2 border border-primary rounded-full print:rounded-2xl"
                   }
                 >
                   <span className={"grow grid grid-cols-3 items-center gap-2"}>
@@ -75,13 +75,18 @@ const TagListDemo = () => {
                     }
                   >
                     <IconButton onClick={() => handleDelete(tag)}>
-                      <DeleteRoundedIcon className={"text-primary"} />
+                      <Trash
+                        size="30"
+                        color={"var(--color-primary)"}
+                        variant="Bulk"
+                      />
                     </IconButton>
 
                     <Link href={tagRoutes.editTag(tag.id)}>
-                      <BorderColorRoundedIcon
-                        fontSize="medium"
-                        className={"text-primary"}
+                      <Edit2
+                        size="30"
+                        color={"var(--color-hover_primary)"}
+                        variant="Bulk"
                       />
                     </Link>
                   </span>

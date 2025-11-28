@@ -7,7 +7,7 @@ import TagDemo from "@/components/create-tag/tagDemo";
 
 export type tagPickerType = {
   tagList: TagType[];
-  onChange: ({ id, name, type, icon }: TagInfoTransaction) => void;
+  onChange: ({ id, name, type, icon, color }: TagInfoTransaction) => void;
   value: { id: string; name: string };
   className?: string;
 };
@@ -18,21 +18,18 @@ const TagPicker = ({
   onChange,
   className,
 }: tagPickerType) => {
-  const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    const button = (e.target as HTMLButtonElement).closest(".tag-picker-item");
-    if (button) {
-      const id = button.getAttribute("data-tag-id") || "";
-      const name = button.getAttribute("data-tag-name") || "";
-      const type = button.getAttribute("data-tag-type") || "";
-      const icon = button.getAttribute("data-tag-icon") || "";
-      onChange({ id, name, type, icon });
-    }
+  const handleSelect = (tag: TagType) => {
+    onChange({
+      id: tag.id,
+      name: tag.name,
+      type: tag.transactionType,
+      icon: tag.icon,
+      color: tag.color.color,
+    });
   };
 
   return (
     <div
-      onClick={handleSelect}
       className={twMerge(
         "tag-wrapper w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3",
         className
@@ -50,7 +47,7 @@ const TagPicker = ({
           name={tag.name}
           color={tag.color}
           transactionType={tag.transactionType}
-          dataTagId={tag.id}
+          onClick={() => handleSelect(tag)}
         />
       ))}
     </div>

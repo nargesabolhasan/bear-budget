@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { TransactionInfoType } from "@/store/transaction/type";
-import TransactionItems from "@/components/transaction-list";
 import { TransactionEnum } from "@/types/global";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
@@ -11,6 +10,8 @@ import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { Render } from "@/utils/render";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import TransactionItems from "@/components/transaction-list/TransactionItems";
+import { fontFamily, fontSize } from "@mui/system";
 
 type Props = {
   transactions: TransactionInfoType;
@@ -32,13 +33,18 @@ const FilterView = ({ transactions, transactionType }: Props) => {
       <PrinterViewTitle title={`${transactionType}s :`} />
       <div
         className={twMerge(
-          "overflow-x-auto text-lg w-full p-3 rounded-lg flex flex-row justify-between items-center gap-2",
+          "flex flex-row items-center justify-between overflow-x-auto text-lg w-full p-3 rounded-xl rounded-b-none",
           groupedStyles(transactionType)
         )}
       >
         <span className={"flex flex-row gap-2 items-center"}>
           <i>{transactionTypeIcon(transactionType)}</i>
-          <h3 className={"font-semibold"}>{transactionType}</h3>
+          <h3
+            className={"font-semibold"}
+            style={{ fontFamily: "PlaywriteNZGuides" }}
+          >
+            {transactionType}
+          </h3>
         </span>
         <h3 className="flex flex-row gap-3">
           {convertToCurrency(transactions?.totalAmount)}
@@ -51,20 +57,27 @@ const FilterView = ({ transactions, transactionType }: Props) => {
         }
       >
         <>
-          <TransactionItems
-            transactionList={paginated}
-            showPrimaryBG={false}
-            showTransactionHeader={false}
-            showTagIcon
-            showDivider
-          />
-          <IPagination
-            count={pageCount}
-            page={page}
-            onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
-              setPage(pageN)
-            }
-          />
+          <div
+            className={twMerge(
+              "w-full p-1 rounded-b-xl",
+              groupedStyles(transactionType)
+            )}
+          >
+            <TransactionItems
+              transactionList={paginated}
+              showPrimaryBG={false}
+              showTransactionHeader={false}
+              showTagIcon
+              showDivider
+            />
+          </div>
+          {/*<IPagination*/}
+          {/*  count={pageCount}*/}
+          {/*  page={page}*/}
+          {/*  onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>*/}
+          {/*    setPage(pageN)*/}
+          {/*  }*/}
+          {/*/>*/}
         </>
       </Render>
     </div>

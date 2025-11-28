@@ -23,12 +23,11 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
   ...props
 }) => {
   return (
-    <div className={"flex flex-col gap-1"}>
+    <div className={"flex flex-col gap-1 w-full"}>
       <DatePicker
         {...props}
         inputClass={twMerge(
-          "h-[56px] p-3 rounded-sm border border-grey-400 w-full",
-          "h-[56px] p-3 rounded-sm border-gray-300 w-full",
+          "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-white",
           !!error && "border border-red-700"
         )}
         monthYearSeparator="|"

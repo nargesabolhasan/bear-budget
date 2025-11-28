@@ -17,7 +17,7 @@ import {
   TableCell,
   TableRow,
 } from "@mui/material";
-import { tagRoutes, transactionRoutes } from "@/constant/routes";
+import { tagRoutes, transactionRoutes } from "@/routes/routes";
 
 const NewItemCards = () => {
   const { tags } = useTagsStore();
@@ -29,7 +29,7 @@ const NewItemCards = () => {
 
   const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
   const IconSecond =
-    iconList.get(secondTag?.icon || "0")?.icon || (() => <></>);
+    (secondTag && iconList.get(secondTag?.icon || "0")?.icon) || (() => <></>);
 
   const tableRows = [
     { id: 1, title: "Tag", value: lastTransaction?.tag.name },
@@ -54,6 +54,8 @@ const NewItemCards = () => {
           "bg-gradient-to-t from-secondary to-burly_wood rounded-2xl p-3 flex flex-col"
         }
       >
+        {/*   Transaction   */}
+
         <Render
           when={!!lastTransaction}
           fallback={
@@ -65,7 +67,15 @@ const NewItemCards = () => {
         >
           <span className={"flex flex-row gap-2 items-center mb-5"}>
             <TipsAndUpdatesIcon />
-            <h4>Last Transaction :</h4>
+            <h4>Recent :</h4>
+            <Link
+              href={transactionRoutes.translationList.href}
+              className={
+                "bg-neutral text-secondary p-1 text-sm mx-auto rounded-full px-2"
+              }
+            >
+              see more
+            </Link>
           </span>
           <TableContainer>
             <Table aria-label="transaction table" size="small">
@@ -93,14 +103,6 @@ const NewItemCards = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <Link
-            href={transactionRoutes.translationList.href}
-            className={
-              "bg-neutral text-secondary p-1 text-sm mx-auto mt-3 rounded-lg "
-            }
-          >
-            see more
-          </Link>
         </Render>
       </div>
       <div
@@ -108,6 +110,7 @@ const NewItemCards = () => {
           "bg-gradient-to-b from-secondary to-burly_wood rounded-2xl p-3 flex flex-col gap-2"
         }
       >
+        {/*   Tags   */}
         <Render
           when={!!lastTag}
           fallback={
@@ -117,6 +120,14 @@ const NewItemCards = () => {
           <span className={"flex flex-row gap-2 items-center mb-5"}>
             <AssistantIcon />
             <h4>new Tags:</h4>
+            <Link
+              href={tagRoutes.tagList.href}
+              className={
+                "bg-neutral text-secondary py-1 px-2 text-sm mx-auto rounded-full"
+              }
+            >
+              see more
+            </Link>
           </span>
           <span
             className={
@@ -125,22 +136,16 @@ const NewItemCards = () => {
           >
             <Icon /> <h4 className={"grow text-start"}>{lastTag?.name} </h4>
           </span>
-          <span
-            className={
-              "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
-            }
-          >
-            <IconSecond />
-            <h4 className={"grow text-start"}>{secondTag?.name} </h4>
-          </span>
-          <Link
-            href={tagRoutes.tagList.href}
-            className={
-              "bg-neutral text-secondary p-1 text-sm mx-auto rounded-lg"
-            }
-          >
-            see more
-          </Link>
+          {secondTag && (
+            <span
+              className={
+                "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
+              }
+            >
+              <IconSecond />
+              <h4 className={"grow text-start"}>{secondTag?.name} </h4>
+            </span>
+          )}
         </Render>
       </div>
     </section>
