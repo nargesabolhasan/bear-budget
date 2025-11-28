@@ -1,0 +1,21 @@
+"use client";
+
+import IButton from "@/components/atoms/button";
+import Image from "next/image";
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center h-full w-full max-w-3xl mx-auto">
+      <Image src="/empty.png" alt="error" width={150} height={100} />
+      <h2 className="text-2xl lg:text-3xl font-bold">Something went wrong!</h2>
+      <p className="text-gray-500">Please try again later.</p>
+      <IButton onClick={reset}>Try again</IButton>
+    </div>
+  );
+}
