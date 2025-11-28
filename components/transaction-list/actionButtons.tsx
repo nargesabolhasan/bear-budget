@@ -3,15 +3,14 @@ import React from "react";
 import { useTransactionStore } from "@/store/transaction";
 import { TransactionType } from "@/types/global";
 import { openDialog } from "@/components/molecules/dialogContainer";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { transactionRoutes } from "@/constant/routes";
-import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
+import { transactionRoutes } from "@/routes/routes";
 
 import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 
 import ContextMenu from "@/components/molecules/contextMenu";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Edit2, Trash } from "iconsax-react";
 
 const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
   const { removeTransaction } = useTransactionStore();
@@ -43,7 +42,11 @@ const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
         <span
           className={"w-full flex flex-row gap-2 items-center justify-start"}
         >
-          <BorderColorRoundedIcon fontSize="small" className={"text-primary"} />
+          <Edit2
+            size="30"
+            color={"var(--color-hover_primary)"}
+            variant="Bulk"
+          />
           Edit
         </span>
       ),
@@ -55,7 +58,7 @@ const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
         <span
           className={"!text-sm flex flex-row gap-2 items-center justify-start"}
         >
-          <DeleteRoundedIcon className={"text-placeholder"} />
+          <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
           Delete
         </span>
       ),
