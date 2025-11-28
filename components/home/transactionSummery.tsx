@@ -13,7 +13,9 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import IButton from "@/components/atoms/button";
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
+import { transactionRoutes } from "@/routes/routes";
+import Link from "next/link";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
@@ -26,8 +28,8 @@ const TransactionSummery = () => {
       }
     >
       <div className={"flex flex-row justify-center items-center gap-1"}>
-        <Image src="/favicon.svg" alt="icon" width={100} height={100} />
-        <h2 className={"text-xl grow"}>hello Narges</h2>
+        <Image src="/bear.png" alt="icon" width={100} height={100} />
+        <h2 className={"text-xl grow text-brown"}>hello Narges</h2>
       </div>
       <div className={"flex flex-col gap-4 italic"}>
         <TableContainer>
@@ -50,34 +52,53 @@ const TransactionSummery = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Object.entries(grouped).map(([key, value]) => (
-                <TableRow key={`transaction_row_${key}`}>
-                  <TableCell
-                    align="right"
-                    sx={{
-                      borderBottom: "1px solid var(--color-neutral_light)",
-                    }}
-                  >
-                    {key}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{
-                      borderBottom: "1px solid var(--color-neutral_light)",
-                    }}
-                  >
-                    $ {convertToCurrency(value?.totalAmount)}
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{
-                      borderBottom: "1px solid var(--color-neutral_light)",
-                    }}
-                  >
-                    {value?.transactions.length}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {Object.entries(grouped).length > 0 ? (
+                <>
+                  {Object.entries(grouped).map(([key, value]) => (
+                    <TableRow key={`transaction_row_${key}`}>
+                      <TableCell
+                        align="right"
+                        sx={{
+                          borderBottom: "1px solid var(--color-neutral_light)",
+                        }}
+                      >
+                        {key}
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{
+                          borderBottom: "1px solid var(--color-neutral_light)",
+                        }}
+                      >
+                        $ {convertToCurrency(value?.totalAmount)}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          borderBottom: "1px solid var(--color-neutral_light)",
+                        }}
+                      >
+                        {value?.transactions.length}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {
+                    <TableRow>
+                      <TableCell align="right">
+                        <Link href={transactionRoutes.addTranslation.href}>
+                          <AddCircleTwoToneIcon className={"mx-1"} />
+                          ADD
+                        </Link>
+                      </TableCell>
+                      <TableCell align="right">0 $</TableCell>
+                      <TableCell align="right">0 $</TableCell>
+                    </TableRow>
+                  }
+                </>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
