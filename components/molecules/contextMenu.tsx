@@ -64,6 +64,11 @@ export default function ContextMenu({
           list: {
             "aria-labelledby": "basic-button",
           },
+          paper: {
+            sx: {
+              borderRadius: "20px",
+            },
+          },
         }}
       >
         {menuItems.map((item) => (

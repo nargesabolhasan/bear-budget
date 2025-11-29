@@ -175,6 +175,13 @@ const CreateTagForm = ({
               borderRadius: "20px",
               backgroundColor: "white",
             }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  borderRadius: "20px",
+                },
+              },
+            }}
           >
             {Object.values(TransactionEnum).map((value) => (
               <MenuItem key={value} value={value}>
