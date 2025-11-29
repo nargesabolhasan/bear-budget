@@ -16,7 +16,7 @@ export const settingItems = (
           hint: "Clear All of transaction!",
           confirmHandler: () => {
             clearAllTransactions();
-            toast.success("Deleted successfully.");
+            toast.success("Deleted transactions successfully.");
           },
         });
       },
@@ -30,7 +30,7 @@ export const settingItems = (
           hint: "Clear All of Tags!",
           confirmHandler: () => {
             clear();
-            toast.success("Deleted successfully.");
+            toast.success("Deleted tags successfully.");
           },
         });
       },
@@ -44,7 +44,7 @@ export const settingItems = (
           hint: "Clear All of budgets!",
           confirmHandler: () => {
             clearBudgets();
-            toast.success("Deleted successfully.");
+            toast.success("Deleted budgets successfully.");
           },
         });
       },

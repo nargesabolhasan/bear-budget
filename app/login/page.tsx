@@ -2,14 +2,14 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "@/components/login/loginForm";
 import api, { API_URL } from "@/utils/axios";
 import Image from "next/image";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [error, setError] = useState("");
 
   const loginMutation = useMutation({
     mutationFn: async (username: string) => {
@@ -23,28 +23,31 @@ export default function LoginPage() {
     },
 
     onSuccess: () => {
+      toast.success("Welcome to Bear Budget!");
       router.push("/");
     },
 
     onError: (err: any) => {
-      setError(err.message || "Something went wrong");
+      toast.error(err || "Something went wrong! Try again.");
     },
   });
 
   const handleSubmit = (formData: { username: string }) => {
-    setError("");
     loginMutation.mutate(formData.username);
   };
 
   return (
     <div
       className={
-        "md:w-2/5 flex flex-col gap-25 items-start justify-center mx-auto mt-10"
+        "md:w-2/5 flex flex-col gap-20 items-start justify-center mx-auto mt-10"
       }
     >
       <div className={"flex flex-col gap-2 items-center justify-center w-full"}>
-        <Image src="/favicon.svg" alt="icon" width={50} height={50} />
-        <b className={"text-2xl"} style={{ fontFamily: "PlaywriteNZGuides" }}>
+        <Image src="/favicon.svg" alt="icon" width={120} height={120} />
+        <b
+          className={"text-2xl text-center"}
+          style={{ fontFamily: "PlaywriteNZGuides" }}
+        >
           Welcome to Bear Budget!
         </b>
       </div>
@@ -53,7 +56,6 @@ export default function LoginPage() {
         loading={loginMutation.isPending}
         title={"Enter your username"}
       />
-      {error && <p className={"text-danger"}>{error}</p>}
     </div>
   );
 }
