@@ -1,111 +1,90 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Edit2, Trash } from "iconsax-react";
 import { useTransactionStore } from "@/store/transaction";
-import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
 import { useTagsStore } from "@/store/tags";
 import { useBudgetStore } from "@/store/budget";
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/material";
-import IButton from "@/components/atoms/button";
-import ITextField from "@/components/atoms/textField";
-import { Controller, useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-const schema = yup.object({
-  username: yup
-    .string()
-    .required("Amount is required")
-    .max(50, "username must be less than 50 characters"),
-});
+import LogoutButton from "@/components/logout";
+import LoginForm from "@/components/login/loginForm";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import api, { API_URL } from "@/utils/axios";
+import { settingItems } from "@/components/setting/settingItems";
 
 const SettingComponent = () => {
-  const [username, setUsername] = useState("");
   const [open, setIsOpen] = useState<boolean>(false);
+  const queryClient = useQueryClient();
 
   const { clearAllTransactions } = useTransactionStore();
   const { clear } = useTagsStore();
   const { clear: clearBudgets } = useBudgetStore();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
+  const { data, isLoading } = useQuery({
+    queryKey: [API_URL.userInfo.queryKey],
+    queryFn: async () => {
+      const res = await api.get(API_URL.userInfo.api);
+      return res.data;
+    },
   });
 
-  useEffect(() => {
-    const savedUsername = localStorage.getItem("username") || "";
-    setUsername(savedUsername);
-  }, []);
+  const username = data?.username;
+
+  const updateUsernameMutation = useMutation({
+    mutationFn: async (newUsername: string) => {
+      const res = await api.post(API_URL.updateUsername.api, {
+        username: newUsername,
+      });
+
+      return res.data;
+    },
+
+    onSuccess: (data, newUsername) => {
+      if (data.ok) {
+        toast.success(
+          <span>
+            <strong>Username</strong> updated successfully!
+          </span>
+        );
+
+        queryClient.setQueryData([API_URL.userInfo.queryKey], {
+          username: newUsername,
+        });
+
+        setIsOpen(false);
+      } else {
+        toast.error("Failed to update username. Try again!");
+      }
+    },
+
+    onError: () => {
+      toast.error("Something went wrong! Try again.");
+    },
+  });
 
   const handleEditUsername = (formData: { username: string }) => {
-    localStorage.setItem("username", formData.username);
+    updateUsernameMutation.mutate(formData.username);
   };
 
-  const items = [
-    {
-      id: 1,
-      title: "Delete All Transactions",
-      onClick: () => {
-        openDialog({
-          title: "Clear All",
-          hint: "Clear All of transaction!",
-          confirmHandler: () => {
-            clearAllTransactions();
-            toast.success(<span>Deleted successfully.</span>);
-          },
-        });
-      },
-    },
-    {
-      id: 2,
-      title: "Delete All Tags",
-      onClick: () => {
-        openDialog({
-          title: "Clear All",
-          hint: "Clear All of Tags!",
-          confirmHandler: () => {
-            clearAllTransactions();
-            toast.success(<span>Deleted successfully.</span>);
-          },
-        });
-        clear();
-      },
-    },
-    {
-      id: 3,
-      title: "Delete All Budgets",
-      onClick: () => {
-        openDialog({
-          title: "Clear All",
-          hint: "Clear All of budgets !",
-          confirmHandler: () => {
-            clearAllTransactions();
-            toast.success(<span>Deleted successfully.</span>);
-          },
-        });
-
-        clearBudgets();
-      },
-    },
-  ];
+  const items = settingItems(clearAllTransactions, clear, clearBudgets);
 
   return (
     <div className={"flex flex-col items-center gap-15 mt-15"}>
-      <section className={"flex flex-col items-center justify-center"}>
+      <section className="flex flex-col items-center justify-center">
         <Image src="/setting.png" alt="icon" width={100} height={100} />
-        <div
-          className={
-            "flex flex-row gap-2 items-end justify-center cursor-pointer"
-          }
-        >
-          <span className={"text-2xl"}>{username}</span>
+
+        <div className="flex flex-row gap-2 items-end justify-center cursor-pointer">
+          <span className="text-2xl">
+            {isLoading ? (
+              <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
+            ) : (
+              username
+            )}
+          </span>
+
           <Edit2
             size="35"
             color={"var(--color-brown)"}
@@ -114,13 +93,13 @@ const SettingComponent = () => {
           />
         </div>
       </section>
-      <section className={"flex flex-col items-center justify-center"}>
-        <ul className={"flex flex-col gap-3 items-start p-1"}>
+
+      <section className="flex flex-col items-center justify-center">
+        <ul className="flex flex-col gap-3 items-start p-1">
           {items.map((item) => (
             <li
-              className={
-                "flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-neutral_light"
-              }
+              key={item.id}
+              className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-neutral_light"
               onClick={() => item.onClick()}
             >
               <span>{item.title}</span>
@@ -129,6 +108,8 @@ const SettingComponent = () => {
           ))}
         </ul>
       </section>
+
+      {/* Edit Username Modal */}
       <Modal open={open} onClose={() => setIsOpen(false)}>
         <Box
           sx={{
@@ -144,29 +125,16 @@ const SettingComponent = () => {
             height: "fit-content",
           }}
         >
-          <form
-            className={"flex flex-col gap-2 items-center"}
-            onSubmit={handleSubmit(handleEditUsername)}
-          >
-            <span>Change Username</span>
-            <Controller
-              name={"username"}
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <ITextField
-                  {...field}
-                  label="Username"
-                  fullWidth
-                  error={!!errors.username}
-                  helperText={errors.username?.message}
-                />
-              )}
-            />
-            <IButton type={"submit"}>Submit</IButton>
-          </form>
+          <LoginForm
+            onSubmit={handleEditUsername}
+            loading={updateUsernameMutation.isPending}
+            title={"Change Username"}
+          />
         </Box>
       </Modal>
+
+      {/* Logout */}
+      <LogoutButton />
     </div>
   );
 };
