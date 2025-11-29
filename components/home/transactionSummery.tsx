@@ -17,6 +17,8 @@ import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import { transactionRoutes } from "@/routes/routes";
 import Link from "next/link";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import { useQuery } from "@tanstack/react-query";
+import api, { API_URL } from "@/utils/axios";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
@@ -24,6 +26,16 @@ const TransactionSummery = () => {
     getCurrentYear("fa"),
     getCurrentMonthNumber("fa")
   );
+
+  const { data, isLoading } = useQuery({
+    queryKey: [API_URL.userInfo.queryKey],
+    queryFn: async () => {
+      const res = await api.get(API_URL.userInfo.api);
+      return res.data;
+    },
+  });
+
+  const username = data?.username;
 
   return (
     <section
@@ -33,7 +45,14 @@ const TransactionSummery = () => {
     >
       <div className={"flex flex-row justify-center items-center gap-1"}>
         <Image src="/bear.png" alt="icon" width={100} height={100} />
-        <h2 className={"text-xl grow text-brown"}>hello Narges</h2>
+        <h2 className={"text-xl grow text-brown"}>
+          hello{" "}
+          {isLoading ? (
+            <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
+          ) : (
+            username
+          )}
+        </h2>
       </div>
       <div className={"flex flex-col gap-4 italic"}>
         <TableContainer>
