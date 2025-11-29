@@ -99,10 +99,8 @@ const TransactionForm = ({
               fullWidth
               error={!!errors[FormTransactionEnum.AMOUNT]}
               helperText={errors[FormTransactionEnum.AMOUNT]?.message}
-              showhint={
+              showHint={
                 watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
-                  ? true
-                  : undefined
               }
               hint={"cannot be more that 15 character!"}
             />

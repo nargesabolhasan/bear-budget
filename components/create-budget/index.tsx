@@ -121,10 +121,8 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
               fullWidth
               error={!!errors[FormBudgetTypeEnum.AMOUNT]}
               helperText={errors[FormBudgetTypeEnum.AMOUNT]?.message}
-              showhint={
+              showHint={
                 watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
-                  ? true
-                  : undefined
               }
               hint={"cannot be more that 15 character!"}
             />

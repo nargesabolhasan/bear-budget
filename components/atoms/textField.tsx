@@ -3,14 +3,13 @@ import { TextField, TextFieldProps } from "@mui/material";
 
 export type TextFieldType = Omit<TextFieldProps, "variant"> & {
   hint?: string;
-  showhint?: boolean;
+  showHint?: boolean;
 };
-
-const ITextField = ({ ...props }: TextFieldType) => {
+const ITextField = ({ showHint, hint, ...props }: TextFieldType) => {
   return (
     <>
       <TextField
-        variant={"outlined"}
+        variant="outlined"
         sx={{
           "& .MuiOutlinedInput-root": {
             borderRadius: "20px",
@@ -18,12 +17,10 @@ const ITextField = ({ ...props }: TextFieldType) => {
           },
         }}
         {...props}
-        dir={"rtl"}
+        dir="rtl"
       />
 
-      {props.showhint && (
-        <p className={"text-xs text-placeholder"}>{props.hint}</p>
-      )}
+      {showHint && <p className="text-xs text-placeholder">{hint}</p>}
     </>
   );
 };
