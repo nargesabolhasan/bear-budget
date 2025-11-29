@@ -3,7 +3,7 @@ import { TextField, TextFieldProps } from "@mui/material";
 
 export type TextFieldType = Omit<TextFieldProps, "variant"> & {
   hint?: string;
-  showHint?: boolean;
+  showhint?: boolean;
 };
 
 const ITextField = ({ ...props }: TextFieldType) => {
@@ -21,7 +21,7 @@ const ITextField = ({ ...props }: TextFieldType) => {
         dir={"rtl"}
       />
 
-      {props.showHint && (
+      {props.showhint && (
         <p className={"text-xs text-placeholder"}>{props.hint}</p>
       )}
     </>

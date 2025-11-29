@@ -16,6 +16,7 @@ import { convertToCurrency } from "@/utils/utils";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import TagAccordion from "@/components/create-budget/tagAccordion";
+import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -98,8 +99,10 @@ const TransactionForm = ({
               fullWidth
               error={!!errors[FormTransactionEnum.AMOUNT]}
               helperText={errors[FormTransactionEnum.AMOUNT]?.message}
-              showHint={
-                watch(FormTransactionEnum.AMOUNT).toString().length === 15
+              showhint={
+                watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
+                  ? true
+                  : undefined
               }
               hint={"cannot be more that 15 character!"}
             />
