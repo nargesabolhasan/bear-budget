@@ -1,43 +1,39 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import { Render } from "@/utils/render";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import AssistantIcon from "@mui/icons-material/Assistant";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import Link from "next/link";
+import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
 import { iconList } from "@/constant/icons";
 import { convertToCurrency } from "@/utils/utils";
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
+  TableCell,
   TableRow,
 } from "@mui/material";
-import { budgetRoutes, transactionRoutes } from "@/routes/routes";
+import { tagRoutes, transactionRoutes } from "@/routes/routes";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { useBudgetStore } from "@/store/budget";
 
 const NewItemCards = () => {
+  const { tags } = useTagsStore();
   const { getTransactions } = useTransactionStore();
-  const { budgets } = useBudgetStore();
 
   const lastTransaction = getTransactions(
     getCurrentYear("fa"),
     getCurrentMonthNumber("fa")
   )[0];
+  const lastTag = tags[0];
+  const secondTag = tags[1];
 
-  const entries = Object.entries(budgets);
-  const lastBudget = entries[0]?.[1];
-  const secondBudget = entries[1]?.[1];
-
-  const Icon = iconList.get(lastBudget?.tag.icon || "0")?.icon || (() => <></>);
+  const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
   const IconSecond =
-    (secondBudget && iconList.get(secondBudget?.tag.icon || "0")?.icon) ||
-    (() => <></>);
+    (secondTag && iconList.get(secondTag?.icon || "0")?.icon) || (() => <></>);
 
   const tableRows = [
     { id: 1, title: "Tag", value: lastTransaction?.tag.name },
@@ -49,17 +45,9 @@ const NewItemCards = () => {
     { id: 3, title: "Date", value: lastTransaction?.date },
   ];
 
-  const FallBack = ({
-    title,
-    href,
-    icon = <AutoFixHighIcon />,
-  }: {
-    title: string;
-    href: string;
-    icon?: ReactNode;
-  }) => (
+  const FallBack = ({ title, href }: { title: string; href: string }) => (
     <Link href={href}>
-      {icon} {title}
+      <AutoFixHighIcon /> {title}
     </Link>
   );
 
@@ -78,7 +66,6 @@ const NewItemCards = () => {
             <FallBack
               title="Create new transaction"
               href={transactionRoutes.addTranslation.href}
-              icon={<AutoAwesomeIcon />}
             />
           }
         >
@@ -127,21 +114,18 @@ const NewItemCards = () => {
           "bg-gradient-to-b from-secondary to-burly_wood rounded-2xl p-3 flex flex-col gap-2"
         }
       >
-        {/*   budgets   */}
+        {/*   Tags   */}
         <Render
-          when={!!lastBudget?.id}
+          when={!!lastTag}
           fallback={
-            <FallBack
-              title="Create new budget"
-              href={budgetRoutes.createBudget.href}
-            />
+            <FallBack title="Create new tag" href={tagRoutes.createTag.href} />
           }
         >
           <span className={"flex flex-row gap-2 items-center mb-5"}>
             <AssistantIcon />
-            <h4>new budgets:</h4>
+            <h4>new Tags:</h4>
             <Link
-              href={budgetRoutes.budgetList.href}
+              href={tagRoutes.tagList.href}
               className={
                 "bg-neutral text-secondary py-1 px-2 text-sm mx-auto rounded-full"
               }
@@ -154,17 +138,16 @@ const NewItemCards = () => {
               "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
             }
           >
-            <Icon />{" "}
-            <h4 className={"grow text-start"}>{lastBudget?.tag?.name} </h4>
+            <Icon /> <h4 className={"grow text-start"}>{lastTag?.name} </h4>
           </span>
-          {!!secondBudget?.id && (
+          {secondTag && (
             <span
               className={
                 "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
               }
             >
               <IconSecond />
-              <h4 className={"grow text-start"}>{secondBudget?.tag?.name} </h4>
+              <h4 className={"grow text-start"}>{secondTag?.name} </h4>
             </span>
           )}
         </Render>
