@@ -5,6 +5,7 @@ import "react-multi-date-picker/styles/layouts/prime.css";
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
 import { twMerge } from "tailwind-merge";
+import "react-multi-date-picker/styles/colors/green.css";
 
 export type IDatePickerProps = Omit<CalendarProps, "value" | "onChange"> & {
   value?: DateObject | string;
@@ -25,6 +26,7 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
   return (
     <div className={"flex flex-col gap-1 w-full"}>
       <DatePicker
+        className="green"
         {...props}
         inputClass={twMerge(
           "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-white",
