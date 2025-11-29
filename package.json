@@ -15,6 +15,8 @@
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
     "@mui/stylis-plugin-rtl": "^7.3.1",
+    "@tanstack/react-query": "^5.90.11",
+    "axios": "^1.13.2",
     "iconsax-react": "^0.0.8",
     "next": "15.4.4",
     "react": "19.1.0",
