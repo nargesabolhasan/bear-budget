@@ -13,7 +13,7 @@ import {
 } from "@/context/filteredDateContext";
 
 const TransactionList = () => {
-  const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.SUPERGROUP);
+  const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.ALL);
   const [open, setOpen] = useState<boolean>(false);
   const { date } = useFilteredDateContext();
 
