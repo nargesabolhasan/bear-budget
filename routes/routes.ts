@@ -21,3 +21,8 @@ export const settingRoute = {
   name: `Setting`,
   href: `/setting`,
 };
+
+export const loginRoute = {
+  name: `Login`,
+  href: `/login`,
+};
