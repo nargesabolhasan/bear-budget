@@ -24,8 +24,8 @@ const theme = createTheme({
   direction: "rtl",
   palette: {
     primary: { main: tailwindColors.primary },
-    danger: { main: tailwindColors.danger, contrastText: "#fff" },
-    warning: { main: tailwindColors.warning, contrastText: "#000" },
+    secondary: { main: tailwindColors.secondary },
+    info: { main: tailwindColors.neutral },
   },
   typography: {
     fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
