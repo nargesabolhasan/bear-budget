@@ -22,8 +22,8 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
 
   const submitHandler = (formDate: DatePickerForm) => {
     setDate({
-      month: PERSIAN_MONTHS.indexOf(formDate.Month) + 1,
       year: formDate.Year,
+      month: PERSIAN_MONTHS.indexOf(formDate.Month) + 1,
     });
     submitSearch(formDate);
   };

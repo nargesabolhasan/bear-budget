@@ -1,131 +1,76 @@
+"use client";
 import React, { useState } from "react";
-import { Render } from "@/utils/render";
-import AllTransactions from "@/components/transaction-list/all-view";
-import FilterView from "@/components/transaction-list/filters-view";
-import { TransactionEnum, TransactionType, ViewEnums } from "@/types/global";
-import SuperGroupList from "@/components/transaction-list/super-group-view";
+import Modal from "@mui/material/Modal";
+import { ViewEnums } from "@/types/global";
+import Box from "@mui/material/Box";
+import DateFilteredTransactions from "@/components/date-filter/dateFilteredTransactions";
+import { useTransactionStore } from "@/store/transaction";
+import { PERSIAN_MONTHS } from "@/utils/dateList";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
+import TransactionListComponent from "@/components/transaction-list/TransactionListComponent";
 
-import EmptyList from "@/components/molecules/emptyList";
-import { transactionRoutes } from "@/routes/routes";
-import TagListHeader from "@/components/tag-list/tagListHeader";
-import FilterButtons, {
-  NavItemsType,
-} from "@/components/molecules/filterButtons";
-import ScrollToBottom from "@/components/molecules/scrollToBottom";
-import { openDialog } from "@/components/molecules/dialogContainer";
-import { filterTransactionList } from "@/constant";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import {
-  GroupedTransactionType,
-  TransactionInfoType,
-} from "@/store/transaction/type";
+const TransactionListContainer = () => {
+  const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.ALL);
+  const [open, setOpen] = useState<boolean>(false);
+  const { date } = useFilteredDateContext();
 
-const navItems: NavItemsType[] = [
-  {
-    id: ViewEnums.PREV_MONTHS,
-    title: "Previous months",
-  },
-  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
-  { id: ViewEnums.ALL, title: "All" },
-  {
-    id: ViewEnums.GROUPED,
-    title: "Filter",
-    showContextMenu: true,
-    contextMenu: filterTransactionList(),
-  },
-];
+  const { getTransactions, groupedByType, removeByYearMonth } =
+    useTransactionStore();
 
-type Props = {
-  transactions: TransactionType[];
-  groupedTransactions: GroupedTransactionType;
-  viewMode: ViewEnums;
-  handleChangeTab: (id: number) => void;
-  clearAll: () => void;
-  dialogTitle: string;
-};
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setViewMode(ViewEnums.SUPERGROUP);
+  };
 
-const TransactionListComponent = ({
-  transactions,
-  groupedTransactions,
-  viewMode,
-  handleChangeTab,
-  clearAll,
-  dialogTitle,
-}: Props) => {
-  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
-  const router = useRouter();
+  const handleChangeTab = (id: number) => {
+    setViewMode(id);
+    if (id === ViewEnums.PREV_MONTHS) {
+      handleOpen();
+    }
+  };
 
-  const clearAllTransactions = () => {
-    openDialog({
-      title: "Clear All",
-      hint: dialogTitle,
-      confirmHandler: () => {
-        clearAll();
-        toast.success(<span>Deleted successfully.</span>);
-      },
-    });
+  const submitSearch = () => {
+    handleClose();
   };
 
   return (
-    <div className={"md:w-fit mx-auto md:px-3 pb-20 print:p-0"}>
-      <header className={"bg-neutral_light"}>
-        <TagListHeader
-          clearAllTags={clearAllTransactions}
-          handleAddMore={() => {
-            router.push(transactionRoutes.addTranslation.href);
+    <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "var(--color-neutral_light)",
+            borderRadius: 15,
+            boxShadow: 15,
+            p: 4,
+            width: "fit-content",
+            height: "fit-content",
           }}
-        />
-        <FilterButtons
-          activeId={viewMode}
-          onChange={handleChangeTab}
-          navItems={navItems}
-          selectedMenuFilter={selectedMenuFilter}
-          setSelectedMenuFilter={setSelectedMenuFilter}
-        />
-      </header>
-      <ScrollToBottom />
-      <Render
-        items={[
-          {
-            when: viewMode === ViewEnums.ALL && transactions.length > 0,
-            render: <AllTransactions transactions={transactions} />,
-          },
-          {
-            when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
-            render: (
-              <FilterView
-                transactionType={selectedMenuFilter || TransactionEnum.INCOME}
-                transactions={
-                  (selectedMenuFilter &&
-                    groupedTransactions?.[selectedMenuFilter]) ||
-                  groupedTransactions.Income
-                }
-              />
-            ),
-          },
-          {
-            when: viewMode === ViewEnums.SUPERGROUP && transactions.length > 0,
-            render: (
-              <SuperGroupList
-                groupedItems={
-                  Object.entries(groupedTransactions) as [
-                    TransactionEnum,
-                    TransactionInfoType
-                  ][]
-                }
-              />
-            ),
-          },
-        ]}
-        fallback={
-          <EmptyList
-            onAddItem={() => router.push(transactionRoutes.addTranslation.href)}
-          />
-        }
+        >
+          <DateFilteredTransactions submitSearch={submitSearch} />
+        </Box>
+      </Modal>
+      <TransactionListComponent
+        transactions={getTransactions(date.year, date.month)}
+        groupedTransactions={groupedByType(date.year, date.month)}
+        handleChangeTab={handleChangeTab}
+        viewMode={viewMode}
+        clearAll={() => removeByYearMonth(date.year, date.month)}
+        dialogTitle={`All transactions from ${PERSIAN_MONTHS[date.month]} ${
+          date.year
+        } will be deleted.`}
       />
     </div>
   );
 };
 
-export default TransactionListComponent;
+export default TransactionListContainer;
