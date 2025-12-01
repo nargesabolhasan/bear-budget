@@ -96,11 +96,11 @@ const TransactionListComponent = ({
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
             render: (
               <FilterView
-                transactionType={selectedMenuFilter || TransactionEnum.INCOME}
+                transactionType={selectedMenuFilter || TransactionEnum.EXPENSE}
                 transactions={
                   (selectedMenuFilter &&
                     groupedTransactions?.[selectedMenuFilter]) ||
-                  groupedTransactions.Income
+                  groupedTransactions.EXPENSES
                 }
               />
             ),

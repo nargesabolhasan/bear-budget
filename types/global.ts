@@ -2,8 +2,8 @@ import { SvgIconComponent } from "@mui/icons-material";
 import React, { ReactNode } from "react";
 
 export enum TransactionEnum {
-  INCOME = "Income",
   EXPENSE = "Expense",
+  INCOME = "Income",
   SAVE = "Save",
   LOANED = "Loaned",
   DEBT = "Debt",
