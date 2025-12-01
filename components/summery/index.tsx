@@ -12,12 +12,10 @@ const Summery = () => {
     groupedByType(getCurrentYear("fa"), getCurrentMonthNumber("fa")) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
-  const expense = data?.Expense?.totalAmount ?? 0;
-  const debt = data?.Debt?.totalAmount ?? 0;
-  const loaned = data?.Loaned?.totalAmount ?? 0;
+  const totalOutgoing = data?.Expense?.totalAmount ?? 0;
+
   const save = data?.Save?.totalAmount ?? 0;
 
-  const totalOutgoing = expense + debt + loaned;
   const remaining = income - totalOutgoing;
 
   const list = [

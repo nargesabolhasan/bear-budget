@@ -2,7 +2,7 @@
 import React from "react";
 import { TransactionType } from "@/types/global";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
-import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
+import { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 

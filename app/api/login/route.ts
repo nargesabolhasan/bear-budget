@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 
   if (!username) {
     return NextResponse.json(
-      { ok: false, error: "Username required" },
+      { ok: false, error: "Your name is require" },
       { status: 400 }
     );
   }

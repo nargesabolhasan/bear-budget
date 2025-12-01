@@ -45,7 +45,7 @@ const LoginForm = ({ onSubmit, loading, title }: LoginFormProps) => {
         render={({ field }) => (
           <ITextField
             {...field}
-            label="Username"
+            label="Name"
             fullWidth
             error={!!errors.username}
             helperText={errors.username?.message}

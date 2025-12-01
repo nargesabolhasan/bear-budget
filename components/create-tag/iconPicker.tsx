@@ -44,7 +44,7 @@ const IconPicker: React.FC<IconPickerProps> = ({
           <div
             key={item.id}
             className={twMerge(
-              "icon-picker-item border bg-neutral border-placeholder_light p-2 rounded-lg hover:bg-placeholder_light",
+              "icon-picker-item flex items-center justify-center border bg-neutral border-placeholder_light p-2 rounded-lg hover:bg-placeholder_light",
               value === item.id && "border-dark! bg-placeholder_light"
             )}
             data-icon-id={item.id}

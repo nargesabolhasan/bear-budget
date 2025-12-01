@@ -56,7 +56,7 @@ const SettingComponent = () => {
 
         setIsOpen(false);
       } else {
-        toast.error("Failed to update username. Try again!");
+        toast.error("Failed to update your name. Try again!");
       }
     },
 
@@ -121,14 +121,14 @@ const SettingComponent = () => {
             borderRadius: 15,
             boxShadow: 15,
             p: 4,
-            width: "fit-content",
+            width: "300px",
             height: "fit-content",
           }}
         >
           <LoginForm
             onSubmit={handleEditUsername}
             loading={updateUsernameMutation.isPending}
-            title={"Change Username"}
+            title={"Change name"}
           />
         </Box>
       </Modal>

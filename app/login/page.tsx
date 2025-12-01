@@ -54,7 +54,7 @@ export default function LoginPage() {
       <LoginForm
         onSubmit={handleSubmit}
         loading={loginMutation.isPending}
-        title={"Enter your username"}
+        title={"Enter your name"}
       />
     </div>
   );
