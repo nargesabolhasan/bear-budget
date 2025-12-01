@@ -27,8 +27,8 @@ const navItems: NavItemsType[] = [
     id: ViewEnums.PREV_MONTHS,
     title: "Previous months",
   },
-  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
   { id: ViewEnums.ALL, title: "All" },
+  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
   {
     id: ViewEnums.GROUPED,
     title: "Filter",

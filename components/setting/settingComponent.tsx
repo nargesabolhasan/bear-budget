@@ -99,7 +99,7 @@ const SettingComponent = () => {
           {items.map((item) => (
             <li
               key={item.id}
-              className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-neutral_light"
+              className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-white"
               onClick={() => item.onClick()}
             >
               <span>{item.title}</span>

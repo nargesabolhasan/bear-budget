@@ -27,6 +27,7 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
     <div className={"flex flex-col gap-1 w-full"}>
       <DatePicker
         className="green"
+        calendarPosition="center"
         {...props}
         inputClass={twMerge(
           "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-white",

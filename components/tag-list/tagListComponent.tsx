@@ -35,7 +35,11 @@ const TagListDemo = () => {
   return (
     <>
       <PrinterViewTitle title={"All Tags:"} />
-      <ul className={"flex flex-col gap-1 print:grid print:grid-cols-5"}>
+      <ul
+        className={
+          "print-list flex flex-col gap-1 print:grid print:grid-cols-5"
+        }
+      >
         {Object.entries(groupedByType()).map(([tagType, tags], index) => (
           <div className={"flex flex-col gap-2"} key={`${tagType}-${index}`}>
             <h2
@@ -51,45 +55,48 @@ const TagListDemo = () => {
                 iconList.get(tag.icon || "0")?.icon || (() => <span></span>);
 
               return (
-                <li
-                  key={`tag-list-${tag.id}`}
-                  className={
-                    "list-item-content flex justify-between items-center gap-1 p-2 border border-primary rounded-full print:rounded-2xl"
-                  }
-                >
-                  <span className={"grow grid grid-cols-3 items-center gap-2"}>
-                    <Icon className={"!hidden print:!block"} />
-                    <i
-                      className={twMerge(
-                        "print:hidden size-[50px] rounded-full flex justify-center items-center",
-                        tag.color.color
-                      )}
-                    >
-                      {<Icon />}
-                    </i>
-                    <h3 className={"col-span-2"}> {tag.name}</h3>
-                  </span>
-                  <span
+                <li key={`tag-list-${tag.id}`}>
+                  <div
                     className={
-                      "flex flex-row gap-3 justify-between items-center print:hidden"
+                      "list-item-block force-block flex justify-between items-center gap-1 p-2 border border-primary rounded-full print:rounded-2xl"
                     }
                   >
-                    <IconButton onClick={() => handleDelete(tag)}>
-                      <Trash
-                        size="30"
-                        color={"var(--color-primary)"}
-                        variant="Bulk"
-                      />
-                    </IconButton>
+                    <span
+                      className={"grow grid grid-cols-3 items-center gap-2"}
+                    >
+                      <Icon className={"!hidden print:!block"} />
+                      <i
+                        className={twMerge(
+                          "print:hidden size-[50px] rounded-full flex justify-center items-center",
+                          tag.color.color
+                        )}
+                      >
+                        {<Icon />}
+                      </i>
+                      <h3 className={"col-span-2"}> {tag.name}</h3>
+                    </span>
+                    <span
+                      className={
+                        "flex flex-row gap-3 justify-between items-center print:hidden"
+                      }
+                    >
+                      <IconButton onClick={() => handleDelete(tag)}>
+                        <Trash
+                          size="30"
+                          color={"var(--color-primary)"}
+                          variant="Bulk"
+                        />
+                      </IconButton>
 
-                    <Link href={tagRoutes.editTag(tag.id)}>
-                      <Edit2
-                        size="30"
-                        color={"var(--color-hover_primary)"}
-                        variant="Bulk"
-                      />
-                    </Link>
-                  </span>
+                      <Link href={tagRoutes.editTag(tag.id)}>
+                        <Edit2
+                          size="30"
+                          color={"var(--color-hover_primary)"}
+                          variant="Bulk"
+                        />
+                      </Link>
+                    </span>
+                  </div>
                 </li>
               );
             })}

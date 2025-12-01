@@ -20,7 +20,7 @@ const TransactionListContainer = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    setViewMode(ViewEnums.SUPERGROUP);
+    setViewMode(ViewEnums.ALL);
   };
 
   const handleChangeTab = (id: number) => {

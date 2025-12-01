@@ -4,7 +4,7 @@ export const tailwindColors = {
   secondary: "#cca07e",
   pastel_blue: "#b7c8f7",
   purple: "#c48aff",
-  light_mint: "#b7f7bd",
+  light_mint: "#d0e0bc",
   hover_primary: "#1f5e22",
   danger: "#F44336",
   danger_light: "#f5c9c6",

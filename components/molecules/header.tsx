@@ -50,7 +50,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   const DesktopNavItem = ({ item }: { item: NavItemType }) => (
     <NextLink
       className={twMerge(
-        "text-brown shadow shadow-brown p-2 rounded-full",
+        "text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light",
         item.color
       )}
       href={item.href}

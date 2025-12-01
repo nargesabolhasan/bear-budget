@@ -79,7 +79,7 @@ const MainTransactionInfo = ({
     <div
       className={twMerge(
         "overflow-x-auto p-3 grow flex flex-col items-end",
-        showTransactionIndicator && "print:border-b"
+        showTransactionIndicator && "border-b border-dashed rounded-br-xl"
       )}
     >
       <MainTransactionTitle
@@ -192,23 +192,6 @@ const MainTransactionInfo = ({
                 </>
               )}
             />
-
-            {/*<Controller*/}
-            {/*  name={ModalFormEnum.DESCRIPTION}*/}
-            {/*  control={control}*/}
-            {/*  defaultValue=""*/}
-            {/*  render={({ field }) => (*/}
-            {/*    <ITextField*/}
-            {/*      {...field}*/}
-            {/*      label="Description"*/}
-            {/*      multiline*/}
-            {/*      rows={3}*/}
-            {/*      fullWidth*/}
-            {/*      error={!!errors[ModalFormEnum.DESCRIPTION]}*/}
-            {/*      helperText={errors[ModalFormEnum.DESCRIPTION]?.message}*/}
-            {/*    />*/}
-            {/*  )}*/}
-            {/*/>*/}
             <div
               className={
                 "flex flex-row gap-2 item-center justify-center w-full"

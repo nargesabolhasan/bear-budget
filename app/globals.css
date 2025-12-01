@@ -98,38 +98,42 @@ body {
 }
 
 /*--------print demo----------*/
+
 @media print {
+
     @page {
         size: A4 portrait;
-        @bottom-center {
-            content: "Page " counter(page) " of " counter(pages);
-        }
+        margin: 12mm;
     }
 
-    body {
-        padding: 0;
-        background: none;
-        color: #000;
-    }
+    /* Proper block wrapper to prevent slicing */
+    .list-item-block {
+        display: block;
 
-    ul {
-        margin: 0;
-        padding: 0;
-    }
-
-    .list-item-content {
-        /* Standard */
+        /* Standard print break control */
         break-inside: avoid;
+        page-break-inside: avoid;
         break-after: auto;
 
-        /* Old WebKit / Safari */
-        -webkit-column-break-inside: avoid;
+        /* Safari + WebKit print hacks */
         -webkit-region-break-inside: avoid;
-
-        /* Firefox (Gecko) */
-        page-break-inside: avoid; /* fallback for printing */
-        page-break-after: auto; /* fallback for printing */
+        -webkit-column-break-inside: avoid;
+        -webkit-page-break-inside: avoid;
     }
 
+    /* Clean list */
+    .print-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .print-list > li {
+        list-style: none;
+        margin-bottom: 12px;
+        display: block;
+
+        /* helps Safari treat <li> as atomic block */
+        -webkit-column-break-inside: avoid;
+    }
 }
 
