@@ -4,6 +4,7 @@ import {
   GroupedTransactionType,
   TransactionStore,
 } from "@/store/transaction/type";
+import { useTagsStore } from "@/store/tags";
 
 export const useTransactionStore = create<TransactionStore>()(
   devtools(
@@ -97,9 +98,10 @@ export const useTransactionStore = create<TransactionStore>()(
         ): GroupedTransactionType => {
           const state = get();
           const txs = state.transactions[year]?.[month] ?? [];
+          const { tags } = useTagsStore();
 
           return txs.reduce((acc: GroupedTransactionType, tx) => {
-            const key = tx.tag.type || "Uncategorized";
+            const key = tags?.[tx.tag]?.transactionType || "Uncategorized";
 
             if (!acc[key]) {
               acc[key] = { transactions: [], totalAmount: 0 };
