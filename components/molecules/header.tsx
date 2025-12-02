@@ -90,7 +90,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
 
   return (
     <AppBar position="fixed" className="print:!hidden">
-      <Toolbar className="flex flex-row justify-between items-center py-6">
+      <Toolbar className="flex flex-row justify-around md:justify-between items-center py-6">
         {/* Logo + Title */}
         <Typography
           sx={{
@@ -99,7 +99,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
           }}
           className="w-fit text-brown cursor-pointer font-playwrite italic !text-2xl"
         >
-          <NextLink href="/" className="w-fit flex flex-row items-center gap-2">
+          <NextLink href="/" className="w-fit flex flex-row items-center gap-1">
             <Image src="/favicon.svg" alt="icon" width={50} height={50} />
             {title}
           </NextLink>
