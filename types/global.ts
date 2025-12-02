@@ -53,12 +53,7 @@ export type TransactionType = {
 export type BudgetType = {
   id: string;
   amount: string;
-  tag: {
-    name: string;
-    color: string;
-    icon: string;
-    id: string;
-  };
+  tag: string;
   month: string;
 };
 

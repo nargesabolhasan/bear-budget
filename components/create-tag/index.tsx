@@ -61,7 +61,8 @@ const CreateTagForm = ({
 
   const onSubmit = (formData: TagFormData) => {
     submitHandler(formData);
-    reset();
+    //edit page dont need reset
+    if (!props.name) reset();
   };
 
   const items = [

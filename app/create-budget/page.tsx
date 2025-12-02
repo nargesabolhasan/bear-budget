@@ -3,17 +3,16 @@ import React from "react";
 import CreateBudget from "@/components/create-budget";
 import { BudgetType } from "@/types/global";
 import { toast } from "sonner";
-import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import { useBudgetStore } from "@/store/budget";
 
 const Page = () => {
   const { addBudget } = useBudgetStore();
 
   const onSubmit = (formData: Omit<BudgetType, "id">) => {
-    addBudget({ id: formData.tag.id, ...formData });
+    addBudget({ id: formData.tag, ...formData });
     toast.success(
       <span>
-        <strong>Budget for {formData[FormBudgetTypeEnum.TAG].name}</strong>{" "}
+        <strong>Budget </strong>
         generated successfully!!
       </span>
     );

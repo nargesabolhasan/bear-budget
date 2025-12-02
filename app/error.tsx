@@ -4,7 +4,6 @@ import IButton from "@/components/atoms/button";
 import Image from "next/image";
 
 export default function Error({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };

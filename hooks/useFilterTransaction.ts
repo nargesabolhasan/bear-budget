@@ -3,13 +3,15 @@ import { useBudgetStore } from "@/store/budget";
 import { getCurrentYear } from "@/utils/dateList";
 import { useMemo } from "react";
 import { TransactionType } from "@/types/global";
+import { TagsListType } from "@/store/tags/type";
 
 type Props = {
   monthList: Array<string>;
   filterMonth: string;
+  tags: TagsListType;
 };
 
-const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
+const useFilterTransaction = ({ monthList, filterMonth, tags }: Props) => {
   const { getTransactions } = useTransactionStore();
   const { budgets } = useBudgetStore();
 
@@ -38,9 +40,9 @@ const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
           transactions: [],
           totalAmount: 0,
           tag: {
-            name: budget.tag.name,
-            icon: budget.tag.icon,
-            color: budget.tag.color,
+            name: tags?.[budget.tag]?.name,
+            icon: tags?.[budget.tag]?.icon,
+            color: tags?.[budget.tag]?.color.color,
           },
         });
       }
@@ -59,7 +61,7 @@ const useFilterTransaction = ({ monthList, filterMonth }: Props) => {
       const isSameYear = date.getFullYear() === getCurrentYear("fa");
       if (!isSameMonth || !isSameYear) continue;
 
-      const tagId = transaction.tag?.id;
+      const tagId = transaction.tag;
       if (!tagId) continue;
 
       // if budget exists → merge

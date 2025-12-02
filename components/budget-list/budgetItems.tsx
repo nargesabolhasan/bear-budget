@@ -6,15 +6,12 @@ import { convertToCurrency } from "@/utils/utils";
 import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 import ContextMenu from "@/components/molecules/contextMenu";
 import { Edit2, Trash } from "iconsax-react";
+import { TagType } from "@/types/global";
 
 type Props = {
   handleEdit: (id: string) => void;
   handleDelete: (id: string) => void;
-  tag: {
-    name: string;
-    color: string;
-    icon: string;
-  };
+  tag: TagType;
   tagId: string;
   budgetAmount: number;
   spent: number;
@@ -80,7 +77,7 @@ const BudgetItems = ({
           <i
             className={twMerge(
               "flex justify-center items-center p-2 rounded-full size-[40]",
-              tag?.color
+              tag?.color.color
             )}
           >
             <Icon />

@@ -55,7 +55,8 @@ const TransactionForm = ({
 
   const onSubmit = (formData: TransactionFormData) => {
     submitHandler?.(formData);
-    reset();
+    //edit page dont need reset
+    if (!props.tag) reset();
   };
 
   return (

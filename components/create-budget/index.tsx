@@ -31,14 +31,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   const schema = yup.object({
     [FormBudgetTypeEnum.AMOUNT]: yup.string().required("Amount is required"),
     [FormBudgetTypeEnum.MONTH]: yup.string().required("Month is required"),
-    [FormBudgetTypeEnum.TAG]: yup
-      .object()
-      .shape({
-        name: yup.string().required(),
-        id: yup.string().required(),
-        type: yup.string().required(),
-      })
-      .required("Tag is required"),
+    [FormBudgetTypeEnum.TAG]: yup.string().required("Tag is required"),
   });
 
   const {
@@ -62,6 +55,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
 
   const onSubmitHandler = (formData: Omit<BudgetType, "id">) => {
     onSubmit(formData);
+    //edit page dont need reset
     if (!defaultValue) reset();
   };
 

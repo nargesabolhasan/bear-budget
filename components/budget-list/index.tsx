@@ -17,12 +17,14 @@ import EventNoteTwoToneIcon from "@mui/icons-material/EventNoteTwoTone";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import { useTagsStore } from "@/store/tags";
 
 const BudgetList = () => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
 
   const { budgets, removeBudget, clear } = useBudgetStore();
+  const { tags } = useTagsStore();
 
   const { watch, setValue, handleSubmit } = useForm({
     defaultValues: {
@@ -33,6 +35,7 @@ const BudgetList = () => {
   const selectedMonth = watch("month");
 
   const { filteredTransactions } = useFilterTransaction({
+    tags,
     monthList: PERSIAN_MONTHS,
     filterMonth: selectedMonth,
   });
@@ -55,7 +58,7 @@ const BudgetList = () => {
       title: "Remove Budget",
       hint: (
         <span>
-          Remove <strong>{budgets[id].tag.name}</strong> forever!
+          Remove <strong>{tags?.[id]?.name}</strong> forever!
         </span>
       ),
       confirmHandler: () => {
@@ -98,27 +101,25 @@ const BudgetList = () => {
         }
       >
         <ul className={"border-t border-dashed border-placeholder mt-4"}>
-          {[...filteredTransactions].map(
-            ([tagId, { totalAmount: spent, tag }]) => {
-              const budget = budgets[tagId];
-              const budgetAmount = parseInt(budget?.amount);
+          {[...filteredTransactions].map(([tagId, { totalAmount: spent }]) => {
+            const budget = budgets[tagId];
+            const budgetAmount = parseInt(budget?.amount);
 
-              return (
-                <Fragment key={tagId}>
-                  {!!budgetAmount && (
-                    <BudgetItems
-                      handleDelete={handleDelete}
-                      handleEdit={handleEdit}
-                      tag={tag}
-                      tagId={tagId}
-                      budgetAmount={budgetAmount}
-                      spent={spent}
-                    />
-                  )}
-                </Fragment>
-              );
-            }
-          )}
+            return (
+              <Fragment key={tagId}>
+                {!!budgetAmount && (
+                  <BudgetItems
+                    handleDelete={handleDelete}
+                    handleEdit={handleEdit}
+                    tag={tags?.[tagId]}
+                    tagId={tagId}
+                    budgetAmount={budgetAmount}
+                    spent={spent}
+                  />
+                )}
+              </Fragment>
+            );
+          })}
         </ul>
       </Render>
 
