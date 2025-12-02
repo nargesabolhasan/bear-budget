@@ -12,8 +12,15 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Edit2, Trash } from "iconsax-react";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
+import { TagsListType } from "@/store/tags/type";
 
-const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
+const ActionButtons = ({
+  transaction,
+  tags,
+}: {
+  transaction: TransactionType;
+  tags: TagsListType;
+}) => {
   const { removeTransaction } = useTransactionStore();
   const router = useRouter();
   const { date } = useFilteredDateContext();
@@ -24,8 +31,8 @@ const ActionButtons = ({ transaction }: { transaction: TransactionType }) => {
       hint: (
         <span>
           Remove : <strong>{transaction.amount}</strong> in{" "}
-          <strong>{transaction.tag.name}</strong> tag as{" "}
-          <strong>{transaction.tag.type}</strong>
+          <strong>{tags?.[transaction.tag]?.name}</strong> tag as{" "}
+          <strong>{tags?.[transaction.tag]?.transactionType}</strong>
         </span>
       ),
       confirmHandler: () => {

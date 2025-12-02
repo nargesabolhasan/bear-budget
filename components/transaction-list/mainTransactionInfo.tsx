@@ -134,7 +134,7 @@ const MainTransactionInfo = ({
           </div>
         )}
         <div className={"grow flex justify-end"}>
-          <ActionButtons transaction={transaction} />
+          <ActionButtons transaction={transaction} tags={tags} />
         </div>
       </div>
       {/*----modal for settled-------*/}
