@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import NextLink from "next/link";
-import Link from "next/link";
 import {
   AppBar,
   Box,
@@ -16,9 +15,10 @@ import {
   useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavItemType } from "@/types/global";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { NavItemType } from "@/types/global";
+import { usePathname } from "next/navigation";
 
 export type HeaderProps = {
   title?: string;
@@ -29,36 +29,50 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleDrawer = (open: boolean) => () => {
-    setDrawerOpen(open);
+  const toggleDrawer = (open: boolean) => () => setDrawerOpen(open);
+
+  // Drawer Nav Item in mobile view
+  const DrawerNavItem = ({ item }: { item: NavItemType }) => {
+    const isActive = pathname === item.href;
+    console.log(isActive);
+    return (
+      <MenuItem
+        component={NextLink}
+        href={item.href}
+        className={twMerge(
+          "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3 transition",
+          item.color,
+          isActive && "!bg-primary font-bold !border border-brown"
+        )}
+      >
+        {item.label}
+      </MenuItem>
+    );
   };
 
-  const DrawerNavItem = ({ item }: { item: NavItemType }) => (
-    <MenuItem
-      component={NextLink}
-      href={item.href}
-      className={twMerge(
-        "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3",
-        item.color
-      )}
-    >
-      {item.label}
-    </MenuItem>
-  );
+  // -----------------------------
+  // Desktop Nav Item
+  // -----------------------------
+  const DesktopNavItem = ({ item }: { item: NavItemType }) => {
+    const isActive = pathname === item.href;
 
-  const DesktopNavItem = ({ item }: { item: NavItemType }) => (
-    <NextLink
-      className={twMerge(
-        "text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light",
-        item.color
-      )}
-      href={item.href}
-    >
-      {item.label}
-    </NextLink>
-  );
+    return (
+      <NextLink
+        href={item.href}
+        className={twMerge(
+          "text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light transition",
+          item.color,
+          isActive && "bg-primary_light font-bold border border-brown"
+        )}
+      >
+        {item.label}
+      </NextLink>
+    );
+  };
 
+  // Drawer
   const drawer = (
     <Box
       sx={{ width: 250 }}
@@ -75,8 +89,9 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   );
 
   return (
-    <AppBar position="fixed" className={"print:!hidden"}>
-      <Toolbar className={"flex flex-row justify-between items-center py-6"}>
+    <AppBar position="fixed" className="print:!hidden">
+      <Toolbar className="flex flex-row justify-between items-center py-6">
+        {/* Logo + Title */}
         <Typography
           sx={{
             fontWeight: 700,
@@ -84,22 +99,22 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
           }}
           className="w-fit text-brown cursor-pointer font-playwrite italic !text-2xl"
         >
-          <Link href={"/"} className={"w-fit flex flex-row items-center"}>
+          <NextLink href="/" className="w-fit flex flex-row items-center gap-2">
             <Image src="/favicon.svg" alt="icon" width={50} height={50} />
             {title}
-          </Link>
+          </NextLink>
         </Typography>
 
+        {/* Mobile Drawer */}
         {isMobile ? (
           <>
             <IconButton
               edge="start"
-              color="inherit"
               aria-label="menu"
               onClick={toggleDrawer(true)}
-              className={"shadow shadow-brown p-2"}
+              className="shadow shadow-brown p-2"
             >
-              <MenuIcon className={"text-brown"} />
+              <MenuIcon className="text-brown" />
             </IconButton>
 
             <Drawer
@@ -111,7 +126,8 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
             </Drawer>
           </>
         ) : (
-          <Box className={"flex gap-3"}>
+          // Desktop Navigation
+          <Box className="flex gap-3">
             {navItems.map((item) => (
               <DesktopNavItem key={item.key} item={item} />
             ))}
