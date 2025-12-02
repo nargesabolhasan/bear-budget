@@ -4,7 +4,6 @@ import React, { use } from "react";
 import { toast } from "sonner";
 import { useBudgetStore } from "@/store/budget";
 import { BudgetType } from "@/types/global";
-import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import CreateBudget from "@/components/create-budget";
 import { useRouter } from "next/navigation";
 
@@ -23,7 +22,7 @@ const Page = ({ params }: Props) => {
     editBudget(defaultValue.id, formData);
     toast.success(
       <span>
-        <strong>{formData[FormBudgetTypeEnum.TAG].name}</strong> was updated
+        Budget <strong>was updated</strong>
         successfully!
       </span>
     );
