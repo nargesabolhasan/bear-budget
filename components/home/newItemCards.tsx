@@ -36,7 +36,7 @@ const NewItemCards = () => {
     (secondTag && iconList.get(secondTag?.icon || "0")?.icon) || (() => <></>);
 
   const tableRows = [
-    { id: 1, title: "Tag", value: lastTransaction?.tag.name },
+    { id: 1, title: "Tag", value: tags?.[lastTransaction?.tag]?.name },
     {
       id: 2,
       title: "Amount",
