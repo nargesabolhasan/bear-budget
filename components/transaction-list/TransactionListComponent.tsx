@@ -54,7 +54,10 @@ const TransactionListComponent = ({
   clearAll,
   dialogTitle,
 }: Props) => {
-  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>("");
+  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>(
+    TransactionEnum.EXPENSE
+  );
+
   const router = useRouter();
 
   const clearAllTransactions = () => {

@@ -15,10 +15,12 @@ import IDatePicker from "@/components/atoms/datePicker";
 import BeenhereIcon from "@mui/icons-material/Beenhere";
 import { useTransactionStore } from "@/store/transaction";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
+import { TagsListType } from "@/store/tags/type";
 
 type Props = {
   transaction: TransactionType;
   showTagIcon: boolean;
+  tags: TagsListType;
   showTransactionIndicator?: boolean;
 };
 
@@ -40,6 +42,7 @@ const schema = yup.object({
 const MainTransactionInfo = ({
   transaction,
   showTagIcon,
+  tags,
   showTransactionIndicator = false,
 }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -69,8 +72,8 @@ const MainTransactionInfo = ({
   };
 
   const showSettledButton =
-    (transaction.tag.type === TransactionEnum.DEBT ||
-      transaction.tag.type === TransactionEnum.LOANED) &&
+    (tags?.[transaction?.tag]?.transactionType === TransactionEnum.DEBT ||
+      tags?.[transaction?.tag]?.transactionType === TransactionEnum.LOANED) &&
     !Boolean(transaction?.settled);
 
   const showSettledDescription = !!transaction?.settled;
@@ -83,7 +86,7 @@ const MainTransactionInfo = ({
       )}
     >
       <MainTransactionTitle
-        tag={transaction.tag}
+        tag={tags?.[transaction?.tag]}
         amount={transaction.amount}
         amountBeforeSettled={transaction?.settled?.amount}
         date={transaction.date}

@@ -2,13 +2,13 @@ import React from "react";
 import { convertToCurrency } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { TagInfoTransaction } from "@/types/global";
+import { TagType } from "@/types/global";
 import { iconList } from "@/constant/icons";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { Render } from "@/utils/render";
 
 type Props = {
-  tag: TagInfoTransaction;
+  tag: TagType;
   amount: string;
   date: string;
   amountBeforeSettled?: string;
@@ -22,7 +22,7 @@ const MainTransactionTitle = ({
   amountBeforeSettled,
   showTagIcon = false,
 }: Props) => {
-  const Icon = iconList.get(tag.icon || "0")?.icon || (() => <></>);
+  const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
 
   return (
     <>
@@ -33,11 +33,11 @@ const MainTransactionTitle = ({
               <Icon
                 className={twMerge(
                   "opacity-70 rounded-full p-1",
-                  groupedStyles(tag.type)
+                  groupedStyles(tag?.transactionType)
                 )}
               />
             )}
-            <span className={"text-lg"}>{tag.name}</span>
+            <span className={"text-lg"}>{tag?.name}</span>
           </span>
           <time className={"text-sm text-placeholder"}>{date}</time>
         </div>

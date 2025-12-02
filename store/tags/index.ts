@@ -1,41 +1,68 @@
 import { create } from "zustand";
-import { persist, devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { GroupedTagsByType, TagStore } from "@/store/tags/type";
-import { TagType, TransactionEnum } from "@/types/global";
 
 export const useTagsStore = create<TagStore>()(
   devtools(
     persist(
       (set, get) => ({
-        tags: [],
+        tags: {},
+
         createTag: (tag) =>
-          set({ tags: [tag, ...get().tags] }, false, "createTag"),
+          set(
+            {
+              tags: {
+                ...get().tags,
+                [tag.id]: tag,
+              },
+            },
+            false,
+            "createTag"
+          ),
+
         removeTag: (id) =>
           set(
-            { tags: get().tags.filter((tag) => tag.id !== id) },
+            () => {
+              const current = get().tags;
+              const updated = { ...current };
+              delete updated[id];
+              return { tags: updated };
+            },
             false,
             "removeTag"
           ),
+
         editTag: (id, data) => {
-          const updatedList = get().tags.map((tag: TagType) => {
-            return tag.id === id ? { ...tag, ...data } : tag;
-          });
-          set({ tags: updatedList }, false, "editTag");
+          const currentTag = get().tags[id];
+          if (!currentTag) return;
+
+          set(
+            {
+              tags: {
+                ...get().tags,
+                [id]: { ...currentTag, ...data },
+              },
+            },
+            false,
+            "editTag"
+          );
         },
+
         groupedByType: () => {
           const tags = get().tags;
-          const groupedTransactions: GroupedTagsByType = {};
+          const grouped: GroupedTagsByType = {};
 
-          tags.map((t) => {
-            if (!groupedTransactions[t.transactionType]) {
-              groupedTransactions[t.transactionType] = [];
+          Object.values(tags).forEach((t) => {
+            if (!grouped[t.transactionType]) {
+              grouped[t.transactionType] = [];
             }
-            groupedTransactions[t.transactionType]?.push(t);
+            grouped[t.transactionType]?.push(t);
           });
 
-          return groupedTransactions;
+          return grouped;
         },
-        clear: () => set({ tags: [] }, false, "clear"),
+
+        clear: () => set({ tags: {} }, false, "clear"),
       }),
       { name: "tags" }
     ),

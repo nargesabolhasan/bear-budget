@@ -40,7 +40,7 @@ export type TagInfoTransaction = {
 export type TransactionType = {
   id: string;
   amount: string;
-  tag: TagInfoTransaction;
+  tag: string;
   date: string;
   description?: string;
   settled?: {

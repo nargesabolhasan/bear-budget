@@ -17,7 +17,7 @@ const EditTagPage = ({ params }: Props) => {
   const { slug } = use(params);
   const router = useRouter();
   const { tags, editTag } = useTagsStore();
-  const defaultValue = tags.find((item) => item.id === slug);
+  const defaultValue = tags?.[slug];
 
   const submitHandler = (formData: TagFormData) => {
     if (!defaultValue) return;

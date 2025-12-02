@@ -47,6 +47,7 @@ const FilterButtons = ({
       onClick={() => onChange(item.id)}
       variant={isActive ? "contained" : "text"}
       size={"small"}
+      className={"!h-[40px]"}
     >
       {(showContextMenu && selectedMenuFilter) || item.title}
       {showContextMenu && <ArrowDropDownIcon />}
@@ -60,7 +61,7 @@ const FilterButtons = ({
   return (
     <nav
       className={
-        "print:hidden border border-primary w-full rounded-full bg-primary_light flex flex-row gap-3 justify-between my-5"
+        "print:hidden border border-primary w-full rounded-full bg-primary_light flex flex-row gap-3 justify-between items-center my-5"
       }
     >
       {navItems.map((item, index) => {

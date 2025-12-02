@@ -50,7 +50,7 @@ const TagListDemo = () => {
             >
               {tagType}
             </h2>
-            {tags.map((tag) => {
+            {Object.values(tags).map((tag) => {
               const Icon =
                 iconList.get(tag.icon || "0")?.icon || (() => <span></span>);
 

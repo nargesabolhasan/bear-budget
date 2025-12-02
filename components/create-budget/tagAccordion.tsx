@@ -7,9 +7,11 @@ import Link from "next/link";
 import { tagRoutes } from "@/routes/routes";
 import IAccordion from "@/components/molecules/accordion";
 import { TagType } from "@/types/global";
+import { TagsListType } from "@/store/tags/type";
+
 type Props = {
   control: Control<any, any, any>;
-  tags: TagType[];
+  tags: TagsListType;
   tagsCount: number;
 };
 
@@ -30,7 +32,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
               <TagPicker
                 value={field.value}
                 onChange={field.onChange}
-                tagList={tags.slice(0, tagsCount)}
+                tagList={Object.values(tags).slice(0, tagsCount)}
               />
             )}
           />
@@ -38,7 +40,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       ),
       detail: (
         <Render
-          when={tags.length > 0}
+          when={Object.keys(tags).length > 0}
           fallback={
             <Link href={tagRoutes.createTag.href}>
               you have to create a new tag! click to create new one.
@@ -46,7 +48,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
           }
         >
           <div className={"mr-5"}>
-            {tags.slice(tagsCount).length !== 0 && (
+            {Object.values(tags).slice(tagsCount).length !== 0 && (
               <Controller
                 name={FormTransactionEnum.TAG}
                 control={control}
@@ -54,7 +56,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
                   <TagPicker
                     value={field.value}
                     onChange={field.onChange}
-                    tagList={tags.slice(tagsCount)}
+                    tagList={Object.values(tags).slice(tagsCount)}
                   />
                 )}
               />
@@ -69,7 +71,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
     <IAccordion
       items={accordionItem}
       detailClassName={"py-3! pr-5!"}
-      showExpandIcon={tags.slice(tagsCount).length !== 0}
+      showExpandIcon={Object.values(tags).slice(tagsCount).length !== 0}
       className={"p-4 border border-placeholder_light"}
     />
   );

@@ -6,6 +6,7 @@ import TransactionHeader from "@/components/transaction-list/transactionHeader";
 import React from "react";
 import TransactionTypeIndicator from "@/components/transaction-list/transactionTypeIndicator";
 import MainTransactionInfo from "@/components/transaction-list/mainTransactionInfo";
+import { useTagsStore } from "@/store/tags";
 
 type Props = {
   transactionList: TransactionType[];
@@ -24,6 +25,8 @@ const TransactionItems = ({
   showDivider = false,
   showTagIcon = false,
 }: Props) => {
+  const { tags } = useTagsStore();
+
   return (
     <ul
       className={twMerge(
@@ -42,14 +45,17 @@ const TransactionItems = ({
         >
           <div className={"list-item-block force-block"}>
             {showTransactionHeader && (
-              <TransactionHeader title={transaction.tag.type} />
+              <TransactionHeader
+                title={tags?.[transaction.tag].transactionType}
+              />
             )}
 
             <div className={"flex flex-row items-stretch w-full"}>
               {showTransactionIndicator && (
-                <TransactionTypeIndicator tag={transaction.tag} />
+                <TransactionTypeIndicator tag={tags?.[transaction.tag]} />
               )}
               <MainTransactionInfo
+                tags={tags}
                 transaction={transaction}
                 showTagIcon={showTagIcon}
                 showTransactionIndicator={showTransactionIndicator}

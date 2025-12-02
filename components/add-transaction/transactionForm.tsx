@@ -20,14 +20,7 @@ import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
-  [FormTransactionEnum.TAG]: yup
-    .object()
-    .shape({
-      name: yup.string().required(),
-      id: yup.string().required(),
-      type: yup.string().required(),
-    })
-    .required("Tag is required"),
+  [FormTransactionEnum.TAG]: yup.string().required("Tag is required"),
   [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
   [FormTransactionEnum.DESCRIPTION]: yup
     .string()
@@ -48,7 +41,7 @@ const TransactionForm = ({
   } = useForm<TransactionFormData>({
     defaultValues: {
       [FormTransactionEnum.AMOUNT]: props.amount || "",
-      [FormTransactionEnum.TAG]: props.tag || { name: "", id: "" },
+      [FormTransactionEnum.TAG]: props.tag || "",
       [FormTransactionEnum.DATE]: props.date || "",
       [FormTransactionEnum.DESCRIPTION]: props.description || "",
     },

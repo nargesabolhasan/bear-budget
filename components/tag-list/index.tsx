@@ -35,7 +35,7 @@ const TagList = () => {
       className={"p-1 md:p-4 mb-20 mx-auto w-full md:w-1/2 flex flex-col gap-3"}
     >
       <Render
-        when={tags.length !== 0}
+        when={Object.values(tags).length !== 0}
         fallback={
           <EmptyList onAddItem={() => router.push(tagRoutes.createTag.href)} />
         }
