@@ -18,6 +18,7 @@ import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import { useTagsStore } from "@/store/tags";
+import ScrollToBottom from "@/components/molecules/scrollToBottom";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -69,7 +70,7 @@ const BudgetList = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
+    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center pb-10">
       {/* Header */}
       <PrinterViewTitle title={"All Budgets:"} />
       <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">
@@ -121,6 +122,7 @@ const BudgetList = () => {
             );
           })}
         </ul>
+        <ScrollToBottom />
       </Render>
 
       {/* Month Selection Modal */}
