@@ -36,7 +36,6 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   // Drawer Nav Item in mobile view
   const DrawerNavItem = ({ item }: { item: NavItemType }) => {
     const isActive = pathname === item.href;
-    console.log(isActive);
     return (
       <MenuItem
         component={NextLink}
