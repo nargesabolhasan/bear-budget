@@ -2,7 +2,7 @@
 import React from "react";
 import { TransactionType } from "@/types/global";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
-import { ROWS_PER_PAGE } from "@/components/molecules/pagination";
+import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 
@@ -11,10 +11,8 @@ const AllTransactions = ({
 }: {
   transactions: TransactionType[];
 }) => {
-  const { paginated, page, setPage, pageCount } = usePaginationData(
-    transactions,
-    ROWS_PER_PAGE
-  );
+  const { paginated, page, setPage, pageCount, showPagination } =
+    usePaginationData(transactions, ROWS_PER_PAGE);
 
   return (
     <div className={"md:w-[500px] flex flex-col gap-3"}>
@@ -24,13 +22,14 @@ const AllTransactions = ({
         showTransactionHeader={false}
         showTransactionIndicator
       />
-      {/*<IPagination*/}
-      {/*  count={pageCount}*/}
-      {/*  page={page}*/}
-      {/*  onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>*/}
-      {/*    setPage(pageN)*/}
-      {/*  }*/}
-      {/*/>*/}
+      <IPagination
+        count={pageCount}
+        page={page}
+        onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
+          setPage(pageN)
+        }
+        showPagination={showPagination}
+      />
     </div>
   );
 };

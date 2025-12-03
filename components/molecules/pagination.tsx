@@ -4,19 +4,27 @@ import Stack from "@mui/material/Stack";
 //@ts-ignore
 import { PaginationProps } from "@mui/material/esm/Pagination/Pagination";
 
-export const ROWS_PER_PAGE = 10;
-export const PAGE_COUNT = 10;
+export const ROWS_PER_PAGE = 4;
 
-export default function IPagination({ ...props }: PaginationProps) {
+export default function IPagination({
+  showPagination = true,
+  ...props
+}: PaginationProps & {
+  showPagination?: boolean;
+}) {
   return (
-    <Stack spacing={2} className={"flex items-center my-5 print:!hidden"}>
-      <Pagination
-        {...props}
-        count={props.count || PAGE_COUNT}
-        variant="outlined"
-        color="primary"
-        dir={"ltr"}
-      />
-    </Stack>
+    <>
+      {showPagination && (
+        <Stack spacing={2} className={"flex items-center my-5 print:!hidden"}>
+          <Pagination
+            {...props}
+            count={props.count || ROWS_PER_PAGE}
+            variant="outlined"
+            color="primary"
+            dir={"ltr"}
+          />
+        </Stack>
+      )}
+    </>
   );
 }

@@ -2,7 +2,7 @@
 import React from "react";
 import { TransactionInfoType } from "@/store/transaction/type";
 import { TransactionEnum } from "@/types/global";
-import { ROWS_PER_PAGE } from "@/components/molecules/pagination";
+import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import { convertToCurrency } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
@@ -18,10 +18,8 @@ type Props = {
 };
 
 const FilterView = ({ transactions, transactionType }: Props) => {
-  const { paginated, page, setPage, pageCount } = usePaginationData(
-    transactions?.transactions,
-    ROWS_PER_PAGE
-  );
+  const { paginated, page, setPage, pageCount, showPagination } =
+    usePaginationData(transactions?.transactions, ROWS_PER_PAGE);
 
   return (
     <div
@@ -70,13 +68,14 @@ const FilterView = ({ transactions, transactionType }: Props) => {
               showDivider
             />
           </div>
-          {/*<IPagination*/}
-          {/*  count={pageCount}*/}
-          {/*  page={page}*/}
-          {/*  onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>*/}
-          {/*    setPage(pageN)*/}
-          {/*  }*/}
-          {/*/>*/}
+          <IPagination
+            count={pageCount}
+            page={page}
+            onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
+              setPage(pageN)
+            }
+            showPagination={showPagination}
+          />
         </>
       </Render>
     </div>

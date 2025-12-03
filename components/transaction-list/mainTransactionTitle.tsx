@@ -13,6 +13,7 @@ type Props = {
   date: string;
   amountBeforeSettled?: string;
   showTagIcon?: boolean;
+  showTagIconColor?: boolean;
 };
 
 const MainTransactionTitle = ({
@@ -21,6 +22,7 @@ const MainTransactionTitle = ({
   amount,
   amountBeforeSettled,
   showTagIcon = false,
+  showTagIconColor = false,
 }: Props) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
 
@@ -33,7 +35,9 @@ const MainTransactionTitle = ({
               <Icon
                 className={twMerge(
                   "opacity-70 rounded-full p-1",
-                  groupedStyles(tag?.transactionType)
+                  showTagIconColor
+                    ? "bg-transparent border border-dotted border-placeholder"
+                    : groupedStyles(tag?.transactionType)
                 )}
               />
             )}

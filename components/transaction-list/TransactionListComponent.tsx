@@ -28,7 +28,7 @@ const navItems: NavItemsType[] = [
     title: "Previous months",
   },
   { id: ViewEnums.ALL, title: "All" },
-  { id: ViewEnums.SUPERGROUP, title: "Grouped" },
+  { id: ViewEnums.FILTERS, title: "Grouped" },
   {
     id: ViewEnums.GROUPED,
     title: "Filter",
@@ -88,7 +88,7 @@ const TransactionListComponent = ({
           setSelectedMenuFilter={setSelectedMenuFilter}
         />
       </header>
-      <ScrollToBottom />
+      {viewMode === ViewEnums.FILTERS && <ScrollToBottom />}
       <Render
         items={[
           {
@@ -109,7 +109,7 @@ const TransactionListComponent = ({
             ),
           },
           {
-            when: viewMode === ViewEnums.SUPERGROUP && transactions.length > 0,
+            when: viewMode === ViewEnums.FILTERS && transactions.length > 0,
             render: (
               <SuperGroupList
                 groupedItems={

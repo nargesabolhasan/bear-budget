@@ -15,6 +15,7 @@ type Props = {
   showPrimaryBG?: boolean;
   showDivider?: boolean;
   showTagIcon?: boolean;
+  showTagIconColor?: boolean;
 };
 
 const TransactionItems = ({
@@ -24,6 +25,7 @@ const TransactionItems = ({
   showTransactionIndicator = false,
   showDivider = false,
   showTagIcon = false,
+  showTagIconColor = false,
 }: Props) => {
   const { tags } = useTagsStore();
 
@@ -32,7 +34,7 @@ const TransactionItems = ({
       className={twMerge(
         "print-list w-full flex flex-col items-center justify-center gap-4 print:!gap-1 rounded-xl",
         showPrimaryBG &&
-          "bg-gradient-to-br from-light_mint to-hover_primary p-2 print:!p-3"
+          "border border-dashed border-placeholder p-2 print:!p-3"
       )}
     >
       {transactionList.map((transaction) => (
@@ -58,6 +60,7 @@ const TransactionItems = ({
                 tags={tags}
                 transaction={transaction}
                 showTagIcon={showTagIcon}
+                showTagIconColor={showTagIconColor}
                 showTransactionIndicator={showTransactionIndicator}
               />
             </div>

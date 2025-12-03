@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Fab } from "@mui/material";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import KeyboardDoubleArrowDownTwoToneIcon from "@mui/icons-material/KeyboardDoubleArrowDownTwoTone";
 import { twMerge } from "tailwind-merge";
 
 const ScrollToBottomButton = () => {
@@ -41,18 +41,22 @@ const ScrollToBottomButton = () => {
 
   return (
     <Fab
-      color="primary"
       onClick={!isAtBottom ? scrollToTop : scrollToBottom}
       sx={{
         position: "fixed",
         bottom: 16,
-        left: 16,
+        left: {
+          xs: 16,
+          lg: "30%",
+        },
         boxShadow: "0px 0px 2px 8px rgba(255, 255, 255, 0.8)",
       }}
       aria-label={isAtBottom ? "scroll-to-top" : "scroll-to-bottom"}
       className={"!border-3 !border-olive_darb print:!hidden"}
     >
-      <ArrowDownwardIcon className={twMerge(!isAtBottom && "rotate-180")} />
+      <KeyboardDoubleArrowDownTwoToneIcon
+        className={twMerge("text-olive_darb", !isAtBottom && "rotate-180")}
+      />
     </Fab>
   );
 };

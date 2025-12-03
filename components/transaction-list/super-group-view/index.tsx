@@ -31,6 +31,8 @@ const SuperGroupList = ({ groupedItems }: Props) => {
               showTransactionHeader={false}
               showPrimaryBG={false}
               showDivider
+              showTagIcon
+              showTagIconColor
             />
           </div>
         </li>

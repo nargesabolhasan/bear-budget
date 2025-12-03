@@ -106,7 +106,7 @@ export type GropedBudgetType = Map<
 >;
 
 export const enum ViewEnums {
-  SUPERGROUP,
+  FILTERS,
   ALL,
   GROUPED,
   PREV_MONTHS,

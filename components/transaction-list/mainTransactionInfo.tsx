@@ -22,6 +22,7 @@ type Props = {
   showTagIcon: boolean;
   tags: TagsListType;
   showTransactionIndicator?: boolean;
+  showTagIconColor?: boolean;
 };
 
 const enum ModalFormEnum {
@@ -44,6 +45,7 @@ const MainTransactionInfo = ({
   showTagIcon,
   tags,
   showTransactionIndicator = false,
+  showTagIconColor = false,
 }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const { editTransaction } = useTransactionStore();
@@ -91,6 +93,7 @@ const MainTransactionInfo = ({
         amountBeforeSettled={transaction?.settled?.amount}
         date={transaction.date}
         showTagIcon={showTagIcon}
+        showTagIconColor={showTagIconColor}
       />
       {showTagIcon && !!transaction?.description && (
         <hr

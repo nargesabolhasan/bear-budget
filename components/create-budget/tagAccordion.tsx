@@ -6,8 +6,8 @@ import { Render } from "@/utils/render";
 import Link from "next/link";
 import { tagRoutes } from "@/routes/routes";
 import IAccordion from "@/components/molecules/accordion";
-import { TagType } from "@/types/global";
 import { TagsListType } from "@/store/tags/type";
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 
 type Props = {
   control: Control<any, any, any>;
@@ -61,6 +61,18 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
                 )}
               />
             )}
+            <Link
+              href={tagRoutes.createTag.href}
+              className={
+                "text-xs md:text-sm cursor-pointer flex flex-row items-center justify-center gap-1 mt-4 text-placeholder"
+              }
+            >
+              <AddCircleTwoToneIcon
+                className={"text-primary"}
+                fontSize={"small"}
+              />
+              Add new
+            </Link>
           </div>
         </Render>
       ),
