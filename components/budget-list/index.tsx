@@ -70,7 +70,7 @@ const BudgetList = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center pb-10">
+    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center pb-20">
       {/* Header */}
       <PrinterViewTitle title={"All Budgets:"} />
       <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">

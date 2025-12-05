@@ -5,12 +5,14 @@ import { TransactionEnum } from "@/types/global";
 import { TransactionInfoType } from "@/store/transaction/type";
 import TransactionHeader from "@/components/transaction-list/transactionHeader";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import { TagsListType } from "@/store/tags/type";
 
 type Props = {
   groupedItems: [TransactionEnum, TransactionInfoType][];
+  tags: TagsListType;
 };
 
-const SuperGroupList = ({ groupedItems }: Props) => {
+const SuperGroupList = ({ groupedItems, tags }: Props) => {
   return (
     <ul
       className={
@@ -27,6 +29,7 @@ const SuperGroupList = ({ groupedItems }: Props) => {
           >
             <TransactionHeader title={type} totalAmount={items?.totalAmount} />
             <TransactionItems
+              tags={tags}
               transactionList={items.transactions}
               showTransactionHeader={false}
               showPrimaryBG={false}

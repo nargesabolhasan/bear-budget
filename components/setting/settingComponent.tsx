@@ -74,7 +74,7 @@ const SettingComponent = () => {
   return (
     <div className={"flex flex-col items-center gap-15 mt-15"}>
       <section className="flex flex-col items-center justify-center">
-        <Image src="/setting.png" alt="icon" width={100} height={100} />
+        <Image src="/fix.png" alt="icon" width={120} height={120} />
 
         <div className="flex flex-row gap-2 items-end justify-center cursor-pointer">
           <span className="text-2xl">

@@ -6,9 +6,10 @@ import TransactionHeader from "@/components/transaction-list/transactionHeader";
 import React from "react";
 import TransactionTypeIndicator from "@/components/transaction-list/transactionTypeIndicator";
 import MainTransactionInfo from "@/components/transaction-list/mainTransactionInfo";
-import { useTagsStore } from "@/store/tags";
+import { TagsListType } from "@/store/tags/type";
 
 type Props = {
+  tags: TagsListType;
   transactionList: TransactionType[];
   showTransactionHeader?: boolean;
   showTransactionIndicator?: boolean;
@@ -19,6 +20,7 @@ type Props = {
 };
 
 const TransactionItems = ({
+  tags,
   transactionList,
   showTransactionHeader = true,
   showPrimaryBG = true,
@@ -27,8 +29,6 @@ const TransactionItems = ({
   showTagIcon = false,
   showTagIconColor = false,
 }: Props) => {
-  const { tags } = useTagsStore();
-
   return (
     <ul
       className={twMerge(

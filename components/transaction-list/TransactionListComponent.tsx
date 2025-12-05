@@ -21,6 +21,9 @@ import {
   GroupedTransactionType,
   TransactionInfoType,
 } from "@/store/transaction/type";
+import SearchBar from "@/components/search";
+import { useTagsStore } from "@/store/tags";
+import useSearchTransaction from "@/hooks/useSearchTransaction";
 
 const navItems: NavItemsType[] = [
   {
@@ -28,9 +31,9 @@ const navItems: NavItemsType[] = [
     title: "Previous months",
   },
   { id: ViewEnums.ALL, title: "All" },
-  { id: ViewEnums.FILTERS, title: "Grouped" },
+  { id: ViewEnums.GROUPED, title: "Grouped" },
   {
-    id: ViewEnums.GROUPED,
+    id: ViewEnums.FILTERS,
     title: "Filter",
     showContextMenu: true,
     contextMenu: filterTransactionList(),
@@ -57,6 +60,8 @@ const TransactionListComponent = ({
   const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>(
     TransactionEnum.EXPENSE
   );
+
+  const { tags } = useTagsStore();
 
   const router = useRouter();
 
@@ -88,22 +93,23 @@ const TransactionListComponent = ({
           setSelectedMenuFilter={setSelectedMenuFilter}
         />
       </header>
-      {viewMode === ViewEnums.FILTERS && <ScrollToBottom />}
+      {viewMode === ViewEnums.GROUPED && <ScrollToBottom />}
       <Render
         items={[
           {
             when: viewMode === ViewEnums.ALL && transactions.length > 0,
-            render: <AllTransactions transactions={transactions} />,
+            render: <AllTransactions tags={tags} transactions={transactions} />,
           },
           {
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
             render: (
-              <FilterView
-                transactionType={selectedMenuFilter || TransactionEnum.EXPENSE}
-                transactions={
-                  (selectedMenuFilter &&
-                    groupedTransactions?.[selectedMenuFilter]) ||
-                  groupedTransactions.EXPENSES
+              <SuperGroupList
+                tags={tags}
+                groupedItems={
+                  Object.entries(groupedTransactions) as [
+                    TransactionEnum,
+                    TransactionInfoType
+                  ][]
                 }
               />
             ),
@@ -111,12 +117,13 @@ const TransactionListComponent = ({
           {
             when: viewMode === ViewEnums.FILTERS && transactions.length > 0,
             render: (
-              <SuperGroupList
-                groupedItems={
-                  Object.entries(groupedTransactions) as [
-                    TransactionEnum,
-                    TransactionInfoType
-                  ][]
+              <FilterView
+                tags={tags}
+                transactionType={selectedMenuFilter || TransactionEnum.EXPENSE}
+                transactions={
+                  (selectedMenuFilter &&
+                    groupedTransactions?.[selectedMenuFilter]) ||
+                  groupedTransactions.EXPENSES
                 }
               />
             ),

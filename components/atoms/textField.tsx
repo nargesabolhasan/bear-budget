@@ -4,15 +4,21 @@ import { TextField, TextFieldProps } from "@mui/material";
 export type TextFieldType = Omit<TextFieldProps, "variant"> & {
   hint?: string;
   showHint?: boolean;
+  borderRadius?: string;
 };
-const ITextField = ({ showHint, hint, ...props }: TextFieldType) => {
+const ITextField = ({
+  borderRadius,
+  showHint,
+  hint,
+  ...props
+}: TextFieldType) => {
   return (
     <>
       <TextField
         variant="outlined"
         sx={{
           "& .MuiOutlinedInput-root": {
-            borderRadius: "20px",
+            borderRadius: borderRadius ?? "20px",
             backgroundColor: "white",
           },
         }}

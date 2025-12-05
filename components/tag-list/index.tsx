@@ -11,6 +11,8 @@ import TagListDemo from "@/components/tag-list/tagListComponent";
 import TagListHeader from "@/components/tag-list/tagListHeader";
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
 import { toast } from "sonner";
+import SearchBar from "@/components/search";
+import useSearchTag from "@/hooks/useSearchTag";
 
 const TagList = () => {
   const { tags, clear } = useTagsStore();

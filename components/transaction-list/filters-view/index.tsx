@@ -11,13 +11,15 @@ import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { Render } from "@/utils/render";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
+import { TagsListType } from "@/store/tags/type";
 
 type Props = {
   transactions: TransactionInfoType;
   transactionType: TransactionEnum | string;
+  tags: TagsListType;
 };
 
-const FilterView = ({ transactions, transactionType }: Props) => {
+const FilterView = ({ transactions, transactionType, tags }: Props) => {
   const { paginated, page, setPage, pageCount, showPagination } =
     usePaginationData(transactions?.transactions, ROWS_PER_PAGE);
 
@@ -61,6 +63,7 @@ const FilterView = ({ transactions, transactionType }: Props) => {
             )}
           >
             <TransactionItems
+              tags={tags}
               transactionList={paginated}
               showPrimaryBG={false}
               showTransactionHeader={false}
