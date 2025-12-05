@@ -28,8 +28,8 @@ const NewItemCards = () => {
     getCurrentYear("fa"),
     getCurrentMonthNumber("fa")
   )[0];
-  const lastTag = tags[0];
-  const secondTag = tags[1];
+  const lastTag = Object.values(tags)[0];
+  const secondTag = Object.values(tags)[1];
 
   const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
   const IconSecond =

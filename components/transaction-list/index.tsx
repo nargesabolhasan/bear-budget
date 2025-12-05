@@ -33,7 +33,7 @@ const TransactionListContainer = () => {
   const submitSearch = () => {
     handleClose();
   };
-  console.log(getTransactions(date.year, date.month));
+
   return (
     <div>
       <Modal
