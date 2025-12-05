@@ -1,53 +1,56 @@
-import { useState, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
+import { TransactionEnum } from "@/types/global";
 import { GroupedTagsByType } from "@/store/tags/type";
-import { TagType, TransactionEnum } from "@/types/global";
 
-const useSearchGroupedTags = ({ groups }: { groups: GroupedTagsByType }) => {
-  const [searchResult, setSearchResult] = useState<GroupedTagsByType>(groups);
+type UseSearchTagProps = {
+  groups: GroupedTagsByType;
+};
 
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+type UseSearchTagReturn = {
+  onSearch: (query: string) => void;
+  searchResult: GroupedTagsByType;
+  notFound: boolean;
+};
+
+const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   const onSearch = (query: string) => {
-    const q = query.trim().toLowerCase();
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
 
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-
-    debounceRef.current = setTimeout(() => {
-      if (!q) {
-        setSearchResult(groups);
-        return;
-      }
-
-      const result: GroupedTagsByType = {};
-
-      for (const type in groups) {
-        const tags = groups[type as TransactionEnum] || [];
-
-        const filtered = tags.filter((tag: TagType) => {
-          return (
-            tag.name.toLowerCase().includes(q) ||
-            String(tag.transactionType).toLowerCase().includes(q)
-          );
-        });
-
-        if (filtered.length > 0) {
-          result[type as TransactionEnum] = filtered;
-        }
-      }
-
-      setSearchResult(result);
+    debounceTimer.current = setTimeout(() => {
+      setSearchQuery(query);
     }, 300);
   };
 
-  const notFound =
-    Object.values(groups).flat().length > 0 &&
-    Object.values(searchResult).flat().length === 0;
+  const searchResult = useMemo(() => {
+    if (!searchQuery.trim()) return groups;
 
-  return {
-    searchResult,
-    onSearch,
-    notFound,
-  };
+    const query = searchQuery.toLowerCase();
+    const result: GroupedTagsByType = {};
+
+    Object.entries(groups).forEach(([type, tags]) => {
+      if (!tags) return;
+      const filtered = tags.filter(
+        (tag) =>
+          tag.name.toLowerCase().includes(query) ||
+          tag.transactionType.toLowerCase().includes(query)
+      );
+      if (filtered.length) {
+        result[type as TransactionEnum] = filtered;
+      }
+    });
+
+    return result;
+  }, [groups, searchQuery]);
+
+  const notFound = useMemo(
+    () => Object.keys(searchResult).length === 0,
+    [searchResult]
+  );
+
+  return { onSearch, searchResult, notFound };
 };
 
-export default useSearchGroupedTags;
+export default useSearchTag;
