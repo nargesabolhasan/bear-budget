@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={"!bg-neutral_light h-screen flex flex-col"}>
         <IThemeProvider>
           <IHeader navItems={navItems} />
-          <main className={"mt-[90px] p-2 md:p-4 print:mt-0 grow"}>
+          <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[90px] md:mt-[90px] p-2 md:p-4 print:mt-0">
             {children}
           </main>
           <GlobalToaster />

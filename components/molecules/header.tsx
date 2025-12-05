@@ -88,7 +88,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
   );
 
   return (
-    <AppBar position="fixed" className="print:!hidden">
+    <AppBar position="fixed" className="top-0 w-full z-50 print:!hidden">
       <Toolbar className="flex flex-row justify-around gap-5 md:gap-0 md:justify-between items-center py-6">
         {/* Logo + Title */}
         <Typography
