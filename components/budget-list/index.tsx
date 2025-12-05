@@ -18,7 +18,8 @@ import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import { useTagsStore } from "@/store/tags";
-import ScrollToBottom from "@/components/molecules/scrollToBottom";
+import IPagination from "@/components/molecules/pagination";
+import usePaginationData from "@/hooks/usePagination";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -40,6 +41,9 @@ const BudgetList = () => {
     monthList: PERSIAN_MONTHS,
     filterMonth: selectedMonth,
   });
+
+  const { paginated, page, setPage, pageCount, showPagination } =
+    usePaginationData([...filteredTransactions], 3);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -70,7 +74,7 @@ const BudgetList = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center pb-20">
+    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
       {/* Header */}
       <PrinterViewTitle title={"All Budgets:"} />
       <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">
@@ -102,7 +106,7 @@ const BudgetList = () => {
         }
       >
         <ul className={"border-t border-dashed border-placeholder mt-4"}>
-          {[...filteredTransactions].map(([tagId, { totalAmount: spent }]) => {
+          {paginated?.map(([tagId, { totalAmount: spent }]) => {
             const budget = budgets[tagId];
             const budgetAmount = parseInt(budget?.amount);
 
@@ -122,7 +126,14 @@ const BudgetList = () => {
             );
           })}
         </ul>
-        <ScrollToBottom />
+        <IPagination
+          count={pageCount}
+          page={page}
+          onChange={(event: React.ChangeEvent<unknown>, pageN: number) =>
+            setPage(pageN)
+          }
+          showPagination={showPagination}
+        />
       </Render>
 
       {/* Month Selection Modal */}

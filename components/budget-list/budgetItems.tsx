@@ -25,7 +25,7 @@ const BudgetItems = ({
   budgetAmount,
   spent,
 }: Props) => {
-  const Icon = iconList.get(tag.icon || "0")?.icon || (() => <></>);
+  const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
   const usagePercent = Math.min((spent / budgetAmount) * 100, 100) || 0;
   const remining = budgetAmount - spent;
 

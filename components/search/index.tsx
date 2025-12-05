@@ -14,7 +14,9 @@ const SearchBar = ({
 }) => {
   const { control } = useForm();
   return (
-    <div className={twMerge("block print:hidden", className && className)}>
+    <div
+      className={twMerge("w-full block print:hidden", className && className)}
+    >
       <Controller
         name="search"
         control={control}
