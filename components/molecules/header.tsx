@@ -61,7 +61,7 @@ const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
       <NextLink
         href={item.href}
         className={twMerge(
-          "text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light transition",
+          "flex items-center justify-center text-center text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light transition",
           item.color,
           isActive && "bg-primary_light font-bold border border-brown"
         )}
