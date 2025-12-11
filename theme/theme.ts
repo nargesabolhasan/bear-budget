@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { tailwindColors } from "./tailwind-colors";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
@@ -14,32 +13,65 @@ declare module "@mui/material/styles" {
     danger: Palette["primary"];
     warning: Palette["warning"];
   }
+
   interface PaletteOptions {
     danger?: PaletteOptions["primary"];
     warning?: PaletteOptions["warning"];
   }
 }
 
-const theme = createTheme({
-  direction: "rtl",
-  palette: {
-    primary: { main: tailwindColors.primary },
-    secondary: { main: tailwindColors.secondary },
-    info: { main: tailwindColors.neutral },
-  },
-  typography: {
-    fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
-  },
-  components: {
-    MuiTextField: {
-      defaultProps: {
-        slotProps: {
-          input: { dir: "auto" },
-          inputLabel: { dir: "auto" },
+const cssVar = (name: string, fallback: string) => {
+  if (typeof window === "undefined") return fallback; // SSR safe
+  return (
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim() ||
+    fallback
+  );
+};
+
+const primary = cssVar("--color-primary", "#9ab973");
+const secondary = cssVar("--color-secondary", "#cca07e");
+const info = cssVar("--color-neutral", "#FAFAFA");
+const danger = cssVar("--color-danger", "#F44336");
+const dark = cssVar("--color-dark", "#050505");
+
+const getTheme = (mode: "light" | "dark" = "light") => {
+  return createTheme({
+    direction: "rtl",
+    palette: {
+      mode,
+      primary: { main: primary },
+      secondary: { main: secondary },
+      info: { main: info },
+      danger: { main: danger },
+    },
+    typography: {
+      fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
+    },
+    components: {
+      MuiTextField: {
+        defaultProps: {
+          slotProps: {
+            input: { dir: "auto" },
+            inputLabel: { dir: "auto" },
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: primary,
+          },
+        },
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            color: dark,
+          },
         },
       },
     },
-  },
-});
+  });
+};
 
-export default theme;
+export default getTheme;

@@ -20,7 +20,7 @@ const TagDemo = ({
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-lg",
+        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-lg transition duration-150 ease-in-out",
         className && className
       )}
       dir={"auto"}
@@ -31,7 +31,9 @@ const TagDemo = ({
       <div className={"flex flex-col gap-2 items-start w-full"}>
         {demoTitle && <h3 className={"text-center w-full"}>{demoTitle}</h3>}
       </div>
-      <span className={"block text-md text-dark"}>{name ?? " "}</span>
+      {name && (
+        <span className={"block text-md text-dark_surface"}>{name ?? " "}</span>
+      )}
       <i
         className={twMerge(
           "size-[50px] rounded-full flex justify-center items-center",

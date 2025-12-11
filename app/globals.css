@@ -1,4 +1,5 @@
 @import "./colors.css";
+@import "./variables.css";
 @import "tailwindcss";
 
 @tailwind base;
@@ -47,26 +48,12 @@
     font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
-
 :root {
     --vh: 100%;
 }
 
 body {
-    color: var(--foreground);
     font-family: "elms", sans-serif;
-    background: var(--background);
     height: calc(var(--vh, 1vh) * 100);
 }
 
@@ -100,6 +87,22 @@ body {
 /*--------MUI override----------*/
 .MuiDrawer-paperAnchorLeft {
     @apply !bg-primary_light p-2
+}
+
+/*--------date picker---------*/
+.dark .rmdp-day {
+    @apply text-white;
+}
+
+.dark .rmdp-month-picker,
+.dark .rmdp-year-picker,
+.dark .rmdp-calendar,
+.dark .rmdp-ep-arrow::after  {
+    @apply bg-[var(--color-placeholder_dark)];
+}
+
+.dark .rmdp-header-values {
+    @apply text-white;
 }
 
 /*--------print demo----------*/

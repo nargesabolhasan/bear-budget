@@ -53,7 +53,7 @@ export default function ICheckbox({
           "relative flex items-center justify-center rounded-full border transition-all",
           sizeMap[size],
           "border-gray-400",
-          disabled ? "bg-gray-100" : "bg-white hover:border-gray-500"
+          disabled ? "bg-gray-100" : "bg-surface hover:border-gray-500"
         )}
       >
         {/* Hidden native checkbox */}

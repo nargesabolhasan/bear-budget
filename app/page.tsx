@@ -5,12 +5,12 @@ import Summery from "@/components/summery";
 
 export default function Home() {
   return (
-    <main
+    <div
       className={"mt-5 mx-auto flex flex-col gap-3 w-full md:w-[500px] pb-10"}
     >
       <TransactionSummery />
       <NewItemCards />
       <Summery />
-    </main>
+    </div>
   );
 }

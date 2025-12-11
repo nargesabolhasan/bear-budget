@@ -63,7 +63,7 @@ export default function LogoutButton() {
     <IButton
       onClick={handleLogout}
       disabled={isPending}
-      className={"w-[150px]"}
+      className={"w-full !text-dark"}
     >
       {isPending ? <CircularProgress color={"info"} size={30} /> : "Logout"}
     </IButton>

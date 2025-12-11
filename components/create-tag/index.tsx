@@ -174,7 +174,7 @@ const CreateTagForm = ({
             value={field.value ?? ""}
             sx={{
               borderRadius: "20px",
-              backgroundColor: "white",
+              backgroundColor: "var(--color-surface)",
             }}
             MenuProps={{
               PaperProps: {

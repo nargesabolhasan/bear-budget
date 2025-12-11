@@ -55,7 +55,7 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
       </section>
       <IButton
         type={"submit"}
-        className={"!rounded-full !bg-primary_light"}
+        className={"!rounded-full !bg-primary_light !text-dark"}
         sx={{
           fontWeight: 400,
         }}

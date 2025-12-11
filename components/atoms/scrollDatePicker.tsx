@@ -125,7 +125,7 @@ export default function ScrollDatePicker({
             className={twMerge(
               "w-full h-12 flex items-center justify-center transition-colors cursor-pointer text-xs md:text-sm",
               selected === date &&
-                "bg-primary_light text-sm md:text-lg shadow-lg shadow-primary_light"
+                "bg-primary_light text-sm md:text-lg shadow-lg shadow-primary_light text-dark"
             )}
           >
             {date}

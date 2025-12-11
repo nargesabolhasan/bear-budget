@@ -61,7 +61,7 @@ const FilterButtons = ({
   return (
     <nav
       className={
-        "print:hidden border border-primary w-full rounded-full bg-primary_light flex flex-row gap-3 justify-between items-center my-5"
+        "text-dark print:hidden border border-primary w-full rounded-full bg-primary_light flex flex-row gap-3 justify-between items-center my-5"
       }
     >
       {navItems.map((item, index) => {

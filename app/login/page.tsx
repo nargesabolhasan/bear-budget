@@ -39,7 +39,7 @@ export default function LoginPage() {
   return (
     <div
       className={
-        "md:w-2/5 flex flex-col gap-20 items-start justify-center mx-auto mt-10"
+        "md:w-2/5 flex flex-col gap-20 items-start justify-center mx-auto mt-20 md:mt-45"
       }
     >
       <div className={"flex flex-col gap-2 items-center justify-center w-full"}>

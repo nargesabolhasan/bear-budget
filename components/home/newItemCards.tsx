@@ -46,7 +46,7 @@ const NewItemCards = () => {
   ];
 
   const FallBack = ({ title, href }: { title: string; href: string }) => (
-    <Link href={href}>
+    <Link href={href} className={"text-dark"}>
       <AutoFixHighIcon /> {title}
     </Link>
   );
@@ -69,9 +69,9 @@ const NewItemCards = () => {
             />
           }
         >
-          <span className={"flex flex-row gap-2 items-center mb-5"}>
+          <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
             <TipsAndUpdatesIcon />
-            <h4>Recent :</h4>
+            <h4 className={"grow"}>Recent :</h4>
             <Link
               href={transactionRoutes.translationList.href}
               className={
@@ -121,13 +121,13 @@ const NewItemCards = () => {
             <FallBack title="Create new tag" href={tagRoutes.createTag.href} />
           }
         >
-          <span className={"flex flex-row gap-2 items-center mb-5"}>
+          <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
             <AssistantIcon />
-            <h4>new Tags:</h4>
+            <h4 className={"grow"}>new Tags:</h4>
             <Link
               href={tagRoutes.tagList.href}
               className={
-                "bg-neutral text-secondary py-1 px-2 text-sm mx-auto rounded-full"
+                "bg-neutral text-secondary py-1 px-2 text-sm rounded-full"
               }
             >
               see more
@@ -135,7 +135,7 @@ const NewItemCards = () => {
           </span>
           <span
             className={
-              "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
+              "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center text-dark"
             }
           >
             <Icon /> <h4 className={"grow text-start"}>{lastTag?.name} </h4>
@@ -143,7 +143,7 @@ const NewItemCards = () => {
           {secondTag && (
             <span
               className={
-                "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center"
+                "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center text-dark"
               }
             >
               <IconSecond />

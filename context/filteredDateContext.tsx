@@ -29,5 +29,13 @@ export function FilteredDateProvider({ children }: { children: ReactNode }) {
 }
 
 export function useFilteredDateContext() {
-  return useContext(FilteredDateContext);
+  const context = useContext(FilteredDateContext);
+
+  if (!context) {
+    throw new Error(
+      "useFilteredDateContext must be used within a FilteredDateProvider"
+    );
+  }
+
+  return context;
 }

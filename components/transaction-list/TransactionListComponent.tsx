@@ -77,9 +77,11 @@ const TransactionListComponent = ({
   };
 
   return (
-    <div className={"md:w-fit mx-auto md:px-3 pb-20 print:p-0"}>
+    <div className={"md:w-fit mx-auto md:px-3 pb-25 print:p-0"}>
       <header className={"bg-neutral_light"}>
         <TagListHeader
+          disableDelete={transactions.length === 0}
+          disablePrint={transactions.length === 0}
           clearAllTags={clearAllTransactions}
           handleAddMore={() => {
             router.push(transactionRoutes.addTranslation.href);

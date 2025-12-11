@@ -43,6 +43,8 @@ const TagList = () => {
         }
       >
         <TagListHeader
+          disableDelete={Object.values(tags).length === 0}
+          disablePrint={Object.values(tags).length === 0}
           clearAllTags={clearAllTags}
           handleAddMore={goToCreateTags}
         />

@@ -79,7 +79,11 @@ const IDialog = ({
           </IButton>
         )}
         {showConfirmButton && (
-          <IButton onClick={handleOpen} variant="contained" className={"!mr-0"}>
+          <IButton
+            onClick={handleOpen}
+            variant="contained"
+            className={"!mr-0 !text-dark"}
+          >
             {props.confirmButtonText || "Confirm"}
           </IButton>
         )}

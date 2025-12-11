@@ -30,8 +30,8 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
         calendarPosition="bottom-center"
         {...props}
         inputClass={twMerge(
-          "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-white",
-          !!error && "border border-red-700"
+          "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-[var(--color-surface)]",
+          !!error && "border border-danger"
         )}
         monthYearSeparator="|"
         value={value ?? ""}

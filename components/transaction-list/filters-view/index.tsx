@@ -39,13 +39,13 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
         <span className={"flex flex-row gap-2 items-center"}>
           <i>{transactionTypeIcon(transactionType)}</i>
           <h3
-            className={"font-semibold"}
+            className={"font-semibold text-dark"}
             style={{ fontFamily: "PlaywriteNZGuides" }}
           >
             {transactionType}
           </h3>
         </span>
-        <h3 className="flex flex-row gap-3">
+        <h3 className="flex flex-row gap-3 text-dark">
           {convertToCurrency(transactions?.totalAmount)}
         </h3>
       </div>

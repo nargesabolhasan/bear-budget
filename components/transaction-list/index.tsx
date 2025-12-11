@@ -48,7 +48,7 @@ const TransactionListContainer = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral_light)",
+            bgcolor: "var(--color-neutral)",
             borderRadius: 15,
             boxShadow: 15,
             p: 4,

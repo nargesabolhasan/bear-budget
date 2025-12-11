@@ -19,7 +19,7 @@ const ITextField = ({
         sx={{
           "& .MuiOutlinedInput-root": {
             borderRadius: borderRadius ?? "20px",
-            backgroundColor: "white",
+            backgroundColor: "var(--color-surface)",
           },
         }}
         {...props}

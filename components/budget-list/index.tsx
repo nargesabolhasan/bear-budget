@@ -73,6 +73,20 @@ const BudgetList = () => {
     });
   };
 
+  const handleClearAll = () => {
+    openDialog({
+      title: "Clear All",
+      hint: (
+        <span>
+          Remove <strong>All Budgets</strong> forever!
+        </span>
+      ),
+      confirmHandler: () => {
+        clear();
+      },
+    });
+  };
+
   return (
     <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
       {/* Header */}
@@ -88,7 +102,9 @@ const BudgetList = () => {
         </IButton>
 
         <TagListHeader
-          clearAllTags={clear}
+          disableDelete={Object.values(budgets).length === 0}
+          disablePrint={Object.values(budgets).length === 0}
+          clearAllTags={handleClearAll}
           handleAddMore={handleAddNewBudget}
         />
       </section>
@@ -144,7 +160,7 @@ const BudgetList = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral_light)",
+            bgcolor: "var(--color-neutral)",
             borderRadius: 15,
             boxShadow: 15,
             p: 4,

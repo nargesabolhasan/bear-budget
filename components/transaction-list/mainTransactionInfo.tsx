@@ -84,7 +84,8 @@ const MainTransactionInfo = ({
     <div
       className={twMerge(
         "overflow-x-auto p-3 grow flex flex-col items-end",
-        showTransactionIndicator && "border-b border-dashed rounded-br-xl"
+        showTransactionIndicator &&
+          "border-b border-dashed border-placeholder_light2 rounded-br-xl"
       )}
     >
       <MainTransactionTitle
@@ -148,7 +149,7 @@ const MainTransactionInfo = ({
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral_light)",
+            bgcolor: "var(--color-neutral)",
             borderRadius: 5,
             boxShadow: 15,
             p: 2,

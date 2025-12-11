@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Loading = () => {
   return (
-    <div className={"flex flex-col items-center justify-center h-full"}>
+    <div className={"flex flex-col items-center justify-center h-full mt-20"}>
       <Image
         src="/loading.png"
         alt="loading"
@@ -17,7 +17,7 @@ const Loading = () => {
         </div>
         {/*----text---------*/}
 
-        <div className="p-2.5 text-2xl text-brown">
+        <div className="p-2.5 text-2xl text-brown_secondary">
           <div>
             <span className="mr-2">Loading</span>
             <span className="animate-[ping_1.5s_0.5s_ease-in-out_infinite]">

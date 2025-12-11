@@ -5,6 +5,7 @@ import IHeader from "@/components/molecules/header";
 import { navItems } from "@/constant/navItems";
 import DialogContainer from "@/components/molecules/dialogContainer";
 import IThemeProvider from "@/theme/themeProvider";
+import { ThemeModeProvider } from "@/context/themeContext";
 
 export const metadata = {
   title: "Bear Budget",
@@ -16,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />
@@ -29,14 +30,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
       <body className={"!bg-neutral_light h-screen flex flex-col"}>
-        <IThemeProvider>
-          <IHeader navItems={navItems} />
-          <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[90px] md:mt-[90px] p-2 md:p-4 print:mt-0">
-            {children}
-          </main>
-          <GlobalToaster />
-          <DialogContainer />
-        </IThemeProvider>
+        <ThemeModeProvider>
+          <IThemeProvider>
+            <IHeader navItems={navItems} />
+            <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
+              {children}
+            </main>
+            <GlobalToaster />
+            <DialogContainer />
+          </IThemeProvider>
+        </ThemeModeProvider>
       </body>
     </html>
   );

@@ -55,7 +55,7 @@ const TagListDemo = () => {
               <h2
                 style={{ fontFamily: "PlaywriteNZGuides" }}
                 className={
-                  "mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
+                  "text-dark mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
                 }
               >
                 {tagType}
@@ -77,7 +77,7 @@ const TagListDemo = () => {
                         <Icon className={"!hidden print:!block"} />
                         <i
                           className={twMerge(
-                            "print:hidden size-[50px] rounded-full flex justify-center items-center",
+                            "print:hidden size-[50px] rounded-full flex justify-center items-center border border-placeholder_light",
                             tag.color.color
                           )}
                         >

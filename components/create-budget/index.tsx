@@ -72,7 +72,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
           (in the year {getCurrentYear("fa")})
         </span>
       </span>
-      <div className="flex flex-col items-center justify-center w-full bg-white p-3 rounded-3xl border border-placeholder_light">
+      <div className="flex flex-col items-center justify-center w-full bg-surface p-3 rounded-3xl border border-placeholder_light">
         <ScrollDatePicker
           dateList={PERSIAN_MONTHS}
           defaultValue={defaultValue?.month || getCurrentMonthName("fa")}

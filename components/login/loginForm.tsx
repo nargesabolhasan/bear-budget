@@ -52,7 +52,7 @@ const LoginForm = ({ onSubmit, loading, title }: LoginFormProps) => {
           />
         )}
       />
-      <IButton type={"submit"}>
+      <IButton type={"submit"} className={"!text-dark"}>
         {loading ? <CircularProgress color={"info"} size={30} /> : "Submit"}
       </IButton>
     </form>

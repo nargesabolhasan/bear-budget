@@ -14,6 +14,7 @@ export default function GlobalToaster() {
           title: "title",
           icon: "!text-primary",
           error: "error !bg-danger_light",
+          success: "!bg-neutral !text-hover_primary",
         },
       }}
       icons={{
