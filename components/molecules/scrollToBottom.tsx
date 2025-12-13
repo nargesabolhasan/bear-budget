@@ -44,12 +44,13 @@ const ScrollToBottomButton = () => {
       onClick={!isAtBottom ? scrollToTop : scrollToBottom}
       sx={{
         position: "fixed",
-        bottom: 16,
+        bottom: "calc(16px + env(safe-area-inset-bottom))",
         left: {
           xs: 16,
           lg: "30%",
         },
         boxShadow: "0px 0px 2px 8px rgba(255, 255, 255, 0.8)",
+        zIndex: (theme) => theme.zIndex.fab,
       }}
       aria-label={isAtBottom ? "scroll-to-top" : "scroll-to-bottom"}
       className={"!border-3 !border-olive_darb print:!hidden"}
