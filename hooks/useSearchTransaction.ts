@@ -1,6 +1,6 @@
 import { TransactionType } from "@/types/global";
 import { TagsListType } from "@/store/tags/type";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 type Props = {
   allTransactions: TransactionType[];
@@ -12,6 +12,10 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
     useState<TransactionType[]>(allTransactions);
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setSearchResult(allTransactions);
+  }, [allTransactions]);
 
   const onSearch = (query: string) => {
     const q = query.trim().toLowerCase();
@@ -30,9 +34,9 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
         return (
           transaction.date?.toLowerCase().includes(q) ||
           transaction.description?.toLowerCase().includes(q) ||
-          transaction.amount?.toString().toLowerCase().includes(q) ||
+          transaction.amount?.toString().includes(q) ||
           transaction.settled?.date?.toLowerCase().includes(q) ||
-          transaction.settled?.amount?.toString().toLowerCase().includes(q) ||
+          transaction.settled?.amount?.toString().includes(q) ||
           tagInfo?.transactionType?.toLowerCase().includes(q) ||
           tagInfo?.name?.toLowerCase().includes(q)
         );
