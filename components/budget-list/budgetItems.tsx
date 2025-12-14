@@ -93,9 +93,7 @@ const BudgetItems = ({
         </div>
       </section>
       <section
-        className={
-          "grid grid-cols-3 items-start gap-2 md:gap-4 text-sm md:text-md"
-        }
+        className={"grid grid-cols-3 items-start gap-4 text-sm md:text-md"}
       >
         <span className={"flex flex-col lg:flex-row gap-2"}>
           <span

@@ -121,7 +121,11 @@ const BudgetList = () => {
           <div className="w-full animate-pulse bg-placeholder rounded-md" />
         }
       >
-        <ul className={"border-t border-dashed border-placeholder mt-4"}>
+        <ul
+          className={
+            "w-full sm:w-fit border-t border-dashed border-placeholder mt-4"
+          }
+        >
           {paginated?.map(([tagId, { totalAmount: spent }]) => {
             const budget = budgets[tagId];
             const budgetAmount = parseInt(budget?.amount);
