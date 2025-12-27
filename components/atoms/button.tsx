@@ -27,7 +27,7 @@ const IButton = ({
     primary: "!bg-primary !border !border-primary !text-inherit",
     secondary: "!bg-secondary !border !border-secondary !text-inherit",
     disabled:
-      "!bg-placeholder_light !border !border-placeholder_light !text-inherit",
+      "!bg-placeholder_light !border !border-placeholder_light opacity-80",
   };
   const sizeMapper: Record<SizeButtonProps, string> = {
     small: "!px-5 min-h-[30px] !text-xs",
