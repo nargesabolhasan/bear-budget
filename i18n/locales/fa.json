@@ -1,0 +1,40 @@
+{
+  "global": {
+    "transactions": "تراکنش ها",
+    "tags": "برچسب ها",
+    "budgets": "بودجه ها",
+    "fa": "فارسی",
+    "en": "انگلیسی",
+    "add": "افزودن"
+  },
+  "setting": {
+    "setting": "تنضیمات",
+    "deleteAllValues": "حذف {{value}}",
+    "clearAll": "حذف کامل",
+    "hint": "آیا تمامی {{value}} حذف شوند؟",
+    "successDelete": "حذف {{value}} با موفقیت انجام شد.",
+    "dark": "حالت روشن",
+    "light": "حالت شب",
+    "language": "تغییر زبان به {{value}}"
+  },
+  "header": {
+    "home": "خانه",
+    "newTag": "افزودن برچسب",
+    "newTransaction": "افزودن تراکنش",
+    "newBudget": "افزودن بودجه"
+  },
+  "home": {
+    "hello": "سلام",
+    "entries": "تعداد",
+    "amount": "مبلغ",
+    "grouped": "گروه",
+    "create": "افزودن {{value}}ی جدید",
+    "recent": "جدیدترین ها",
+    "seeMore": "مشاهده",
+    "financialSummary": "گزارش مالی",
+    "incomes": "درآمد کل :",
+    "outgoing": "مخارج :",
+    "savings": "ذخیره کل :",
+    "remaining": "باقی مانده :"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "global": {
+    "transactions": "Transactions",
+    "tags": "Tags",
+    "budgets": "Budgets",
+    "fa": "Persian",
+    "en": "English",
+    "add": "Add"
+  },
+  "setting": {
+    "setting": "Setting",
+    "deleteAllValues": "Delete All {{value}}",
+    "clearAll": "Clear All",
+    "hint": "Do you want to clear all of {{value}}?",
+    "successDelete": "Deleted {{value}} successfully.",
+    "dark": "Dark mode",
+    "light": "Light mode",
+    "language": "Switch language to {{value}}"
+  },
+  "header": {
+    "home": "Home",
+    "newTag": "New Tag",
+    "newTransaction": "New Transaction",
+    "newBudget": "New Budget"
+  },
+  "home": {
+    "hello": "hello",
+    "entries": "Entries",
+    "amount": "Amount",
+    "grouped": "Grouped",
+    "create": "Create new {{value}}",
+    "recent": "Recents",
+    "seeMore": "see more",
+    "financialSummary": "Financial Summary",
+    "incomes": "Incomes :",
+    "outgoing": "Outgoing :",
+    "savings": "Savings :",
+    "remaining": "Remaining :"
+  }
+}
