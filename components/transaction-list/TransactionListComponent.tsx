@@ -8,7 +8,7 @@ import SuperGroupList from "@/components/transaction-list/super-group-view";
 
 import EmptyList from "@/components/molecules/emptyList";
 import { transactionRoutes } from "@/routes/routes";
-import HelperButtons from "@/components/tag-list/HelperButtons";
+import HelperButtons from "@/components/tag-list/helperButtons";
 import FilterButtons, {
   NavItemsType,
 } from "@/components/molecules/filterButtons";

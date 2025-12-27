@@ -10,6 +10,7 @@ import {
 import BackButton from "@/components/molecules/backButton";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { useRouter } from "next/navigation";
+import i18next from "i18next";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -31,8 +32,8 @@ const EditTransaction = ({ params }: Props) => {
 
     toast.success(
       <span>
-        <strong>{formData[FormTransactionEnum.AMOUNT]}</strong> was updated
-        successfully!
+        <strong>{formData[FormTransactionEnum.AMOUNT]}</strong>{" "}
+        {i18next.t("global.update")}
       </span>
     );
     router.back();
