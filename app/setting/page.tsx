@@ -1,5 +1,5 @@
 import React from "react";
-import SettingComponent from "@/components/setting/settingComponent";
+import SettingComponent from "@/components/setting";
 
 const Page = () => {
   return <SettingComponent />;

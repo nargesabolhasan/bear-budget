@@ -15,6 +15,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
 import { settingItems } from "@/components/setting/settingItems";
 import ThemeToggle from "@/components/setting/toggleTheme";
+import LanguageSwitcher from "@/components/setting/languageSwitcher";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
@@ -75,11 +76,11 @@ const SettingComponent = () => {
   return (
     <div
       className={
-        "flex flex-col items-center gap-8 mt-5 md:mt-20 w-[260px] mx-auto"
+        "mb-8 flex flex-col items-center gap-8 mt-5 md:mt-10 w-[260px] mx-auto"
       }
     >
       <section className="flex flex-col items-center justify-center">
-        <Image src="/fix.png" alt="icon" width={150} height={150} />
+        <Image src="/fix.png" alt="icon" width={150} height={150} priority />
 
         <div className="flex flex-row gap-2 items-end justify-center cursor-pointer">
           <span className="text-2xl">
@@ -100,6 +101,7 @@ const SettingComponent = () => {
       </section>
 
       <ThemeToggle />
+      <LanguageSwitcher />
       <section className="flex flex-col items-center justify-center w-full">
         <ul className="flex flex-col gap-3 items-start w-full">
           {items.map((item) => (

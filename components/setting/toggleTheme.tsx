@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import IButton from "@/components/atoms/button";
+import i18n from "i18next";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -17,7 +18,9 @@ export default function ThemeToggle() {
       className={"!text-dark w-full"}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {theme === "dark" ? "☀️ Light mode" : "🌙 Dark mode"}
+      {theme === "dark"
+        ? `☀️ ${i18n.t("setting.dark")}`
+        : `🌙 ${i18n.t("setting.light")}`}
     </IButton>
   );
 }
