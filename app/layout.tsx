@@ -2,10 +2,11 @@ import "./globals.css";
 import { ReactNode } from "react";
 import GlobalToaster from "@/components/atoms/toaster";
 import IHeader from "@/components/molecules/header";
-import { navItems } from "@/constant/navItems";
 import DialogContainer from "@/components/molecules/dialogContainer";
 import IThemeProvider from "@/theme/themeProvider";
-import { ThemeModeProvider } from "@/context/themeContext";
+import { ThemeModeProvider } from "@/context/themeSwitchProvider";
+import "@/i18n/client";
+import LanguageProvider from "@/context/i18nextProvider";
 
 export const metadata = {
   title: "Bear Budget",
@@ -30,16 +31,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
       <body className={"!bg-neutral_light h-screen flex flex-col"}>
-        <ThemeModeProvider>
-          <IThemeProvider>
-            <IHeader navItems={navItems} />
-            <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
-              {children}
-            </main>
-            <GlobalToaster />
-            <DialogContainer />
-          </IThemeProvider>
-        </ThemeModeProvider>
+        <LanguageProvider>
+          <ThemeModeProvider>
+            <IThemeProvider>
+              <IHeader />
+              <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
+                {children}
+              </main>
+              <GlobalToaster />
+              <DialogContainer />
+            </IThemeProvider>
+          </ThemeModeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

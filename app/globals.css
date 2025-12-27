@@ -84,11 +84,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555; /* Thumb color on hover */
 }
+
 /*--------MUI override----------*/
 .MuiDrawer-paperAnchorLeft {
     @apply !bg-primary_light p-2
 }
-
 /*--------date picker---------*/
 .dark .rmdp-day {
     @apply text-white;
@@ -97,12 +97,23 @@ body {
 .dark .rmdp-month-picker,
 .dark .rmdp-year-picker,
 .dark .rmdp-calendar,
-.dark .rmdp-ep-arrow::after  {
+.dark .rmdp-ep-arrow::after {
     @apply bg-[var(--color-placeholder_dark)];
 }
 
 .dark .rmdp-header-values {
     @apply text-white;
+}
+
+/*---------languages----------*/
+html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="ltr"] {
+    direction: ltr;
+    text-align: left;
 }
 
 /*--------print demo----------*/

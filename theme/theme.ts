@@ -34,9 +34,12 @@ const info = cssVar("--color-neutral", "#FAFAFA");
 const danger = cssVar("--color-danger", "#F44336");
 const dark = cssVar("--color-dark", "#050505");
 
-const getTheme = (mode: "light" | "dark" = "light") => {
+const getTheme = (
+  mode: "light" | "dark" = "light",
+  direction: "ltr" | "rtl" = "ltr"
+) => {
   return createTheme({
-    direction: "rtl",
+    direction,
     palette: {
       mode,
       primary: { main: primary },
@@ -48,6 +51,23 @@ const getTheme = (mode: "light" | "dark" = "light") => {
       fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
     },
     components: {
+      MuiInputLabel: {
+        styleOverrides: {
+          root: {
+            direction: direction,
+            textAlign: direction === "rtl" ? "right" : "left",
+            transformOrigin: direction === "rtl" ? "top right" : "top left",
+          },
+        },
+      },
+      MuiInputBase: {
+        styleOverrides: {
+          input: {
+            direction: direction,
+            textAlign: direction === "rtl" ? "right" : "left",
+          },
+        },
+      },
       MuiTextField: {
         defaultProps: {
           slotProps: {
