@@ -3,7 +3,7 @@ import React, { Fragment, useState } from "react";
 import { useBudgetStore } from "@/store/budget";
 import useFilterTransaction from "@/hooks/useFilterTransaction";
 import { getCurrentMonthName, PERSIAN_MONTHS } from "@/utils/dateList";
-import TagListHeader from "@/components/tag-list/tagListHeader";
+import HelperButtons from "@/components/tag-list/helperButtons";
 import { useRouter } from "next/navigation";
 import { budgetRoutes } from "@/routes/routes";
 import IButton from "@/components/atoms/button";
@@ -102,7 +102,7 @@ const BudgetList = () => {
           Select Month <EventNoteTwoToneIcon color="primary" />
         </IButton>
 
-        <TagListHeader
+        <HelperButtons
           disableDelete={Object.values(budgets).length === 0}
           disablePrint={Object.values(budgets).length === 0}
           clearAllTags={handleClearAll}

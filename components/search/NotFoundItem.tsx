@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import i18next from "i18next";
 
 const NotFoundItem = () => {
   return (
@@ -8,7 +9,7 @@ const NotFoundItem = () => {
         "text-center text-brown_secondary flex flex-col gap-3 items-center"
       }
     >
-      not found
+      {i18next.t("global.notFound")}
       <Image
         src="/empty.png"
         alt="error"

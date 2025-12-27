@@ -16,6 +16,7 @@ import SearchBar from "@/components/search";
 import useSearchTag from "@/hooks/useSearchTag";
 import { Render } from "@/utils/render";
 import NotFoundItem from "@/components/search/NotFoundItem";
+import i18next from "i18next";
 
 const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
@@ -26,23 +27,29 @@ const TagListDemo = () => {
 
   const handleDelete = (tag: TagType) => {
     openDialog({
-      title: "Remove tag",
-
+      title: i18next.t("dialog.remove"),
       hint: (
         <span>
-          Remove <strong>{tag.name}</strong> forever!
+          {i18next.t("dialog.hint")} <strong>{tag.name}</strong>{" "}
+          {i18next.t("global.QM")}
         </span>
       ),
       confirmHandler: () => {
         removeTag(tag.id);
-        toast.success(<span>Deleted successfully.</span>);
+        toast.success(
+          <span>
+            {i18next.t("setting.successDelete", {
+              value: i18next.t("global.tag"),
+            })}
+          </span>
+        );
       },
     });
   };
 
   return (
     <>
-      <PrinterViewTitle title={"All Tags:"} />
+      <PrinterViewTitle title={i18next.t("global.tags")} />
       {Object.entries(groupedByType()) && <SearchBar onSearch={onSearch} />}
       <Render when={!notFound} fallback={<NotFoundItem />}>
         <ul
@@ -58,7 +65,7 @@ const TagListDemo = () => {
                   "text-dark mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
                 }
               >
-                {tagType}
+                {i18next.t(`transactions.${tagType}`)}
               </h2>
               {Object.values(tags).map((tag) => {
                 const Icon =

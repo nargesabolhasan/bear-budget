@@ -12,6 +12,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { closeDialog } from "@/components/molecules/dialogContainer";
 import ErrorIcon from "@mui/icons-material/Error";
 import IButton from "@/components/atoms/button";
+import i18next from "i18next";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -75,7 +76,7 @@ const IDialog = ({
             ref={nextButtonRef}
             variant={"outlined"}
           >
-            {props.cancelButtonText || "Cancel"}
+            {props.cancelButtonText || i18next.t("dialog.cancel")}
           </IButton>
         )}
         {showConfirmButton && (
@@ -84,7 +85,7 @@ const IDialog = ({
             variant="contained"
             className={"!mr-0 !text-dark"}
           >
-            {props.confirmButtonText || "Confirm"}
+            {props.confirmButtonText || i18next.t("dialog.confirm")}
           </IButton>
         )}
       </DialogActions>

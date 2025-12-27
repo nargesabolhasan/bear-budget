@@ -3,6 +3,7 @@ import FormatListBulletedAddIcon from "@mui/icons-material/FormatListBulletedAdd
 import { IconOption } from "@/types/global";
 import IButton from "@/components/atoms/button";
 import Image from "next/image";
+import i18next from "i18next";
 
 type Props = {
   title?: string;
@@ -12,8 +13,8 @@ type Props = {
 };
 
 const EmptyList = ({
-  title = "Add New items",
-  hint = "this list is empty try to add new item!",
+  title = i18next.t("global.addNewItems"),
+  hint = i18next.t("global.emptyHint"),
   IconComponent = FormatListBulletedAddIcon,
   onAddItem,
 }: Props) => {

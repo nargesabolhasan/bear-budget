@@ -3,19 +3,26 @@
     "transactions": "تراکنش ها",
     "tags": "برچسب ها",
     "budgets": "بودجه ها",
+    "transaction": "تراکنش",
+    "tag": "برچسب",
+    "budget": "بودجه",
     "fa": "فارسی",
     "en": "انگلیسی",
     "add": "افزودن",
     "submit": "تایید",
     "required": " {{value}} اجباری است.",
-    "charLimit": "باید کمتر از {{value}} کاراکتر باشد",
-    "name": "نام"
+    "charLimit": "باید کمتر از {{value}} کاراکتر باشه",
+    "name": "نام",
+    "notFound": "پیدا نشد!",
+    "addNewItems": "اضافه کردن",
+    "emptyHint": "این لیست خالیه! برای اضافه کردن موارد جدید کلیک کن",
+    "QM": "؟"
   },
   "setting": {
     "setting": "تنضیمات",
     "deleteAllValues": "حذف {{value}}",
     "clearAll": "حذف کامل",
-    "hint": "آیا تمامی {{value}} حذف شوند؟",
+    "hint": "آیا تمامی {{value}} حذف بشن؟",
     "successDelete": "حذف {{value}} با موفقیت انجام شد.",
     "dark": "حالت روشن",
     "light": "حالت شب",
@@ -49,7 +56,7 @@
     "tagDemo": "برچسب در حال ساخت:",
     "success": "با موفقیت اضافه شد.",
     "update": "با موفقیت ویرایش شد.",
-    "edit": "ویرایش برچشب"
+    "edit": "ویرایش برچسب"
   },
   "transactions": {
     "Income": "درآمد",
@@ -57,5 +64,16 @@
     "Loaned": "بستان کاری",
     "Debt": "بده کاری",
     "Expense": "مخارج"
+  },
+  "helperButtons": {
+    "deleteAll": "حذف همه",
+    "create": "افزودن",
+    "selectMonth": "انتخاب ماه"
+  },
+  "dialog": {
+    "remove": "حذف",
+    "hint": "آیا می خوای اینو حذف کنی:",
+    "cancel": "لغو",
+    "confirm": "تایید"
   }
 }

@@ -92,19 +92,6 @@ export type AccordionItemsType = {
   ) => void;
 };
 
-export type GropedBudgetType = Map<
-  string,
-  {
-    transactions: TransactionType[];
-    totalAmount: number;
-    tag: {
-      name: string;
-      icon: string;
-      color: string;
-    };
-  }
->;
-
 export const enum ViewEnums {
   GROUPED,
   ALL,

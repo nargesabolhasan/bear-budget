@@ -8,7 +8,7 @@ import SuperGroupList from "@/components/transaction-list/super-group-view";
 
 import EmptyList from "@/components/molecules/emptyList";
 import { transactionRoutes } from "@/routes/routes";
-import TagListHeader from "@/components/tag-list/tagListHeader";
+import HelperButtons from "@/components/tag-list/HelperButtons";
 import FilterButtons, {
   NavItemsType,
 } from "@/components/molecules/filterButtons";
@@ -79,7 +79,7 @@ const TransactionListComponent = ({
   return (
     <div className={"md:w-fit mx-auto md:px-3 pb-25 print:p-0"}>
       <header className={"bg-neutral_light"}>
-        <TagListHeader
+        <HelperButtons
           disableDelete={transactions.length === 0}
           disablePrint={transactions.length === 0}
           clearAllTags={clearAllTransactions}

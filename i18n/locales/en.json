@@ -3,13 +3,20 @@
     "transactions": "Transactions",
     "tags": "Tags",
     "budgets": "Budgets",
+    "transaction": "Transaction",
+    "tag": "Tag",
+    "budget": "Budget",
     "fa": "Persian",
     "en": "English",
     "add": "Add",
     "submit": "Submit",
     "required": "{{value}} is required",
     "charLimit": "must be less than {{value}} characters!",
-    "name": "name"
+    "name": "name",
+    "notFound": "Not Found!",
+    "addNewItems": "Add New items",
+    "emptyHint": "this list is empty click to add new item!",
+    "QM": "?"
   },
   "setting": {
     "setting": "Setting",
@@ -53,8 +60,19 @@
   "transactions": {
     "Income": "Income",
     "Save": "Save",
-    "Credit": "Credit",
-    "Debit": "Debit",
+    "Loaned": "Credit",
+    "Debt": "Debit",
     "Expense": "Expense"
+  },
+  "helperButtons": {
+    "deleteAll": "Delete All",
+    "create": "Create",
+    "selectMonth": "Select Month"
+  },
+  "dialog": {
+    "remove": "Remove",
+    "hint": "Do you want to remove this :",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }

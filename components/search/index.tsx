@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
+import i18next from "i18next";
 
 const SearchBar = ({
   onSearch,
@@ -13,6 +14,9 @@ const SearchBar = ({
   className?: string;
 }) => {
   const { control } = useForm();
+
+  const direction = i18next.dir();
+
   return (
     <div
       className={twMerge("w-full block print:hidden", className && className)}
@@ -24,15 +28,24 @@ const SearchBar = ({
           <ITextField
             size={"small"}
             className={"w-full"}
-            placeholder="Search"
             borderRadius={"40px"}
             slotProps={{
               input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
+                ...(direction === "rtl"
+                  ? {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <SearchIcon />
+                        </InputAdornment>
+                      ),
+                    }
+                  : {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SearchIcon />
+                        </InputAdornment>
+                      ),
+                    }),
               },
             }}
             onChange={(e) => {

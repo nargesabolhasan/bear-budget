@@ -2,6 +2,7 @@
 import React from "react";
 import IButton from "@/components/atoms/button";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
+import i18next from "i18next";
 
 const CreateTagButton = ({ handleAddMore }: { handleAddMore: () => void }) => {
   return (
@@ -11,7 +12,7 @@ const CreateTagButton = ({ handleAddMore }: { handleAddMore: () => void }) => {
       className={"flex flex-row gap-2"}
       onClick={handleAddMore}
     >
-      <span>Create</span>
+      <span>{i18next.t("helperButtons.create")}</span>
       <AddCircleTwoToneIcon color={"primary"} />
     </IButton>
   );

@@ -4,6 +4,7 @@ import IButton from "@/components/atoms/button";
 import PrintComponent from "@/components/molecules/print";
 import CreateTagButton from "@/components/tag-list/CreateTagButton";
 import { Trash } from "iconsax-react";
+import i18next from "i18next";
 
 type Props = {
   clearAllTags: () => void;
@@ -12,11 +13,10 @@ type Props = {
   disablePrint?: boolean;
 };
 
-const TagListHeader = ({
+const HelperButtons = ({
   clearAllTags,
   handleAddMore,
   disableDelete = false,
-  disablePrint = false,
 }: Props) => {
   return (
     <div className={"mt-4 flex flex-row justify-between print:hidden gap-1"}>
@@ -29,11 +29,11 @@ const TagListHeader = ({
         onClick={clearAllTags}
         disabled={disableDelete}
       >
-        <span>Delete All</span>
+        <span>{i18next.t("helperButtons.deleteAll")}</span>
         <Trash size="25" color="var(--color-primary)" variant="Bold" />
       </IButton>
     </div>
   );
 };
 
-export default TagListHeader;
+export default HelperButtons;

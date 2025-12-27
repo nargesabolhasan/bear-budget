@@ -8,11 +8,10 @@ import EmptyList from "@/components/molecules/emptyList";
 import { Render } from "@/utils/render";
 import { useRouter } from "next/navigation";
 import TagListDemo from "@/components/tag-list/tagListComponent";
-import TagListHeader from "@/components/tag-list/tagListHeader";
+import HelperButtons from "@/components/tag-list/helperButtons";
 import ScrollToBottom from "@/components/molecules/scrollToBottom";
 import { toast } from "sonner";
-import SearchBar from "@/components/search";
-import useSearchTag from "@/hooks/useSearchTag";
+import i18next from "i18next";
 
 const TagList = () => {
   const { tags, clear } = useTagsStore();
@@ -20,11 +19,17 @@ const TagList = () => {
 
   const clearAllTags = () => {
     openDialog({
-      title: "Clear All",
-      hint: "Do you want to remove all tags ?",
+      title: i18next.t("setting.clearAll"),
+      hint: i18next.t("setting.hint", { value: i18next.t("global.tags") }),
       confirmHandler: () => {
         clear();
-        toast.success(<span>Deleted successfully.</span>);
+        toast.success(
+          <span>
+            {i18next.t("setting.successDelete", {
+              value: i18next.t("global.tags"),
+            })}
+          </span>
+        );
       },
     });
   };
@@ -42,7 +47,7 @@ const TagList = () => {
           <EmptyList onAddItem={() => router.push(tagRoutes.createTag.href)} />
         }
       >
-        <TagListHeader
+        <HelperButtons
           disableDelete={Object.values(tags).length === 0}
           disablePrint={Object.values(tags).length === 0}
           clearAllTags={clearAllTags}

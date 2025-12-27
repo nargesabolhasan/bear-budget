@@ -30,7 +30,7 @@ export default function IThemeProvider({ children }: ThemeProviderProps) {
   const resolvedTheme = theme === "system" ? systemTheme : theme;
 
   // Determine direction from language
-  const direction = lang === "fa" ? "rtl" : "ltr";
+  const direction = i18n.dir();
 
   // Create MUI theme with direction
   const muiTheme = useMemo(() => {

@@ -41,7 +41,7 @@ const EditTransaction = ({ params }: Props) => {
   return (
     <TransactionForm
       title={
-        <span className={"flex flex-row"}>
+        <span className={"flex flex-row"} dir={"ltr"}>
           <BackButton />
           <h4 className={"text-center grow"}>Edit Transaction</h4>
         </span>
