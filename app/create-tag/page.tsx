@@ -16,7 +16,7 @@ const CreateTagPage = () => {
     toast.success(
       <span>
         <strong>{formData[FormTagEnum.NAME]}</strong>{" "}
-        {i18next.t("createTag.success")}
+        {i18next.t("global.success")}
       </span>
     );
   };

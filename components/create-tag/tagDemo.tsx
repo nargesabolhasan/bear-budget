@@ -2,6 +2,7 @@ import React from "react";
 import { TagFormData } from "@/components/create-tag/type";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
+import i18next from "i18next";
 
 const TagDemo = ({
   demoTitle,
@@ -42,7 +43,9 @@ const TagDemo = ({
       >
         {Icon ? <Icon /> : <></>}
       </i>
-      <h4 className={"mx-auto text-placeholder"}>{transactionType}</h4>
+      <h4 className={"mx-auto text-placeholder"}>
+        {i18next.t(`transactions.${transactionType}`)}
+      </h4>
     </div>
   );
 };

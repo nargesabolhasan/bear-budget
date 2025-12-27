@@ -17,6 +17,7 @@ import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import TagAccordion from "@/components/create-budget/tagAccordion";
 import { FormBudgetTypeEnum } from "@/components/create-budget/types";
+import i18next from "i18next";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
@@ -89,7 +90,7 @@ const TransactionForm = ({
                 const numberValue = raw === "" ? "" : Number(raw);
                 onChange(numberValue);
               }}
-              label="Amount"
+              label={i18next.t("home.amount")}
               fullWidth
               error={!!errors[FormTransactionEnum.AMOUNT]}
               helperText={errors[FormTransactionEnum.AMOUNT]?.message}
@@ -115,7 +116,7 @@ const TransactionForm = ({
                 onChange(date);
               }}
               language={"fa"}
-              placeholder={"Date"}
+              placeholder={i18next.t("addTransaction.date")}
               error={errors[FormTransactionEnum.DATE]?.message}
             />
           </>
@@ -129,7 +130,7 @@ const TransactionForm = ({
         render={({ field }) => (
           <ITextField
             {...field}
-            label="Description"
+            label={i18next.t("addTransaction.description")}
             multiline
             rows={3}
             fullWidth
@@ -150,7 +151,7 @@ const TransactionForm = ({
           fontFamily: '"Inter", sans-serif !important',
         }}
       >
-        Submit
+        {i18next.t("global.submit")}
       </IButton>
     </form>
   );

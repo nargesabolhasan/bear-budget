@@ -27,7 +27,7 @@ const EditTagPage = ({ params }: Props) => {
     toast.success(
       <span>
         <strong>{formData[FormTagEnum.NAME]}</strong>
-        {i18next.t("createTag.update")}
+        {i18next.t("global.update")}
       </span>
     );
     router.back();

@@ -16,7 +16,11 @@
     "notFound": "Not Found!",
     "addNewItems": "Add New items",
     "emptyHint": "this list is empty click to add new item!",
-    "QM": "?"
+    "QM": "?",
+    "update": "updated successfully!",
+    "success": "added successfully!",
+    "updateValue": "{{value}} was updated successfully!",
+    "successValue": "new {{value}} added successfully!"
   },
   "setting": {
     "setting": "Setting",
@@ -53,8 +57,6 @@
     "selectIcon": "Select icon",
     "selectColor": "Select color",
     "tagDemo": "new tag demo :",
-    "success": "generated successfully!!",
-    "update": "was updated successfully!",
     "edit": "Edit Tag"
   },
   "transactions": {
@@ -74,5 +76,11 @@
     "hint": "Do you want to remove this :",
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "addTransaction": {
+    "selectTag": "Select Tag",
+    "date": "Date",
+    "description": "Description",
+    "emptyTagList": "you have to create a new tag! click to create new one."
   }
 }

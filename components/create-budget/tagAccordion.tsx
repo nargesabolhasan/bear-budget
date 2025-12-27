@@ -8,6 +8,7 @@ import { tagRoutes } from "@/routes/routes";
 import IAccordion from "@/components/molecules/accordion";
 import { TagsListType } from "@/store/tags/type";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
+import i18next from "i18next";
 
 type Props = {
   control: Control<any, any, any>;
@@ -24,7 +25,9 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       ariaControl: "tag-picker-aria",
       summary: (
         <div className={"h-full w-full flex flex-col gap-3"}>
-          <h4 className={"text-placeholder"}>select tag</h4>
+          <h4 className={"text-placeholder"}>
+            {i18next.t("addTransaction.selectTag")}
+          </h4>
           <Controller
             name={FormTransactionEnum.TAG}
             control={control}
@@ -43,7 +46,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
           when={Object.keys(tags).length > 0}
           fallback={
             <Link href={tagRoutes.createTag.href}>
-              you have to create a new tag! click to create new one.
+              {i18next.t("addTransaction.emptyTagList")}
             </Link>
           }
         >
@@ -71,7 +74,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
                 className={"text-primary"}
                 fontSize={"small"}
               />
-              Add new
+              {i18next.t("global.add")}
             </Link>
           </div>
         </Render>
