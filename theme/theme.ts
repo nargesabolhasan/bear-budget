@@ -83,6 +83,14 @@ const getTheme = (
           },
         },
       },
+      MuiSelect: {
+        styleOverrides: {
+          select: {
+            direction: direction,
+            textAlign: direction === "rtl" ? "end" : "start",
+          },
+        },
+      },
       MuiTableCell: {
         styleOverrides: {
           root: {

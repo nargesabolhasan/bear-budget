@@ -27,7 +27,6 @@ const ITextField = ({
           },
         }}
         {...props}
-        dir="rtl"
       />
 
       {showHint && <p className="text-xs text-placeholder">{hint}</p>}
