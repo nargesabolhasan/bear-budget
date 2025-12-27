@@ -5,6 +5,7 @@ import { convertToCurrency } from "@/utils/utils";
 import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
 import { twMerge } from "tailwind-merge";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import i18next from "i18next";
 
 const Summery = () => {
   const { groupedByType } = useTransactionStore();
@@ -21,7 +22,7 @@ const Summery = () => {
   const list = [
     {
       id: 1,
-      title: "Incomes:",
+      title: i18next.t("home.incomes"),
       amount: convertToCurrency(income),
       icon: WalletMoney,
       color: "var(--color-primary)",
@@ -29,7 +30,7 @@ const Summery = () => {
     },
     {
       id: 2,
-      title: "Outgoing :",
+      title: i18next.t("home.outgoing"),
       amount: convertToCurrency(totalOutgoing),
       icon: ShoppingCart,
       color: "var(--color-pink)",
@@ -37,7 +38,7 @@ const Summery = () => {
     },
     {
       id: 3,
-      title: "Savings :",
+      title: i18next.t("home.savings"),
       amount: convertToCurrency(save),
       icon: TicketStar,
       color: "var(--color-purple)",
@@ -45,7 +46,7 @@ const Summery = () => {
     },
     {
       id: 4,
-      title: "Remaining :",
+      title: i18next.t("home.remaining"),
       amount: convertToCurrency(remaining),
       icon: Star,
       color: "var(--color-pastel_blue)",

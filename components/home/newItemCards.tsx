@@ -13,12 +13,13 @@ import { convertToCurrency } from "@/utils/utils";
 import {
   Table,
   TableBody,
-  TableContainer,
   TableCell,
+  TableContainer,
   TableRow,
 } from "@mui/material";
 import { tagRoutes, transactionRoutes } from "@/routes/routes";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import i18next from "i18next";
 
 const NewItemCards = () => {
   const { tags } = useTagsStore();
@@ -28,8 +29,8 @@ const NewItemCards = () => {
     getCurrentYear("fa"),
     getCurrentMonthNumber("fa")
   )[0];
-  const lastTag = Object.values(tags)[0];
-  const secondTag = Object.values(tags)[1];
+  const lastTag = Object.values(tags).reverse()[0];
+  const secondTag = Object.values(tags).reverse()[1];
 
   const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
   const IconSecond =
@@ -64,21 +65,23 @@ const NewItemCards = () => {
           when={!!lastTransaction}
           fallback={
             <FallBack
-              title="Create new transaction"
+              title={i18next.t("home.create", {
+                value: i18next.t("global.transactions"),
+              })}
               href={transactionRoutes.addTranslation.href}
             />
           }
         >
           <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
             <TipsAndUpdatesIcon />
-            <h4 className={"grow"}>Recent :</h4>
+            <h4 className={"grow"}> {i18next.t("home.recent")} :</h4>
             <Link
               href={transactionRoutes.translationList.href}
               className={
                 "bg-neutral text-secondary p-1 text-sm mx-auto rounded-full px-2"
               }
             >
-              see more
+              {i18next.t("home.seeMore")}
             </Link>
           </span>
           <TableContainer>
@@ -118,19 +121,24 @@ const NewItemCards = () => {
         <Render
           when={!!lastTag}
           fallback={
-            <FallBack title="Create new tag" href={tagRoutes.createTag.href} />
+            <FallBack
+              title={i18next.t("home.create", {
+                value: i18next.t("global.tags"),
+              })}
+              href={tagRoutes.createTag.href}
+            />
           }
         >
           <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
             <AssistantIcon />
-            <h4 className={"grow"}>new Tags:</h4>
+            <h4 className={"grow"}>{i18next.t("home.recent")}</h4>
             <Link
               href={tagRoutes.tagList.href}
               className={
                 "bg-neutral text-secondary py-1 px-2 text-sm rounded-full"
               }
             >
-              see more
+              {i18next.t("home.seeMore")}
             </Link>
           </span>
           <span

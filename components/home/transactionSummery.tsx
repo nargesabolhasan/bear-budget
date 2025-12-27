@@ -19,6 +19,8 @@ import Link from "next/link";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
 import { useQuery } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
+import i18n from "i18next";
+import i18next from "i18next";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
@@ -44,9 +46,9 @@ const TransactionSummery = () => {
       }
     >
       <div className={"flex flex-row justify-center items-center gap-1"}>
-        <Image src="/bear.png" alt="icon" width={100} height={100} />
+        <Image src="/bear.png" alt="icon" width={100} height={100} priority />
         <h2 className={"text-xl grow text-brown"}>
-          hello{" "}
+          {i18n.t("home.hello")}{" "}
           {isLoading ? (
             <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
           ) : (
@@ -61,15 +63,17 @@ const TransactionSummery = () => {
               <TableRow>
                 <TableCell align="right">
                   <Typography style={{ fontWeight: "bold" }}>
-                    Grouped
+                    {i18next.t("home.grouped")}
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography style={{ fontWeight: "bold" }}>Amount</Typography>
+                  <Typography style={{ fontWeight: "bold" }}>
+                    {i18next.t("home.amount")}
+                  </Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography style={{ fontWeight: "bold" }}>
-                    Entries
+                    {i18next.t("home.entries")}
                   </Typography>
                 </TableCell>
               </TableRow>
@@ -113,7 +117,7 @@ const TransactionSummery = () => {
                       <TableCell align="right">
                         <Link href={transactionRoutes.addTranslation.href}>
                           <AddCircleTwoToneIcon className={"mx-1"} />
-                          ADD
+                          {i18next.t("global.add")}
                         </Link>
                       </TableCell>
                       <TableCell align="right">0 $</TableCell>
