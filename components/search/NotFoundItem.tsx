@@ -9,7 +9,14 @@ const NotFoundItem = () => {
       }
     >
       not found
-      <Image src="/empty.png" alt="error" width={150} height={100} />
+      <Image
+        src="/empty.png"
+        alt="error"
+        width={150}
+        height={300}
+        style={{ height: "auto" }}
+        priority
+      />
     </div>
   );
 };

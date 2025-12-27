@@ -15,7 +15,9 @@ const NotFound = () => {
           alt="404"
           className={"w-full md:w-[300px]"}
           width={200}
-          height={200}
+          height={300}
+          style={{ height: "auto" }}
+          priority
         />
         <h3 className={"font-semibold text-[50px] text-brown_secondary"}>
           Not Found

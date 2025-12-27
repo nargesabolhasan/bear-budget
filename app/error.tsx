@@ -11,7 +11,14 @@ export default function Error({
 }) {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full max-w-3xl mx-auto">
-      <Image src="/empty.png" alt="error" width={150} height={100} />
+      <Image
+        src="/empty.png"
+        alt="error"
+        width={150}
+        height={300}
+        style={{ height: "auto" }}
+        priority
+      />
       <h2 className="text-2xl lg:text-3xl font-bold">Something went wrong!</h2>
       <p className="text-gray-500">Please try again later.</p>
       <IButton onClick={reset}>Try again</IButton>
