@@ -1,14 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  IconButton,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AccordionItemsType, IconOption } from "@/types/global";
-import { margin } from "@mui/system";
 
 export type AccordionProps = {
   items: AccordionItemsType[];

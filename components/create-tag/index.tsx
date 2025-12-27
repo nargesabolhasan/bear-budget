@@ -156,6 +156,7 @@ const CreateTagForm = ({
             fullWidth
             error={!!errors[FormTagEnum.NAME]}
             helperText={errors[FormTagEnum.NAME]?.message}
+            autoComplete="name"
           />
         )}
       />

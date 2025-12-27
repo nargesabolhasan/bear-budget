@@ -19,13 +19,13 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { NavItemType } from "@/types/global";
 import { usePathname } from "next/navigation";
+import { navItems } from "@/constant/navItems";
 
 export type HeaderProps = {
   title?: string;
-  navItems: NavItemType[];
 };
 
-const IHeader = ({ navItems, title = "Bear Budget" }: HeaderProps) => {
+const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);

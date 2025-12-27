@@ -20,6 +20,7 @@ import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import { useTagsStore } from "@/store/tags";
 import IPagination from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
+import EmptyList from "@/components/molecules/emptyList";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -111,7 +112,7 @@ const BudgetList = () => {
 
       {/* Empty State */}
       <Render when={filteredTransactions.size === 0}>
-        <p className="text-placeholder mt-10">No Budget for this Month</p>
+        <EmptyList />
       </Render>
 
       {/* List */}

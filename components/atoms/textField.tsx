@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField, TextFieldProps } from "@mui/material";
+import i18n from "i18next";
 
 export type TextFieldType = Omit<TextFieldProps, "variant"> & {
   hint?: string;
@@ -20,6 +21,9 @@ const ITextField = ({
           "& .MuiOutlinedInput-root": {
             borderRadius: borderRadius ?? "20px",
             backgroundColor: "var(--color-surface)",
+          },
+          "& .MuiOutlinedInput-notchedOutline legend": {
+            marginRight: i18n.dir() === "rtl" ? "-16px" : 0,
           },
         }}
         {...props}
