@@ -63,7 +63,7 @@ const TransactionSummery = () => {
               <TableRow>
                 <TableCell align="right">
                   <Typography style={{ fontWeight: "bold" }}>
-                    {i18next.t("home.grouped")}
+                    {i18next.t("home.type")}
                   </Typography>
                 </TableCell>
                 <TableCell align="right">

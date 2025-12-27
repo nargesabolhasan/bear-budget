@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import IconPicker from "@/components/create-tag/iconPicker";
 import { iconList } from "@/constant/icons";
 import { Controller, useForm } from "react-hook-form";
@@ -16,6 +16,7 @@ import ITextField from "@/components/atoms/textField";
 import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
+import i18next from "i18next";
 
 const CreateTagForm = ({
   submitHandler,
@@ -28,8 +29,10 @@ const CreateTagForm = ({
   const schema = yup.object({
     [FormTagEnum.NAME]: yup
       .string()
-      .required("name is required")
-      .max(40, "must be less than 40 characters!"),
+      .required(
+        i18next.t("global.required", { value: i18next.t("global.name") })
+      )
+      .max(40, i18next.t("global.charLimit", { value: 40 })),
     [FormTagEnum.ICON]: yup.string().required("icon is required"),
     [FormTagEnum.COLOR]: yup.mixed<ColorOption>().required("color is required"),
     [FormTagEnum.TRANSACTION_TYPE]: yup
@@ -71,7 +74,7 @@ const CreateTagForm = ({
       panel: "panel-icon",
       summary: (
         <div className={"h-full w-full flex flex-col gap-2"}>
-          <h4>select icon</h4>
+          <h4>{i18next.t("createTag.selectIcon")}</h4>
           <Controller
             control={control}
             name={FormTagEnum.ICON}
@@ -106,7 +109,7 @@ const CreateTagForm = ({
       panel: "panel-color",
       summary: (
         <div className={"h-full w-full flex flex-col gap-2"}>
-          <h4>select color</h4>
+          <h4>{i18next.t("createTag.selectColor")}</h4>
           <Controller
             control={control}
             name={FormTagEnum.COLOR}
@@ -152,7 +155,7 @@ const CreateTagForm = ({
         render={({ field }) => (
           <ITextField
             {...field}
-            label="Tag Name"
+            label={i18next.t("createTag.tagName")}
             fullWidth
             error={!!errors[FormTagEnum.NAME]}
             helperText={errors[FormTagEnum.NAME]?.message}
@@ -165,36 +168,41 @@ const CreateTagForm = ({
         summeryClassName={"m-0! h-fit"}
         className={"p-4 border border-placeholder_light"}
       />
-      <Controller
-        control={control}
-        name={FormTagEnum.TRANSACTION_TYPE}
-        render={({ field }) => (
-          <Select
-            label="Type"
-            {...field}
-            value={field.value ?? ""}
-            sx={{
-              borderRadius: "20px",
-              backgroundColor: "var(--color-surface)",
-            }}
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  borderRadius: "20px",
+      <FormControl fullWidth variant="outlined">
+        <InputLabel id="transaction-type-label">
+          {i18next.t("home.type")}
+        </InputLabel>
+        <Controller
+          control={control}
+          name={FormTagEnum.TRANSACTION_TYPE}
+          render={({ field }) => (
+            <Select
+              label="Type"
+              {...field}
+              value={field.value ?? ""}
+              sx={{
+                borderRadius: "20px",
+                backgroundColor: "var(--color-surface)",
+              }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    borderRadius: "20px",
+                  },
                 },
-              },
-            }}
-          >
-            {Object.values(TransactionEnum).map((value) => (
-              <MenuItem key={value} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </Select>
-        )}
-      />
+              }}
+            >
+              {Object.values(TransactionEnum).map((value) => (
+                <MenuItem key={value} value={value}>
+                  {i18next.t(`transactions.${value}`)}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+        />
+      </FormControl>
       <TagDemo
-        demoTitle={"new tag demo :"}
+        demoTitle={i18next.t("createTag.tagDemo")}
         name={watch(FormTagEnum.NAME)}
         transactionType={watch(FormTagEnum.TRANSACTION_TYPE)}
         icon={watch(FormTagEnum.ICON)}
@@ -213,7 +221,7 @@ const CreateTagForm = ({
           fontFamily: '"Inter", sans-serif !important',
         }}
       >
-        Submit
+        {i18next.t("global.submit")}
       </IButton>
     </form>
   );

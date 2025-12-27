@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { FORMS_WRAPPER_CLASS } from "@/constant/className";
 import BackButton from "@/components/molecules/backButton";
 import { useRouter } from "next/navigation";
+import i18next from "i18next";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,8 @@ const EditTagPage = ({ params }: Props) => {
     editTag(defaultValue.id, formData);
     toast.success(
       <span>
-        <strong>{formData[FormTagEnum.NAME]}</strong> was updated successfully!
+        <strong>{formData[FormTagEnum.NAME]}</strong>
+        {i18next.t("createTag.update")}
       </span>
     );
     router.back();
@@ -38,7 +40,9 @@ const EditTagPage = ({ params }: Props) => {
         title={
           <span className={"flex flex-row"}>
             <BackButton />
-            <h4 className={"text-center grow"}>Edit Tag</h4>
+            <h4 className={"text-center grow"}>
+              {i18next.t("createTag.edit")}
+            </h4>
           </span>
         }
         {...defaultValue}

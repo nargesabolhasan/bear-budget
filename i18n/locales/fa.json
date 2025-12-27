@@ -5,7 +5,11 @@
     "budgets": "بودجه ها",
     "fa": "فارسی",
     "en": "انگلیسی",
-    "add": "افزودن"
+    "add": "افزودن",
+    "submit": "تایید",
+    "required": " {{value}} اجباری است.",
+    "charLimit": "باید کمتر از {{value}} کاراکتر باشد",
+    "name": "نام"
   },
   "setting": {
     "setting": "تنضیمات",
@@ -21,13 +25,14 @@
     "home": "خانه",
     "newTag": "افزودن برچسب",
     "newTransaction": "افزودن تراکنش",
-    "newBudget": "افزودن بودجه"
+    "newBudget": "افزودن بودجه",
+    "submit": "افزودن"
   },
   "home": {
     "hello": "سلام",
     "entries": "تعداد",
     "amount": "مبلغ",
-    "grouped": "گروه",
+    "type": "نوع",
     "create": "افزودن {{value}}ی جدید",
     "recent": "جدیدترین ها",
     "seeMore": "مشاهده",
@@ -36,5 +41,21 @@
     "outgoing": "مخارج :",
     "savings": "ذخیره کل :",
     "remaining": "باقی مانده :"
+  },
+  "createTag": {
+    "tagName": "نام برچسب",
+    "selectIcon": "انتخاب آیکن",
+    "selectColor": "انتخاب رنگ",
+    "tagDemo": "برچسب در حال ساخت:",
+    "success": "با موفقیت اضافه شد.",
+    "update": "با موفقیت ویرایش شد.",
+    "edit": "ویرایش برچشب"
+  },
+  "transactions": {
+    "Income": "درآمد",
+    "Save": "ذخیره",
+    "Loaned": "بستان کاری",
+    "Debt": "بده کاری",
+    "Expense": "مخارج"
   }
 }

@@ -5,7 +5,11 @@
     "budgets": "Budgets",
     "fa": "Persian",
     "en": "English",
-    "add": "Add"
+    "add": "Add",
+    "submit": "Submit",
+    "required": "{{value}} is required",
+    "charLimit": "must be less than {{value}} characters!",
+    "name": "name"
   },
   "setting": {
     "setting": "Setting",
@@ -27,7 +31,7 @@
     "hello": "hello",
     "entries": "Entries",
     "amount": "Amount",
-    "grouped": "Grouped",
+    "type": "Type",
     "create": "Create new {{value}}",
     "recent": "Recents",
     "seeMore": "see more",
@@ -36,5 +40,21 @@
     "outgoing": "Outgoing :",
     "savings": "Savings :",
     "remaining": "Remaining :"
+  },
+  "createTag": {
+    "tagName": "Tag Name",
+    "selectIcon": "Select icon",
+    "selectColor": "Select color",
+    "tagDemo": "new tag demo :",
+    "success": "generated successfully!!",
+    "update": "was updated successfully!",
+    "edit": "Edit Tag"
+  },
+  "transactions": {
+    "Income": "Income",
+    "Save": "Save",
+    "Credit": "Credit",
+    "Debit": "Debit",
+    "Expense": "Expense"
   }
 }
