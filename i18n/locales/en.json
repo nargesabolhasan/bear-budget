@@ -77,10 +77,26 @@
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
+  "contextMenu": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
   "addTransaction": {
     "selectTag": "Select Tag",
     "date": "Date",
     "description": "Description",
     "emptyTagList": "you have to create a new tag! click to create new one."
+  },
+  "transactionList": {
+    "deleteAll": "All transactions from {{value}} will be deleted.",
+    "filter": "Filter",
+    "grouped": "Grouped",
+    "selectMonth": "Select Month",
+    "all": "All",
+    "emptyGroup": "empty group !",
+    "settled": "Settled",
+    "settlement": "Settlement",
+    "settledHint": "has been settled",
+    "settledOn": "Settled on"
   }
 }

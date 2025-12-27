@@ -7,6 +7,7 @@ import ContextMenu, {
 import { Render } from "@/utils/render";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { TransactionEnum } from "@/types/global";
+import i18n from "i18next";
 
 export type NavItemsType = {
   id: number;
@@ -49,7 +50,8 @@ const FilterButtons = ({
       size={"small"}
       className={"!h-[40px]"}
     >
-      {(showContextMenu && selectedMenuFilter) || item.title}
+      {(showContextMenu && i18n.t(`transactions.${selectedMenuFilter}`)) ||
+        i18n.t(`transactionList.${item.title}`)}
       {showContextMenu && <ArrowDropDownIcon />}
     </IButton>
   );

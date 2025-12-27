@@ -78,10 +78,26 @@
     "cancel": "لغو",
     "confirm": "تایید"
   },
+  "contextMenu": {
+    "edit": "ویرایش",
+    "delete": "حذف"
+  },
   "addTransaction": {
     "selectTag": "انتخاب برچسب",
     "date": "تاریخ",
     "description": "توضیحات",
     "emptyTagList": "شما هیچ برچسبی نداری. برای ساخت برچسب جدید کلیک کن!"
+  },
+  "transactionList": {
+    "deleteAll": "تمام تراکنش های {{value}} حذف بشن؟",
+    "filter": "فیلتر",
+    "grouped": "گروه بندی",
+    "selectMonth": "انتخاب ماه",
+    "all": "همه",
+    "emptyGroup": "گروه خالی است!",
+    "settled": "تسویه کردن",
+    "settlement": "تسویه کردن",
+    "settledHint": "تسویه شده است",
+    "settledOn": "تسویه شده در"
   }
 }

@@ -24,17 +24,19 @@ import {
 import SearchBar from "@/components/search";
 import { useTagsStore } from "@/store/tags";
 import useSearchTransaction from "@/hooks/useSearchTransaction";
+import i18next from "i18next";
+import i18n from "i18next";
 
 const navItems: NavItemsType[] = [
   {
     id: ViewEnums.PREV_MONTHS,
-    title: "Previous months",
+    title: "selectMonth",
   },
-  { id: ViewEnums.ALL, title: "All" },
-  { id: ViewEnums.GROUPED, title: "Grouped" },
+  { id: ViewEnums.ALL, title: "all" },
+  { id: ViewEnums.GROUPED, title: "grouped" },
   {
     id: ViewEnums.FILTERS,
-    title: "Filter",
+    title: "filter",
     showContextMenu: true,
     contextMenu: filterTransactionList(),
   },
@@ -67,11 +69,17 @@ const TransactionListComponent = ({
 
   const clearAllTransactions = () => {
     openDialog({
-      title: "Clear All",
+      title: i18next.t("setting.clearAll"),
       hint: dialogTitle,
       confirmHandler: () => {
         clearAll();
-        toast.success(<span>Deleted successfully.</span>);
+        toast.success(
+          <span>
+            {i18next.t("setting.successDelete", {
+              value: i18next.t("global.transactions"),
+            })}
+          </span>
+        );
       },
     });
   };

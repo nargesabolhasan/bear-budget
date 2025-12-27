@@ -16,6 +16,7 @@ import BeenhereIcon from "@mui/icons-material/Beenhere";
 import { useTransactionStore } from "@/store/transaction";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { TagsListType } from "@/store/tags/type";
+import i18next from "i18next";
 
 type Props = {
   transaction: TransactionType;
@@ -121,7 +122,7 @@ const MainTransactionInfo = ({
             }
             onClick={() => setOpen(true)}
           >
-            Settled
+            {i18next.t("transactionList.settled")}
           </span>
         )}
         {showSettledDescription && (
@@ -133,7 +134,8 @@ const MainTransactionInfo = ({
                 className={"text-primary mr-1"}
                 fontSize={"small"}
               />
-              Settled on {transaction?.settled?.date}
+              {i18next.t("transactionList.settledOn")}{" "}
+              {transaction?.settled?.date}
             </p>
           </div>
         )}
@@ -168,7 +170,8 @@ const MainTransactionInfo = ({
               }
             >
               <BeenhereIcon className={"text-primary mr-2"} />
-              {convertToCurrency(transaction.amount)} $ has been settled
+              {convertToCurrency(transaction.amount)} ${" "}
+              {i18next.t("transactionList.settledHint")}
             </p>
             <Controller
               name={ModalFormEnum.SETTLED}
@@ -178,7 +181,7 @@ const MainTransactionInfo = ({
                   id="agree"
                   checked={field.value}
                   onChange={(val) => field.onChange(val)}
-                  label={"Settlement"}
+                  label={i18next.t("transactionList.settlement")}
                 />
               )}
             />
@@ -194,7 +197,7 @@ const MainTransactionInfo = ({
                       onChange(date);
                     }}
                     language={"fa"}
-                    placeholder={"Date"}
+                    placeholder={i18next.t("addTransaction.date")}
                   />
                 </>
               )}
@@ -205,10 +208,10 @@ const MainTransactionInfo = ({
               }
             >
               <IButton type={"submit"} disabled={!isValid}>
-                Done
+                {i18next.t("dialog.confirm")}
               </IButton>
               <IButton variant={"outlined"} onClick={() => setOpen(false)}>
-                Cancel
+                {i18next.t("dialog.cancel")}
               </IButton>
             </div>
           </form>

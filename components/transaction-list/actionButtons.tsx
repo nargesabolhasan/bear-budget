@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { Edit2, Trash } from "iconsax-react";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { TagsListType } from "@/store/tags/type";
+import i18next from "i18next";
 
 const ActionButtons = ({
   transaction,
@@ -56,7 +57,7 @@ const ActionButtons = ({
             color={"var(--color-hover_primary)"}
             variant="Bulk"
           />
-          Edit
+          {i18next.t("contextMenu.edit")}
         </span>
       ),
     },
@@ -68,7 +69,7 @@ const ActionButtons = ({
           className={"!text-sm flex flex-row gap-2 items-center justify-start"}
         >
           <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
-          Delete
+          {i18next.t("contextMenu.delete")}
         </span>
       ),
     },

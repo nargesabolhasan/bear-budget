@@ -12,6 +12,7 @@ import { Render } from "@/utils/render";
 import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
 import { TagsListType } from "@/store/tags/type";
+import i18next from "i18next";
 
 type Props = {
   transactions: TransactionInfoType;
@@ -29,7 +30,6 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
         "w-full md:w-[500px] flex flex-col items-center justify-center mx-auto"
       }
     >
-      <PrinterViewTitle title={`${transactionType}s :`} />
       <div
         className={twMerge(
           "flex flex-row items-center justify-between overflow-x-auto text-lg w-full p-3 rounded-xl rounded-b-none",
@@ -42,7 +42,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
             className={"font-semibold text-dark"}
             style={{ fontFamily: "PlaywriteNZGuides" }}
           >
-            {transactionType}
+            {i18next.t(`transactions.${transactionType}`)}
           </h3>
         </span>
         <h3 className="flex flex-row gap-3 text-dark">
@@ -52,7 +52,9 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
       <Render
         when={!!transactions?.transactions}
         fallback={
-          <span className={"p-3 w-[280px] text-center"}>empty group !</span>
+          <span className={"p-3 w-[280px] text-center"}>
+            {i18next.t("transactionList.emptyGroup")}
+          </span>
         }
       >
         <>
