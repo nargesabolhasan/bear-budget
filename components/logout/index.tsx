@@ -12,6 +12,7 @@ import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
 import { useBudgetStore } from "@/store/budget";
 import { openDialog } from "@/components/molecules/dialogContainer";
+import i18next from "i18next";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -25,11 +26,7 @@ export default function LogoutButton() {
       return res.data;
     },
     onSuccess: () => {
-      toast.success(
-        <span>
-          <strong>Logout successfully!</strong> wait to redirect to login.
-        </span>
-      );
+      toast.success(<span>{i18next.t("logout.success")}</span>);
       clearBudgets();
       clearTags();
       clearAllTransactions();
@@ -46,13 +43,8 @@ export default function LogoutButton() {
 
   const handleLogout = () => {
     openDialog({
-      title: "Logout!",
-      hint: (
-        <span>
-          All <strong>Budgets</strong> , <strong>Transactions</strong> and{" "}
-          <strong>Tags</strong> will remove for forever!
-        </span>
-      ),
+      title: i18next.t("logout.title"),
+      hint: <span>{i18next.t("logout.hint")}</span>,
       confirmHandler: () => {
         logoutMutation();
       },
@@ -65,7 +57,11 @@ export default function LogoutButton() {
       disabled={isPending}
       className={"w-full !text-dark"}
     >
-      {isPending ? <CircularProgress color={"info"} size={30} /> : "Logout"}
+      {isPending ? (
+        <CircularProgress color={"info"} size={30} />
+      ) : (
+        i18next.t("logout.title")
+      )}
     </IButton>
   );
 }

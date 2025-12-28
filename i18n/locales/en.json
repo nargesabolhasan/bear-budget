@@ -122,5 +122,17 @@
     "spent": "Spent",
     "overflow": "overflow !",
     "inMonth": " (in month {{value}})"
+  },
+  "login": {
+    "username": "username",
+    "loginFailed": "Login failed",
+    "welcome": "Welcome to Bear Budget!",
+    "somethingWentWrong": "Something went wrong! Try again.",
+    "enterName": "Enter your name"
+  },
+  "logout": {
+    "title": "Logout",
+    "hint": " All of Budgets,Transactions and Tags will remove for forever!",
+    "success": "Logout successfully! wait to redirect to login."
   }
 }

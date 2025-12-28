@@ -7,6 +7,7 @@ import LoginForm from "@/components/login/loginForm";
 import api, { API_URL } from "@/utils/axios";
 import Image from "next/image";
 import { toast } from "sonner";
+import i18next from "i18next";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,19 +17,19 @@ export default function LoginPage() {
       const res = await api.post(API_URL.login.api, { username });
 
       if (!res.data.ok) {
-        throw new Error(res.data.error || "Login failed");
+        throw new Error(res.data.error || i18next.t("login.loginFailed"));
       }
 
       return res.data;
     },
 
     onSuccess: () => {
-      toast.success("Welcome to Bear Budget!");
+      toast.success(i18next.t("login.welcome"));
       router.push("/");
     },
 
     onError: (err: any) => {
-      toast.error(err || "Something went wrong! Try again.");
+      toast.error(err || i18next.t("login.somethingWentWrong"));
     },
   });
 
@@ -48,13 +49,13 @@ export default function LoginPage() {
           className={"text-2xl text-center"}
           style={{ fontFamily: "PlaywriteNZGuides" }}
         >
-          Welcome to Bear Budget!
+          {i18next.t("login.welcome")}
         </b>
       </div>
       <LoginForm
         onSubmit={handleSubmit}
         loading={loginMutation.isPending}
-        title={"Enter your name"}
+        title={i18next.t("login.enterName")}
       />
     </div>
   );
