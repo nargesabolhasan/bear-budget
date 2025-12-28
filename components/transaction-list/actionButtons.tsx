@@ -14,6 +14,7 @@ import { Edit2, Trash } from "iconsax-react";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { TagsListType } from "@/store/tags/type";
 import i18next from "i18next";
+import { convertToCurrency } from "@/utils/utils";
 
 const ActionButtons = ({
   transaction,
@@ -28,12 +29,18 @@ const ActionButtons = ({
 
   const handleDelete = (transaction: TransactionType) => {
     openDialog({
-      title: "Remove transaction",
+      title: i18next.t("dialog.remove", {
+        value: i18next.t("global.transaction"),
+      }),
       hint: (
         <span>
-          Remove : <strong>{transaction.amount}</strong> in{" "}
-          <strong>{tags?.[transaction.tag]?.name}</strong> tag as{" "}
-          <strong>{tags?.[transaction.tag]?.transactionType}</strong>
+          {i18next.t("transactionList.removeHint", {
+            amount: convertToCurrency(transaction.amount),
+            tag: tags?.[transaction.tag]?.name,
+            type: i18next.t(
+              `transactions.${tags?.[transaction.tag]?.transactionType}`
+            ),
+          })}
         </span>
       ),
       confirmHandler: () => {

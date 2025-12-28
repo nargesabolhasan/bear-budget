@@ -73,7 +73,7 @@
     "selectMonth": "انتخاب ماه"
   },
   "dialog": {
-    "remove": "حذف",
+    "remove": "حذف {{value}}",
     "hint": "آیا می خوای اینو حذف کنی:",
     "cancel": "لغو",
     "confirm": "تایید"
@@ -81,6 +81,14 @@
   "contextMenu": {
     "edit": "ویرایش",
     "delete": "حذف"
+  },
+  "modal": {
+    "selected": "انتخاب شده",
+    "select": "انتخاب {{value}}",
+    "Month": "ماه",
+    "month": "ماه",
+    "Year": "سال",
+    "filterTransaction": "فیلتر کردن تراکنش ها"
   },
   "addTransaction": {
     "selectTag": "انتخاب برچسب",
@@ -98,6 +106,8 @@
     "settled": "تسویه کردن",
     "settlement": "تسویه کردن",
     "settledHint": "تسویه شده است",
-    "settledOn": "تسویه شده در"
+    "settledOn": "تسویه شده در",
+    "removeHint": "آیا می خوای {{amount}} که برای {{tag}} و جزو {{type}} تو هست رو حذف کنی؟",
+    "groupedByType": "دسته بندی شده بر اساس نوع تراکنش"
   }
 }

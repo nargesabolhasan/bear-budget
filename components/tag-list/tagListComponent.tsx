@@ -27,7 +27,7 @@ const TagListDemo = () => {
 
   const handleDelete = (tag: TagType) => {
     openDialog({
-      title: i18next.t("dialog.remove"),
+      title: i18next.t("dialog.remove", { value: i18next.t("global.tag") }),
       hint: (
         <span>
           {i18next.t("dialog.hint")} <strong>{tag.name}</strong>{" "}

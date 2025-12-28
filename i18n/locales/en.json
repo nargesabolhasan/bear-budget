@@ -72,14 +72,22 @@
     "selectMonth": "Select Month"
   },
   "dialog": {
-    "remove": "Remove",
+    "remove": "Remove {{value}}",
     "hint": "Do you want to remove this :",
     "cancel": "Cancel",
     "confirm": "Confirm"
   },
   "contextMenu": {
     "edit": "Edit",
-    "delete": "Delete"
+    "tdelete": "Delete"
+  },
+  "modal": {
+    "selected": "Selected",
+    "select": "Select {{value}}",
+    "Month": "Month",
+    "month": "month",
+    "Year": "Year",
+    "filterTransaction": "Filter Transaction"
   },
   "addTransaction": {
     "selectTag": "Select Tag",
@@ -97,6 +105,8 @@
     "settled": "Settled",
     "settlement": "Settlement",
     "settledHint": "has been settled",
-    "settledOn": "Settled on"
+    "settledOn": "Settled on",
+    "removeHint": "Do you want to remove {{amount}} in {{tag}} tag as {{type}} ?",
+    "groupedByType": "Grouped by Type of transactions :"
   }
 }

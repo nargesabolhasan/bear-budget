@@ -9,6 +9,7 @@ import {
 } from "@/utils/dateList";
 import IButton from "@/components/atoms/button";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
+import i18next from "i18next";
 
 export type DatePickerForm = { Month: string; Year: number };
 
@@ -60,7 +61,7 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
           fontWeight: 400,
         }}
       >
-        Filter Transaction
+        {i18next.t("modal.filterTransaction")}
       </IButton>
     </form>
   );

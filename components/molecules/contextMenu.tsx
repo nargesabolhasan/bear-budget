@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { TransactionEnum } from "@/types/global";
 import { twMerge } from "tailwind-merge";
+import i18next from "i18next";
 
 export type ContextMenuProps = {
   id: number;
@@ -19,6 +20,7 @@ type Props = {
   defaultSelect?: number | string;
   className?: string;
   resetAfterSelect?: boolean;
+  translateMode?: boolean;
 };
 
 export default function ContextMenu({
@@ -27,6 +29,7 @@ export default function ContextMenu({
   onSelectAction,
   defaultSelect = 0,
   resetAfterSelect = false,
+  translateMode = false,
   className,
 }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -87,7 +90,11 @@ export default function ContextMenu({
               item.id === selectedId && "!bg-primary"
             )}
           >
-            {item.title}
+            {translateMode ? (
+              <>{i18next.t(`transactions.${item.title}`)}</>
+            ) : (
+              <>{item.title}</>
+            )}
           </MenuItem>
         ))}
       </Menu>

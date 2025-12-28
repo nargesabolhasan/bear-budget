@@ -80,6 +80,7 @@ const FilterButtons = ({
                 menuItems={item?.contextMenu as ContextMenuProps}
                 onSelectAction={handleSelectItem}
                 defaultSelect={0}
+                translateMode
               >
                 <NavButton
                   isActive={isActive}

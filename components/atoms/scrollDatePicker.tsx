@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
+import i18next from "i18next";
 
 type Props = {
   dateList: string[] | number[];
@@ -110,7 +111,9 @@ export default function ScrollDatePicker({
     <div className="flex flex-col items-center my-2 transition-all duration-500">
       {showTitle && (
         <h2 className="text-md md:text-xl mb-4 text-placeholder">
-          Select {title}
+          {i18next.t("modal.select", {
+            value: i18next.t(`modal.${title}`),
+          })}
         </h2>
       )}
 
@@ -134,7 +137,8 @@ export default function ScrollDatePicker({
       </div>
 
       <p className="mt-4 text-xs md:text-base text-placeholder">
-        Selected: <b className="text-xs md:text-sm">{watch(title)}</b>
+        {i18next.t("modal.selected")}:{" "}
+        <b className="text-xs md:text-sm">{watch(title)}</b>
       </p>
     </div>
   );

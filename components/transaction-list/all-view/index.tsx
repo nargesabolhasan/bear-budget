@@ -11,6 +11,7 @@ import useSearchTransaction from "@/hooks/useSearchTransaction";
 import { Render } from "@/utils/render";
 import Image from "next/image";
 import NotFoundItem from "@/components/search/NotFoundItem";
+import i18next from "i18next";
 
 const AllTransactions = ({
   transactions,
@@ -29,7 +30,13 @@ const AllTransactions = ({
 
   return (
     <div className={"md:w-[500px] flex flex-col gap-3"}>
-      <PrinterViewTitle title={"All Transactions:"} />
+      <PrinterViewTitle
+        title={
+          i18next.t("transactionList.all") +
+          " " +
+          i18next.t("global.transactions")
+        }
+      />
       {transactions.length > 0 && (
         <SearchBar onSearch={onSearch} className={"mb-3"} />
       )}
