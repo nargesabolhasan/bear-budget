@@ -6,6 +6,7 @@ import { useBudgetStore } from "@/store/budget";
 import { BudgetType } from "@/types/global";
 import CreateBudget from "@/components/create-budget";
 import { useRouter } from "next/navigation";
+import i18next from "i18next";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -22,8 +23,9 @@ const Page = ({ params }: Props) => {
     editBudget(defaultValue.id, formData);
     toast.success(
       <span>
-        Budget <strong>was updated</strong>
-        successfully!
+        {i18next.t("global.updateValue", {
+          value: i18next.t("global.budget"),
+        })}
       </span>
     );
     router.back();

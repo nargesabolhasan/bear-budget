@@ -8,6 +8,8 @@
     "budget": "بودجه",
     "fa": "فارسی",
     "en": "انگلیسی",
+    "icon": "آیکون",
+    "color": "رنگ",
     "add": "افزودن",
     "submit": "تایید",
     "required": " {{value}} اجباری است.",
@@ -94,7 +96,8 @@
     "selectTag": "انتخاب برچسب",
     "date": "تاریخ",
     "description": "توضیحات",
-    "emptyTagList": "شما هیچ برچسبی نداری. برای ساخت برچسب جدید کلیک کن!"
+    "emptyTagList": "شما هیچ برچسبی نداری. برای ساخت برچسب جدید کلیک کن!",
+    "transactionType": "نوع تراکنش"
   },
   "transactionList": {
     "deleteAll": "تمام تراکنش های {{value}} حذف بشن؟",
@@ -108,6 +111,17 @@
     "settledHint": "تسویه شده است",
     "settledOn": "تسویه شده در",
     "removeHint": "آیا می خوای {{amount}} که برای {{tag}} و جزو {{type}} تو هست رو حذف کنی؟",
-    "groupedByType": "دسته بندی شده بر اساس نوع تراکنش"
+    "groupedByType": "دسته بندی شده بر اساس نوع تراکنش",
+    "mustAccept": "باید حتما انتخاب شود."
+  },
+  "createBudget": {
+    "inTheYear": "در سال",
+    "budgetAmount": "مبلغ بودجه"
+  },
+  "budgets": {
+    "remining": "باقی مانده",
+    "spent": "خرج شده",
+    "overflow": "!بیش از ظرفیت",
+    "inMonth": " (در ماه {{value}})"
   }
 }

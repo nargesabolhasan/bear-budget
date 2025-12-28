@@ -4,6 +4,7 @@ import CreateBudget from "@/components/create-budget";
 import { BudgetType } from "@/types/global";
 import { toast } from "sonner";
 import { useBudgetStore } from "@/store/budget";
+import i18next from "i18next";
 
 const Page = () => {
   const { addBudget } = useBudgetStore();
@@ -12,8 +13,9 @@ const Page = () => {
     addBudget({ id: formData.tag, ...formData });
     toast.success(
       <span>
-        <strong>Budget </strong>
-        generated successfully!!
+        {i18next.t("global.successValue", {
+          value: i18next.t("global.budget"),
+        })}
       </span>
     );
   };

@@ -18,6 +18,7 @@ import useIconCount from "@/hooks/useIconCount";
 import TagAccordion from "@/components/create-budget/tagAccordion";
 import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import { BudgetType } from "@/types/global";
+import i18next from "i18next";
 
 type Props = {
   onSubmit: (data: Omit<BudgetType, "id">) => void;
@@ -29,9 +30,21 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   const tagsCount = useIconCount(100, ".tag-wrapper");
 
   const schema = yup.object({
-    [FormBudgetTypeEnum.AMOUNT]: yup.string().required("Amount is required"),
-    [FormBudgetTypeEnum.MONTH]: yup.string().required("Month is required"),
-    [FormBudgetTypeEnum.TAG]: yup.string().required("Tag is required"),
+    [FormBudgetTypeEnum.AMOUNT]: yup
+      .string()
+      .required(
+        i18next.t("global.required", { value: i18next.t("home.amount") })
+      ),
+    [FormBudgetTypeEnum.MONTH]: yup
+      .string()
+      .required(
+        i18next.t("global.required", { value: i18next.t("modal.month") })
+      ),
+    [FormBudgetTypeEnum.TAG]: yup
+      .string()
+      .required(
+        i18next.t("global.required", { value: i18next.t("global.tag") })
+      ),
   });
 
   const {
@@ -67,10 +80,11 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
     >
       {/*-------month---------*/}
       <span className={"w-full font-bold mt-3 text-start"}>
-        Choose a month:{" "}
+        {i18next.t("helperButtons.selectMonth")}{" "}
         <span className={"text-placeholder text-sm"}>
-          (in the year {getCurrentYear("fa")})
-        </span>
+          ({i18next.t("createBudget.inTheYear")} {getCurrentYear("fa")})
+        </span>{" "}
+        :
       </span>
       <div className="flex flex-col items-center justify-center w-full bg-surface p-3 rounded-3xl border border-placeholder_light">
         <ScrollDatePicker
@@ -85,12 +99,12 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
 
       {/*-------tag---------*/}
       <span className={"w-full md:w-1/2 font-bold my-2 text-start"}>
-        Choose a tag :
+        {i18next.t("addTransaction.selectTag")}:
       </span>
       <TagAccordion control={control} tags={tags} tagsCount={tagsCount} />
       {/*-------budget------*/}
       <span className={"w-full md:w-1/2 font-bold my-2 text-start"}>
-        Budget amount:
+        {i18next.t("createBudget.budgetAmount")}:
       </span>
       <Controller
         name={FormBudgetTypeEnum.AMOUNT}
@@ -114,14 +128,14 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
                 const numberValue = raw === "" ? "" : Number(raw);
                 onChange(numberValue);
               }}
-              label="Amount"
+              label={i18next.t("home.amount")}
               fullWidth
               error={!!errors[FormBudgetTypeEnum.AMOUNT]}
               helperText={errors[FormBudgetTypeEnum.AMOUNT]?.message}
               showHint={
                 watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
               }
-              hint={"cannot be more that 15 character!"}
+              hint={i18next.t("global.charLimit", { value: 15 })}
             />
           );
         }}
@@ -132,7 +146,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
         size={"large"}
         className={twMerge("!mt-4 w-full !border-4")}
       >
-        Create Budget
+        {i18next.t("global.submit")}
       </IButton>
     </form>
   );

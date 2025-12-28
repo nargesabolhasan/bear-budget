@@ -33,12 +33,24 @@ const CreateTagForm = ({
         i18next.t("global.required", { value: i18next.t("global.name") })
       )
       .max(40, i18next.t("global.charLimit", { value: 40 })),
-    [FormTagEnum.ICON]: yup.string().required("icon is required"),
-    [FormTagEnum.COLOR]: yup.mixed<ColorOption>().required("color is required"),
+    [FormTagEnum.ICON]: yup
+      .string()
+      .required(
+        i18next.t("global.required", { value: i18next.t("global.icon") })
+      ),
+    [FormTagEnum.COLOR]: yup
+      .mixed<ColorOption>()
+      .required(
+        i18next.t("global.required", { value: i18next.t("global.color") })
+      ),
     [FormTagEnum.TRANSACTION_TYPE]: yup
       .mixed<TransactionEnum>()
       .oneOf(Object.values(TransactionEnum) as TransactionEnum[])
-      .required("transaction type is required"),
+      .required(
+        i18next.t("global.required", {
+          value: i18next.t("addTransaction.transactionType"),
+        })
+      ),
   });
 
   const {

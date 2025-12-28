@@ -8,6 +8,8 @@
     "budget": "Budget",
     "fa": "Persian",
     "en": "English",
+    "icon": "icon",
+    "color": "color",
     "add": "Add",
     "submit": "Submit",
     "required": "{{value}} is required",
@@ -79,7 +81,7 @@
   },
   "contextMenu": {
     "edit": "Edit",
-    "tdelete": "Delete"
+    "delete": "Delete"
   },
   "modal": {
     "selected": "Selected",
@@ -93,7 +95,8 @@
     "selectTag": "Select Tag",
     "date": "Date",
     "description": "Description",
-    "emptyTagList": "you have to create a new tag! click to create new one."
+    "emptyTagList": "you have to create a new tag! click to create new one.",
+    "transactionType": "transaction type"
   },
   "transactionList": {
     "deleteAll": "All transactions from {{value}} will be deleted.",
@@ -107,6 +110,17 @@
     "settledHint": "has been settled",
     "settledOn": "Settled on",
     "removeHint": "Do you want to remove {{amount}} in {{tag}} tag as {{type}} ?",
-    "groupedByType": "Grouped by Type of transactions :"
+    "groupedByType": "Grouped by Type of transactions :",
+    "mustAccept": "You must accept this"
+  },
+  "createBudget": {
+    "inTheYear": "in the year",
+    "budgetAmount": "Budget Amount"
+  },
+  "budgets": {
+    "remining": "Remining",
+    "spent": "Spent",
+    "overflow": "overflow !",
+    "inMonth": " (in month {{value}})"
   }
 }

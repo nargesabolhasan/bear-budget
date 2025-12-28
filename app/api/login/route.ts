@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
+import i18next from "i18next";
 
 export async function POST(req: Request) {
   const { username } = await req.json();
 
   if (!username) {
     return NextResponse.json(
-      { ok: false, error: "Your name is require" },
+      {
+        ok: false,
+        error: i18next.t("global.required", {
+          value: i18next.t("global.name"),
+        }),
+      },
       { status: 400 }
     );
   }

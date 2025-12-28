@@ -5,12 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ITextField from "@/components/atoms/textField";
 import IButton from "@/components/atoms/button";
 import { CircularProgress } from "@mui/material";
+import i18next from "i18next";
 
 const schema = yup.object({
   username: yup
     .string()
-    .required("Amount is required")
-    .max(50, "username must be less than 50 characters"),
+    .required(i18next.t("global.required", { value: i18next.t("home.amount") }))
+    .max(50, i18next.t("global.charLimit", { value: 50 })),
 });
 
 type LoginFormProps = {

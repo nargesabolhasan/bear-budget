@@ -60,7 +60,9 @@ const Summery = () => {
         "border border-dashed border-r-0 w-fit p-4 rounded-2xl mt-3 mx-auto"
       }
     >
-      <h2 className={"italic font-semibold mb-4"}>Financial Summary :</h2>
+      <h2 className={"italic font-semibold mb-4"}>
+        {i18next.t("home.financialSummary")} :
+      </h2>
       <ul className="space-y-3">
         {list.map((item) => {
           const Icon = item.icon;
@@ -73,7 +75,7 @@ const Summery = () => {
               )}
             >
               <Icon size="32" color={item.color} /> <h3>{item.title}</h3>
-              <span>{item.amount}</span>
+              <span dir={"ltr"}>{item.amount}</span>
             </li>
           );
         })}

@@ -21,12 +21,13 @@ import { useTagsStore } from "@/store/tags";
 import IPagination from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import EmptyList from "@/components/molecules/emptyList";
+import i18next from "i18next";
 
 const BudgetList = () => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
 
-  const { budgets, removeBudget, clear } = useBudgetStore();
+  const { budgets, removeBudget, removeThisMonth } = useBudgetStore();
   const { tags } = useTagsStore();
 
   const { watch, setValue, handleSubmit } = useForm({
@@ -61,29 +62,40 @@ const BudgetList = () => {
 
   const handleDelete = (id: string) => {
     openDialog({
-      title: "Remove Budget",
+      title: i18next.t("dialog.remove", { value: i18next.t("global.budget") }),
       hint: (
         <span>
-          Remove <strong>{tags?.[id]?.name}</strong> forever!
+          {i18next.t("dialog.hint")} <strong>{tags?.[id]?.name}</strong>{" "}
+          {i18next.t("global.QM")}
         </span>
       ),
       confirmHandler: () => {
         removeBudget(id);
-        toast.success(<span>Deleted successfully.</span>);
+        toast.success(
+          <span>
+            {i18next.t("setting.successDelete", { value: tags?.[id]?.name })}
+          </span>
+        );
       },
     });
   };
 
   const handleClearAll = () => {
     openDialog({
-      title: "Clear All",
+      title: i18next.t("setting.clearAll"),
       hint: (
         <span>
-          Remove <strong>All Budgets</strong> forever!
+          {i18next.t("setting.hint", {
+            value:
+              i18next.t("global.budgets") +
+              i18next.t("budgets.inMonth", {
+                value: selectedMonth,
+              }),
+          })}
         </span>
       ),
       confirmHandler: () => {
-        clear();
+        removeThisMonth(selectedMonth);
       },
     });
   };
@@ -91,7 +103,11 @@ const BudgetList = () => {
   return (
     <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
       {/* Header */}
-      <PrinterViewTitle title={"All Budgets:"} />
+      <PrinterViewTitle
+        title={
+          i18next.t("transactionList.all") + " " + i18next.t("global.budgets")
+        }
+      />
       <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">
         <IButton
           size="small"
@@ -99,12 +115,13 @@ const BudgetList = () => {
           className="w-full sm:w-fit flex flex-row gap-1 items-center justify-center !mt-4"
           onClick={handleOpen}
         >
-          Select Month <EventNoteTwoToneIcon color="primary" />
+          {i18next.t("transactionList.selectMonth")}
+          <EventNoteTwoToneIcon color="primary" />
         </IButton>
 
         <HelperButtons
-          disableDelete={Object.values(budgets).length === 0}
-          disablePrint={Object.values(budgets).length === 0}
+          disableDelete={filteredTransactions.size === 0}
+          disablePrint={filteredTransactions.size === 0}
           clearAllTags={handleClearAll}
           handleAddMore={handleAddNewBudget}
         />
@@ -184,8 +201,7 @@ const BudgetList = () => {
               watch={watch}
               setValue={setValue}
             />
-
-            <IButton type="submit">Select</IButton>
+            <IButton type="submit">{i18next.t("global.submit")}</IButton>
           </form>
         </Box>
       </Modal>

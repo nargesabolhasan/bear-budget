@@ -1,5 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import i18next from "i18next";
 
 interface LinearProgressProps {
   value: number;
@@ -37,10 +38,10 @@ const ILinearProgress: React.FC<LinearProgressProps> = ({
           style={{ width: `${clampedValue}%` }}
         />
       </div>
-      <div className={"flex flex-row justify-between"}>
+      <div className={"flex flex-row justify-between"} dir={"ltr"}>
         {overFlow && (
           <div className="mt-1 text-xs md:text-sm text-hover_danger">
-            overflow !
+            {i18next.t("budgets.overflow")}
           </div>
         )}
         <div className="mt-1 text-xs md:text-sm text-right grow">

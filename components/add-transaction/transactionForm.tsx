@@ -20,12 +20,22 @@ import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import i18next from "i18next";
 
 const schema = yup.object({
-  [FormTransactionEnum.AMOUNT]: yup.string().required("Amount is required"),
-  [FormTransactionEnum.TAG]: yup.string().required("Tag is required"),
-  [FormTransactionEnum.DATE]: yup.string().required("Date is required"),
+  [FormTransactionEnum.AMOUNT]: yup
+    .string()
+    .required(
+      i18next.t("global.required", { value: i18next.t("home.amount") })
+    ),
+  [FormTransactionEnum.TAG]: yup
+    .string()
+    .required(i18next.t("global.required", { value: i18next.t("global.tag") })),
+  [FormTransactionEnum.DATE]: yup
+    .string()
+    .required(
+      i18next.t("global.required", { value: i18next.t("addTransaction.date") })
+    ),
   [FormTransactionEnum.DESCRIPTION]: yup
     .string()
-    .max(150, "Description must be less than 150 characters"),
+    .max(150, i18next.t("global.charLimit", { value: 150 })),
 });
 
 const TransactionForm = ({
@@ -97,7 +107,7 @@ const TransactionForm = ({
               showHint={
                 watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
               }
-              hint={"cannot be more that 15 character!"}
+              hint={i18next.t("global.charLimit", { value: 15 })}
             />
           );
         }}

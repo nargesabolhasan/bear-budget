@@ -38,7 +38,18 @@ export const useBudgetStore = create<BudgetStore>()(
             false,
             "editBudget"
           ),
-
+        removeThisMonth: (month: string) =>
+          set(
+            {
+              budgets: Object.fromEntries(
+                Object.entries(get().budgets).filter(
+                  ([_, value]) => value.month !== month
+                )
+              ),
+            },
+            false,
+            "removeBudget"
+          ),
         clear: () => set({ budgets: {} }, false, "clear"),
       }),
       { name: "budgets" }

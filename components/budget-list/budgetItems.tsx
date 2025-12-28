@@ -7,6 +7,7 @@ import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 import ContextMenu from "@/components/molecules/contextMenu";
 import { Edit2, Trash } from "iconsax-react";
 import { TagType } from "@/types/global";
+import i18next from "i18next";
 
 type Props = {
   handleEdit: (id: string) => void;
@@ -42,7 +43,7 @@ const BudgetItems = ({
             color={"var(--color-hover_primary)"}
             variant="Bulk"
           />
-          Edit
+          {i18next.t("contextMenu.edit")}
         </span>
       ),
     },
@@ -54,7 +55,7 @@ const BudgetItems = ({
           className={"!text-sm flex flex-row gap-2 items-center justify-start"}
         >
           <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
-          Delete
+          {i18next.t("contextMenu.delete")}
         </span>
       ),
     },
@@ -100,7 +101,7 @@ const BudgetItems = ({
             className={"text-placeholder"}
             style={{ fontFamily: "PlaywriteNZGuides" }}
           >
-            Budget
+            {i18next.t("global.budget")}
           </span>
           {convertToCurrency(budgetAmount)}
         </span>
@@ -109,7 +110,7 @@ const BudgetItems = ({
             className={"text-placeholder"}
             style={{ fontFamily: "PlaywriteNZGuides" }}
           >
-            Spent
+            {i18next.t("budgets.spent")}
           </span>
           {convertToCurrency(spent)}
         </span>
@@ -118,9 +119,9 @@ const BudgetItems = ({
             className={"text-placeholder"}
             style={{ fontFamily: "PlaywriteNZGuides" }}
           >
-            Remining
+            {i18next.t("budgets.remining")}
           </span>
-          {convertToCurrency(remining)}
+          <span dir={"ltr"}>{convertToCurrency(remining)}</span>
         </span>
       </section>
     </li>

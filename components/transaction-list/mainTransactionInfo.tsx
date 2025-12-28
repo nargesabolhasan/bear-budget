@@ -37,8 +37,14 @@ type FormTypes = {
 };
 
 const schema = yup.object({
-  [ModalFormEnum.SETTLED]: yup.boolean().oneOf([true], "You must accept this"),
-  [ModalFormEnum.DATE]: yup.string().required("Date is required"),
+  [ModalFormEnum.SETTLED]: yup
+    .boolean()
+    .oneOf([true], i18next.t("transactionList.mustAccept")),
+  [ModalFormEnum.DATE]: yup
+    .string()
+    .required(
+      i18next.t("global.required", { value: i18next.t("addTransaction.date") })
+    ),
 });
 
 const MainTransactionInfo = ({
