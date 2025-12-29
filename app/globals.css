@@ -21,8 +21,8 @@
 }
 
 @font-face {
-    font-family: "Vazirmatn";
-    src: url("/fonts/vazirmatn/Vazirmatn-VariableFont_wght.ttf") format("truetype");
+    font-family: "playpenSansArabic";
+    src: url("/fonts/PlaypenSansArabic/PlaypenSansArabic-Regular.ttf") format("truetype");
     font-weight: 100 900;
     font-style: normal;
 }
@@ -52,9 +52,12 @@
     --vh: 100%;
 }
 
-body {
+html[dir="ltr"] {
     font-family: "elms", sans-serif;
     height: calc(var(--vh, 1vh) * 100);
+}
+html[dir="rtl"]{
+    font-family: "playpenSansArabic", sans-serif;
 }
 
 /*----scrollbar------*/
@@ -86,9 +89,14 @@ body {
 }
 
 /*--------MUI override----------*/
-.MuiDrawer-paperAnchorLeft {
+.MuiDrawer-paperAnchorRight {
     @apply !bg-primary_light p-2
 }
+
+.dark .MuiDrawer-paperAnchorRight {
+    @apply !bg-neutral_light
+}
+
 /*--------date picker---------*/
 .dark .rmdp-day {
     @apply text-white;
