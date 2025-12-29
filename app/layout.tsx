@@ -20,30 +20,41 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+
+        {/* Apple Touch Icons */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/setting.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/setting.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/setting.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/setting.png" />
+
+        {/* Android Chrome Icons */}
         <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/icons/apple-touch-icon-180.png"
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/icons/setting.png"
         />
         <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/icons/apple-touch-icon-152.png"
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/icons/setting.png"
         />
-        <link
-          rel="apple-touch-icon"
-          sizes="120x120"
-          href="/icons/apple-touch-icon-120.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="/icons/apple-touch-icon-76.png"
-        />
+
+        {/* Theme color */}
+        <meta name="theme-color" content="#000000" />
+
+        {/* Apple PWA meta */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
-      <body className={"!bg-neutral_light h-screen flex flex-col"}>
+      <body className="!bg-neutral_light h-screen flex flex-col">
         <LanguageProvider>
           <ThemeModeProvider>
             <IThemeProvider>
