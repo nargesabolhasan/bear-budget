@@ -24,8 +24,8 @@ export default function LoginPage() {
     },
 
     onSuccess: () => {
-      toast.success(i18next.t("login.welcome"));
       router.push("/");
+      toast.success(i18next.t("login.welcome"));
     },
 
     onError: (err: any) => {

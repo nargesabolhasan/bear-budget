@@ -20,13 +20,26 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Manifest */}
-        <link rel="manifest" href="/manifest.json" />
-        {/* Apple PWA Icon (Safari) */}
-        <link rel="apple-touch-icon" href="/setting.png" />
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        {/* PWA for iOS */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/icons/apple-touch-icon-180.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/icons/apple-touch-icon-152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/icons/apple-touch-icon-120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="/icons/apple-touch-icon-76.png"
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
