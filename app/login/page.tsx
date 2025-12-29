@@ -44,7 +44,14 @@ export default function LoginPage() {
       }
     >
       <div className={"flex flex-col gap-2 items-center justify-center w-full"}>
-        <Image src="/favicon.svg" alt="icon" width={120} height={120} />
+        <Image
+          unoptimized
+          priority
+          src="/favicon.svg"
+          alt="icon"
+          width={120}
+          height={120}
+        />
         <b
           className={"text-2xl text-center"}
           style={{ fontFamily: "PlaywriteNZGuides" }}

@@ -5,6 +5,8 @@ const Loading = () => {
   return (
     <div className={"flex flex-col items-center justify-center h-full mt-20"}>
       <Image
+        priority
+        unoptimized
         src="/loading.png"
         alt="loading"
         className={"w-[150px]"}

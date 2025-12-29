@@ -11,6 +11,8 @@ const NotFound = () => {
       <div className={"flex flex-col items-center justify-between"}>
         <h4 className={"text-[130px] text-brown_secondary"}>404</h4>
         <Image
+          priority
+          unoptimized
           src="/404.png"
           alt="404"
           className={"w-full md:w-[300px]"}

@@ -86,7 +86,14 @@ const SettingComponent = () => {
       }
     >
       <section className="flex flex-col items-center justify-center">
-        <Image src="/fix.png" alt="icon" width={150} height={150} />
+        <Image
+          src="/fix.png"
+          alt="icon"
+          width={150}
+          height={150}
+          priority
+          unoptimized
+        />
 
         <div className="flex flex-row gap-2 items-end justify-center cursor-pointer">
           <span className="text-2xl">

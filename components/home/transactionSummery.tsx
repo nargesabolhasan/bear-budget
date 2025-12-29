@@ -45,7 +45,14 @@ const TransactionSummery = () => {
       }
     >
       <div className={"flex flex-row justify-center items-center gap-1"}>
-        <Image src="/bear.png" alt="icon" width={100} height={100} />
+        <Image
+          src="/bear.png"
+          alt="icon"
+          width={100}
+          height={100}
+          priority
+          unoptimized
+        />
         <h2 className={"text-xl grow text-brown"}>
           {i18n.t("home.hello")}{" "}
           {isLoading ? (

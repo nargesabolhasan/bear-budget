@@ -12,6 +12,8 @@ export default function Error({
   return (
     <div className="flex flex-col items-center justify-center h-full w-full max-w-3xl mx-auto">
       <Image
+        priority
+        unoptimized
         src="/empty.png"
         alt="error"
         width={150}

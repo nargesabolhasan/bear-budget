@@ -118,7 +118,14 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
           className="w-fit text-brown cursor-pointer font-playwrite italic !text-2xl"
         >
           <NextLink href="/" className="w-fit flex flex-row items-center gap-1">
-            <Image src="/favicon.svg" alt="icon" width={50} height={50} />
+            <Image
+              src="/favicon.svg"
+              alt="icon"
+              width={50}
+              height={50}
+              priority
+              unoptimized
+            />
             {title}
           </NextLink>
         </Typography>

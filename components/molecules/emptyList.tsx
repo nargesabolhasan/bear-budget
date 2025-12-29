@@ -36,7 +36,14 @@ const EmptyList = ({
         <span>{title}</span>
       </IButton>
       <h3 className={"select-none text-center text-brown_secondary"}>{hint}</h3>
-      <Image src="/add.png" alt="icon" width={200} height={200} />
+      <Image
+        src="/add.png"
+        alt="icon"
+        width={200}
+        height={200}
+        priority
+        unoptimized
+      />
     </section>
   );
 };
