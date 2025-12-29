@@ -125,7 +125,6 @@ const TransactionForm = ({
               onChange={(date) => {
                 onChange(date);
               }}
-              language={"fa"}
               placeholder={i18next.t("addTransaction.date")}
               error={errors[FormTransactionEnum.DATE]?.message}
             />

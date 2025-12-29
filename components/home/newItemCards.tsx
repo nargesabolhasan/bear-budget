@@ -18,7 +18,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { tagRoutes, transactionRoutes } from "@/routes/routes";
-import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
@@ -26,10 +26,11 @@ const NewItemCards = () => {
   const { tags } = useTagsStore();
   const { getTransactions } = useTransactionStore();
   const { t } = useTranslation();
+  const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
 
   const lastTransaction = getTransactions(
-    getCurrentYear("fa"),
-    getCurrentMonthNumber("fa")
+    getCurrentYear(),
+    getCurrentMonthNumber()
   )[0];
   const lastTag = Object.values(tags).reverse()[0];
   const secondTag = Object.values(tags).reverse()[1];

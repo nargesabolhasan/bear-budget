@@ -1,12 +1,8 @@
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import ScrollDatePicker from "@/components/atoms/scrollDatePicker";
-import {
-  getCurrentMonthName,
-  getCurrentYear,
-  getYearsRange,
-  PERSIAN_MONTHS,
-} from "@/utils/dateList";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 import IButton from "@/components/atoms/button";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import i18next from "i18next";
@@ -20,11 +16,17 @@ type Props = {
 const DateFilteredTransactions = ({ submitSearch }: Props) => {
   const { setValue, watch, handleSubmit } = useForm<DatePickerForm>();
   const { setDate } = useFilteredDateContext();
+  const {
+    calenderMonthList,
+    getCurrentMonthName,
+    getYearsRange,
+    getCurrentYear,
+  } = useCalendarUtils();
 
   const submitHandler = (formDate: DatePickerForm) => {
     setDate({
       year: formDate.Year,
-      month: PERSIAN_MONTHS.indexOf(formDate.Month) + 1,
+      month: calenderMonthList.indexOf(formDate.Month) + 1,
     });
     submitSearch(formDate);
   };
@@ -40,15 +42,15 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
         }
       >
         <ScrollDatePicker
-          dateList={PERSIAN_MONTHS}
-          defaultValue={getCurrentMonthName("fa")}
+          dateList={calenderMonthList}
+          defaultValue={getCurrentMonthName()}
           title={"Month"}
           watch={watch}
           setValue={setValue}
         />
         <ScrollDatePicker
-          dateList={getYearsRange("fa")}
-          defaultValue={getCurrentYear("fa")}
+          dateList={getYearsRange()}
+          defaultValue={getCurrentYear()}
           title={"Year"}
           watch={watch}
           setValue={setValue}

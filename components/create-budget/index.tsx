@@ -1,11 +1,6 @@
 "use client";
 import React from "react";
 import ScrollDatePicker from "@/components/atoms/scrollDatePicker";
-import {
-  getCurrentMonthName,
-  getCurrentYear,
-  PERSIAN_MONTHS,
-} from "@/utils/dateList";
 import { Controller, useForm } from "react-hook-form";
 import { useTagsStore } from "@/store/tags";
 import { twMerge } from "tailwind-merge";
@@ -19,6 +14,7 @@ import TagAccordion from "@/components/create-budget/tagAccordion";
 import { FormBudgetTypeEnum } from "@/components/create-budget/types";
 import { BudgetType } from "@/types/global";
 import i18next from "i18next";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
   onSubmit: (data: Omit<BudgetType, "id">) => void;
@@ -28,6 +24,8 @@ type Props = {
 const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   const { tags } = useTagsStore();
   const tagsCount = useIconCount(100, ".tag-wrapper");
+  const { calenderMonthList, getCurrentMonthName, getCurrentYear } =
+    useCalendarUtils();
 
   const schema = yup.object({
     [FormBudgetTypeEnum.AMOUNT]: yup
@@ -57,8 +55,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   } = useForm<Omit<BudgetType, "id">>({
     defaultValues: {
       [FormBudgetTypeEnum.AMOUNT]: defaultValue?.amount || "",
-      [FormBudgetTypeEnum.MONTH]:
-        defaultValue?.month || getCurrentMonthName("fa"),
+      [FormBudgetTypeEnum.MONTH]: defaultValue?.month || getCurrentMonthName(),
       [FormBudgetTypeEnum.TAG]: defaultValue?.tag,
     },
     //@ts-ignore
@@ -82,14 +79,14 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
       <span className={"w-full font-bold mt-3 text-start"}>
         {i18next.t("helperButtons.selectMonth")}{" "}
         <span className={"text-placeholder text-sm"}>
-          ({i18next.t("createBudget.inTheYear")} {getCurrentYear("fa")})
+          ({i18next.t("createBudget.inTheYear")} {getCurrentYear()})
         </span>{" "}
         :
       </span>
       <div className="flex flex-col items-center justify-center w-full bg-surface p-3 rounded-3xl border border-placeholder_light">
         <ScrollDatePicker
-          dateList={PERSIAN_MONTHS}
-          defaultValue={defaultValue?.month || getCurrentMonthName("fa")}
+          dateList={calenderMonthList}
+          defaultValue={defaultValue?.month || getCurrentMonthName()}
           title={FormBudgetTypeEnum.MONTH}
           watch={watch}
           setValue={setValue}

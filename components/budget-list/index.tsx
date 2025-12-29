@@ -2,7 +2,6 @@
 import React, { Fragment, useState } from "react";
 import { useBudgetStore } from "@/store/budget";
 import useFilterTransaction from "@/hooks/useFilterTransaction";
-import { getCurrentMonthName, PERSIAN_MONTHS } from "@/utils/dateList";
 import HelperButtons from "@/components/tag-list/helperButtons";
 import { useRouter } from "next/navigation";
 import { budgetRoutes } from "@/routes/routes";
@@ -22,6 +21,7 @@ import IPagination from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
 import EmptyList from "@/components/molecules/emptyList";
 import i18next from "i18next";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -30,9 +30,12 @@ const BudgetList = () => {
   const { budgets, removeBudget, removeThisMonth } = useBudgetStore();
   const { tags } = useTagsStore();
 
+  const { calenderMonthList, getCurrentMonthName, getCurrentYear } =
+    useCalendarUtils();
+
   const { watch, setValue, handleSubmit } = useForm({
     defaultValues: {
-      month: getCurrentMonthName("fa"),
+      month: getCurrentMonthName(),
     },
   });
 
@@ -40,8 +43,9 @@ const BudgetList = () => {
 
   const { filteredTransactions } = useFilterTransaction({
     tags,
-    monthList: PERSIAN_MONTHS,
+    monthList: calenderMonthList,
     filterMonth: selectedMonth,
+    getCurrentYear,
   });
 
   const { paginated, page, setPage, pageCount, showPagination } =
@@ -129,7 +133,9 @@ const BudgetList = () => {
 
       {/* Empty State */}
       <Render when={filteredTransactions.size === 0}>
-        <EmptyList />
+        <EmptyList
+          onAddItem={() => router.push(budgetRoutes.createBudget.href)}
+        />
       </Render>
 
       {/* List */}
@@ -195,8 +201,8 @@ const BudgetList = () => {
             className="flex flex-col items-center justify-center px-10 gap-8"
           >
             <ScrollDatePicker
-              dateList={PERSIAN_MONTHS}
-              defaultValue={getCurrentMonthName("fa")}
+              dateList={calenderMonthList}
+              defaultValue={getCurrentMonthName()}
               title="month"
               watch={watch}
               setValue={setValue}

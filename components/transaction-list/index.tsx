@@ -5,15 +5,17 @@ import { ViewEnums } from "@/types/global";
 import Box from "@mui/material/Box";
 import DateFilteredTransactions from "@/components/date-filter/dateFilteredTransactions";
 import { useTransactionStore } from "@/store/transaction";
-import { PERSIAN_MONTHS } from "@/utils/dateList";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import TransactionListComponent from "@/components/transaction-list/TransactionListComponent";
 import i18next from "i18next";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 const TransactionListContainer = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.ALL);
   const [open, setOpen] = useState<boolean>(false);
   const { date } = useFilteredDateContext();
+
+  const { calenderMonthList } = useCalendarUtils();
 
   const { getTransactions, groupedByType, removeByYearMonth } =
     useTransactionStore();
@@ -67,7 +69,7 @@ const TransactionListContainer = () => {
         viewMode={viewMode}
         clearAll={() => removeByYearMonth(date.year, date.month)}
         dialogTitle={i18next.t("transactionList.deleteAll", {
-          value: `${PERSIAN_MONTHS[date.month]} ${date.year}`,
+          value: `${calenderMonthList[date.month]} ${date.year}`,
         })}
       />
     </div>

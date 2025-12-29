@@ -202,7 +202,6 @@ const MainTransactionInfo = ({
                     onChange={(date) => {
                       onChange(date);
                     }}
-                    language={"fa"}
                     placeholder={i18next.t("addTransaction.date")}
                   />
                 </>

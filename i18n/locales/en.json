@@ -33,7 +33,10 @@
     "dark": "Dark mode",
     "light": "Light mode",
     "language": "Switch language to {{value}}",
-    "changeName": "Change Name"
+    "changeName": "Change Name",
+    "changeCalender": "Switch calender to {{value}} date",
+    "persian": "jalali",
+    "gregorian": "gregorian"
   },
   "header": {
     "home": "Home",

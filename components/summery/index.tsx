@@ -4,13 +4,14 @@ import { useTransactionStore } from "@/store/transaction";
 import { convertToCurrency } from "@/utils/utils";
 import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
 import { twMerge } from "tailwind-merge";
-import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18next from "i18next";
 
 const Summery = () => {
   const { groupedByType } = useTransactionStore();
-  const data =
-    groupedByType(getCurrentYear("fa"), getCurrentMonthNumber("fa")) || {};
+  const { getCurrentMonthNumber, getCurrentYear } = useCalendarUtils();
+
+  const data = groupedByType(getCurrentYear(), getCurrentMonthNumber()) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
   const totalOutgoing = data?.Expense?.totalAmount ?? 0;

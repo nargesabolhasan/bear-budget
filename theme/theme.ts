@@ -68,6 +68,21 @@ const getTheme = (
           },
         },
       },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            color: "var(--color-placeholder_dark)",
+            "&.MuiToggleButton-primary.Mui-selected": {
+              backgroundColor: "var(--color-primary)",
+              color: "var(--color-dark)",
+            },
+            "&.MuiToggleButton-secondary.Mui-selected": {
+              backgroundColor: "var(--color-secondary)",
+              color: "var(--color-dark)",
+            },
+          },
+        },
+      },
       MuiTextField: {
         defaultProps: {
           slotProps: {

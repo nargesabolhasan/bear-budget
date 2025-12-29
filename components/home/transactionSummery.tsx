@@ -16,7 +16,7 @@ import {
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import { transactionRoutes } from "@/routes/routes";
 import Link from "next/link";
-import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 import { useQuery } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
 import i18n from "i18next";
@@ -24,10 +24,9 @@ import i18next from "i18next";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
-  const grouped = groupedByType(
-    getCurrentYear("fa"),
-    getCurrentMonthNumber("fa")
-  );
+  const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
+
+  const grouped = groupedByType(getCurrentYear(), getCurrentMonthNumber());
 
   const { data, isLoading } = useQuery({
     queryKey: [API_URL.userInfo.queryKey],

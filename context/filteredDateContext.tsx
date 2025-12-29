@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useState } from "react";
-import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type FilteredDateContextType = { month: number; year: number };
 
@@ -10,15 +10,16 @@ type FilteredDateContextContextType = {
   setDate: (date: FilteredDateContextType) => void;
 };
 
-const FilteredDateContext = createContext<FilteredDateContextContextType>({
-  date: { year: getCurrentYear("fa"), month: getCurrentMonthNumber("fa") },
-  setDate: () => {},
-});
+const FilteredDateContext = createContext<
+  FilteredDateContextContextType | undefined
+>(undefined);
 
 export function FilteredDateProvider({ children }: { children: ReactNode }) {
-  const [date, setDate] = useState<FilteredDateContextType>({
-    year: getCurrentYear("fa"),
-    month: getCurrentMonthNumber("fa"),
+  const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
+
+  const [date, setDate] = useState({
+    year: getCurrentYear(),
+    month: getCurrentMonthNumber(),
   });
 
   return (
