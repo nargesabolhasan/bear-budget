@@ -34,18 +34,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="apple-touch-icon" sizes="76x76" href="/setting.png" />
 
         {/* Android Chrome Icons */}
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/icons/setting.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="/icons/setting.png"
-        />
+        <link rel="icon" type="image/png" sizes="192x192" href="/setting.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/setting.png" />
 
         {/* Theme color */}
         <meta name="theme-color" content="#000000" />
