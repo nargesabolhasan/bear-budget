@@ -30,12 +30,13 @@
     "clearAll": "حذف کامل",
     "hint": "آیا تمامی {{value}} حذف بشن؟",
     "successDelete": "حذف {{value}} با موفقیت انجام شد.",
-    "dark": "حالت روشن",
-    "light": "حالت شب",
-    "language": "تغییر زبان به {{value}}",
+    "dark": "روشن",
+    "light": "تاریک",
+    "language": "زبان :",
+    "theme": "رنگ صفحه :",
+    "calender": "تقویم :",
     "changeName": "ویرایش نام",
-    "changeCalender": "تبدیل به تقویم {{value}}",
-    "persian": "شمسی",
+    "jalali": "شمسی",
     "gregorian": "قمری"
   },
   "header": {

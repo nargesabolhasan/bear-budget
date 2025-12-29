@@ -106,8 +106,8 @@ const SettingComponent = () => {
         </div>
       </section>
       <ThemeToggle />
-      <CalenderSetting />
       <LanguageSwitcher />
+      <CalenderSetting />
       <section className="flex flex-col items-center justify-center w-full">
         <ul className="flex flex-col gap-3 items-start w-full">
           {items.map((item) => (

@@ -30,12 +30,13 @@
     "clearAll": "Clear All",
     "hint": "Do you want to clear all of {{value}}?",
     "successDelete": "Deleted {{value}} successfully.",
-    "dark": "Dark mode",
-    "light": "Light mode",
-    "language": "Switch language to {{value}}",
+    "dark": "Dark",
+    "light": "Light",
+    "language": "Language :",
+    "theme": "Theme:",
+    "calender": "Calender :",
     "changeName": "Change Name",
-    "changeCalender": "Switch calender to {{value}} date",
-    "persian": "jalali",
+    "jalali": "jalali",
     "gregorian": "gregorian"
   },
   "header": {

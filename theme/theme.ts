@@ -71,7 +71,7 @@ const getTheme = (
       MuiToggleButton: {
         styleOverrides: {
           root: {
-            color: "var(--color-placeholder_dark)",
+            color: "var(--color-dark_surface)",
             "&.MuiToggleButton-primary.Mui-selected": {
               backgroundColor: "var(--color-primary)",
               color: "var(--color-dark)",

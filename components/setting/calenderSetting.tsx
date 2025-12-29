@@ -1,44 +1,25 @@
 import React from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useCalenderModeStore } from "@/store/calenderSetup";
+import ISwitch from "@/components/atoms/switch";
+import { useTranslation } from "react-i18next";
 
 const CalenderSetting: React.FC = () => {
   const { mode, setMode } = useCalenderModeStore();
+  const { t } = useTranslation();
 
   return (
-    <ToggleButtonGroup
-      color={"primary"}
-      value={mode}
-      exclusive
-      onChange={(_, value) => value && setMode(value)}
-      sx={{
-        borderRadius: "999px",
-        backgroundColor: "#f1f5f9",
-        p: "4px",
-      }}
-    >
-      <ToggleButton
-        value="jalali"
-        sx={{
-          borderRadius: "999px",
-          px: 3,
-          textTransform: "none",
-        }}
-      >
-        jalali
-      </ToggleButton>
-
-      <ToggleButton
-        value="gregorian"
-        sx={{
-          borderRadius: "999px",
-          px: 3,
-          textTransform: "none",
-        }}
-      >
-        gregorian
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <section className="flex flex-col gap-2 items-center w-full">
+      <p>{t("setting.calender")} </p>
+      <ISwitch
+        color={"primary"}
+        value={mode}
+        rightValue={"jalali"}
+        leftValue={"gregorian"}
+        leftTitle={t("setting.gregorian")}
+        rightTitle={t("setting.jalali")}
+        setValue={setMode}
+      />
+    </section>
   );
 };
 
