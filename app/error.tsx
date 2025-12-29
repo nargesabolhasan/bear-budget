@@ -17,7 +17,6 @@ export default function Error({
         width={150}
         height={300}
         style={{ height: "auto" }}
-        priority
       />
       <h2 className="text-2xl lg:text-3xl font-bold">Something went wrong!</h2>
       <p className="text-gray-500">Please try again later.</p>

@@ -16,7 +16,6 @@ const NotFoundItem = () => {
         width={150}
         height={300}
         style={{ height: "auto" }}
-        priority
       />
     </div>
   );
