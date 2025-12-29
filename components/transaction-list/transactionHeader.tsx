@@ -1,12 +1,15 @@
+"use client";
 import React from "react";
 import { convertToCurrency } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { TransactionEnum } from "@/types/global";
+import { useTranslation } from "react-i18next";
 
 type Props = { title: TransactionEnum | string; totalAmount?: number };
 
 const TransactionHeader = ({ title, totalAmount }: Props) => {
+  const { t } = useTranslation();
   return (
     <div
       className={twMerge(
@@ -16,7 +19,7 @@ const TransactionHeader = ({ title, totalAmount }: Props) => {
       <span className={"flex flex-row items-center justify-center gap-3"}>
         <i>{transactionTypeIcon(title)}</i>
         <h3 className={"text-xl"} style={{ fontFamily: "Satisfy" }}>
-          {title}
+          {t(`transactions.${title}`)}
         </h3>
       </span>
       {!!totalAmount && (

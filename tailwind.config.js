@@ -5,7 +5,6 @@ module.exports = {
       fontFamily: {
         playpenSansArabic: ["playpenSansArabic", "sans-serif"],
         playwrite: ["PlaywriteNZGuides", "sans-serif"],
-        inter: ["inter", "sans-serif"],
         satisfy: ["satisfy", "sans-serif"],
         elms: ["elms", "sans-serif"],
       },

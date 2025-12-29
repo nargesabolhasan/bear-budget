@@ -230,7 +230,6 @@ const CreateTagForm = ({
         sx={{
           fontWeight: 400,
           flexGrow: 1,
-          fontFamily: '"Inter", sans-serif !important',
         }}
       >
         {i18next.t("global.submit")}
