@@ -90,7 +90,7 @@
     "delete": "حذف"
   },
   "modal": {
-    "selected": "انتخاب شده",
+    "selected": "فیلتر",
     "select": "انتخاب {{value}}",
     "Month": "ماه",
     "month": "ماه",
