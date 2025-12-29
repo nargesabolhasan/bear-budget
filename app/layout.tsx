@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.svg" />
 
         {/* Apple Touch Icons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/setting.png" />
