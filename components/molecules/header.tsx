@@ -20,6 +20,7 @@ import { twMerge } from "tailwind-merge";
 import { NavItemType } from "@/types/global";
 import { usePathname } from "next/navigation";
 import { navItems } from "@/constant/navItems";
+import i18n from "i18next";
 
 export type HeaderProps = {
   title?: string;
@@ -41,9 +42,9 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
         component={NextLink}
         href={item.href}
         className={twMerge(
-          "!text-brown italic p-2 shadow shadow-brown !rounded-full mx-auto !m-3 transition",
+          "!text-brown_secondary italic p-2 shadow shadow-brown_secondary !rounded-full mx-auto !m-3 transition",
           item.color,
-          isActive && "!bg-primary font-bold !border border-brown"
+          isActive && "!bg-primary !text-brown font-bold !border border-brown"
         )}
       >
         {item.label}
@@ -117,7 +118,7 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
             </IconButton>
 
             <Drawer
-              anchor="left"
+              anchor={"right"}
               open={drawerOpen}
               onClose={toggleDrawer(false)}
             >

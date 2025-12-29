@@ -48,7 +48,7 @@ const getTheme = (
       danger: { main: danger },
     },
     typography: {
-      fontFamily: `"Vazirmatn", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
+      fontFamily: `"playpenSansArabic", "PlaywriteNZGuides","inter","Satisfy","elms" sans-serif`,
     },
     components: {
       MuiInputLabel: {

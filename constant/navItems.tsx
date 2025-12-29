@@ -49,6 +49,6 @@ export const navItems = [
     ),
     key: settingRoute.href,
     href: settingRoute.href,
-    color: "!bg-secondary",
+    color: "!bg-secondary dark:!text-brown",
   },
 ];

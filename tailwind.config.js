@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        vazir: ["Vazirmatn", "sans-serif"],
+        playpenSansArabic: ["playpenSansArabic", "sans-serif"],
         playwrite: ["PlaywriteNZGuides", "sans-serif"],
         inter: ["inter", "sans-serif"],
         satisfy: ["satisfy", "sans-serif"],

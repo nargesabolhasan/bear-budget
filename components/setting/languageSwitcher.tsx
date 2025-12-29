@@ -13,7 +13,7 @@ export default function LanguageSwitcher() {
 
   return (
     <section className="flex items-center gap-2 w-full">
-      <IButton onClick={toggleLanguage} className={"w-full"}>
+      <IButton onClick={toggleLanguage} className={"w-full !text-dark"}>
         {i18n.language === "fa"
           ? i18n.t("setting.language", { value: i18n.t("global.en") })
           : i18n.t("setting.language", { value: i18n.t("global.fa") })}

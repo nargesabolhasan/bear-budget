@@ -32,7 +32,8 @@
     "successDelete": "حذف {{value}} با موفقیت انجام شد.",
     "dark": "حالت روشن",
     "light": "حالت شب",
-    "language": "تغییر زبان به {{value}}"
+    "language": "تغییر زبان به {{value}}",
+    "changeName": "ویرایش نام"
   },
   "header": {
     "home": "خانه",

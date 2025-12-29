@@ -23,7 +23,7 @@ const ITextField = ({
             backgroundColor: "var(--color-surface)",
           },
           "& .MuiOutlinedInput-notchedOutline legend": {
-            marginLeft: i18n.dir() === "rtl" ? "20px" : 0,
+            paddingRight: i18n.dir() === "rtl" ? "20px" : 0,
           },
         }}
         {...props}

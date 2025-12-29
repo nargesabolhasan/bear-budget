@@ -16,6 +16,8 @@ import api, { API_URL } from "@/utils/axios";
 import { settingItems } from "@/components/setting/settingItems";
 import ThemeToggle from "@/components/setting/toggleTheme";
 import LanguageSwitcher from "@/components/setting/languageSwitcher";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
@@ -24,6 +26,8 @@ const SettingComponent = () => {
   const { clearAllTransactions } = useTransactionStore();
   const { clear } = useTagsStore();
   const { clear: clearBudgets } = useBudgetStore();
+
+  const { t } = useTranslation();
 
   const { data, isLoading } = useQuery({
     queryKey: [API_URL.userInfo.queryKey],
@@ -48,7 +52,9 @@ const SettingComponent = () => {
       if (data.ok) {
         toast.success(
           <span>
-            <strong>Username</strong> updated successfully!
+            {i18next.t("global.updateValue", {
+              value: username,
+            })}
           </span>
         );
 
@@ -136,7 +142,7 @@ const SettingComponent = () => {
           <LoginForm
             onSubmit={handleEditUsername}
             loading={updateUsernameMutation.isPending}
-            title={"Change name"}
+            title={t("setting.changeName")}
           />
         </Box>
       </Modal>

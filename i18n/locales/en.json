@@ -32,7 +32,8 @@
     "successDelete": "Deleted {{value}} successfully.",
     "dark": "Dark mode",
     "light": "Light mode",
-    "language": "Switch language to {{value}}"
+    "language": "Switch language to {{value}}",
+    "changeName": "Change Name"
   },
   "header": {
     "home": "Home",
