@@ -3,11 +3,12 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import IButton from "@/components/atoms/button";
-import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
@@ -19,8 +20,8 @@ export default function ThemeToggle() {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "dark"
-        ? `☀️ ${i18n.t("setting.dark")}`
-        : `🌙 ${i18n.t("setting.light")}`}
+        ? `☀️ ${t("setting.dark")}`
+        : `🌙 ${t("setting.light")}`}
     </IButton>
   );
 }

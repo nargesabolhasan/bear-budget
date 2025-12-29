@@ -38,11 +38,11 @@
     --vh: 100%;
 }
 
-html[dir="ltr"] {
+html[lang="en"] body {
     font-family: "elms", sans-serif;
     height: calc(var(--vh, 1vh) * 100);
 }
-html[dir="rtl"]{
+html[lang="fa"] body{
     font-family: "playpenSansArabic", sans-serif;
 }
 

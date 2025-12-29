@@ -1,5 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
-import React, { ReactNode } from "react";
+import React, { ElementType, ReactNode } from "react";
 
 export enum TransactionEnum {
   EXPENSE = "Expense",
@@ -58,10 +58,11 @@ export type BudgetType = {
 };
 
 export type NavItemType = {
-  label: ReactNode | string;
+  labelKey: string;
   key: string;
   href: string;
   color?: string;
+  icon?: ElementType;
 };
 
 export type DialogDataProps = {

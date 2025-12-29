@@ -16,7 +16,6 @@ import api, { API_URL } from "@/utils/axios";
 import { settingItems } from "@/components/setting/settingItems";
 import ThemeToggle from "@/components/setting/toggleTheme";
 import LanguageSwitcher from "@/components/setting/languageSwitcher";
-import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 const SettingComponent = () => {
@@ -52,7 +51,7 @@ const SettingComponent = () => {
       if (data.ok) {
         toast.success(
           <span>
-            {i18next.t("global.updateValue", {
+            {t("global.updateValue", {
               value: username,
             })}
           </span>

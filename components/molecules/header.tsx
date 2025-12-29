@@ -20,7 +20,7 @@ import { twMerge } from "tailwind-merge";
 import { NavItemType } from "@/types/global";
 import { usePathname } from "next/navigation";
 import { navItems } from "@/constant/navItems";
-import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 
 export type HeaderProps = {
   title?: string;
@@ -31,12 +31,14 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const toggleDrawer = (open: boolean) => () => setDrawerOpen(open);
 
   // Drawer Nav Item in mobile view
   const DrawerNavItem = ({ item }: { item: NavItemType }) => {
     const isActive = pathname === item.href;
+    const Icon = item?.icon;
     return (
       <MenuItem
         component={NextLink}
@@ -47,7 +49,15 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
           isActive && "!bg-primary !text-brown font-bold !border border-brown"
         )}
       >
-        {item.label}
+        {Icon && (
+          <Icon
+            size="25"
+            color="var(--color-brown)"
+            variant="Outline"
+            className={"mx-1"}
+          />
+        )}
+        {t(item.labelKey)}
       </MenuItem>
     );
   };
@@ -57,7 +67,7 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
   // -----------------------------
   const DesktopNavItem = ({ item }: { item: NavItemType }) => {
     const isActive = pathname === item.href;
-
+    const Icon = item?.icon;
     return (
       <NextLink
         href={item.href}
@@ -67,7 +77,15 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
           isActive && "bg-primary_light font-bold border border-brown"
         )}
       >
-        {item.label}
+        {Icon && (
+          <Icon
+            size="25"
+            color="var(--color-brown)"
+            variant="Outline"
+            className={"mx-1"}
+          />
+        )}
+        {t(item.labelKey)}
       </NextLink>
     );
   };

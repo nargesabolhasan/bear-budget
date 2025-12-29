@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import IButton from "@/components/atoms/button";
+import { useEffect } from "react";
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
@@ -10,6 +11,10 @@ export default function LanguageSwitcher() {
     const nextLang = i18n.language === "fa" ? "en" : "fa";
     i18n.changeLanguage(nextLang);
   };
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   return (
     <section className="flex items-center gap-2 w-full">

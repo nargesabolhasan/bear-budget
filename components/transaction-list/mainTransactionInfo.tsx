@@ -109,9 +109,9 @@ const MainTransactionInfo = ({
         />
       )}
       <p
-        className={
-          "w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all"
-        }
+        dir="auto"
+        style={{ unicodeBidi: "plaintext" }}
+        className="w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all text-start"
       >
         {transaction.description}
       </p>

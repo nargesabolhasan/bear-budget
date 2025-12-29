@@ -5,50 +5,44 @@ import {
   transactionRoutes,
 } from "@/routes/routes";
 import { Setting2 } from "iconsax-react";
-import React from "react";
-import i18n from "i18next";
 
 export const navItems = [
-  { label: i18n.t("header.home"), key: "/", href: "/" },
+  { labelKey: "header.home", key: "/", href: "/" },
   {
-    label: i18n.t("header.newTag"),
+    labelKey: "header.newTag",
     key: tagRoutes.createTag.href,
     href: tagRoutes.createTag.href,
   },
   {
-    label: i18n.t("global.tags"),
+    labelKey: "global.tags",
     key: tagRoutes.tagList.href,
     href: tagRoutes.tagList.href,
   },
   {
-    label: i18n.t("header.newTransaction"),
+    labelKey: "header.newTransaction",
     key: transactionRoutes.addTranslation.href,
     href: transactionRoutes.addTranslation.href,
   },
   {
-    label: i18n.t("global.transactions"),
+    labelKey: "global.transactions",
     key: transactionRoutes.translationList.href,
     href: transactionRoutes.translationList.href,
   },
   {
-    label: i18n.t("header.newBudget"),
+    labelKey: "header.newBudget",
     key: budgetRoutes.createBudget.href,
     href: budgetRoutes.createBudget.href,
   },
   {
-    label: i18n.t("global.budgets"),
+    labelKey: "global.budgets",
     key: budgetRoutes.budgetList.href,
     href: budgetRoutes.budgetList.href,
   },
   {
-    label: (
-      <div className={"flex gap-1 items-center"}>
-        <Setting2 size="25" color="var(--color-brown)" variant="Outline" />
-        {i18n.t("setting.setting")}
-      </div>
-    ),
+    labelKey: "setting.setting",
     key: settingRoute.href,
     href: settingRoute.href,
+    icon: Setting2,
     color: "!bg-secondary dark:!text-brown",
   },
 ];
