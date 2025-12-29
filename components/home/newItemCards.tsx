@@ -20,10 +20,12 @@ import {
 import { tagRoutes, transactionRoutes } from "@/routes/routes";
 import { getCurrentMonthNumber, getCurrentYear } from "@/utils/dateList";
 import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const NewItemCards = () => {
   const { tags } = useTagsStore();
   const { getTransactions } = useTransactionStore();
+  const { t } = useTranslation();
 
   const lastTransaction = getTransactions(
     getCurrentYear("fa"),
@@ -37,13 +39,17 @@ const NewItemCards = () => {
     (secondTag && iconList.get(secondTag?.icon || "0")?.icon) || (() => <></>);
 
   const tableRows = [
-    { id: 1, title: "Tag", value: tags?.[lastTransaction?.tag]?.name },
+    {
+      id: 1,
+      title: t("global.tag"),
+      value: tags?.[lastTransaction?.tag]?.name,
+    },
     {
       id: 2,
-      title: "Amount",
+      title: t("home.amount"),
       value: `${convertToCurrency(lastTransaction?.amount)} $`,
     },
-    { id: 3, title: "Date", value: lastTransaction?.date },
+    { id: 3, title: t("addTransaction.date"), value: lastTransaction?.date },
   ];
 
   const FallBack = ({ title, href }: { title: string; href: string }) => (
@@ -90,7 +96,7 @@ const NewItemCards = () => {
                 {tableRows.map(({ title, value, id }) => (
                   <TableRow key={`table_row_${id}`}>
                     <TableCell
-                      align="right"
+                      align="inherit"
                       sx={{
                         borderBottom: "1px solid var(--color-neutral_light)",
                       }}
@@ -98,7 +104,7 @@ const NewItemCards = () => {
                       {title}
                     </TableCell>
                     <TableCell
-                      align="right"
+                      align="inherit"
                       sx={{
                         borderBottom: "1px solid var(--color-neutral_light)",
                       }}

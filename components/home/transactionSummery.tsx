@@ -61,17 +61,17 @@ const TransactionSummery = () => {
           <Table aria-label="transaction table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell align="right">
+                <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
                     {i18next.t("home.type")}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
                     {i18next.t("home.amount")}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
                     {i18next.t("home.entries")}
                   </Typography>
@@ -84,7 +84,7 @@ const TransactionSummery = () => {
                   {Object.entries(grouped).map(([key, value]) => (
                     <TableRow key={`transaction_row_${key}`}>
                       <TableCell
-                        align="right"
+                        align="inherit"
                         sx={{
                           borderBottom: "1px solid var(--color-neutral_light)",
                         }}
@@ -92,7 +92,7 @@ const TransactionSummery = () => {
                         {key}
                       </TableCell>
                       <TableCell
-                        align="right"
+                        align="inherit"
                         sx={{
                           borderBottom: "1px solid var(--color-neutral_light)",
                         }}
@@ -100,7 +100,7 @@ const TransactionSummery = () => {
                         $ {convertToCurrency(value?.totalAmount)}
                       </TableCell>
                       <TableCell
-                        align="center"
+                        align="inherit"
                         sx={{
                           borderBottom: "1px solid var(--color-neutral_light)",
                         }}
@@ -114,14 +114,14 @@ const TransactionSummery = () => {
                 <>
                   {
                     <TableRow>
-                      <TableCell align="right">
+                      <TableCell align="inherit">
                         <Link href={transactionRoutes.addTranslation.href}>
                           <AddCircleTwoToneIcon className={"mx-1"} />
                           {i18next.t("global.add")}
                         </Link>
                       </TableCell>
-                      <TableCell align="right">0 $</TableCell>
-                      <TableCell align="right">0 $</TableCell>
+                      <TableCell align="inherit">0 $</TableCell>
+                      <TableCell align="inherit">0 $</TableCell>
                     </TableRow>
                   }
                 </>
