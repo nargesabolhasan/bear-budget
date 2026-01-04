@@ -17,13 +17,22 @@ const FilteredDateContext = createContext<
 export function FilteredDateProvider({ children }: { children: ReactNode }) {
   const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
 
-  const [date, setDate] = useState({
-    year: getCurrentYear(),
-    month: getCurrentMonthNumber(),
-  });
+  const { toStandardISO } = useCalendarUtils();
+
+  const [date, setDate] = useState(
+    toStandardISO({
+      year: getCurrentYear(),
+      month: getCurrentMonthNumber(),
+    })
+  );
 
   return (
-    <FilteredDateContext.Provider value={{ date, setDate }}>
+    <FilteredDateContext.Provider
+      value={{
+        date,
+        setDate: (value) => setDate(toStandardISO(value)),
+      }}
+    >
       {children}
     </FilteredDateContext.Provider>
   );

@@ -21,11 +21,8 @@ import {
   GroupedTransactionType,
   TransactionInfoType,
 } from "@/store/transaction/type";
-import SearchBar from "@/components/search";
 import { useTagsStore } from "@/store/tags";
-import useSearchTransaction from "@/hooks/useSearchTransaction";
-import i18next from "i18next";
-import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 
 const navItems: NavItemsType[] = [
   {
@@ -65,18 +62,20 @@ const TransactionListComponent = ({
 
   const { tags } = useTagsStore();
 
+  const { t } = useTranslation();
+
   const router = useRouter();
 
   const clearAllTransactions = () => {
     openDialog({
-      title: i18next.t("setting.clearAll"),
+      title: t("setting.clearAll"),
       hint: dialogTitle,
       confirmHandler: () => {
         clearAll();
         toast.success(
           <span>
-            {i18next.t("setting.successDelete", {
-              value: i18next.t("global.transactions"),
+            {t("setting.successDelete", {
+              value: t("global.transactions"),
             })}
           </span>
         );

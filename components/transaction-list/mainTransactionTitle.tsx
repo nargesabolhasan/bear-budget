@@ -6,6 +6,7 @@ import { TagType } from "@/types/global";
 import { iconList } from "@/constant/icons";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { Render } from "@/utils/render";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
   tag: TagType;
@@ -25,7 +26,7 @@ const MainTransactionTitle = ({
   showTagIconColor = false,
 }: Props) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
-
+  const { formatDate } = useCalendarUtils();
   return (
     <>
       <div className={"w-full flex flex-row gap-3 justify-between items-start"}>
@@ -43,7 +44,7 @@ const MainTransactionTitle = ({
             )}
             <span className={"text-lg"}>{tag?.name}</span>
           </span>
-          <time className={"text-sm text-placeholder"}>{date}</time>
+          <time className={"text-sm text-placeholder"}>{formatDate(date)}</time>
         </div>
         <span className={"flex flex-row items-center"}>
           <h4>

@@ -25,13 +25,13 @@
     "successValue": "{{value}} جدید با موفقیت اضافه شد."
   },
   "setting": {
-    "setting": "تنضیمات",
+    "setting": "تنظیمات",
     "deleteAllValues": "حذف {{value}}",
     "clearAll": "حذف کامل",
     "hint": "آیا تمامی {{value}} حذف بشن؟",
     "successDelete": "حذف {{value}} با موفقیت انجام شد.",
-    "dark": "روشن",
-    "light": "تاریک",
+    "dark": "تاریک",
+    "light": "روشن",
     "language": "زبان :",
     "theme": "رنگ صفحه :",
     "calender": "تقویم :",

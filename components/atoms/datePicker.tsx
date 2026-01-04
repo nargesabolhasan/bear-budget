@@ -15,8 +15,8 @@ import { twMerge } from "tailwind-merge";
 import { useCalenderModeStore } from "@/store/calenderSetup";
 
 export type IDatePickerProps = Omit<CalendarProps, "value" | "onChange"> & {
-  value?: DateObject | string;
-  onChange?: (date: DateObject | string) => void;
+  value?: string | DateObject;
+  onChange?: (date: string) => void; // always returns ISO string
   placeholder?: string;
   error?: string;
 };
@@ -35,6 +35,12 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
   const locale = isJalali ? persian_en : gregorian_en;
   const format = isJalali ? "YYYY/MM/DD" : "MM/DD/YYYY";
 
+  // Convert value to DateObject if it's an ISO string
+  const pickerValue =
+    typeof value === "string" && value
+      ? new DateObject({ date: value, calendar, locale })
+      : value || "";
+
   return (
     <div className="flex flex-col gap-1 w-full">
       <DatePicker
@@ -43,8 +49,8 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
         calendar={calendar}
         locale={locale}
         format={format}
-        value={value ?? ""}
-        currentDate={value as DateObject | undefined}
+        value={pickerValue}
+        currentDate={pickerValue as DateObject | undefined}
         placeholder={placeholder}
         calendarPosition="bottom-center"
         inputClass={twMerge(
@@ -52,9 +58,17 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
           error && "border-danger"
         )}
         monthYearSeparator="|"
-        onChange={(date) => onChange?.(date?.isValid ? date : "")}
+        onChange={(date) => {
+          if (!date || !date.isValid) {
+            onChange?.("");
+            return;
+          }
+          const jsDate = date.toDate();
+          const isoString = jsDate.toISOString();
+          onChange?.(isoString);
+        }}
       />
-      {!!error && <span className="text-red-700 text-xs">{error}</span>}
+      {error && <span className="text-red-700 text-xs">{error}</span>}
     </div>
   );
 };

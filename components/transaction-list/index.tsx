@@ -7,12 +7,15 @@ import DateFilteredTransactions from "@/components/date-filter/dateFilteredTrans
 import { useTransactionStore } from "@/store/transaction";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import TransactionListComponent from "@/components/transaction-list/TransactionListComponent";
-import i18next from "i18next";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import { useTranslation } from "react-i18next";
 
 const TransactionListContainer = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.ALL);
   const [open, setOpen] = useState<boolean>(false);
+
+  const { t } = useTranslation();
+
   const { date } = useFilteredDateContext();
 
   const { calenderMonthList } = useCalendarUtils();
@@ -68,7 +71,7 @@ const TransactionListContainer = () => {
         handleChangeTab={handleChangeTab}
         viewMode={viewMode}
         clearAll={() => removeByYearMonth(date.year, date.month)}
-        dialogTitle={i18next.t("transactionList.deleteAll", {
+        dialogTitle={t("transactionList.deleteAll", {
           value: `${calenderMonthList[date.month]} ${date.year}`,
         })}
       />

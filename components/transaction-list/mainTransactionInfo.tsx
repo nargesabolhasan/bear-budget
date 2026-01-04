@@ -17,6 +17,7 @@ import { useTransactionStore } from "@/store/transaction";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { TagsListType } from "@/store/tags/type";
 import i18next from "i18next";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
   transaction: TransactionType;
@@ -57,6 +58,7 @@ const MainTransactionInfo = ({
   const [open, setOpen] = useState<boolean>(false);
   const { editTransaction } = useTransactionStore();
   const { date } = useFilteredDateContext();
+  const { formatDate } = useCalendarUtils();
 
   const {
     handleSubmit,
@@ -141,7 +143,7 @@ const MainTransactionInfo = ({
                 fontSize={"small"}
               />
               {i18next.t("transactionList.settledOn")}{" "}
-              {transaction?.settled?.date}
+              {formatDate(transaction?.settled?.date)}
             </p>
           </div>
         )}

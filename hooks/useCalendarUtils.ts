@@ -56,12 +56,33 @@ const useCalendarUtils = () => {
   /* ---------------- Date format ---------------- */
 
   const formatDate = (value: string | number | Date): string => {
-    return new DateObject({
+    const date = new DateObject({
       date: value,
       calendar,
       locale,
-    }).format("dddd D MMMM YYYY");
+    });
+
+    // Human-readable format
+    return date.format("dddd D MMMM YYYY");
   };
+
+  /* ---------------- iso ---------------- */
+
+  function toStandardISO({ year, month }: { year: number; month: number }) {
+    const dateObj = new DateObject({
+      year,
+      month,
+      day: 15,
+      calendar,
+      locale,
+    });
+
+    const toDate = dateObj.toDate();
+    return {
+      year: toDate.getFullYear(),
+      month: toDate.getMonth() + 1,
+    };
+  }
 
   /* ---------------- Constants ---------------- */
 
@@ -98,13 +119,12 @@ const useCalendarUtils = () => {
   return {
     isJalali,
     lang,
-
     getCurrentYear,
     getYearsRange,
     getCurrentMonthName,
     getCurrentMonthNumber,
     formatDate,
-
+    toStandardISO,
     calenderMonthList: isJalali ? PERSIAN_MONTHS : MONTHS,
   };
 };

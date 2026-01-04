@@ -1,6 +1,7 @@
-import { TransactionType } from "@/types/global";
+import { TransactionEnum, TransactionType } from "@/types/global";
 import { TagsListType } from "@/store/tags/type";
 import { useState, useRef, useEffect } from "react";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
   allTransactions: TransactionType[];
@@ -10,6 +11,8 @@ type Props = {
 const useSearchTransaction = ({ allTransactions, tags }: Props) => {
   const [searchResult, setSearchResult] =
     useState<TransactionType[]>(allTransactions);
+
+  const { formatDate } = useCalendarUtils();
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -30,15 +33,21 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
 
       const result = allTransactions.filter((transaction) => {
         const tagInfo = tags?.[transaction.tag];
-
+        console.log(transaction.date?.toLowerCase());
         return (
-          transaction.date?.toLowerCase().includes(q) ||
+          formatDate(transaction.date)?.toLowerCase().includes(q) ||
           transaction.description?.toLowerCase().includes(q) ||
           transaction.amount?.toString().includes(q) ||
-          transaction.settled?.date?.toLowerCase().includes(q) ||
+          formatDate(transaction.settled?.date as string)
+            ?.toLowerCase()
+            .includes(q) ||
           transaction.settled?.amount?.toString().includes(q) ||
           tagInfo?.transactionType?.toLowerCase().includes(q) ||
-          tagInfo?.name?.toLowerCase().includes(q)
+          tagInfo?.name?.toLowerCase().includes(q) ||
+          ((tagInfo?.transactionType === TransactionEnum.DEBT ||
+            tagInfo?.transactionType === TransactionEnum.LOANED) &&
+            !Boolean(transaction?.settled) &&
+            (q.toLowerCase() === "settled" || q.includes("تسویه")))
         );
       });
 

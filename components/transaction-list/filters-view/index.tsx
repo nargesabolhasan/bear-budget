@@ -9,7 +9,6 @@ import { twMerge } from "tailwind-merge";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { transactionTypeIcon } from "@/utils/transactionTypeIcon";
 import { Render } from "@/utils/render";
-import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
 import TransactionItems from "@/components/transaction-list/TransactionItems";
 import { TagsListType } from "@/store/tags/type";
 import i18next from "i18next";

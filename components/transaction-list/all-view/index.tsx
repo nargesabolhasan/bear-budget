@@ -9,7 +9,6 @@ import { TagsListType } from "@/store/tags/type";
 import SearchBar from "@/components/search";
 import useSearchTransaction from "@/hooks/useSearchTransaction";
 import { Render } from "@/utils/render";
-import Image from "next/image";
 import NotFoundItem from "@/components/search/NotFoundItem";
 import i18next from "i18next";
 

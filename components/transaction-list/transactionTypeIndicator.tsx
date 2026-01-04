@@ -1,7 +1,7 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
-import { TagInfoTransaction, TagType } from "@/types/global";
+import { TagType } from "@/types/global";
 
 const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);

@@ -85,7 +85,10 @@ const SettingComponent = () => {
         "mb-8 flex flex-col items-center gap-8 mt-5 md:mt-10 w-[260px] mx-auto"
       }
     >
-      <section className="flex flex-col items-center justify-center">
+      <section
+        className="flex flex-col items-center justify-center"
+        dir={"ltr"}
+      >
         <Image
           src="/fix.png"
           alt="icon"
