@@ -12,20 +12,29 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import useIconCount from "@/hooks/useIconCount";
 import TagAccordion from "@/components/create-budget/tagAccordion";
 import { FormBudgetTypeEnum } from "@/components/create-budget/types";
-import { BudgetType } from "@/types/global";
+import { BudgetFormType, BudgetType } from "@/types/global";
 import i18next from "i18next";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
-  onSubmit: (data: Omit<BudgetType, "id">) => void;
-  defaultValue?: Omit<BudgetType, "id">;
+  onSubmit: (data: BudgetType) => void;
+  defaultValue?: BudgetType;
 };
 
 const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   const { tags } = useTagsStore();
   const tagsCount = useIconCount(100, ".tag-wrapper");
-  const { calenderMonthList, getCurrentMonthName, getCurrentYear } =
-    useCalendarUtils();
+  const {
+    calenderMonthList,
+    getCurrentMonthName,
+    getCurrentYear,
+    toStandardISO,
+    isJalali,
+  } = useCalendarUtils();
+
+  const index = isJalali ? defaultValue?.month : defaultValue?.isoMonth;
+
+  const defaultMonth = calenderMonthList[(index ?? 0) - 1];
 
   const schema = yup.object({
     [FormBudgetTypeEnum.AMOUNT]: yup
@@ -52,10 +61,10 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
     watch,
     setValue,
     formState: { errors, isValid },
-  } = useForm<Omit<BudgetType, "id">>({
+  } = useForm<BudgetFormType>({
     defaultValues: {
       [FormBudgetTypeEnum.AMOUNT]: defaultValue?.amount || "",
-      [FormBudgetTypeEnum.MONTH]: defaultValue?.month || getCurrentMonthName(),
+      [FormBudgetTypeEnum.MONTH]: defaultMonth,
       [FormBudgetTypeEnum.TAG]: defaultValue?.tag,
     },
     //@ts-ignore
@@ -63,8 +72,18 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
     mode: "onChange",
   });
 
-  const onSubmitHandler = (formData: Omit<BudgetType, "id">) => {
-    onSubmit(formData);
+  const onSubmitHandler = (formData: BudgetFormType) => {
+    const numericMonth = calenderMonthList.indexOf(formData.month) + 1;
+    const isoDate = toStandardISO({
+      year: getCurrentYear(),
+      month: numericMonth,
+    });
+
+    onSubmit({
+      ...formData,
+      month: numericMonth,
+      isoMonth: isoDate.month,
+    });
     //edit page dont need reset
     if (!defaultValue) reset();
   };
@@ -86,7 +105,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
       <div className="flex flex-col items-center justify-center w-full bg-surface p-3 rounded-3xl border border-placeholder_light">
         <ScrollDatePicker
           dateList={calenderMonthList}
-          defaultValue={defaultValue?.month || getCurrentMonthName()}
+          defaultValue={defaultMonth || getCurrentMonthName()}
           title={FormBudgetTypeEnum.MONTH}
           watch={watch}
           setValue={setValue}

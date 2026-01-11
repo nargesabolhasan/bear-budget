@@ -15,7 +15,7 @@ type Props = {
 
 const DateFilteredTransactions = ({ submitSearch }: Props) => {
   const { setValue, watch, handleSubmit } = useForm<DatePickerForm>();
-  const { setDate } = useFilteredDateContext();
+  const { saveDate } = useFilteredDateContext();
   const {
     calenderMonthList,
     getCurrentMonthName,
@@ -24,9 +24,10 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
   } = useCalendarUtils();
 
   const submitHandler = (formDate: DatePickerForm) => {
-    setDate({
+    saveDate({
       year: formDate.Year,
       month: calenderMonthList.indexOf(formDate.Month) + 1,
+      monthName: formDate.Month,
     });
     submitSearch(formDate);
   };
