@@ -26,10 +26,24 @@ const NewItemCards = () => {
   const { tags } = useTagsStore();
   const { getTransactions } = useTransactionStore();
   const { t } = useTranslation();
-  const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
+
+  const {
+    getCurrentYear,
+    getCurrentMonthNumber,
+    toStandardISO,
+    formatDate,
+    isJalali,
+  } = useCalendarUtils();
+
+  const isoCurrentDate = toStandardISO({
+    year: getCurrentYear(),
+    month: getCurrentMonthNumber(),
+  });
 
   const lastTransaction = getTransactions(
-    getCurrentYear(),
+    isoCurrentDate.year,
+    isoCurrentDate.month,
+    isJalali,
     getCurrentMonthNumber()
   )[0];
   const lastTag = Object.values(tags).reverse()[0];
@@ -50,7 +64,11 @@ const NewItemCards = () => {
       title: t("home.amount"),
       value: `${convertToCurrency(lastTransaction?.amount)} $`,
     },
-    { id: 3, title: t("addTransaction.date"), value: lastTransaction?.date },
+    {
+      id: 3,
+      title: t("addTransaction.date"),
+      value: formatDate(lastTransaction?.date, true),
+    },
   ];
 
   const FallBack = ({ title, href }: { title: string; href: string }) => (

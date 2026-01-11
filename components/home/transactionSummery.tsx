@@ -24,9 +24,20 @@ import i18next from "i18next";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
-  const { getCurrentYear, getCurrentMonthNumber } = useCalendarUtils();
+  const { getCurrentYear, getCurrentMonthNumber, toStandardISO, isJalali } =
+    useCalendarUtils();
 
-  const grouped = groupedByType(getCurrentYear(), getCurrentMonthNumber());
+  const isoDate = toStandardISO({
+    year: getCurrentYear(),
+    month: getCurrentMonthNumber(),
+  });
+
+  const grouped = groupedByType(
+    isoDate.year,
+    isoDate.month,
+    isJalali,
+    getCurrentMonthNumber()
+  );
 
   const { data, isLoading } = useQuery({
     queryKey: [API_URL.userInfo.queryKey],

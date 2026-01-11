@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18next from "i18next";
 
-const Summery = () => {
+const FinancialSummery = () => {
   const { groupedByType } = useTransactionStore();
   const { getCurrentMonthNumber, getCurrentYear, toStandardISO, isJalali } =
     useCalendarUtils();
@@ -97,4 +97,4 @@ const Summery = () => {
   );
 };
 
-export default Summery;
+export default FinancialSummery;
