@@ -51,7 +51,13 @@ export type TransactionType = {
 };
 
 export type BudgetType = {
-  id: string;
+  amount: string;
+  tag: string;
+  month: number;
+  isoMonth: number;
+};
+
+export type BudgetFormType = {
   amount: string;
   tag: string;
   month: string;
