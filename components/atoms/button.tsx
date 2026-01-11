@@ -38,7 +38,7 @@ const IButton = ({
     <Button
       {...props}
       className={twMerge(
-        "w-fit !rounded-full",
+        "flex flex-row items-center justify-center gap-1 w-fit !rounded-full",
         props.disabled ? colorMapper.disabled : colorMapper[color],
         sizeMapper[size],
         variantMapper[variant],
