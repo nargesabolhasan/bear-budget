@@ -72,7 +72,12 @@ const NewItemCards = () => {
   ];
 
   const FallBack = ({ title, href }: { title: string; href: string }) => (
-    <Link href={href} className={"text-dark"}>
+    <Link
+      href={href}
+      className={
+        "text-dark flex flex-col items-center justify-center h-full gap-3"
+      }
+    >
       <AutoFixHighIcon /> {title}
     </Link>
   );
