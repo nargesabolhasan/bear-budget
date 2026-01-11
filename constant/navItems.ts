@@ -12,7 +12,7 @@ import {
   SaveAdd,
   Setting2,
   Tag,
-  TagCross,
+  Tag2,
 } from "iconsax-react";
 
 export const navItems = [
@@ -21,13 +21,13 @@ export const navItems = [
     labelKey: "header.newTag",
     key: tagRoutes.createTag.href,
     href: tagRoutes.createTag.href,
-    icon: TagCross,
+    icon: Tag,
   },
   {
     labelKey: "global.tags",
     key: tagRoutes.tagList.href,
     href: tagRoutes.tagList.href,
-    icon: Tag,
+    icon: Tag2,
   },
   {
     labelKey: "header.newTransaction",
