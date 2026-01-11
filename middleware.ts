@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
   }
 
   if (isLoggedIn && isAuthPage) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/setting", req.url));
   }
 
   return NextResponse.next();
