@@ -8,7 +8,7 @@ import "react-multi-date-picker/styles/colors/green.css";
 import persian from "react-date-object/calendars/persian";
 import gregorian from "react-date-object/calendars/gregorian";
 
-import persian_en from "react-date-object/locales/persian_en";
+import persian_fa from "react-date-object/locales/persian_fa";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 
 import { twMerge } from "tailwind-merge";
@@ -16,7 +16,7 @@ import { useCalenderModeStore } from "@/store/calenderSetup";
 
 export type IDatePickerProps = Omit<CalendarProps, "value" | "onChange"> & {
   value?: string | DateObject;
-  onChange?: (date: string) => void; // always returns ISO string
+  onChange?: (date: string) => void;
   placeholder?: string;
   error?: string;
 };
@@ -32,10 +32,9 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
   const isJalali = mode === "jalali";
 
   const calendar = isJalali ? persian : gregorian;
-  const locale = isJalali ? persian_en : gregorian_en;
+  const locale = isJalali ? persian_fa : gregorian_en;
   const format = isJalali ? "YYYY/MM/DD" : "MM/DD/YYYY";
 
-  // Convert value to DateObject if it's an ISO string
   const pickerValue =
     typeof value === "string" && value
       ? new DateObject({ date: value, calendar, locale })
