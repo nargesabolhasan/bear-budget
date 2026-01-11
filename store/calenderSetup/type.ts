@@ -1,6 +1,6 @@
-export type Mode = "jalali" | "gregorian";
+export type CalendarModeUnion = "jalali" | "gregorian";
 
 export interface ModeState {
-  mode: Mode;
-  setMode: (mode: Mode) => void;
+  mode: CalendarModeUnion;
+  setMode: (mode: CalendarModeUnion) => void;
 }
