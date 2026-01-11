@@ -30,8 +30,13 @@ const BudgetList = () => {
   const { budgets, removeBudget, removeThisMonth } = useBudgetStore();
   const { tags } = useTagsStore();
 
-  const { calenderMonthList, getCurrentMonthName, getCurrentYear } =
-    useCalendarUtils();
+  const {
+    calenderMonthList,
+    getCurrentMonthName,
+    getCurrentYear,
+    isJalali,
+    toStandardISO,
+  } = useCalendarUtils();
 
   const { watch, setValue, handleSubmit } = useForm({
     defaultValues: {
@@ -40,12 +45,18 @@ const BudgetList = () => {
   });
 
   const selectedMonth = watch("month");
+  const selectedMonthNumber = calenderMonthList.indexOf(selectedMonth) + 1;
+
+  const isoDate = toStandardISO({
+    year: getCurrentYear(),
+    month: selectedMonthNumber,
+  });
 
   const { filteredTransactions } = useFilterTransaction({
     tags,
-    monthList: calenderMonthList,
-    filterMonth: selectedMonth,
-    getCurrentYear,
+    notIsoMonth: selectedMonthNumber,
+    isoDate,
+    isJalali,
   });
 
   const { paginated, page, setPage, pageCount, showPagination } =
@@ -61,7 +72,7 @@ const BudgetList = () => {
   };
 
   const handleEdit = (id: string) => {
-    router.push(budgetRoutes.editBudget(id));
+    router.push(budgetRoutes.editBudget(id, isoDate.month));
   };
 
   const handleDelete = (id: string) => {
@@ -74,7 +85,7 @@ const BudgetList = () => {
         </span>
       ),
       confirmHandler: () => {
-        removeBudget(id);
+        removeBudget(id, isoDate.month);
         toast.success(
           <span>
             {i18next.t("setting.successDelete", { value: tags?.[id]?.name })}
@@ -99,7 +110,7 @@ const BudgetList = () => {
         </span>
       ),
       confirmHandler: () => {
-        removeThisMonth(selectedMonth);
+        removeThisMonth(isoDate.month);
       },
     });
   };
@@ -151,9 +162,8 @@ const BudgetList = () => {
           }
         >
           {paginated?.map(([tagId, { totalAmount: spent }]) => {
-            const budget = budgets[tagId];
+            const budget = budgets?.[isoDate.month]?.[tagId];
             const budgetAmount = parseInt(budget?.amount);
-
             return (
               <Fragment key={tagId}>
                 {!!budgetAmount && (

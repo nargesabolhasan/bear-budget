@@ -70,7 +70,7 @@ const BudgetItems = ({
     >
       <div className={"w-full flex justify-end print:hidden"}>
         <ContextMenu menuItems={menuItems} resetAfterSelect>
-          <MoreHorizTwoToneIcon />
+          <MoreHorizTwoToneIcon className={"cursor-pointer"} />
         </ContextMenu>
       </div>
       <section className={"grid grid-cols-3 items-center gap-2 md:gap-4 mb-8"}>
