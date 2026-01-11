@@ -13,14 +13,19 @@ type Props = {
 };
 
 const Page = ({ params }: Props) => {
-  const { slug } = use(params);
+  const { slug: param } = use(params);
   const { budgets, editBudget } = useBudgetStore();
   const router = useRouter();
-  const defaultValue = budgets[slug];
+  const slug = param.split("MONTH");
 
-  const onSubmit = (formData: Omit<BudgetType, "id">) => {
+  const id = slug[0];
+  const selectedMonth = slug[1];
+
+  const defaultValue = budgets?.[selectedMonth]?.[id];
+
+  const onSubmit = (formData: BudgetType) => {
     if (!defaultValue) return;
-    editBudget(defaultValue.id, formData);
+    editBudget(formData.tag, id, parseInt(selectedMonth), formData);
     toast.success(
       <span>
         {i18next.t("global.updateValue", {

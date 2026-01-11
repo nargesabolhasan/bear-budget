@@ -7,10 +7,10 @@ import { useBudgetStore } from "@/store/budget";
 import i18next from "i18next";
 
 const Page = () => {
-  const { addBudget } = useBudgetStore();
+  const { addBudget, budgets } = useBudgetStore();
 
-  const onSubmit = (formData: Omit<BudgetType, "id">) => {
-    addBudget({ id: formData.tag, ...formData });
+  const onSubmit = (formData: BudgetType) => {
+    addBudget(formData);
     toast.success(
       <span>
         {i18next.t("global.successValue", {

@@ -7,6 +7,7 @@ import IThemeProvider from "@/theme/themeProvider";
 import { ThemeModeProvider } from "@/context/themeSwitchProvider";
 import "@/i18n/client";
 import LanguageProvider from "@/context/i18nextProvider";
+import { FilteredDateProvider } from "@/context/filteredDateContext";
 
 export const metadata = {
   title: "Bear Budget",
@@ -49,9 +50,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ThemeModeProvider>
             <IThemeProvider>
               <IHeader />
-              <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
-                {children}
-              </main>
+              <FilteredDateProvider>
+                <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
+                  {children}
+                </main>
+              </FilteredDateProvider>
               <GlobalToaster />
               <DialogContainer />
             </IThemeProvider>

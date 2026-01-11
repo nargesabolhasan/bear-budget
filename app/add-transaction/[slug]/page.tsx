@@ -11,6 +11,7 @@ import BackButton from "@/components/molecules/backButton";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { useRouter } from "next/navigation";
 import i18next from "i18next";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -22,9 +23,14 @@ const EditTransaction = ({ params }: Props) => {
   const { date } = useFilteredDateContext();
   const router = useRouter();
 
-  const defaultValue = getTransactions(date.year, date.month).find(
-    (transaction) => transaction.id === slug
-  );
+  const { isJalali } = useCalendarUtils();
+
+  const defaultValue = getTransactions(
+    date.year,
+    date.month,
+    isJalali,
+    date.notIso.month
+  ).find((transaction) => transaction.id === slug);
 
   const submitHandler = (formData: TransactionFormData) => {
     if (!defaultValue) return;

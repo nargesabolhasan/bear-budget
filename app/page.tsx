@@ -1,7 +1,7 @@
 import React from "react";
 import NewItemCards from "@/components/home/newItemCards";
 import TransactionSummery from "@/components/home/transactionSummery";
-import Summery from "@/components/summery";
+import FinancialSummery from "@/components/home/financial-summery";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
     >
       <TransactionSummery />
       <NewItemCards />
-      <Summery />
+      <FinancialSummery />
     </div>
   );
 }
