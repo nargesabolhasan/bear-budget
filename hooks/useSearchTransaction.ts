@@ -33,7 +33,6 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
 
       const result = allTransactions.filter((transaction) => {
         const tagInfo = tags?.[transaction.tag];
-        console.log(transaction.date?.toLowerCase());
         return (
           formatDate(transaction.date)?.toLowerCase().includes(q) ||
           transaction.description?.toLowerCase().includes(q) ||

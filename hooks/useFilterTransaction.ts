@@ -5,17 +5,17 @@ import { TransactionType } from "@/types/global";
 import { TagsListType } from "@/store/tags/type";
 
 type Props = {
-  monthList: Array<string>;
-  filterMonth: string;
+  isoDate: { year: number; month: number };
+  notIsoMonth: number;
   tags: TagsListType;
-  getCurrentYear: () => number;
+  isJalali: boolean;
 };
 
 const useFilterTransaction = ({
-  monthList,
-  filterMonth,
+  isoDate,
+  notIsoMonth,
   tags,
-  getCurrentYear,
+  isJalali,
 }: Props) => {
   const { getTransactions } = useTransactionStore();
   const { budgets } = useBudgetStore();
@@ -34,20 +34,19 @@ const useFilterTransaction = ({
       }
     >();
 
-    if (!filterMonth) return map;
-
+    if (!isoDate) return map;
     /** ----------------------------------------------------
      * 1) ADD ALL BUDGETS FOR THIS MONTH (even if no transaction)
      * ---------------------------------------------------- */
-    for (const [id, budget] of Object.entries(budgets)) {
-      if (budget.month === filterMonth) {
-        map.set(id, {
+    if (budgets?.[isoDate.month]) {
+      for (const [tagId, budget] of Object.entries(budgets?.[isoDate.month])) {
+        map.set(tagId, {
           transactions: [],
           totalAmount: 0,
           tag: {
-            name: tags?.[budget.tag]?.name,
-            icon: tags?.[budget.tag]?.icon,
-            color: tags?.[budget.tag]?.color.color,
+            name: tags?.[tagId]?.name,
+            icon: tags?.[tagId]?.icon,
+            color: tags?.[tagId]?.color.color,
           },
         });
       }
@@ -56,20 +55,16 @@ const useFilterTransaction = ({
     /** ----------------------------------------------------
      * 2) MERGE TRANSACTIONS (if they exist)
      * ---------------------------------------------------- */
+
     for (const transaction of getTransactions(
-      getCurrentYear(),
-      monthList.indexOf(filterMonth) + 1
+      isoDate.year,
+      isoDate.month,
+      isJalali,
+      notIsoMonth
     )) {
-      const date = new Date(transaction.date);
-
-      const isSameMonth = monthList[date.getMonth()] === filterMonth;
-      const isSameYear = date.getFullYear() === getCurrentYear();
-      if (!isSameMonth || !isSameYear) continue;
-
       const tagId = transaction.tag;
       if (!tagId) continue;
 
-      // if budget exists → merge
       if (map.has(tagId)) {
         const group = map.get(tagId)!;
         group.transactions.push(transaction);
@@ -78,7 +73,7 @@ const useFilterTransaction = ({
     }
 
     return map;
-  }, [filterMonth, budgets]);
+  }, [isoDate, budgets]);
 
   return { filteredTransactions };
 };

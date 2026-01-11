@@ -55,32 +55,40 @@ const useCalendarUtils = () => {
 
   /* ---------------- Date format ---------------- */
 
-  const formatDate = (value: string | number | Date): string => {
+  const formatDate = (
+    value: string | number | Date,
+    format: boolean = false
+  ): string => {
+    const formatType = isJalali ? "YYYY/MM/DD" : "MM/DD/YYYY";
     const date = new DateObject({
       date: value,
       calendar,
       locale,
     });
 
-    // Human-readable format
-    return date.format("dddd D MMMM YYYY");
+    return date.format(format ? formatType : "dddd D MMMM YYYY");
   };
 
-  /* ---------------- iso ---------------- */
+  /* ---------------- ISO Conversion ---------------- */
+
+  /**
+   * Convert selected year/month in a given mode (Jalali or Gregorian)
+   * to canonical Gregorian year/month.
+   */
 
   function toStandardISO({ year, month }: { year: number; month: number }) {
-    const dateObj = new DateObject({
+    const firstOfMonth = new DateObject({
       year,
       month,
-      day: 15,
-      calendar,
-      locale,
+      day: 1,
+      calendar: calendar,
     });
 
-    const toDate = dateObj.toDate();
+    const gregorianDate = firstOfMonth.convert(gregorian);
+
     return {
-      year: toDate.getFullYear(),
-      month: toDate.getMonth() + 1,
+      year: gregorianDate.year,
+      month: gregorianDate.month.number,
     };
   }
 
