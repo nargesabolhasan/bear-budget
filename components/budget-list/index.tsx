@@ -22,6 +22,7 @@ import usePaginationData from "@/hooks/usePagination";
 import EmptyList from "@/components/molecules/emptyList";
 import i18next from "i18next";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import SelectedDateTitle from "@/components/molecules/selectedDateTitle";
 
 const BudgetList = () => {
   const router = useRouter();
@@ -116,7 +117,7 @@ const BudgetList = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto flex flex-col items-center justify-center">
+    <div className="w-fit mx-auto flex flex-col items-center justify-center">
       {/* Header */}
       <PrinterViewTitle
         title={
@@ -142,6 +143,7 @@ const BudgetList = () => {
         />
       </section>
 
+      <SelectedDateTitle year={getCurrentYear()} month={selectedMonth} />
       {/* Empty State */}
       <Render when={filteredTransactions.size === 0}>
         <EmptyList
@@ -156,11 +158,7 @@ const BudgetList = () => {
           <div className="w-full animate-pulse bg-placeholder rounded-md" />
         }
       >
-        <ul
-          className={
-            "w-full sm:w-fit border-t border-dashed border-placeholder mt-4"
-          }
-        >
+        <ul className={"w-full sm:w-fit"}>
           {paginated?.map(([tagId, { totalAmount: spent }]) => {
             const budget = budgets?.[isoDate.month]?.[tagId];
             const budgetAmount = parseInt(budget?.amount);

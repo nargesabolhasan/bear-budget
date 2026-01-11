@@ -1,9 +1,9 @@
 import React from "react";
-import FormatListBulletedAddIcon from "@mui/icons-material/FormatListBulletedAdd";
 import { IconOption } from "@/types/global";
 import IButton from "@/components/atoms/button";
 import Image from "next/image";
 import i18next from "i18next";
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 
 type Props = {
   title?: string;
@@ -15,7 +15,7 @@ type Props = {
 const EmptyList = ({
   title = i18next.t("global.addNewItems"),
   hint = i18next.t("global.emptyHint"),
-  IconComponent = FormatListBulletedAddIcon,
+  IconComponent = AddCircleTwoToneIcon,
   onAddItem,
 }: Props) => {
   return (
@@ -27,20 +27,19 @@ const EmptyList = ({
       <IButton
         color={"secondary"}
         className={"!text-brown"}
-        size={"large"}
         onClick={() => {
           onAddItem?.();
         }}
       >
-        {IconComponent && <i className={"size-10"}>{<IconComponent />}</i>}
+        {IconComponent && <IconComponent />}
         <span>{title}</span>
       </IButton>
       <h3 className={"select-none text-center text-brown_secondary"}>{hint}</h3>
       <Image
         src="/add.png"
         alt="icon"
-        width={200}
-        height={200}
+        width={150}
+        height={150}
         priority
         unoptimized
       />
