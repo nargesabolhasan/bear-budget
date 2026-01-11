@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { persist, devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { BudgetStore } from "./type";
-import { BudgetType } from "@/types/global";
 
 export const useBudgetStore = create<BudgetStore>()(
   devtools(
@@ -9,43 +8,59 @@ export const useBudgetStore = create<BudgetStore>()(
       (set, get) => ({
         budgets: {},
 
-        addBudget: (budget: BudgetType) =>
+        addBudget: (newItem) =>
           set(
-            { budgets: { ...get().budgets, [budget.id]: budget } },
+            ({ budgets }) => {
+              const update = { ...budgets };
+              update[newItem.isoMonth] ??= {};
+              update[newItem.isoMonth][newItem.tag] = newItem;
+              return { budgets: update };
+            },
             false,
             "addBudget"
           ),
 
-        removeBudget: (id: BudgetType["id"]) =>
+        removeBudget: (id, currentMonth) =>
           set(
-            {
-              budgets: Object.fromEntries(
-                Object.entries(get().budgets).filter(([key]) => key !== id)
-              ),
+            ({ budgets }) => {
+              const update = { ...budgets };
+              delete update[currentMonth]?.[id];
+              return { budgets: update };
             },
             false,
             "removeBudget"
           ),
 
-        editBudget: (id: BudgetType["id"], data: Partial<BudgetType>) =>
+        editBudget: (newTagId, oldTagId, oldMonth, data) => {
           set(
-            {
-              budgets: {
-                ...get().budgets,
-                [id]: { ...get().budgets[id], ...data },
-              },
+            ({ budgets }) => {
+              const update = { ...budgets };
+              if (oldMonth === data.isoMonth) {
+                delete update[oldMonth]?.[oldTagId];
+                update[oldMonth] ??= {};
+                update[oldMonth][newTagId] = data;
+                return {
+                  budgets: update,
+                };
+              } else {
+                delete update[oldMonth];
+                update[data.isoMonth] ??= {};
+                delete update[data.isoMonth]?.[oldTagId];
+                update[data.isoMonth][newTagId] = data;
+                return {
+                  budgets: update,
+                };
+              }
             },
             false,
-            "editBudget"
-          ),
-        removeThisMonth: (month: string) =>
+            "removeBudget"
+          );
+        },
+        removeThisMonth: (month: number) =>
           set(
-            {
-              budgets: Object.fromEntries(
-                Object.entries(get().budgets).filter(
-                  ([_, value]) => value.month !== month
-                )
-              ),
+            ({ budgets }) => {
+              delete budgets[month];
+              return { budgets };
             },
             false,
             "removeBudget"
