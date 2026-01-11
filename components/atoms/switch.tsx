@@ -3,7 +3,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 export type ISwitchProps = {
   value: string;
-  setValue: (val: string | any) => void;
+  onChange: (val: string | any) => void;
   color: "primary" | "secondary";
   leftTitle: string;
   leftValue: string;
@@ -13,7 +13,7 @@ export type ISwitchProps = {
 
 const ISwitch = ({
   value,
-  setValue,
+  onChange,
   color = "primary",
   leftTitle,
   leftValue,
@@ -27,7 +27,7 @@ const ISwitch = ({
         color={color}
         value={value}
         exclusive
-        onChange={(_, value) => value && setValue(value)}
+        onChange={(_, value) => value && onChange(value)}
         sx={{
           borderRadius: "999px",
           backgroundColor: "var(--color-neutral)",
