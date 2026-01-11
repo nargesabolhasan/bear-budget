@@ -23,6 +23,7 @@ import {
 } from "@/store/transaction/type";
 import { useTagsStore } from "@/store/tags";
 import { useTranslation } from "react-i18next";
+import { useFilteredDateContext } from "@/context/filteredDateContext";
 
 const navItems: NavItemsType[] = [
   {
@@ -61,6 +62,7 @@ const TransactionListComponent = ({
   );
 
   const { tags } = useTagsStore();
+  const { date } = useFilteredDateContext();
 
   const { t } = useTranslation();
 
@@ -103,6 +105,17 @@ const TransactionListComponent = ({
         />
       </header>
       {viewMode === ViewEnums.GROUPED && <ScrollToBottom />}
+      <section
+        className={
+          "flex flex-row items-center justify-center gap-1 border-b border-dashed border-b-primary pb-2 mb-3"
+        }
+      >
+        <h4>
+          {date.notIso.monthName}
+          {" - "}
+          {date.notIso.year}
+        </h4>
+      </section>
       <Render
         items={[
           {

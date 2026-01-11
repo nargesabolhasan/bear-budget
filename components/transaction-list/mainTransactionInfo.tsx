@@ -58,7 +58,7 @@ const MainTransactionInfo = ({
   const [open, setOpen] = useState<boolean>(false);
   const { editTransaction } = useTransactionStore();
   const { date } = useFilteredDateContext();
-  const { formatDate } = useCalendarUtils();
+  const { formatDate, isJalali } = useCalendarUtils();
 
   const {
     handleSubmit,
@@ -142,8 +142,8 @@ const MainTransactionInfo = ({
                 className={"text-primary mr-1"}
                 fontSize={"small"}
               />
-              {i18next.t("transactionList.settledOn")}{" "}
-              {formatDate(transaction?.settled?.date)}
+              {i18next.t("transactionList.settledOn")}
+              {formatDate(transaction?.settled?.date as string)}
             </p>
           </div>
         )}

@@ -45,7 +45,11 @@ const ActionButtons = ({
       ),
       confirmHandler: () => {
         removeTransaction(transaction.id, date.year, date.month);
-        toast.success(<span>Deleted successfully.</span>);
+        toast.success(
+          i18next.t("setting.successDelete", {
+            value: i18next.t("global.transaction"),
+          })
+        );
       },
     });
   };
@@ -84,7 +88,7 @@ const ActionButtons = ({
 
   return (
     <ContextMenu menuItems={menuItems} resetAfterSelect>
-      <MoreHorizTwoToneIcon />
+      <MoreHorizTwoToneIcon className={"cursor-pointer"} />
     </ContextMenu>
   );
 };

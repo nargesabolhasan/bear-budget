@@ -18,9 +18,9 @@ const TransactionListContainer = () => {
 
   const { date } = useFilteredDateContext();
 
-  const { calenderMonthList } = useCalendarUtils();
+  const { isJalali } = useCalendarUtils();
 
-  const { getTransactions, groupedByType, removeByYearMonth } =
+  const { getTransactions, groupedByType, removeByYearMonth, transactions } =
     useTransactionStore();
 
   const handleOpen = () => setOpen(true);
@@ -66,13 +66,23 @@ const TransactionListContainer = () => {
         </Box>
       </Modal>
       <TransactionListComponent
-        transactions={getTransactions(date.year, date.month)}
-        groupedTransactions={groupedByType(date.year, date.month)}
+        transactions={getTransactions(
+          date.year,
+          date.month,
+          isJalali,
+          date.notIso.month
+        )}
+        groupedTransactions={groupedByType(
+          date.year,
+          date.month,
+          isJalali,
+          date.notIso.month
+        )}
         handleChangeTab={handleChangeTab}
         viewMode={viewMode}
-        clearAll={() => removeByYearMonth(date.year, date.month)}
+        clearAll={() => removeByYearMonth(date, isJalali)}
         dialogTitle={t("transactionList.deleteAll", {
-          value: `${calenderMonthList[date.month]} ${date.year}`,
+          value: `${date.notIso.monthName} ${date.notIso.year}`,
         })}
       />
     </div>
