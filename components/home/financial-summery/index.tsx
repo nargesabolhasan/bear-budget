@@ -9,9 +9,21 @@ import i18next from "i18next";
 
 const Summery = () => {
   const { groupedByType } = useTransactionStore();
-  const { getCurrentMonthNumber, getCurrentYear } = useCalendarUtils();
+  const { getCurrentMonthNumber, getCurrentYear, toStandardISO, isJalali } =
+    useCalendarUtils();
 
-  const data = groupedByType(getCurrentYear(), getCurrentMonthNumber()) || {};
+  const isoDate = toStandardISO({
+    year: getCurrentYear(),
+    month: getCurrentMonthNumber(),
+  });
+
+  const data =
+    groupedByType(
+      isoDate.year,
+      isoDate.month,
+      isJalali,
+      getCurrentMonthNumber()
+    ) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
   const totalOutgoing = data?.Expense?.totalAmount ?? 0;

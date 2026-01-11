@@ -23,7 +23,7 @@ export default function ThemeToggle() {
         rightValue={"dark"}
         rightTitle={`🌙 ${t("setting.dark")}`}
         leftTitle={`☀️ ${t("setting.light")}`}
-        setValue={setTheme}
+        onChange={setTheme}
       />
     </section>
   );

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ISwitch from "@/components/atoms/switch";
 import React from "react";
 
-export default function LanguageSwitcher() {
+export default function ToggleLanguage() {
   const { i18n } = useTranslation();
 
   const toggleLanguage = (val: string) => {
@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
         rightValue={"en"}
         leftTitle={i18n.t("global.fa")}
         rightTitle={i18n.t("global.en")}
-        setValue={toggleLanguage}
+        onChange={toggleLanguage}
       />
     </section>
   );

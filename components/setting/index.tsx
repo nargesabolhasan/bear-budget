@@ -15,9 +15,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
 import { settingItems } from "@/components/setting/settingItems";
 import ThemeToggle from "@/components/setting/toggleTheme";
-import LanguageSwitcher from "@/components/setting/languageSwitcher";
+import ToggleLanguage from "@/components/setting/toggleLanguage";
 import { useTranslation } from "react-i18next";
-import CalenderSetting from "@/components/setting/calenderSetting";
+import ToggleCalendarMode from "@/components/setting/toggleCalendarMode";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
@@ -116,8 +116,8 @@ const SettingComponent = () => {
         </div>
       </section>
       <ThemeToggle />
-      <LanguageSwitcher />
-      <CalenderSetting />
+      <ToggleLanguage />
+      <ToggleCalendarMode />
       <section className="flex flex-col items-center justify-center w-full">
         <ul className="flex flex-col gap-3 items-start w-full">
           {items.map((item) => (
