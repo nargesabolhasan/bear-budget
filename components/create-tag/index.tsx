@@ -61,7 +61,7 @@ const CreateTagForm = ({
     formState: { isValid, errors },
   } = useForm<TagFormData>({
     defaultValues: {
-      [FormTagEnum.ICON]: props?.icon || "",
+      [FormTagEnum.ICON]: props?.icon || iconList.get("0")?.id,
       [FormTagEnum.COLOR]: props?.color || colorList[0],
       [FormTagEnum.TRANSACTION_TYPE]:
         props?.transactionType || TransactionEnum.INCOME,

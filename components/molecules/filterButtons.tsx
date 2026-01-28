@@ -20,8 +20,8 @@ type FilterButtonProps = {
   navItems: NavItemsType[];
   activeId: number;
   onChange: (id: number) => void;
-  selectedMenuFilter: string;
-  setSelectedMenuFilter: React.Dispatch<React.SetStateAction<string>>;
+  selectedMenuFilter: string | false;
+  setSelectedMenuFilter: React.Dispatch<React.SetStateAction<string | false>>;
 };
 
 const FilterButtons = ({
@@ -31,6 +31,8 @@ const FilterButtons = ({
   selectedMenuFilter,
   setSelectedMenuFilter,
 }: FilterButtonProps) => {
+  const setSelectAutoItem = React.useRef<boolean>(true);
+
   const NavButton = ({
     item,
     index,
@@ -50,11 +52,23 @@ const FilterButtons = ({
       size={"small"}
       className={"!h-[40px]"}
     >
-      {(showContextMenu && i18n.t(`transactions.${selectedMenuFilter}`)) ||
+      {(showContextMenu &&
+        i18n.t(
+          selectedMenuFilter
+            ? `transactions.${selectedMenuFilter}`
+            : `transactionList.${item.title}`
+        )) ||
         i18n.t(`transactionList.${item.title}`)}
       {showContextMenu && <ArrowDropDownIcon />}
     </IButton>
   );
+
+  const handleSelectAutoItem = () => {
+    if (setSelectAutoItem.current) {
+      setSelectedMenuFilter(TransactionEnum.EXPENSE);
+    }
+    setSelectAutoItem.current = false;
+  };
 
   const handleSelectItem = (item: ContextMenuProps[number]) => {
     setSelectedMenuFilter(item.title as TransactionEnum);
@@ -79,8 +93,8 @@ const FilterButtons = ({
               <ContextMenu
                 menuItems={item?.contextMenu as ContextMenuProps}
                 onSelectAction={handleSelectItem}
-                defaultSelect={0}
                 translateMode
+                onOpen={handleSelectAutoItem}
               >
                 <NavButton
                   isActive={isActive}

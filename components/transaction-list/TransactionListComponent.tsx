@@ -58,8 +58,8 @@ const TransactionListComponent = ({
   clearAll,
   dialogTitle,
 }: Props) => {
-  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string>(
-    TransactionEnum.EXPENSE
+  const [selectedMenuFilter, setSelectedMenuFilter] = useState<string | false>(
+    false
   );
 
   const { tags } = useTagsStore();

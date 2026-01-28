@@ -21,6 +21,7 @@ type Props = {
   className?: string;
   resetAfterSelect?: boolean;
   translateMode?: boolean;
+  onOpen?: () => void;
 };
 
 export default function ContextMenu({
@@ -30,6 +31,7 @@ export default function ContextMenu({
   defaultSelect = 0,
   resetAfterSelect = false,
   translateMode = false,
+  onOpen,
   className,
 }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -41,6 +43,7 @@ export default function ContextMenu({
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
+    onOpen?.();
   };
 
   const handleClose = () => {

@@ -30,11 +30,14 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
     getCurrentYear,
     toStandardISO,
     isJalali,
+    getCurrentMonthNumber,
   } = useCalendarUtils();
 
   const index = isJalali ? defaultValue?.month : defaultValue?.isoMonth;
 
-  const defaultMonth = calenderMonthList[(index ?? 0) - 1];
+  const defaultMonth = index
+    ? calenderMonthList[(index ?? 0) - 1]
+    : calenderMonthList[getCurrentMonthNumber() - 1];
 
   const schema = yup.object({
     [FormBudgetTypeEnum.AMOUNT]: yup
