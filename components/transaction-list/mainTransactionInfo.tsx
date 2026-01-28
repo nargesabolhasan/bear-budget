@@ -84,7 +84,7 @@ const MainTransactionInfo = ({
 
   const showSettledButton =
     (tags?.[transaction?.tag]?.transactionType === TransactionEnum.DEBT ||
-      tags?.[transaction?.tag]?.transactionType === TransactionEnum.LOANED) &&
+      tags?.[transaction?.tag]?.transactionType === TransactionEnum.CREDIT) &&
     !Boolean(transaction?.settled);
 
   const showSettledDescription = !!transaction?.settled;
@@ -113,7 +113,7 @@ const MainTransactionInfo = ({
       <p
         dir="auto"
         style={{ unicodeBidi: "plaintext" }}
-        className="w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all text-start"
+        className="mt-2 w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all text-start"
       >
         {transaction.description}
       </p>
