@@ -73,7 +73,7 @@
   "transactions": {
     "Income": "درآمد",
     "Save": "ذخیره",
-    "Loaned": "بستان کاری",
+    "Credit": "بستان کاری",
     "Debt": "بده کاری",
     "Expense": "مخارج"
   },

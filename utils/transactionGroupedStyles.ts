@@ -10,7 +10,7 @@ export const groupedStyles = (type: string) => {
       return "bg-violet-200";
     case TransactionEnum.DEBT:
       return "bg-burly_wood";
-    case TransactionEnum.LOANED:
+    case TransactionEnum.CREDIT:
       return "bg-blue-200";
     default:
       return "bg-primary_light";

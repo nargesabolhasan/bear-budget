@@ -20,7 +20,7 @@ export const transactionTypeIcon = (type: TransactionEnum | string) => {
     case TransactionEnum.DEBT:
       return <MoneyRecive size="32" color="var(--color-secondary)" />;
 
-    case TransactionEnum.LOANED:
+    case TransactionEnum.CREDIT:
       return <MoneySend size="32" color="var(--color-info)" />;
   }
 };

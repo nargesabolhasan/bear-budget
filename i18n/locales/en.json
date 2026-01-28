@@ -72,7 +72,7 @@
   "transactions": {
     "Income": "Income",
     "Save": "Save",
-    "Loaned": "Credit",
+    "Credit": "Credit",
     "Debt": "Debit",
     "Expense": "Expense"
   },

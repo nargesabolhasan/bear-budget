@@ -5,7 +5,7 @@ export enum TransactionEnum {
   EXPENSE = "Expense",
   INCOME = "Income",
   SAVE = "Save",
-  LOANED = "Loaned",
+  CREDIT = "Credit",
   DEBT = "Debt",
 }
 
