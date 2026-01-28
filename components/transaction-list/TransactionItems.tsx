@@ -52,7 +52,7 @@ const TransactionItems = ({
               />
             )}
 
-            <div className={"flex flex-row items-stretch w-full"}>
+            <div className={"gap-1 flex flex-row items-stretch w-full"}>
               {showTransactionIndicator && (
                 <TransactionTypeIndicator tag={tags?.[transaction.tag]} />
               )}

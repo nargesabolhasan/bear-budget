@@ -38,7 +38,7 @@ const EditTagPage = ({ params }: Props) => {
       <CreateTagForm
         submitHandler={submitHandler}
         title={
-          <span className={"flex flex-row"} dir={"ltr"}>
+          <span className={"flex flex-row items-center"} dir={"ltr"}>
             <BackButton />
             <h4 className={"text-center grow"}>
               {i18next.t("createTag.edit")}

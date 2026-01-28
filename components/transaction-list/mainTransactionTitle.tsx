@@ -44,7 +44,7 @@ const MainTransactionTitle = ({
             )}
             <span className={"text-lg"}>{tag?.name}</span>
           </span>
-          <time className={"text-sm text-placeholder"}>{formatDate(date)}</time>
+          <time className={"text-xs text-placeholder"}>{formatDate(date)}</time>
         </div>
         <span className={"flex flex-row items-center"}>
           <h4>

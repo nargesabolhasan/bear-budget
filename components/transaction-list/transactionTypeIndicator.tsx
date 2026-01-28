@@ -8,17 +8,17 @@ const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
 
   return (
-    <div className={"flex flex-col items-center justify-center"}>
+    <div className={"flex flex-col items-center justify-center gap-2 w-[40]"}>
       <div
         className={twMerge(
-          "print:left-0 top-1 size-[40px] flex flex-col items-center justify-center rounded-full p-3 shadow-sm shadow-dark m-2",
+          "print:left-0 top-1 size-[40px] flex flex-col items-center justify-center rounded-full p-3 shadow-sm shadow-dark",
           tag?.color.color
         )}
       >
         <Icon />
       </div>
       <span
-        className={"text-olive"}
+        className={"text-olive text-xs text-center"}
         style={{
           fontFamily:
             i18next.language === "en-US"
@@ -26,7 +26,7 @@ const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
               : "playpenSansArabic",
         }}
       >
-        {tag?.transactionType[0].toUpperCase()}
+        {i18next.t(`transactions.${tag?.transactionType}`)}
       </span>
     </div>
   );
