@@ -39,7 +39,12 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
           <i>{transactionTypeIcon(transactionType)}</i>
           <h3
             className={"font-semibold text-dark"}
-            style={{ fontFamily: "PlaywriteNZGuides" }}
+            style={{
+              fontFamily:
+                i18next.language === "en-US"
+                  ? "PlaywriteNZGuides"
+                  : "playpenSansArabic",
+            }}
           >
             {i18next.t(`transactions.${transactionType}`)}
           </h3>
@@ -51,7 +56,12 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
       <Render
         when={!!transactions?.transactions}
         fallback={
-          <span className={"p-3 w-[280px] text-center"}>
+          <span
+            className={twMerge(
+              "p-3 w-[280px] text-center w-full rounded-b-xl",
+              groupedStyles(transactionType)
+            )}
+          >
             {i18next.t("transactionList.emptyGroup")}
           </span>
         }

@@ -54,7 +54,12 @@ export default function LoginPage() {
         />
         <b
           className={"text-2xl text-center"}
-          style={{ fontFamily: "PlaywriteNZGuides" }}
+          style={{
+            fontFamily:
+              i18next.language === "en-US"
+                ? "PlaywriteNZGuides"
+                : "playpenSansArabic",
+          }}
         >
           {i18next.t("login.welcome")}
         </b>

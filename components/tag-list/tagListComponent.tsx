@@ -60,7 +60,12 @@ const TagListDemo = () => {
           {Object.entries(searchResult).map(([tagType, tags], index) => (
             <div className={"flex flex-col gap-2"} key={`${tagType}-${index}`}>
               <h2
-                style={{ fontFamily: "PlaywriteNZGuides" }}
+                style={{
+                  fontFamily:
+                    i18next.language === "en-US"
+                      ? "PlaywriteNZGuides"
+                      : "playpenSansArabic",
+                }}
                 className={
                   "text-dark mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
                 }

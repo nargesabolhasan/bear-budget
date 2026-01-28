@@ -99,7 +99,12 @@ const BudgetItems = ({
         <span className={"flex flex-col lg:flex-row gap-2"}>
           <span
             className={"text-placeholder"}
-            style={{ fontFamily: "PlaywriteNZGuides" }}
+            style={{
+              fontFamily:
+                i18next.language === "en-US"
+                  ? "PlaywriteNZGuides"
+                  : "playpenSansArabic",
+            }}
           >
             {i18next.t("global.budget")}
           </span>
@@ -108,7 +113,12 @@ const BudgetItems = ({
         <span className={"flex flex-col lg:flex-row gap-2"}>
           <span
             className={"text-placeholder"}
-            style={{ fontFamily: "PlaywriteNZGuides" }}
+            style={{
+              fontFamily:
+                i18next.language === "en-US"
+                  ? "PlaywriteNZGuides"
+                  : "playpenSansArabic",
+            }}
           >
             {i18next.t("budgets.spent")}
           </span>
@@ -117,7 +127,12 @@ const BudgetItems = ({
         <span className={"flex flex-col lg:flex-row gap-2"}>
           <span
             className={"text-placeholder"}
-            style={{ fontFamily: "PlaywriteNZGuides" }}
+            style={{
+              fontFamily:
+                i18next.language === "en-US"
+                  ? "PlaywriteNZGuides"
+                  : "playpenSansArabic",
+            }}
           >
             {i18next.t("budgets.remining")}
           </span>

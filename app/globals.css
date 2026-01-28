@@ -44,6 +44,7 @@ html[dir="ltr"] body {
 }
 html[dir="rtl"] body{
     font-family: "playpenSansArabic", sans-serif;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 /*----scrollbar------*/

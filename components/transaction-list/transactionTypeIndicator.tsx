@@ -2,6 +2,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import { TagType } from "@/types/global";
+import i18next from "i18next";
 
 const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
@@ -18,7 +19,12 @@ const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
       </div>
       <span
         className={"text-olive"}
-        style={{ fontFamily: "PlaywriteNZGuides" }}
+        style={{
+          fontFamily:
+            i18next.language === "en-US"
+              ? "PlaywriteNZGuides"
+              : "playpenSansArabic",
+        }}
       >
         {tag?.transactionType[0].toUpperCase()}
       </span>
