@@ -37,7 +37,10 @@
     "calender": "تقویم :",
     "changeName": "ویرایش نام",
     "jalali": "شمسی",
-    "gregorian": "قمری"
+    "gregorian": "قمری",
+    "notice": "توجه",
+    "toggleCalendarHint": "با تغییر تقویم فیلتر کردن بودجه ها ممکن است به یک ماه بعد منتقل بشود",
+    "toggleCalendarConfirm": "متوجه شدم"
   },
   "header": {
     "home": "خانه",

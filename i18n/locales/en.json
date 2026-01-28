@@ -37,7 +37,10 @@
     "calender": "Calender :",
     "changeName": "Change Name",
     "jalali": "jalali",
-    "gregorian": "gregorian"
+    "gregorian": "gregorian",
+    "notice": "notice",
+    "toggleCalendarHint": "By changing the calendar, budget filtering may be moved to a later month.",
+    "toggleCalendarConfirm": "I understand."
   },
   "header": {
     "home": "Home",

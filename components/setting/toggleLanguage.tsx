@@ -17,8 +17,8 @@ export default function ToggleLanguage() {
       <ISwitch
         color={"primary"}
         value={i18n.language}
-        leftValue={"fa"}
-        rightValue={"en"}
+        leftValue={"fa-IR"}
+        rightValue={"en-US"}
         leftTitle={i18n.t("global.fa")}
         rightTitle={i18n.t("global.en")}
         onChange={toggleLanguage}
