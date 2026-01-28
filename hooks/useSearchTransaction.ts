@@ -2,6 +2,7 @@ import { TransactionEnum, TransactionType } from "@/types/global";
 import { TagsListType } from "@/store/tags/type";
 import { useState, useRef, useEffect } from "react";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import i18n from "i18next";
 
 type Props = {
   allTransactions: TransactionType[];
@@ -41,12 +42,15 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
             ?.toLowerCase()
             .includes(q) ||
           transaction.settled?.amount?.toString().includes(q) ||
-          tagInfo?.transactionType?.toLowerCase().includes(q) ||
+          i18n
+            .t(`transactions.${tagInfo?.transactionType}`)
+            ?.toLowerCase()
+            .includes(q) ||
           tagInfo?.name?.toLowerCase().includes(q) ||
           ((tagInfo?.transactionType === TransactionEnum.DEBT ||
-            tagInfo?.transactionType === TransactionEnum.LOANED) &&
+            tagInfo?.transactionType === TransactionEnum.CREDIT) &&
             !Boolean(transaction?.settled) &&
-            (q.toLowerCase() === "settled" || q.includes("تسویه")))
+            i18n.t("transactionList.settled")?.toLowerCase().includes(q))
         );
       });
 

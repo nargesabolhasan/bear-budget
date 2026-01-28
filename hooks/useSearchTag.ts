@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { TransactionEnum } from "@/types/global";
 import { GroupedTagsByType } from "@/store/tags/type";
+import i18n from "i18next";
 
 type UseSearchTagProps = {
   groups: GroupedTagsByType;
@@ -35,7 +36,10 @@ const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
       const filtered = tags.filter(
         (tag) =>
           tag.name.toLowerCase().includes(query) ||
-          tag.transactionType.toLowerCase().includes(query)
+          i18n
+            .t(`transactions.${tag?.transactionType}`)
+            .toLowerCase()
+            .includes(query)
       );
       if (filtered.length) {
         result[type as TransactionEnum] = filtered;
