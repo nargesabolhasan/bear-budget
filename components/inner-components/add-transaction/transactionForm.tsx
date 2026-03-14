@@ -7,7 +7,7 @@ import {
   FormTransactionEnum,
   TransactionFormData,
   TransactionProps,
-} from "@/components/add-transaction/type";
+} from "@/components/inner-components/add-transaction/type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
@@ -15,8 +15,8 @@ import { useTagsStore } from "@/store/tags";
 import { convertToCurrency } from "@/utils/utils";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
-import TagAccordion from "@/components/create-budget/tagAccordion";
-import { FormBudgetTypeEnum } from "@/components/create-budget/types";
+import TagAccordion from "@/components/inner-components/create-budget/tagAccordion";
+import { FormBudgetTypeEnum } from "@/components/inner-components/create-budget/types";
 import i18next from "i18next";
 
 const schema = yup.object({

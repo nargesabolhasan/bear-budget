@@ -10,12 +10,12 @@ import { useTagsStore } from "@/store/tags";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import { toast } from "sonner";
-import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import PrinterViewTitle from "@/components/inner-components/printer-demo/printerViewTitle";
 import { Edit2, Trash } from "iconsax-react";
-import SearchBar from "@/components/search";
+import SearchBar from "@/components/inner-components/search";
 import useSearchTag from "@/hooks/useSearchTag";
 import { Render } from "@/utils/render";
-import NotFoundItem from "@/components/search/NotFoundItem";
+import NotFoundItem from "@/components/inner-components/search/NotFoundItem";
 import i18next from "i18next";
 
 const TagListDemo = () => {

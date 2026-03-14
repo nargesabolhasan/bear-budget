@@ -1,5 +1,5 @@
 import React from "react";
-import { TagFormData } from "@/components/create-tag/type";
+import { TagFormData } from "@/components/inner-components/create-tag/type";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import i18next from "i18next";

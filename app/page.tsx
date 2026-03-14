@@ -1,7 +1,7 @@
 import React from "react";
-import NewItemCards from "@/components/home/newItemCards";
-import TransactionSummery from "@/components/home/transactionSummery";
-import FinancialSummery from "@/components/home/financial-summery";
+import NewItemCards from "@/components/inner-components/home/newItemCards";
+import TransactionSummery from "@/components/inner-components/home/transactionSummery";
+import FinancialSummery from "@/components/inner-components/home/financial-summery";
 
 export default function Home() {
   return (

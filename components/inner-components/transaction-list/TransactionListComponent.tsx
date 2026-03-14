@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Render } from "@/utils/render";
-import AllTransactions from "@/components/transaction-list/all-view";
-import FilterView from "@/components/transaction-list/filters-view";
+import AllTransactions from "@/components/inner-components/transaction-list/all-view";
+import FilterView from "@/components/inner-components/transaction-list/filters-view";
 import { TransactionEnum, TransactionType, ViewEnums } from "@/types/global";
-import SuperGroupList from "@/components/transaction-list/super-group-view";
+import SuperGroupList from "@/components/inner-components/transaction-list/super-group-view";
 
 import EmptyList from "@/components/molecules/emptyList";
 import { transactionRoutes } from "@/routes/routes";
-import HelperButtons from "@/components/tag-list/helperButtons";
+import HelperButtons from "@/components/inner-components/tag-list/helperButtons";
 import FilterButtons, {
   NavItemsType,
 } from "@/components/molecules/filterButtons";

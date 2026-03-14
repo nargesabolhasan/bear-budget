@@ -3,7 +3,7 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { TagType } from "@/types/global";
-import TagDemo from "@/components/create-tag/tagDemo";
+import TagDemo from "@/components/inner-components/create-tag/tagDemo";
 
 export type tagPickerType = {
   tagList: TagType[];

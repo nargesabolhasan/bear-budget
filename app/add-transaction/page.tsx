@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import TransactionForm from "@/components/add-transaction/transactionForm";
-import { TransactionFormData } from "@/components/add-transaction/type";
+import TransactionForm from "@/components/inner-components/add-transaction/transactionForm";
+import { TransactionFormData } from "@/components/inner-components/add-transaction/type";
 import { useTransactionStore } from "@/store/transaction";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";

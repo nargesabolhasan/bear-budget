@@ -2,14 +2,17 @@
 
 import React, { ReactNode } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import IconPicker from "@/components/create-tag/iconPicker";
+import IconPicker from "@/components/inner-components/create-tag/iconPicker";
 import { iconList } from "@/constant/icons";
 import { Controller, useForm } from "react-hook-form";
 import { ColorOption, TransactionEnum } from "@/types/global";
-import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
-import ColorPicker from "@/components/create-tag/colorPicker";
+import {
+  FormTagEnum,
+  TagFormData,
+} from "@/components/inner-components/create-tag/type";
+import ColorPicker from "@/components/inner-components/create-tag/colorPicker";
 import { colorList } from "@/constant/colors";
-import TagDemo from "@/components/create-tag/tagDemo";
+import TagDemo from "@/components/inner-components/create-tag/tagDemo";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ITextField from "@/components/atoms/textField";

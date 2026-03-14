@@ -1,6 +1,6 @@
 "use client";
 
-import TransactionListContainer from "@/components/transaction-list";
+import TransactionListContainer from "@/components/inner-components/transaction-list";
 
 const TransactionPage = () => {
   return <TransactionListContainer />;

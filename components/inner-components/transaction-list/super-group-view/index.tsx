@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import TransactionItems from "@/components/transaction-list/TransactionItems";
+import TransactionItems from "@/components/inner-components/transaction-list/TransactionItems";
 import { TransactionEnum } from "@/types/global";
 import { TransactionInfoType } from "@/store/transaction/type";
-import TransactionHeader from "@/components/transaction-list/transactionHeader";
-import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import TransactionHeader from "@/components/inner-components/transaction-list/transactionHeader";
+import PrinterViewTitle from "@/components/inner-components/printer-demo/printerViewTitle";
 import { TagsListType } from "@/store/tags/type";
 import i18next from "i18next";
 

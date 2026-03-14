@@ -1,7 +1,7 @@
 import React from "react";
 import { Control, Controller } from "react-hook-form";
-import { FormTransactionEnum } from "@/components/add-transaction/type";
-import TagPicker from "@/components/add-transaction/tagPicker";
+import { FormTransactionEnum } from "@/components/inner-components/add-transaction/type";
+import TagPicker from "@/components/inner-components/add-transaction/tagPicker";
 import { Render } from "@/utils/render";
 import Link from "next/link";
 import { tagRoutes } from "@/routes/routes";

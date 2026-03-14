@@ -4,7 +4,7 @@ import React, { use } from "react";
 import { toast } from "sonner";
 import { useBudgetStore } from "@/store/budget";
 import { BudgetType } from "@/types/global";
-import CreateBudget from "@/components/create-budget";
+import CreateBudget from "@/components/inner-components/create-budget";
 import { useRouter } from "next/navigation";
 import i18next from "i18next";
 

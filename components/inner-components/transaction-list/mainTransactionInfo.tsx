@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import MainTransactionTitle from "@/components/transaction-list/mainTransactionTitle";
+import MainTransactionTitle from "@/components/inner-components/transaction-list/mainTransactionTitle";
 import { TransactionEnum, TransactionType } from "@/types/global";
-import ActionButtons from "@/components/transaction-list/actionButtons";
+import ActionButtons from "@/components/inner-components/transaction-list/actionButtons";
 import { twMerge } from "tailwind-merge";
 import ICheckbox from "@/components/atoms/checkbox";
 import { Box } from "@mui/material";

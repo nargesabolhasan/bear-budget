@@ -1,9 +1,12 @@
 "use client";
 
 import React, { use } from "react";
-import CreateTagForm from "@/components/create-tag";
+import CreateTagForm from "@/components/inner-components/create-tag";
 import { useTagsStore } from "@/store/tags";
-import { FormTagEnum, TagFormData } from "@/components/create-tag/type";
+import {
+  FormTagEnum,
+  TagFormData,
+} from "@/components/inner-components/create-tag/type";
 import { toast } from "sonner";
 import { FORMS_WRAPPER_CLASS } from "@/constant/className";
 import BackButton from "@/components/molecules/backButton";

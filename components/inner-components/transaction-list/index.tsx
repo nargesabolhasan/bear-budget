@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import { ViewEnums } from "@/types/global";
 import Box from "@mui/material/Box";
-import DateFilteredTransactions from "@/components/date-filter/dateFilteredTransactions";
+import DateFilteredTransactions from "@/components/inner-components/date-filter/dateFilteredTransactions";
 import { useTransactionStore } from "@/store/transaction";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
-import TransactionListComponent from "@/components/transaction-list/TransactionListComponent";
+import TransactionListComponent from "@/components/inner-components/transaction-list/TransactionListComponent";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import { useTranslation } from "react-i18next";
 

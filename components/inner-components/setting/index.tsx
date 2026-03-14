@@ -9,15 +9,15 @@ import { useTagsStore } from "@/store/tags";
 import { useBudgetStore } from "@/store/budget";
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/material";
-import LogoutButton from "@/components/logout";
-import LoginForm from "@/components/login/loginForm";
+import LogoutButton from "@/components/inner-components/logout";
+import LoginForm from "@/components/inner-components/login/loginForm";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
-import { settingItems } from "@/components/setting/settingItems";
-import ThemeToggle from "@/components/setting/toggleTheme";
-import ToggleLanguage from "@/components/setting/toggleLanguage";
+import { settingItems } from "@/components/inner-components/setting/settingItems";
+import ThemeToggle from "@/components/inner-components/setting/toggleTheme";
+import ToggleLanguage from "@/components/inner-components/setting/toggleLanguage";
 import { useTranslation } from "react-i18next";
-import ToggleCalendarMode from "@/components/setting/toggleCalendarMode";
+import ToggleCalendarMode from "@/components/inner-components/setting/toggleCalendarMode";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);

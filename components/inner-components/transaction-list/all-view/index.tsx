@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import { TransactionType } from "@/types/global";
-import TransactionItems from "@/components/transaction-list/TransactionItems";
+import TransactionItems from "@/components/inner-components/transaction-list/TransactionItems";
 import IPagination, { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 import usePaginationData from "@/hooks/usePagination";
-import PrinterViewTitle from "@/components/printer-demo/printerViewTitle";
+import PrinterViewTitle from "@/components/inner-components/printer-demo/printerViewTitle";
 import { TagsListType } from "@/store/tags/type";
-import SearchBar from "@/components/search";
+import SearchBar from "@/components/inner-components/search";
 import useSearchTransaction from "@/hooks/useSearchTransaction";
 import { Render } from "@/utils/render";
-import NotFoundItem from "@/components/search/NotFoundItem";
+import NotFoundItem from "@/components/inner-components/search/NotFoundItem";
 import i18next from "i18next";
 
 const AllTransactions = ({

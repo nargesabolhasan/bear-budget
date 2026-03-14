@@ -2,7 +2,7 @@
 import React from "react";
 import IButton from "@/components/atoms/button";
 import PrintComponent from "@/components/molecules/print";
-import CreateTagButton from "@/components/tag-list/CreateTagButton";
+import CreateTagButton from "@/components/inner-components/tag-list/CreateTagButton";
 import { Trash } from "iconsax-react";
 import i18next from "i18next";
 
