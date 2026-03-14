@@ -74,7 +74,9 @@ const TransactionForm = ({
     <form
       //@ts-ignore
       onSubmit={handleSubmit(onSubmit)}
-      className={"w-full flex flex-col gap-3 p-3"}
+      className={
+        "w-full flex flex-col gap-3 p-3 transaction transition-all delay-100 duration-200"
+      }
     >
       {title && title}
       <Controller

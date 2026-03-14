@@ -32,8 +32,14 @@ const TagDemo = ({
       <div className={"flex flex-col gap-2 items-start w-full"}>
         {demoTitle && <h3 className={"text-center w-full"}>{demoTitle}</h3>}
       </div>
-      {name && (
-        <span className={"block text-md text-dark_surface"}>{name ?? " "}</span>
+      {!!name && (
+        <span
+          className={
+            "block text-md text-dark_surface text-pretty break-words whitespace-normal overflow-wrap break-all"
+          }
+        >
+          {name}
+        </span>
       )}
       <i
         className={twMerge(

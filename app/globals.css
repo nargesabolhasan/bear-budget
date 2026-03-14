@@ -84,6 +84,10 @@ html[dir="rtl"] body{
     @apply !bg-neutral_light
 }
 
+.mui-1mp97ga-MuiPaper-root-MuiAccordion-root.Mui-expanded{
+    @apply !m-0
+}
+
 /*--------date picker---------*/
 .dark .rmdp-day {
     @apply text-white;

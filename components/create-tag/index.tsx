@@ -155,7 +155,9 @@ const CreateTagForm = ({
 
   return (
     <form
-      className={"flex flex-col gap-4 w-full"}
+      className={
+        "flex flex-col gap-3 w-full transaction transition-all delay-100 duration-200"
+      }
       onSubmit={handleSubmit(onSubmit)}
       dir={"auto"}
     >
