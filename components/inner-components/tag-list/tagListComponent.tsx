@@ -93,7 +93,7 @@ const TagListDemo = () => {
                             tag.color.color
                           )}
                         >
-                          {<Icon />}
+                          {<Icon sx={{ fontSize: 30 }} />}
                         </i>
                         <h3 className={"col-span-2"}> {tag.name}</h3>
                       </span>

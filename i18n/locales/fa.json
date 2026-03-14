@@ -105,7 +105,8 @@
     "date": "تاریخ",
     "description": "توضیحات",
     "emptyTagList": "شما هیچ برچسبی نداری. برای ساخت برچسب جدید کلیک کن!",
-    "transactionType": "نوع تراکنش"
+    "transactionType": "نوع تراکنش",
+    "addNewTransaction": "افزودن تراکنش جدید"
   },
   "transactionList": {
     "deleteAll": "تمام تراکنش های {{value}} حذف بشن؟",

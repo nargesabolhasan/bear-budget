@@ -23,7 +23,7 @@ import i18next from "i18next";
 
 const CreateTagForm = ({
   submitHandler,
-  title,
+  title = i18next.t("home.create", { value: i18next.t("global.tag") }),
   ...props
 }: Partial<TagFormData> & {
   submitHandler: (data: TagFormData) => void;
@@ -164,7 +164,7 @@ const CreateTagForm = ({
       onSubmit={handleSubmit(onSubmit)}
       dir={"auto"}
     >
-      {title && title}
+      <div className={"mx-auto w-full text-center"}>{title}</div>
       <Controller
         name={FormTagEnum.NAME}
         control={control}

@@ -31,14 +31,15 @@ const MainTransactionTitle = ({
     <>
       <div className={"w-full flex flex-row gap-3 justify-between items-start"}>
         <div className={"flex flex-col gap-1"}>
-          <span className={"flex flex-row justify-start items-center gap-1"}>
+          <span className={"flex flex-row justify-start items-center gap-2"}>
             {showTagIcon && (
               <Icon
+                fontSize={"large"}
                 className={twMerge(
-                  "opacity-70 rounded-full p-1",
+                  "opacity-90 rounded-full p-1",
                   showTagIconColor
-                    ? "bg-transparent border border-dotted border-placeholder"
-                    : groupedStyles(tag?.transactionType)
+                    ? "bg-transparent border-2 border-dotted border-placeholder"
+                    : twMerge("text-dark", groupedStyles(tag?.transactionType))
                 )}
               />
             )}

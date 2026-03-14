@@ -26,7 +26,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
   return (
     <div
       className={
-        "w-full md:w-[500px] flex flex-col items-center justify-center mx-auto"
+        "w-full md:w-full flex flex-col items-center justify-center mx-auto"
       }
     >
       <div
@@ -58,7 +58,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
         fallback={
           <span
             className={twMerge(
-              "p-3 w-[280px] text-center w-full rounded-b-xl",
+              "p-3 text-dark text-center w-full rounded-b-xl",
               groupedStyles(transactionType)
             )}
           >

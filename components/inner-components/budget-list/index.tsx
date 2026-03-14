@@ -190,36 +190,21 @@ const BudgetList = () => {
       </Render>
 
       {/* Month Selection Modal */}
-      <Modal open={open} onClose={handleClose}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral)",
-            borderRadius: 15,
-            boxShadow: 15,
-            p: 4,
-            width: "fit-content",
-            height: "fit-content",
-          }}
+      <IModal open={open} onClose={handleClose}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center justify-center px-10 gap-8"
         >
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center justify-center px-10 gap-8"
-          >
-            <ScrollDatePicker
-              dateList={calenderMonthList}
-              defaultValue={getCurrentMonthName()}
-              title="month"
-              watch={watch}
-              setValue={setValue}
-            />
-            <IButton type="submit">{i18next.t("global.submit")}</IButton>
-          </form>
-        </Box>
-      </Modal>
+          <ScrollDatePicker
+            dateList={calenderMonthList}
+            defaultValue={getCurrentMonthName()}
+            title="month"
+            watch={watch}
+            setValue={setValue}
+          />
+          <IButton type="submit">{i18next.t("global.submit")}</IButton>
+        </form>
+      </IModal>
     </div>
   );
 };

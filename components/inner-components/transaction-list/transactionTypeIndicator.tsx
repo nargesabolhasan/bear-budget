@@ -8,14 +8,14 @@ const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
 
   return (
-    <div className={"flex flex-col items-center justify-center gap-2 w-[40]"}>
+    <div className={"flex flex-col items-center justify-center gap-2 w-[45]"}>
       <div
         className={twMerge(
-          "print:left-0 top-1 size-[40px] flex flex-col items-center justify-center rounded-full p-3 shadow-sm shadow-dark",
+          "print:left-0 top-1 size-[45px] flex flex-col items-center justify-center rounded-full p-3 shadow-sm shadow-dark",
           tag?.color.color
         )}
       >
-        <Icon />
+        <Icon fontSize={"large"} />
       </div>
       <span
         className={"text-olive text-xs text-center"}

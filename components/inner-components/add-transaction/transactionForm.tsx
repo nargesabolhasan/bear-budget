@@ -40,7 +40,7 @@ const schema = yup.object({
 
 const TransactionForm = ({
   submitHandler,
-  title,
+  title = i18next.t("addTransaction.addNewTransaction"),
   ...props
 }: TransactionProps & Partial<TransactionFormData>) => {
   const {
@@ -78,7 +78,7 @@ const TransactionForm = ({
         "w-full flex flex-col gap-3 p-3 transaction transition-all delay-100 duration-200"
       }
     >
-      {title && title}
+      <div className={"mx-auto w-full text-center"}>{title}</div>
       <Controller
         name={FormTransactionEnum.AMOUNT}
         control={control}

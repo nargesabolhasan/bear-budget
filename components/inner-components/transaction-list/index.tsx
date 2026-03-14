@@ -9,6 +9,7 @@ import { useFilteredDateContext } from "@/context/filteredDateContext";
 import TransactionListComponent from "@/components/inner-components/transaction-list/TransactionListComponent";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import { useTranslation } from "react-i18next";
+import IModal from "@/components/molecules/modal";
 
 const TransactionListContainer = () => {
   const [viewMode, setViewMode] = useState<ViewEnums>(ViewEnums.ALL);
@@ -42,29 +43,14 @@ const TransactionListContainer = () => {
 
   return (
     <div>
-      <Modal
+      <IModal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="modal-date-Filter"
+        aria-describedby="modal-selected-date-Filter"
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral)",
-            borderRadius: 15,
-            boxShadow: 15,
-            p: 4,
-            width: "fit-content",
-            height: "fit-content",
-          }}
-        >
-          <DateFilteredTransactions submitSearch={submitSearch} />
-        </Box>
-      </Modal>
+        <DateFilteredTransactions submitSearch={submitSearch} />
+      </IModal>
       <TransactionListComponent
         transactions={getTransactions(
           date.year,

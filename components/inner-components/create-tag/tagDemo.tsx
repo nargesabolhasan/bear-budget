@@ -21,7 +21,7 @@ const TagDemo = ({
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-lg transition duration-150 ease-in-out",
+        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-2xl",
         className && className
       )}
       dir={"auto"}
@@ -47,7 +47,7 @@ const TagDemo = ({
           color.color
         )}
       >
-        {Icon ? <Icon /> : <></>}
+        {Icon ? <Icon sx={{ fontSize: 30 }} /> : <></>}
       </i>
       <h4 className={"mx-auto text-placeholder"}>
         {i18next.t(`transactions.${transactionType}`)}

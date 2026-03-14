@@ -18,6 +18,7 @@ import ThemeToggle from "@/components/inner-components/setting/toggleTheme";
 import ToggleLanguage from "@/components/inner-components/setting/toggleLanguage";
 import { useTranslation } from "react-i18next";
 import ToggleCalendarMode from "@/components/inner-components/setting/toggleCalendarMode";
+import IModal from "@/components/molecules/modal";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
@@ -98,7 +99,7 @@ const SettingComponent = () => {
           unoptimized
         />
 
-        <div className="flex flex-row gap-2 items-end justify-center cursor-pointer">
+        <div className="flex flex-row gap-2 items-end justify-center">
           <span className="text-2xl">
             {isLoading ? (
               <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
@@ -108,6 +109,7 @@ const SettingComponent = () => {
           </span>
 
           <Edit2
+            className={"cursor-pointer"}
             size="33"
             color={"var(--color-brown_secondary)"}
             variant="Bulk"
@@ -134,29 +136,13 @@ const SettingComponent = () => {
       </section>
 
       {/* Edit Username Modal */}
-      <Modal open={open} onClose={() => setIsOpen(false)}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral)",
-            borderRadius: 15,
-            boxShadow: 15,
-            p: 4,
-            width: "300px",
-            height: "fit-content",
-          }}
-        >
-          <LoginForm
-            onSubmit={handleEditUsername}
-            loading={updateUsernameMutation.isPending}
-            title={t("setting.changeName")}
-          />
-        </Box>
-      </Modal>
-
+      <IModal open={open} onClose={() => setIsOpen(false)}>
+        <LoginForm
+          onSubmit={handleEditUsername}
+          loading={updateUsernameMutation.isPending}
+          title={t("setting.changeName")}
+        />
+      </IModal>
       {/* Logout */}
       <LogoutButton />
     </div>

@@ -18,6 +18,7 @@ import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { TagsListType } from "@/store/tags/type";
 import i18next from "i18next";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import IModal from "@/components/molecules/modal";
 
 type Props = {
   transaction: TransactionType;
@@ -152,78 +153,61 @@ const MainTransactionInfo = ({
         </div>
       </div>
       {/*----modal for settled-------*/}
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "var(--color-neutral)",
-            borderRadius: 5,
-            boxShadow: 15,
-            p: 2,
-            width: "fit-content",
-            height: "fit-content",
-          }}
+      <IModal open={open} onClose={() => setOpen(false)}>
+        <form
+          //@ts-ignore
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-start justify-center w-full px-1 py-3 md:px-3 gap-3"
         >
-          <form
-            //@ts-ignore
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-start justify-center w-full px-1 py-3 md:px-3 gap-3"
+          <p
+            className={
+              "text-center text-placeholder text-md border-b border-placeholder pb-2"
+            }
           >
-            <p
-              className={
-                "text-center text-placeholder text-md border-b border-placeholder pb-2"
-              }
-            >
-              <BeenhereIcon className={"text-primary mr-2"} />
-              {convertToCurrency(transaction.amount)} ${" "}
-              {i18next.t("transactionList.settledHint")}
-            </p>
-            <Controller
-              name={ModalFormEnum.SETTLED}
-              control={control}
-              render={({ field }) => (
-                <ICheckbox
-                  id="agree"
-                  checked={field.value}
-                  onChange={(val) => field.onChange(val)}
-                  label={i18next.t("transactionList.settlement")}
+            <BeenhereIcon className={"text-primary mr-2"} />
+            {convertToCurrency(transaction.amount)} ${" "}
+            {i18next.t("transactionList.settledHint")}
+          </p>
+          <Controller
+            name={ModalFormEnum.SETTLED}
+            control={control}
+            render={({ field }) => (
+              <ICheckbox
+                id="agree"
+                checked={field.value}
+                onChange={(val) => field.onChange(val)}
+                label={i18next.t("transactionList.settlement")}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name={ModalFormEnum.DATE}
+            rules={{ required: true }}
+            render={({ field: { onChange, value } }) => (
+              <>
+                <IDatePicker
+                  value={value || ""}
+                  onChange={(date) => {
+                    onChange(date);
+                  }}
+                  placeholder={i18next.t("addTransaction.date")}
                 />
-              )}
-            />
-            <Controller
-              control={control}
-              name={ModalFormEnum.DATE}
-              rules={{ required: true }}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <IDatePicker
-                    value={value || ""}
-                    onChange={(date) => {
-                      onChange(date);
-                    }}
-                    placeholder={i18next.t("addTransaction.date")}
-                  />
-                </>
-              )}
-            />
-            <div
-              className={
-                "flex flex-row gap-2 item-center justify-center w-full"
-              }
-            >
-              <IButton type={"submit"} disabled={!isValid}>
-                {i18next.t("dialog.confirm")}
-              </IButton>
-              <IButton variant={"outlined"} onClick={() => setOpen(false)}>
-                {i18next.t("dialog.cancel")}
-              </IButton>
-            </div>
-          </form>
-        </Box>
-      </Modal>
+              </>
+            )}
+          />
+          <div
+            className={"flex flex-row gap-2 item-center justify-center w-full"}
+          >
+            <IButton type={"submit"} disabled={!isValid}>
+              {i18next.t("dialog.confirm")}
+            </IButton>
+            <IButton variant={"outlined"} onClick={() => setOpen(false)}>
+              {i18next.t("dialog.cancel")}
+            </IButton>
+          </div>
+        </form>
+      </IModal>
     </div>
   );
 };

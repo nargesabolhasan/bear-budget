@@ -17,7 +17,7 @@ const SuperGroupList = ({ groupedItems, tags }: Props) => {
   return (
     <ul
       className={
-        "print-list w-full md:w-[500px] flex flex-col gap-5 mx-auto px-2 md:px-0"
+        "print-list w-full md:w-full flex flex-col gap-5 mx-auto px-2 md:px-0"
       }
     >
       <PrinterViewTitle title={i18next.t("transactionList.groupedByType")} />

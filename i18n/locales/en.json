@@ -104,7 +104,8 @@
     "date": "Date",
     "description": "Description",
     "emptyTagList": "you have to create a new tag! click to create new one.",
-    "transactionType": "transaction type"
+    "transactionType": "transaction type",
+    "addNewTransaction": "Add new Transaction"
   },
   "transactionList": {
     "deleteAll": "All transactions from {{value}} will be deleted.",
