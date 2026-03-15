@@ -22,8 +22,6 @@ import i18next from "i18next";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import SelectedDateTitle from "@/components/molecules/selectedDateTitle";
 import IModal from "@/components/molecules/modal";
-import Modal from "@mui/material/Modal";
-import { Box } from "@mui/material";
 
 const BudgetList = () => {
   const router = useRouter();

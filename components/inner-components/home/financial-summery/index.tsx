@@ -3,11 +3,12 @@
 import { useTransactionStore } from "@/store/transaction";
 import { convertToCurrency } from "@/utils/utils";
 import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
-import { twMerge } from "tailwind-merge";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18next from "i18next";
+import BlockView from "@/components/inner-components/home/financial-summery/blockView";
+import InlineView from "@/components/inner-components/home/financial-summery/inlineView";
 
-const FinancialSummery = () => {
+const FinancialSummery = ({ inlineView }: { inlineView?: boolean }) => {
   const { groupedByType } = useTransactionStore();
   const { getCurrentMonthNumber, getCurrentYear, toStandardISO, isJalali } =
     useCalendarUtils();
@@ -68,32 +69,7 @@ const FinancialSummery = () => {
   ];
 
   return (
-    <div
-      className={
-        "border border-dashed border-r-0 w-fit p-4 rounded-2xl mt-3 mx-auto"
-      }
-    >
-      <h2 className={"italic font-semibold mb-4"}>
-        {i18next.t("home.financialSummary")} :
-      </h2>
-      <ul className="space-y-3">
-        {list.map((item) => {
-          const Icon = item.icon;
-          return (
-            <li
-              key={item.id}
-              className={twMerge(
-                "flex flex-row items-center gap-2 border-b-2 w-fit pb-1",
-                item.border
-              )}
-            >
-              <Icon size="32" color={item.color} /> <h3>{item.title}</h3>
-              <span dir={"ltr"}>{item.amount}</span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>{inlineView ? <InlineView list={list} /> : <BlockView list={list} />}</>
   );
 };
 

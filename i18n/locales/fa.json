@@ -40,7 +40,11 @@
     "gregorian": "قمری",
     "notice": "توجه",
     "toggleCalendarHint": "با تغییر تقویم فیلتر کردن بودجه ها ممکن است به یک ماه بعد منتقل بشود",
-    "toggleCalendarConfirm": "متوجه شدم"
+    "toggleCalendarConfirm": "متوجه شدم",
+    "usage": "استفاده شده",
+    "printInfo": "پرینت چکیده",
+    "backToSetting": "بازگشت به تنظیمات",
+    "printDemo": "پرینت اطلاعات"
   },
   "header": {
     "home": "خانه",

@@ -1,15 +1,25 @@
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { toast } from "sonner";
 import i18n from "i18next";
+import { Printer } from "iconsax-react";
 
 export const settingItems = (
   clearAllTransactions: () => void,
   clear: () => void,
-  clearBudgets: () => void
+  clearBudgets: () => void,
+  handlePrint: () => void
 ) => {
   return [
     {
       id: 1,
+      title: i18n.t("setting.printInfo"),
+      onClick: () => {
+        handlePrint();
+      },
+      icon: Printer,
+    },
+    {
+      id: 2,
       title: i18n.t("setting.deleteAllValues", {
         value: i18n.t("global.transactions"),
       }),
@@ -31,7 +41,7 @@ export const settingItems = (
       },
     },
     {
-      id: 2,
+      id: 3,
       title: i18n.t("setting.deleteAllValues", {
         value: i18n.t("global.tags"),
       }),
@@ -53,7 +63,7 @@ export const settingItems = (
       },
     },
     {
-      id: 3,
+      id: 4,
       title: i18n.t("setting.deleteAllValues", {
         value: i18n.t("global.budgets"),
       }),

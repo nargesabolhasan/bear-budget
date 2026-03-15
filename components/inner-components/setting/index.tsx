@@ -7,8 +7,6 @@ import { useTransactionStore } from "@/store/transaction";
 import { toast } from "sonner";
 import { useTagsStore } from "@/store/tags";
 import { useBudgetStore } from "@/store/budget";
-import Modal from "@mui/material/Modal";
-import { Box } from "@mui/material";
 import LogoutButton from "@/components/inner-components/logout";
 import LoginForm from "@/components/inner-components/login/loginForm";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -19,6 +17,8 @@ import ToggleLanguage from "@/components/inner-components/setting/toggleLanguage
 import { useTranslation } from "react-i18next";
 import ToggleCalendarMode from "@/components/inner-components/setting/toggleCalendarMode";
 import IModal from "@/components/molecules/modal";
+import { useRouter } from "next/navigation";
+import { printRoute } from "@/routes/routes";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
@@ -27,7 +27,7 @@ const SettingComponent = () => {
   const { clearAllTransactions } = useTransactionStore();
   const { clear } = useTagsStore();
   const { clear: clearBudgets } = useBudgetStore();
-
+  const router = useRouter();
   const { t } = useTranslation();
 
   const { data, isLoading } = useQuery({
@@ -78,7 +78,16 @@ const SettingComponent = () => {
     updateUsernameMutation.mutate(formData.username);
   };
 
-  const items = settingItems(clearAllTransactions, clear, clearBudgets);
+  const handlePrint = () => {
+    router.push(printRoute.href);
+  };
+
+  const items = settingItems(
+    clearAllTransactions,
+    clear,
+    clearBudgets,
+    handlePrint
+  );
 
   return (
     <div
@@ -122,16 +131,31 @@ const SettingComponent = () => {
       <ToggleCalendarMode />
       <section className="flex flex-col items-center justify-center w-full">
         <ul className="flex flex-col gap-3 items-start w-full">
-          {items.map((item) => (
-            <li
-              key={item.id}
-              className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-surface"
-              onClick={() => item.onClick()}
-            >
-              <span>{item.title}</span>
-              <Trash size="30" color={"var(--color-olive)"} variant="Bulk" />
-            </li>
-          ))}
+          {items.map((item) => {
+            const Icon = item?.icon;
+            return (
+              <li
+                key={item.id}
+                className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-surface"
+                onClick={() => item.onClick()}
+              >
+                <span>{item.title}</span>
+                {!!Icon ? (
+                  <Icon
+                    size="30"
+                    color={"var(--color-hover_primary)"}
+                    variant="Bulk"
+                  />
+                ) : (
+                  <Trash
+                    size="30"
+                    color={"var(--color-olive)"}
+                    variant="Bulk"
+                  />
+                )}
+              </li>
+            );
+          })}
         </ul>
       </section>
 

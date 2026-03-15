@@ -21,3 +21,7 @@ export const settingRoute = {
 export const loginRoute = {
   href: `/login`,
 };
+
+export const printRoute = {
+  href: `/print-info`,
+};

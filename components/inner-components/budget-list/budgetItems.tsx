@@ -2,12 +2,12 @@ import React from "react";
 import { iconList } from "@/constant/icons";
 import { twMerge } from "tailwind-merge";
 import ILinearProgress from "@/components/atoms/linearProgress";
-import { convertToCurrency } from "@/utils/utils";
 import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
 import ContextMenu from "@/components/molecules/contextMenu";
 import { Edit2, Trash } from "iconsax-react";
 import { TagType } from "@/types/global";
 import i18next from "i18next";
+import TransactionBalance from "@/components/inner-components/budget-list/transactionBalance";
 
 type Props = {
   handleEdit: (id: string) => void;
@@ -93,52 +93,11 @@ const BudgetItems = ({
           />
         </div>
       </section>
-      <section
-        className={"grid grid-cols-3 items-start gap-4 text-sm md:text-md"}
-      >
-        <span className={"flex flex-col lg:flex-row gap-2"}>
-          <span
-            className={"text-placeholder"}
-            style={{
-              fontFamily:
-                i18next.language === "en-US"
-                  ? "PlaywriteNZGuides"
-                  : "playpenSansArabic",
-            }}
-          >
-            {i18next.t("global.budget")}
-          </span>
-          {convertToCurrency(budgetAmount)}
-        </span>
-        <span className={"flex flex-col lg:flex-row gap-2"}>
-          <span
-            className={"text-placeholder"}
-            style={{
-              fontFamily:
-                i18next.language === "en-US"
-                  ? "PlaywriteNZGuides"
-                  : "playpenSansArabic",
-            }}
-          >
-            {i18next.t("budgets.spent")}
-          </span>
-          {convertToCurrency(spent)}
-        </span>
-        <span className={"flex flex-col lg:flex-row gap-2"}>
-          <span
-            className={"text-placeholder"}
-            style={{
-              fontFamily:
-                i18next.language === "en-US"
-                  ? "PlaywriteNZGuides"
-                  : "playpenSansArabic",
-            }}
-          >
-            {i18next.t("budgets.remining")}
-          </span>
-          <span dir={"ltr"}>{convertToCurrency(remining)}</span>
-        </span>
-      </section>
+      <TransactionBalance
+        budgetAmount={budgetAmount}
+        spent={spent}
+        remining={remining}
+      />
     </li>
   );
 };

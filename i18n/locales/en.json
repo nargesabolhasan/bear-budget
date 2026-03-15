@@ -40,7 +40,11 @@
     "gregorian": "gregorian",
     "notice": "notice",
     "toggleCalendarHint": "By changing the calendar, budget filtering may be moved to a later month.",
-    "toggleCalendarConfirm": "I understand."
+    "toggleCalendarConfirm": "I understand.",
+    "usage": "usage",
+    "printInfo": "Print summery",
+    "backToSetting": "Back to setting",
+    "printDemo": "Print Information's of"
   },
   "header": {
     "home": "Home",
