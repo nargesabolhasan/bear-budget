@@ -12,6 +12,7 @@ interface CircleCheckboxProps {
   label?: React.ReactNode;
   size?: "sm" | "md" | "lg";
   className?: string;
+  color?: "primary" | "secondary";
 }
 
 const sizeMap = {
@@ -30,9 +31,14 @@ export default function ICheckbox({
   label,
   size = "md",
   className,
+  color = "primary",
 }: CircleCheckboxProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const isControlled = typeof checked === "boolean";
+
+  const handleBG = () => {
+    return color === "primary" ? "bg-primary" : "bg-secondary";
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.checked);
@@ -75,7 +81,7 @@ export default function ICheckbox({
             "rounded-full transition-all",
             isControlled
               ? checked
-                ? "bg-primary opacity-100"
+                ? twMerge(handleBG(), "opacity-100")
                 : "opacity-0"
               : "opacity-0",
             size === "sm"
