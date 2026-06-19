@@ -22,7 +22,8 @@
     "update": "با موفقیت ویرایش شد.",
     "success": "با موفقیت اضافه شد.",
     "updateValue": "ویرایش {{value}} با موفق انجام شد.",
-    "successValue": "{{value}} جدید با موفقیت اضافه شد."
+    "successValue": "{{value}} جدید با موفقیت اضافه شد.",
+    "show": "نمایش {{value}}"
   },
   "setting": {
     "setting": "تنظیمات",
@@ -41,7 +42,6 @@
     "notice": "توجه",
     "toggleCalendarHint": "با تغییر تقویم فیلتر کردن بودجه ها ممکن است به یک ماه بعد منتقل بشود",
     "toggleCalendarConfirm": "متوجه شدم",
-    "usage": "استفاده شده",
     "printInfo": "پرینت چکیده",
     "backToSetting": "بازگشت به تنظیمات",
     "printDemo": "پرینت اطلاعات"

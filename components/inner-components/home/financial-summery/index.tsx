@@ -8,23 +8,20 @@ import i18next from "i18next";
 import BlockView from "@/components/inner-components/home/financial-summery/blockView";
 import InlineView from "@/components/inner-components/home/financial-summery/inlineView";
 
-const FinancialSummery = ({ inlineView }: { inlineView?: boolean }) => {
+const FinancialSummery = ({
+  inlineView,
+  year = new Date().getFullYear(),
+  month = new Date().getMonth(),
+}: {
+  inlineView?: boolean;
+  year?: number;
+  month?: number;
+}) => {
   const { groupedByType } = useTransactionStore();
-  const { getCurrentMonthNumber, getCurrentYear, toStandardISO, isJalali } =
-    useCalendarUtils();
-
-  const isoDate = toStandardISO({
-    year: getCurrentYear(),
-    month: getCurrentMonthNumber(),
-  });
+  const { getCurrentMonthNumber, isJalali } = useCalendarUtils();
 
   const data =
-    groupedByType(
-      isoDate.year,
-      isoDate.month,
-      isJalali,
-      getCurrentMonthNumber()
-    ) || {};
+    groupedByType(year, month, isJalali, getCurrentMonthNumber()) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
   const totalOutgoing = data?.Expense?.totalAmount ?? 0;

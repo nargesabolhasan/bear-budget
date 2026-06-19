@@ -23,5 +23,6 @@ export const loginRoute = {
 };
 
 export const printRoute = {
-  href: `/print-info`,
+  href: (isoMonth: number, isoYear: number, month: number, year: number) =>
+    `/print-info/${isoMonth}.${isoYear}.${month}.${year}`,
 };

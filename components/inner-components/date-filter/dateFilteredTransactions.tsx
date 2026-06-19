@@ -4,18 +4,20 @@ import { useForm } from "react-hook-form";
 import ScrollDatePicker from "@/components/atoms/scrollDatePicker";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import IButton from "@/components/atoms/button";
-import { useFilteredDateContext } from "@/context/filteredDateContext";
 import i18next from "i18next";
+import { FilteredDateContextType } from "@/context/filteredDateContext";
 
 export type DatePickerForm = { Month: string; Year: number };
 
 type Props = {
-  submitSearch: (formData: DatePickerForm) => void;
+  submitSearch: (
+    formData: DatePickerForm,
+    formatedDate: FilteredDateContextType["notIso"]
+  ) => void;
 };
 
 const DateFilteredTransactions = ({ submitSearch }: Props) => {
   const { setValue, watch, handleSubmit } = useForm<DatePickerForm>();
-  const { saveDate } = useFilteredDateContext();
   const {
     calenderMonthList,
     getCurrentMonthName,
@@ -24,12 +26,12 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
   } = useCalendarUtils();
 
   const submitHandler = (formDate: DatePickerForm) => {
-    saveDate({
+    const formatedDate = {
       year: formDate.Year,
       month: calenderMonthList.indexOf(formDate.Month) + 1,
       monthName: formDate.Month,
-    });
-    submitSearch(formDate);
+    };
+    submitSearch(formDate, formatedDate);
   };
 
   return (

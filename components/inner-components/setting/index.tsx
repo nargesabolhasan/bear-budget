@@ -17,17 +17,16 @@ import ToggleLanguage from "@/components/inner-components/setting/toggleLanguage
 import { useTranslation } from "react-i18next";
 import ToggleCalendarMode from "@/components/inner-components/setting/toggleCalendarMode";
 import IModal from "@/components/molecules/modal";
-import { useRouter } from "next/navigation";
-import { printRoute } from "@/routes/routes";
+import DateModal from "@/components/inner-components/print-summery/dateModal";
 
 const SettingComponent = () => {
   const [open, setIsOpen] = useState<boolean>(false);
+  const [openPrinter, setOpenPrinter] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
   const { clearAllTransactions } = useTransactionStore();
   const { clear } = useTagsStore();
   const { clear: clearBudgets } = useBudgetStore();
-  const router = useRouter();
   const { t } = useTranslation();
 
   const { data, isLoading } = useQuery({
@@ -79,7 +78,7 @@ const SettingComponent = () => {
   };
 
   const handlePrint = () => {
-    router.push(printRoute.href);
+    setOpenPrinter(true);
   };
 
   const items = settingItems(
@@ -158,7 +157,7 @@ const SettingComponent = () => {
           })}
         </ul>
       </section>
-
+      <DateModal open={openPrinter} handleClose={() => setOpenPrinter(false)} />
       {/* Edit Username Modal */}
       <IModal open={open} onClose={() => setIsOpen(false)}>
         <LoginForm

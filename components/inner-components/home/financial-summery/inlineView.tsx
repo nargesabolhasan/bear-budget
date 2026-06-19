@@ -7,13 +7,13 @@ const InlineView = ({ list }: SummeryViewProps) => {
   return (
     <div
       className={
-        "border border-placeholder_light2 border-dashed w-full p-5 rounded-2xl mt-3 mx-auto"
+        "border border-placeholder_light2 border-dashed w-full p-5 rounded-2xl mx-auto"
       }
     >
       <h2 className={"italic font-semibold mb-4"}>
         {i18next.t("home.financialSummary")} :
       </h2>
-      <section className="space-x-3 flex flex-col items-start lg:flex-row lg:items-center justify-between">
+      <section className="flex flex-col items-start justify-between lg:space-x-3 lg:flex-row lg:items-center ">
         {list.map((item) => {
           const Icon = item.icon;
           return (
