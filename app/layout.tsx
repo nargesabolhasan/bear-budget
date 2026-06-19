@@ -11,7 +11,7 @@ import { FilteredDateProvider } from "@/context/filteredDateContext";
 
 export const metadata = {
   title: "Bear Budget",
-  description: "Using App Router, TS, MUI and Tailwind",
+  description: "You can manage your transaction with Bear Budget :)",
   icons: {
     icon: "/favicon.svg",
   },
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <IThemeProvider>
               <IHeader />
               <FilteredDateProvider>
-                <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-2 md:p-4 print:mt-0">
+                <main className="flex-1 overflow-y-auto -webkit-overflow-scrolling-touch mt-[100px] p-1 md:p-4 print:mt-0">
                   {children}
                 </main>
               </FilteredDateProvider>
