@@ -1,8 +1,10 @@
 import "./globals.css";
 import { ReactNode } from "react";
+
 import GlobalToaster from "@/components/atoms/toaster";
 import IHeader from "@/components/molecules/header";
 import DialogContainer from "@/components/molecules/dialogContainer";
+
 import IThemeProvider from "@/theme/themeProvider";
 import { ThemeModeProvider } from "@/context/themeSwitchProvider";
 import "@/i18n/client";
@@ -14,7 +16,7 @@ export const metadata = {
   description: "You can manage your transaction with Bear Budget :)",
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
     apple: "/apple-touch-icon.png",
   },
 };
@@ -29,9 +31,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Theme color */}
         <meta name="theme-color" content="#9ab973" />
 
-        {/* Apple PWA meta */}
+        {/* iOS PWA support */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        {/* IMPORTANT: iOS Home Screen icon */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+
+        {/* Fallback icons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
 
       <body className="!bg-neutral_light h-screen flex flex-col">
