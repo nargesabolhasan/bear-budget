@@ -44,7 +44,11 @@ const PrinterFilterSetting = ({ control }: Props) => {
   };
 
   return (
-    <section className={"print:hidden w-full p-2 bg-secondary rounded-xl my-3"}>
+    <section
+      className={
+        "print:hidden w-full md:w-fit p-6 bg-primary_light rounded-4xl my-3"
+      }
+    >
       <form
         className={
           "text-dark flex flex-col gap-5 items-center justify-center w-fit mx-auto"
@@ -54,6 +58,7 @@ const PrinterFilterSetting = ({ control }: Props) => {
         <div className="flex md:flex-row flex-col items-start gap-3">
           {items.map((item) => (
             <Controller
+              key={item.id}
               name={item.name}
               control={control}
               defaultValue={true}
@@ -65,7 +70,7 @@ const PrinterFilterSetting = ({ control }: Props) => {
                     field.onChange(val);
                   }}
                   label={item.label}
-                  color={"secondary"}
+                  color={"primary"}
                 />
               )}
             />
@@ -75,10 +80,10 @@ const PrinterFilterSetting = ({ control }: Props) => {
           type={"submit"}
           size={"small"}
           className={"self-center w-full"}
-          color={"secondary"}
+          color={"primary"}
           variant={"outlined"}
         >
-          <PrintTwoToneIcon fontSize={"large"} color={"secondary"} />
+          <PrintTwoToneIcon fontSize={"large"} color={"primary"} />
         </IButton>
       </form>
     </section>
