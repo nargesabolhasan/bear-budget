@@ -58,6 +58,7 @@ const PrintInfo = ({ selectedDate }: PrintInfoProps) => {
           inlineView
           year={selectedDate.isoYear}
           month={selectedDate.isoMonth}
+          notIsoMonth={selectedDate.month}
         />
       )}
       {watch(EnumPrinterInputs.BUDGET) && (
@@ -75,7 +76,7 @@ const PrintInfo = ({ selectedDate }: PrintInfoProps) => {
               selectedDate.isoYear,
               selectedDate.isoMonth,
               isJalali,
-              selectedDate.month
+              selectedDate.month,
             )}
             showTransactionHeader={false}
             showTransactionIndicator

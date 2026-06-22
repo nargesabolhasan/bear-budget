@@ -12,16 +12,23 @@ const FinancialSummery = ({
   inlineView,
   year = new Date().getFullYear(),
   month = new Date().getMonth(),
+  notIsoMonth,
 }: {
   inlineView?: boolean;
   year?: number;
   month?: number;
+  notIsoMonth?: number;
 }) => {
   const { groupedByType } = useTransactionStore();
   const { getCurrentMonthNumber, isJalali } = useCalendarUtils();
 
   const data =
-    groupedByType(year, month, isJalali, getCurrentMonthNumber()) || {};
+    groupedByType(
+      year,
+      month,
+      isJalali,
+      notIsoMonth || getCurrentMonthNumber(),
+    ) || {};
 
   const income = data?.Income?.totalAmount ?? 0;
   const totalOutgoing = data?.Expense?.totalAmount ?? 0;

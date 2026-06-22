@@ -9,7 +9,7 @@ export default function Home() {
       className={"mt-5 mx-auto flex flex-col gap-3 w-full md:w-[500px] pb-10"}
     >
       <TransactionSummery />
-      <NewItemCards />
+      {/* <NewItemCards /> */}
       <FinancialSummery />
     </div>
   );
