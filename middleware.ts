@@ -12,12 +12,12 @@ export function middleware(req: NextRequest) {
   }
 
   if (isLoggedIn && isAuthPage) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/setting", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|login|fonts|images|robots.txt).*)"],
+  matcher: ["/((?!_next|api|login|favicon.svg|fonts|images|robots.txt).*)"],
 };
