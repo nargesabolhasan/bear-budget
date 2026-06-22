@@ -1,23 +1,33 @@
-// middleware.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get("username")?.value;
-  const isLoggedIn = Boolean(token);
-  const isAuthPage = req.nextUrl.pathname.startsWith("/login");
+  const { pathname } = req.nextUrl;
 
-  if (!isLoggedIn && !isAuthPage) {
+  // Skip files
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/icons") ||
+    pathname.startsWith("/images") ||
+    pathname === "/manifest.json" ||
+    pathname === "/sw.js" ||
+    pathname === "/favicon.ico" ||
+    pathname === "/favicon.svg" ||
+    pathname === "/robots.txt"
+  ) {
+    return NextResponse.next();
+  }
+
+  const isLoggedIn = Boolean(req.cookies.get("username")?.value);
+
+  const isLoginPage = pathname === "/login";
+
+  if (!isLoggedIn && !isLoginPage) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (isLoggedIn && isAuthPage) {
-    return NextResponse.redirect(new URL("/setting", req.url));
+  if (isLoggedIn && isLoginPage) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ["/((?!_next|api|login|favicon.svg|fonts|images|robots.txt).*)"],
-};
