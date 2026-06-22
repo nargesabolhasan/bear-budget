@@ -29,18 +29,18 @@ const EditTransaction = ({ params }: Props) => {
     date.year,
     date.month,
     isJalali,
-    date.notIso.month
+    date.notIso.month,
   ).find((transaction) => transaction.id === slug);
 
   const submitHandler = (formData: TransactionFormData) => {
     if (!defaultValue) return;
-    editTransaction(defaultValue.id, formData, date.year, date.month);
+    editTransaction(defaultValue.id, formData);
 
     toast.success(
       <span>
         <strong>{formData[FormTransactionEnum.AMOUNT]}</strong>{" "}
         {i18next.t("global.update")}
-      </span>
+      </span>,
     );
     router.back();
   };

@@ -38,17 +38,17 @@ const ActionButtons = ({
             amount: convertToCurrency(transaction.amount),
             tag: tags?.[transaction.tag]?.name,
             type: i18next.t(
-              `transactions.${tags?.[transaction.tag]?.transactionType}`
+              `transactions.${tags?.[transaction.tag]?.transactionType}`,
             ),
           })}
         </span>
       ),
       confirmHandler: () => {
-        removeTransaction(transaction.id, date.year, date.month);
+        removeTransaction(transaction.id);
         toast.success(
           i18next.t("setting.successDelete", {
             value: i18next.t("global.transaction"),
-          })
+          }),
         );
       },
     });

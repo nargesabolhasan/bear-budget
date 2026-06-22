@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import MainTransactionTitle from "@/components/inner-components/transaction-list/mainTransactionTitle";
-import { TransactionEnum, TransactionType } from "@/types/global";
-import ActionButtons from "@/components/inner-components/transaction-list/actionButtons";
-import { twMerge } from "tailwind-merge";
-import ICheckbox from "@/components/atoms/checkbox";
-import { Box } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import { Controller, useForm } from "react-hook-form";
-import { convertToCurrency } from "@/utils/utils";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import IButton from "@/components/atoms/button";
+import ICheckbox from "@/components/atoms/checkbox";
 import IDatePicker from "@/components/atoms/datePicker";
-import BeenhereIcon from "@mui/icons-material/Beenhere";
-import { useTransactionStore } from "@/store/transaction";
-import { useFilteredDateContext } from "@/context/filteredDateContext";
-import { TagsListType } from "@/store/tags/type";
-import i18next from "i18next";
-import useCalendarUtils from "@/hooks/useCalendarUtils";
+import ActionButtons from "@/components/inner-components/transaction-list/actionButtons";
+import MainTransactionTitle from "@/components/inner-components/transaction-list/mainTransactionTitle";
 import IModal from "@/components/molecules/modal";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
+import { TagsListType } from "@/store/tags/type";
+import { useTransactionStore } from "@/store/transaction";
+import { TransactionEnum, TransactionType } from "@/types/global";
+import { convertToCurrency } from "@/utils/utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+import BeenhereIcon from "@mui/icons-material/Beenhere";
+import i18next from "i18next";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
+import * as yup from "yup";
 
 type Props = {
   transaction: TransactionType;
@@ -45,7 +42,7 @@ const schema = yup.object({
   [ModalFormEnum.DATE]: yup
     .string()
     .required(
-      i18next.t("global.required", { value: i18next.t("addTransaction.date") })
+      i18next.t("global.required", { value: i18next.t("addTransaction.date") }),
     ),
 });
 
@@ -58,8 +55,7 @@ const MainTransactionInfo = ({
 }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const { editTransaction } = useTransactionStore();
-  const { date } = useFilteredDateContext();
-  const { formatDate, isJalali } = useCalendarUtils();
+  const { formatDate } = useCalendarUtils();
 
   const {
     handleSubmit,
@@ -71,18 +67,16 @@ const MainTransactionInfo = ({
   });
 
   const onSubmit = (formData: FormTypes) => {
-    editTransaction(
-      transaction.id,
-      {
-        amount: "0",
-        settled: { ...formData, amount: transaction.amount },
+    editTransaction(transaction.id, {
+      amount: "0",
+      settled: {
+        ...formData,
+        amount: transaction.amount,
       },
-      date.year,
-      date.month
-    );
+    });
+
     setOpen(false);
   };
-
   const showSettledButton =
     (tags?.[transaction?.tag]?.transactionType === TransactionEnum.DEBT ||
       tags?.[transaction?.tag]?.transactionType === TransactionEnum.CREDIT) &&
@@ -95,7 +89,7 @@ const MainTransactionInfo = ({
       className={twMerge(
         "overflow-x-auto p-3 grow flex flex-col items-end",
         showTransactionIndicator &&
-          "border-b border-dashed border-placeholder_light2 rounded-br-xl"
+          "border-b border-dashed border-placeholder_light2 rounded-br-xl",
       )}
     >
       <MainTransactionTitle
@@ -121,7 +115,7 @@ const MainTransactionInfo = ({
       <div
         className={twMerge(
           "flex flex-row justify-between items-center gap-2 w-full",
-          (showSettledButton || showSettledDescription) && "mt-3"
+          (showSettledButton || showSettledDescription) && "mt-3",
         )}
       >
         {showSettledButton && (

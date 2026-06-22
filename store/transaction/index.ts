@@ -31,24 +31,34 @@ export const useTransactionStore = create<TransactionStore>()(
 
             // optional: sort by date
             updated[year][month].sort(
-              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
             );
 
             return { transactions: updated };
           }),
 
-        removeTransaction: (id, year, month) =>
+        removeTransaction: (id) =>
           set((state) => {
-            const updated = { ...state.transactions };
-            updated[year][month] = (updated[year][month] ?? []).filter(
-              (tx) => tx.id !== id
-            );
-            if (updated[year][month].length === 0) {
-              delete updated[year][month];
+            const updated = structuredClone(state.transactions);
+
+            for (const year of Object.keys(updated)) {
+              const y = Number(year);
+
+              for (const month of Object.keys(updated[y])) {
+                const m = Number(month);
+
+                updated[y][m] = updated[y][m].filter((tx) => tx.id !== id);
+
+                if (updated[y][m].length === 0) {
+                  delete updated[y][m];
+                }
+              }
+
+              if (Object.keys(updated[y]).length === 0) {
+                delete updated[y];
+              }
             }
-            if (Object.keys(updated[year]).length === 0) {
-              delete updated[year];
-            }
+
             return { transactions: updated };
           }),
 
@@ -115,43 +125,62 @@ export const useTransactionStore = create<TransactionStore>()(
             }
           }),
 
-        editTransaction: (id, data, oldYear, oldMonth) =>
+        editTransaction: (id, data) =>
           set((state) => {
-            const updated: typeof state.transactions = structuredClone(
-              state.transactions
-            );
+            const updated = structuredClone(state.transactions);
 
-            const oldList = updated[oldYear]?.[oldMonth];
-            if (!oldList) return { transactions: updated };
+            let foundTx: TransactionType | null = null;
 
-            const oldTxIndex = oldList.findIndex((tx) => tx.id === id);
-            if (oldTxIndex === -1) return { transactions: updated };
+            outerLoop: for (const year of Object.keys(updated)) {
+              const y = Number(year);
 
-            const oldTx = oldList[oldTxIndex];
-            const newTx = { ...oldTx, ...data };
+              for (const month of Object.keys(updated[y])) {
+                const m = Number(month);
 
-            const [year, month] = newTx.date.split("-").map(Number);
-            const newYear = year;
-            const newMonth = month;
+                const index = updated[y][m].findIndex((tx) => tx.id === id);
 
-            updated[oldYear][oldMonth].splice(oldTxIndex, 1);
+                if (index !== -1) {
+                  foundTx = {
+                    ...updated[y][m][index],
+                    ...data,
+                  };
 
-            if (updated[oldYear][oldMonth].length === 0) {
-              delete updated[oldYear][oldMonth];
-              if (Object.keys(updated[oldYear]).length === 0) {
-                delete updated[oldYear];
+                  updated[y][m].splice(index, 1);
+
+                  if (updated[y][m].length === 0) {
+                    delete updated[y][m];
+                  }
+
+                  if (Object.keys(updated[y]).length === 0) {
+                    delete updated[y];
+                  }
+
+                  break outerLoop;
+                }
               }
             }
 
+            if (!foundTx) {
+              return { transactions: updated };
+            }
+
+            const d = new Date(foundTx.date);
+
+            const newYear = d.getFullYear();
+            const newMonth = d.getMonth() + 1;
+
             updated[newYear] ??= {};
             updated[newYear][newMonth] ??= [];
-            updated[newYear][newMonth].push(newTx);
 
-            updated[newYear][newMonth].sort((a, b) =>
-              b.date.localeCompare(a.date)
+            updated[newYear][newMonth].push(foundTx);
+
+            updated[newYear][newMonth].sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
             );
 
-            return { transactions: updated };
+            return {
+              transactions: updated,
+            };
           }),
 
         getTransactions: (year, month, isJalali = false, notIsoMonth = 0) => {
@@ -183,7 +212,7 @@ export const useTransactionStore = create<TransactionStore>()(
           year: number,
           month: number,
           isJalali = false,
-          notIsoMonth = 0
+          notIsoMonth = 0,
         ): GroupedTransactionType => {
           const state = get();
           const txs = state.transactions[year]?.[month] ?? [];
@@ -205,13 +234,13 @@ export const useTransactionStore = create<TransactionStore>()(
             if (month === 12) {
               return {
                 ...handleGroupedTransactionType(
-                  get().getTransactions(year, month, isJalali, notIsoMonth)
+                  get().getTransactions(year, month, isJalali, notIsoMonth),
                 ),
               };
             } else {
               return {
                 ...handleGroupedTransactionType(
-                  get().getTransactions(year, month, isJalali, notIsoMonth)
+                  get().getTransactions(year, month, isJalali, notIsoMonth),
                 ),
               };
             }
@@ -225,7 +254,7 @@ export const useTransactionStore = create<TransactionStore>()(
           })),
       }),
 
-      { name: "transactions" }
-    )
-  )
+      { name: "transactions" },
+    ),
+  ),
 );

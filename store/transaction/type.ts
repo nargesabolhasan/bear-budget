@@ -16,26 +16,28 @@ export type GroupedTransactionType = Record<string, TransactionInfoType>;
 
 export interface TransactionStore {
   transactions: GroupedYM;
+
   addTransaction: (tx: TransactionType) => void;
-  removeTransaction: (id: string, year: number, month: number) => void;
+
+  removeTransaction: (id: string) => void;
+
   removeByYearMonth: (date: FilteredDateContextType, isJalali: boolean) => void;
-  editTransaction: (
-    id: string,
-    data: Partial<TransactionType>,
-    year: number,
-    month: number
-  ) => void;
+
+  editTransaction: (id: string, data: Partial<TransactionType>) => void;
+
   getTransactions: (
     year: number,
     month: number,
     isJalali?: boolean,
-    notIsoMonth?: number
+    notIsoMonth?: number,
   ) => TransactionType[];
+
   groupedByType: (
     year: number,
     month: number,
     isJalali?: boolean,
-    notIsoMonth?: number
+    notIsoMonth?: number,
   ) => GroupedTransactionType;
+
   clearAllTransactions: () => void;
 }
