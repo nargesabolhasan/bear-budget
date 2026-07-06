@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import CreateBudget from "@/components/inner-components/create-budget";
+import CreateBudget from "@/components/core-components/create-budget";
 import { BudgetType } from "@/types/global";
 import { toast } from "sonner";
 import { useBudgetStore } from "@/store/budget";
@@ -16,7 +16,7 @@ const Page = () => {
         {i18next.t("global.successValue", {
           value: i18next.t("global.budget"),
         })}
-      </span>
+      </span>,
     );
   };
 

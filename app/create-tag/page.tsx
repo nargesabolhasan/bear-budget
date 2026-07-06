@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import CreateTagForm from "@/components/inner-components/create-tag";
+import CreateTagForm from "@/components/core-components/create-tag";
 import {
   FormTagEnum,
   TagFormData,
-} from "@/components/inner-components/create-tag/type";
+} from "@/components/core-components/create-tag/type";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 import { useTagsStore } from "@/store/tags";
@@ -20,7 +20,7 @@ const CreateTagPage = () => {
       <span>
         <strong>{formData[FormTagEnum.NAME]}</strong>{" "}
         {i18next.t("global.success")}
-      </span>
+      </span>,
     );
   };
 

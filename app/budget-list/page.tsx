@@ -1,5 +1,5 @@
 import React from "react";
-import BudgetList from "@/components/inner-components/budget-list";
+import BudgetList from "@/components/core-components/budget-list";
 
 const Page = () => {
   return <BudgetList />;

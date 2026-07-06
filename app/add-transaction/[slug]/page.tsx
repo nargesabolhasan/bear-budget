@@ -1,12 +1,12 @@
 "use client";
 import React, { use } from "react";
-import TransactionForm from "@/components/inner-components/add-transaction/transactionForm";
+import TransactionForm from "@/components/core-components/add-transaction/transactionForm";
 import { useTransactionStore } from "@/store/transaction";
 import { toast } from "sonner";
 import {
   FormTransactionEnum,
   TransactionFormData,
-} from "@/components/inner-components/add-transaction/type";
+} from "@/components/core-components/add-transaction/type";
 import BackButton from "@/components/molecules/backButton";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
 import { useRouter } from "next/navigation";

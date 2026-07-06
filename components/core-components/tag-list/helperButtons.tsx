@@ -1,0 +1,39 @@
+"use client";
+import React from "react";
+import IButton from "@/components/atoms/button";
+import PrintComponent from "@/components/molecules/print";
+import CreateTagButton from "@/components/core-components/tag-list/CreateTagButton";
+import { Trash } from "iconsax-react";
+import i18next from "i18next";
+
+type Props = {
+  clearAllTags: () => void;
+  handleAddMore: () => void;
+  disableDelete?: boolean;
+  disablePrint?: boolean;
+};
+
+const HelperButtons = ({
+  clearAllTags,
+  handleAddMore,
+  disableDelete = false,
+}: Props) => {
+  return (
+    <div className={"mt-4 flex flex-row justify-between print:hidden gap-1"}>
+      <PrintComponent disablePrint={disableDelete} />
+      <CreateTagButton handleAddMore={handleAddMore} />
+      <IButton
+        size="small"
+        variant={"outlined"}
+        className={"flex flex-row gap-1 items-center justify-center"}
+        onClick={clearAllTags}
+        disabled={disableDelete}
+      >
+        <span>{i18next.t("helperButtons.deleteAll")}</span>
+        <Trash size="25" color="var(--color-primary)" variant="Bold" />
+      </IButton>
+    </div>
+  );
+};
+
+export default HelperButtons;

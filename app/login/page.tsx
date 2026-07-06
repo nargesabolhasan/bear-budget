@@ -3,7 +3,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import React from "react";
-import LoginForm from "@/components/inner-components/login/loginForm";
+import LoginForm from "@/components/core-components/login/loginForm";
 import api, { API_URL } from "@/utils/axios";
 import Image from "next/image";
 import { toast } from "sonner";
