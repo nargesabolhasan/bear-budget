@@ -7,6 +7,7 @@ import { iconList } from "@/constant/icons";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { Render } from "@/utils/render";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import i18n from "@/i18n/config";
 
 type Props = {
   tag: TagType;
@@ -15,6 +16,7 @@ type Props = {
   amountBeforeSettled?: string;
   showTagIcon?: boolean;
   showTagIconColor?: boolean;
+  isSystemtransaction?: boolean;
 };
 
 const MainTransactionTitle = ({
@@ -24,6 +26,7 @@ const MainTransactionTitle = ({
   amountBeforeSettled,
   showTagIcon = false,
   showTagIconColor = false,
+  isSystemtransaction = false,
 }: Props) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
   const { formatDate } = useCalendarUtils();
@@ -39,11 +42,15 @@ const MainTransactionTitle = ({
                   "opacity-90 rounded-full p-1",
                   showTagIconColor
                     ? "bg-transparent border-2 border-dotted border-placeholder"
-                    : twMerge("text-dark", groupedStyles(tag?.transactionType))
+                    : twMerge("text-dark", groupedStyles(tag?.transactionType)),
                 )}
               />
             )}
-            <span className={"text-lg"}>{tag?.name}</span>
+            <span className={"text-lg"}>
+              {isSystemtransaction
+                ? i18n.t(`transactions.system.previousMonth`)
+                : tag.name}
+            </span>
           </span>
           <time className={"text-xs text-placeholder"}>{formatDate(date)}</time>
         </div>
@@ -59,7 +66,7 @@ const MainTransactionTitle = ({
               </h4>
             }
           >
-            <h4>{convertToCurrency(amount)} </h4>
+            <h4>{convertToCurrency(amount)}</h4>
           </Render>
         </span>
       </div>

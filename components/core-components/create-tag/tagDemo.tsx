@@ -3,6 +3,7 @@ import { TagFormData } from "@/components/core-components/create-tag/type";
 import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import i18next from "i18next";
+import i18n from "@/i18n/config";
 
 const TagDemo = ({
   demoTitle,
@@ -38,7 +39,9 @@ const TagDemo = ({
             "block text-md text-dark_surface text-pretty break-words whitespace-normal overflow-wrap break-all"
           }
         >
-          {name}
+          {name === "previousMonth"
+            ? i18n.t(`transactions.system.previousMonth`)
+            : name}
         </span>
       )}
       <i
