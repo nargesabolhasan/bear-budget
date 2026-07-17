@@ -12,6 +12,7 @@ import i18next from "i18next";
 import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
 import { useState } from "react";
 import PreferenceCheckboxes from "../preferenceCheckboxes";
+import PreviousBalanceChecker from "../previous-balance/PreviousBalanceChecker";
 
 const FinancialSummery = ({
   inlineView,
@@ -89,6 +90,7 @@ const FinancialSummery = ({
       <IModal open={isOpenModal} onClose={handleClose} showCloseButton>
         <PreferenceCheckboxes />
       </IModal>
+      <PreviousBalanceChecker previousBalance={remaining} />
     </>
   );
 };
