@@ -19,8 +19,7 @@ import Link from "next/link";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import { useQuery } from "@tanstack/react-query";
 import api, { API_URL } from "@/utils/axios";
-import i18n from "i18next";
-import i18next from "i18next";
+import i18n from "@/i18n/config";
 
 const TransactionSummery = () => {
   const { groupedByType } = useTransactionStore();
@@ -36,7 +35,7 @@ const TransactionSummery = () => {
     isoDate.year,
     isoDate.month,
     isJalali,
-    getCurrentMonthNumber()
+    getCurrentMonthNumber(),
   );
 
   const { data, isLoading } = useQuery({
@@ -80,17 +79,17 @@ const TransactionSummery = () => {
               <TableRow>
                 <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
-                    {i18next.t("home.type")}
+                    {i18n.t("home.type")}
                   </Typography>
                 </TableCell>
                 <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
-                    {i18next.t("home.amount")}
+                    {i18n.t("home.amount")}
                   </Typography>
                 </TableCell>
                 <TableCell align="inherit">
                   <Typography style={{ fontWeight: "bold" }}>
-                    {i18next.t("home.entries")}
+                    {i18n.t("home.entries")}
                   </Typography>
                 </TableCell>
               </TableRow>
@@ -106,7 +105,9 @@ const TransactionSummery = () => {
                           borderBottom: "1px solid var(--color-neutral_light)",
                         }}
                       >
-                        {key}
+                        {i18n.t(
+                          `transactions.${key.charAt(0).toUpperCase() + key.slice(1)}`,
+                        )}
                       </TableCell>
                       <TableCell
                         align="inherit"
@@ -134,7 +135,7 @@ const TransactionSummery = () => {
                       <TableCell align="inherit">
                         <Link href={transactionRoutes.addTranslation.href}>
                           <AddCircleTwoToneIcon className={"mx-1"} />
-                          {i18next.t("global.add")}
+                          {i18n.t("global.add")}
                         </Link>
                       </TableCell>
                       <TableCell align="inherit">0 $</TableCell>
