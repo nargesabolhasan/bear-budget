@@ -13,12 +13,19 @@ type UseSearchTagReturn = {
   notFound: boolean;
 };
 
-const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
+const SYSTEM_TAGS = ["previousMonth"];
+
+const useSearchTag = ({
+  groups,
+}: UseSearchTagProps): UseSearchTagReturn => {
   const [searchQuery, setSearchQuery] = useState("");
+
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   const onSearch = (query: string) => {
-    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
 
     debounceTimer.current = setTimeout(() => {
       setSearchQuery(query);
@@ -26,21 +33,33 @@ const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
   };
 
   const searchResult = useMemo(() => {
-    if (!searchQuery.trim()) return groups;
+    if (!searchQuery.trim()) {
+      return groups;
+    }
 
     const query = searchQuery.toLowerCase();
+
     const result: GroupedTagsByType = {};
 
     Object.entries(groups).forEach(([type, tags]) => {
-      if (!tags) return;
-      const filtered = tags.filter(
-        (tag) =>
-          tag.name.toLowerCase().includes(query) ||
+      if (!tags) {
+        return;
+      }
+
+      const filtered = tags.filter((tag) => {
+        const tagName = SYSTEM_TAGS.includes(tag.name)
+          ? i18n.t(`transactions.system.${tag.name}`)
+          : tag.name;
+
+        return (
+          tagName.toLowerCase().includes(query) ||
           i18n
-            .t(`transactions.${tag?.transactionType}`)
+            .t(`transactions.${tag.transactionType}`)
             .toLowerCase()
             .includes(query)
-      );
+        );
+      });
+
       if (filtered.length) {
         result[type as TransactionEnum] = filtered;
       }
@@ -49,12 +68,15 @@ const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
     return result;
   }, [groups, searchQuery]);
 
-  const notFound = useMemo(
-    () => Object.keys(searchResult).length === 0,
-    [searchResult]
-  );
+  const notFound = useMemo(() => {
+    return Object.keys(searchResult).length === 0;
+  }, [searchResult]);
 
-  return { onSearch, searchResult, notFound };
+  return {
+    onSearch,
+    searchResult,
+    notFound,
+  };
 };
 
 export default useSearchTag;

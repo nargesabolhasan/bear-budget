@@ -71,7 +71,14 @@
     "countAsExpense": "Count as expense",
     "save": "Savings",
     "debt": "Debt",
-    "credit": "Credit"
+    "credit": "Credit",
+    "balanceModal": {
+      "title": "Previous month balance",
+      "description": "You have <strong>{{amount}}</strong> remaining from last month. Would you like to add it to this month's transactions?",
+      "income": "Add to income",
+      "saving": "Add to savings",
+      "skip": "Don't add to this month"
+    }
   },
   "createTag": {
     "tagName": "Tag Name",
@@ -85,7 +92,12 @@
     "Save": "Save",
     "Credit": "Credit",
     "Debt": "Debit",
-    "Expense": "Expense"
+    "Expense": "Expense",
+    "system": {
+      "previous_month_balance": "Balance carried from last month",
+      "previous_month_savings": "Savings carried from last month",
+      "previousMonth": "prev Month"
+    }
   },
   "helperButtons": {
     "deleteAll": "Delete All",

@@ -72,7 +72,14 @@
     "countAsExpense": "محاسبه به عنوان هزینه",
     "save": "ذخیره",
     "debt": "بدهکاری",
-    "credit": "بستانکاری"
+    "credit": "بستانکاری",
+    "balanceModal": {
+      "title": "موجودی باقی‌مانده از ماه قبل",
+      "description": "مبلغ <strong>{{amount}}</strong> از ماه قبل باقی مانده است. آیا می‌خواهید آن را به تراکنش‌های این ماه اضافه کنید؟",
+      "income": "اضافه کردن به درآمد",
+      "saving": "اضافه کردن به پس‌انداز",
+      "skip": "به این ماه اضافه نکن"
+    }
   },
   "createTag": {
     "tagName": "نام برچسب",
@@ -86,7 +93,12 @@
     "Save": "ذخیره",
     "Credit": "بستان کاری",
     "Debt": "بده کاری",
-    "Expense": "مخارج"
+    "Expense": "مخارج",
+    "system": {
+      "previous_month_balance": "موجودی انتقال‌یافته از ماه قبل",
+      "previous_month_savings": "پس‌انداز انتقال‌یافته از ماه قبل",
+      "previousMonth": "ماه قبل"
+    }
   },
   "helperButtons": {
     "deleteAll": "حذف همه",
