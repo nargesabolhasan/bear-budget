@@ -1,23 +1,27 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("username")?.value;
   const isLoggedIn = Boolean(token);
-  const isAuthPage = req.nextUrl.pathname.startsWith("/login");
+  const { pathname } = req.nextUrl;
+
+  const isAuthPage = pathname.startsWith("/login");
 
   if (!isLoggedIn && !isAuthPage) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    const loginUrl = new URL("/login", req.url);
+    return NextResponse.redirect(loginUrl);
   }
 
   if (isLoggedIn && isAuthPage) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/setting", req.url));
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.headers.set("x-middleware-cache", "no-cache");
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|login|fonts|images|robots.txt).*)"],
+  matcher: ["/((?!_next|api|favicon.svg|fonts|images|robots.txt).*)"],
 };

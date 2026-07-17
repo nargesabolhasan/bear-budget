@@ -4,7 +4,7 @@ import React, { use } from "react";
 import { toast } from "sonner";
 import { useBudgetStore } from "@/store/budget";
 import { BudgetType } from "@/types/global";
-import CreateBudget from "@/components/inner-components/create-budget";
+import CreateBudget from "@/components/core-components/create-budget";
 import { useRouter } from "next/navigation";
 import i18next from "i18next";
 
@@ -31,7 +31,7 @@ const Page = ({ params }: Props) => {
         {i18next.t("global.updateValue", {
           value: i18next.t("global.budget"),
         })}
-      </span>
+      </span>,
     );
     router.back();
   };

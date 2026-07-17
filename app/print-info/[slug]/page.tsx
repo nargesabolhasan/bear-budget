@@ -1,6 +1,6 @@
 "use client";
 import React, { use } from "react";
-import PrintInfo from "@/components/inner-components/print-summery/printInfo";
+import PrintInfo from "@/components/core-components/print-summery/printInfo";
 
 type Props = {
   params: Promise<{ slug: string }>;

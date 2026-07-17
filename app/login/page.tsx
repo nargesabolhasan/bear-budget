@@ -3,7 +3,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import React from "react";
-import LoginForm from "@/components/inner-components/login/loginForm";
+import LoginForm from "@/components/core-components/login/loginForm";
 import api, { API_URL } from "@/utils/axios";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -24,15 +24,15 @@ export default function LoginPage() {
     },
 
     onSuccess: () => {
+      router.refresh();
       router.push("/");
       toast.success(i18next.t("login.welcome"));
     },
 
     onError: (err: any) => {
-      toast.error(err || i18next.t("login.somethingWentWrong"));
+      toast.error(err.message || i18next.t("login.somethingWentWrong"));
     },
   });
-
   const handleSubmit = (formData: { username: string }) => {
     loginMutation.mutate(formData.username);
   };
