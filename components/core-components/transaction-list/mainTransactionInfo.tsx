@@ -5,6 +5,7 @@ import ActionButtons from "@/components/core-components/transaction-list/actionB
 import MainTransactionTitle from "@/components/core-components/transaction-list/mainTransactionTitle";
 import IModal from "@/components/molecules/modal";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
+import i18n from "@/i18n/config";
 import { TagsListType } from "@/store/tags/type";
 import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum, TransactionType } from "@/types/global";
@@ -99,6 +100,7 @@ const MainTransactionInfo = ({
         date={transaction.date}
         showTagIcon={showTagIcon}
         showTagIconColor={showTagIconColor}
+        isSystemtransaction={!!transaction?.systemKey}
       />
       {showTagIcon && !!transaction?.description && (
         <hr
@@ -110,7 +112,9 @@ const MainTransactionInfo = ({
         style={{ unicodeBidi: "plaintext" }}
         className="mt-2 w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all text-start"
       >
-        {transaction.description}
+        {transaction.systemKey
+          ? i18n.t(`transactions.system.${transaction.systemKey}`)
+          : transaction.description}
       </p>
       <div
         className={twMerge(
