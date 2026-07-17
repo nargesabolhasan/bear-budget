@@ -64,7 +64,14 @@
     "incomes": "Incomes :",
     "outgoing": "Outgoing :",
     "savings": "Savings :",
-    "remaining": "Remaining :"
+    "remaining": "Remaining :",
+    "transactionPreference": "Transaction calculation",
+    "transactionPreferenceDescription": "Choose how these transactions affect your summary",
+    "countAsIncome": "Count as income",
+    "countAsExpense": "Count as expense",
+    "save": "Savings",
+    "debt": "Debt",
+    "credit": "Credit"
   },
   "createTag": {
     "tagName": "Tag Name",

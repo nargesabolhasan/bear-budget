@@ -65,7 +65,14 @@
     "incomes": "درآمد کل :",
     "outgoing": "مخارج :",
     "savings": "ذخیره کل :",
-    "remaining": "باقی مانده :"
+    "remaining": "باقی مانده :",
+    "transactionPreference": "تنظیم نحوه محاسبه تراکنش‌ها",
+    "transactionPreferenceDescription": "مشخص کنید هر نوع تراکنش در گزارش مالی چگونه محاسبه شود",
+    "countAsIncome": "محاسبه به عنوان درآمد",
+    "countAsExpense": "محاسبه به عنوان هزینه",
+    "save": "ذخیره",
+    "debt": "بدهکاری",
+    "credit": "بستانکاری"
   },
   "createTag": {
     "tagName": "نام برچسب",
