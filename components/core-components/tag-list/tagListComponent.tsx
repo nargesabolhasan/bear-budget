@@ -17,6 +17,7 @@ import useSearchTag from "@/hooks/useSearchTag";
 import { Render } from "@/utils/render";
 import NotFoundItem from "@/components/core-components/search/NotFoundItem";
 import i18next from "i18next";
+import i18n from "@/i18n/config";
 
 const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
@@ -95,7 +96,11 @@ const TagListDemo = () => {
                         >
                           {<Icon sx={{ fontSize: 30 }} />}
                         </i>
-                        <h3 className={"col-span-2"}> {tag.name}</h3>
+                        <h3 className={"col-span-2"}>
+                          {tag.name === "previousMonth"
+                            ? i18n.t(`transactions.system.previousMonth`)
+                            : tag.name}
+                        </h3>
                       </span>
                       <span
                         className={
