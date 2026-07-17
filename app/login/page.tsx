@@ -24,15 +24,15 @@ export default function LoginPage() {
     },
 
     onSuccess: () => {
+      router.refresh();
       router.push("/");
       toast.success(i18next.t("login.welcome"));
     },
 
     onError: (err: any) => {
-      toast.error(err || i18next.t("login.somethingWentWrong"));
+      toast.error(err.message || i18next.t("login.somethingWentWrong"));
     },
   });
-
   const handleSubmit = (formData: { username: string }) => {
     loginMutation.mutate(formData.username);
   };
