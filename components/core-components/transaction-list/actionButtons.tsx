@@ -1,20 +1,16 @@
 "use client";
-import React from "react";
-import { useTransactionStore } from "@/store/transaction";
-import { TransactionType } from "@/types/global";
+import ContextMenu from "@/components/molecules/contextMenu";
 import { openDialog } from "@/components/molecules/dialogContainer";
 import { transactionRoutes } from "@/routes/routes";
-
+import { TagsListType } from "@/store/tags/type";
+import { useTransactionStore } from "@/store/transaction";
+import { TransactionType } from "@/types/global";
+import { convertToCurrency } from "@/utils/utils";
 import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
-
-import ContextMenu from "@/components/molecules/contextMenu";
+import i18next from "i18next";
+import { Edit2, Trash } from "iconsax-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Edit2, Trash } from "iconsax-react";
-import { useFilteredDateContext } from "@/context/filteredDateContext";
-import { TagsListType } from "@/store/tags/type";
-import i18next from "i18next";
-import { convertToCurrency } from "@/utils/utils";
 
 const ActionButtons = ({
   transaction,
@@ -25,7 +21,6 @@ const ActionButtons = ({
 }) => {
   const { removeTransaction } = useTransactionStore();
   const router = useRouter();
-  const { date } = useFilteredDateContext();
 
   const handleDelete = (transaction: TransactionType) => {
     openDialog({

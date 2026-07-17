@@ -1,17 +1,22 @@
 "use client";
 
-import { useTransactionStore } from "@/store/transaction";
-import { convertToCurrency } from "@/utils/utils";
-import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
-import useCalendarUtils from "@/hooks/useCalendarUtils";
-import i18next from "i18next";
 import BlockView from "@/components/core-components/home/financial-summery/blockView";
 import InlineView from "@/components/core-components/home/financial-summery/inlineView";
+import IModal from "@/components/molecules/modal";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
+import { useFinancialSummary } from "@/hooks/useFinancialSummary";
+import { useTransactionStore } from "@/store/transaction";
+import { GroupedTransactionType } from "@/store/transaction/type";
+import { convertToCurrency } from "@/utils/utils";
+import i18next from "i18next";
+import { ShoppingCart, Star, TicketStar, WalletMoney } from "iconsax-react";
+import { useState } from "react";
+import PreferenceCheckboxes from "../preferenceCheckboxes";
 
 const FinancialSummery = ({
   inlineView,
   year = new Date().getFullYear(),
-  month = new Date().getMonth(),
+  month = new Date().getMonth() + 1,
   notIsoMonth,
 }: {
   inlineView?: boolean;
@@ -19,23 +24,18 @@ const FinancialSummery = ({
   month?: number;
   notIsoMonth?: number;
 }) => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
   const { groupedByType } = useTransactionStore();
   const { getCurrentMonthNumber, isJalali } = useCalendarUtils();
 
-  const data =
-    groupedByType(
-      year,
-      month,
-      isJalali,
-      notIsoMonth || getCurrentMonthNumber(),
-    ) || {};
+  const targetedMonth =
+    notIsoMonth || (isJalali ? getCurrentMonthNumber() : month);
 
-  const income = data?.Income?.totalAmount ?? 0;
-  const totalOutgoing = data?.Expense?.totalAmount ?? 0;
+  const data: GroupedTransactionType =
+    groupedByType(year, month, isJalali, targetedMonth) || {};
 
-  const save = data?.Save?.totalAmount ?? 0;
-
-  const remaining = income - totalOutgoing;
+  const { income, outgoing, save, remaining } = useFinancialSummary(data);
 
   const list = [
     {
@@ -49,7 +49,7 @@ const FinancialSummery = ({
     {
       id: 2,
       title: i18next.t("home.outgoing"),
-      amount: convertToCurrency(totalOutgoing),
+      amount: convertToCurrency(outgoing),
       icon: ShoppingCart,
       color: "var(--color-pink)",
       border: "border-pink",
@@ -72,8 +72,24 @@ const FinancialSummery = ({
     },
   ];
 
+  const handleOpenModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setIsOpenModal(false);
+  };
   return (
-    <>{inlineView ? <InlineView list={list} /> : <BlockView list={list} />}</>
+    <>
+      {inlineView ? (
+        <InlineView list={list} onClick={handleOpenModal} />
+      ) : (
+        <BlockView list={list} onClick={handleOpenModal} />
+      )}
+      <IModal open={isOpenModal} onClose={handleClose} showCloseButton>
+        <PreferenceCheckboxes />
+      </IModal>
+    </>
   );
 };
 
