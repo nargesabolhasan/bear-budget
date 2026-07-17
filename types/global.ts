@@ -43,6 +43,7 @@ export type TransactionType = {
   tag: string;
   date: string;
   description?: string;
+  systemKey?: string;
   settled?: {
     date: string;
     amount?: string;
@@ -95,7 +96,7 @@ export type AccordionItemsType = {
   onExpandPanel?: (
     event: React.SyntheticEvent,
     isExpanded: boolean,
-    panel: string
+    panel: string,
   ) => void;
 };
 
