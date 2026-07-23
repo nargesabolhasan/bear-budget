@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { iconList } from "@/constant/icons";
 import i18next from "i18next";
 import i18n from "@/i18n/config";
+import { SYSTEM_TAG } from "@/constant/global";
 
 const TagDemo = ({
   demoTitle,
@@ -39,7 +40,7 @@ const TagDemo = ({
             "text-md text-dark_surface overflow-wrap block text-pretty break-words break-all whitespace-normal"
           }
         >
-          {name === "previousMonth"
+          {name === SYSTEM_TAG
             ? i18n.t(`transactions.system.previousMonth`)
             : name}
         </span>
