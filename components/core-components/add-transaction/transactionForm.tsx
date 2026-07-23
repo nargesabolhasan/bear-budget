@@ -18,6 +18,7 @@ import IButton from "@/components/atoms/button";
 import TagAccordion from "@/components/core-components/create-budget/tagAccordion";
 import { FormBudgetTypeEnum } from "@/components/core-components/create-budget/types";
 import i18next from "i18next";
+import i18n from "@/i18n/config";
 
 const schema = yup.object({
   [FormTransactionEnum.AMOUNT]: yup
@@ -43,6 +44,10 @@ const TransactionForm = ({
   title = i18next.t("addTransaction.addNewTransaction"),
   ...props
 }: TransactionProps & Partial<TransactionFormData>) => {
+  const descriptionText = props.systemKey
+    ? i18n.t(`transactions.system.${props.systemKey}`)
+    : props.description;
+
   const {
     control,
     reset,
@@ -54,7 +59,7 @@ const TransactionForm = ({
       [FormTransactionEnum.AMOUNT]: props.amount || "",
       [FormTransactionEnum.TAG]: props.tag || "",
       [FormTransactionEnum.DATE]: props.date || "",
-      [FormTransactionEnum.DESCRIPTION]: props.description || "",
+      [FormTransactionEnum.DESCRIPTION]: descriptionText || "",
     },
     //@ts-ignore
     resolver: yupResolver(schema),
