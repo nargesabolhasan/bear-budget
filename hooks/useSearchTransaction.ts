@@ -3,18 +3,14 @@ import { TagsListType } from "@/store/tags/type";
 import { useState, useRef, useEffect } from "react";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18n from "i18next";
+import { SYSTEM_DESCRIPTIONS, SYSTEM_TAG } from "@/constant/global";
 
 type Props = {
   allTransactions: TransactionType[];
   tags: TagsListType;
 };
 
-const SYSTEM_TAGS = ["previousMonth"];
-
-const SYSTEM_DESCRIPTIONS = [
-  "previous_month_balance",
-  "previous_month_savings",
-];
+const SYSTEM_TAGS = [SYSTEM_TAG];
 
 const useSearchTransaction = ({ allTransactions, tags }: Props) => {
   const [searchResult, setSearchResult] =
@@ -49,29 +45,62 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
             ? i18n.t(`transactions.system.${tagInfo.name}`)
             : (tagInfo?.name ?? "");
 
-        const description =
-          transaction.description &&
-          SYSTEM_DESCRIPTIONS.includes(transaction.description)
-            ? i18n.t(`transactions.system.${transaction.description}`)
-            : (transaction.description ?? "");
+        const systemDescriptionKey =
+          transaction.systemKey &&
+          SYSTEM_DESCRIPTIONS.includes(transaction.systemKey)
+            ? transaction.systemKey
+            : transaction.description &&
+                SYSTEM_DESCRIPTIONS.includes(transaction.description)
+              ? transaction.description
+              : null;
+
+        const description = systemDescriptionKey
+          ? i18n.t(`transactions.system.${systemDescriptionKey}`)
+          : (transaction.description ?? "");
+
+        const transactionType = i18n.t(
+          `transactions.${tagInfo?.transactionType}`,
+        );
+
+        const transactionDate = formatDate(transaction.date).toLowerCase();
+        const settledDate = transaction.settled?.date
+          ? formatDate(transaction.settled.date).toLowerCase()
+          : "";
+
+        const tokenizeDate = (text: string) =>
+          text
+            .replace(/[/-]/g, " ")
+            .split(/\s+/)
+            .map((item) => item.trim())
+            .filter(Boolean);
+
+        const transactionDateTokens = tokenizeDate(transactionDate);
+        const settledDateTokens = tokenizeDate(settledDate);
+
+        const isDateSearch = transactionDateTokens.includes(q);
+        const isSettledDateSearch = settledDateTokens.includes(q);
 
         return (
-          formatDate(transaction.date)?.toLowerCase().includes(q) ||
+          // Date (exact word match)
+          isDateSearch ||
+          isSettledDateSearch ||
+          // Description
           description.toLowerCase().includes(q) ||
-          transaction.amount?.toString().includes(q) ||
-          formatDate(transaction.settled?.date as string)
-            ?.toLowerCase()
-            .includes(q) ||
+          // Amount
+          transaction.amount.toString().includes(q) ||
+          // Settled amount
           transaction.settled?.amount?.toString().includes(q) ||
-          i18n
-            .t(`transactions.${tagInfo?.transactionType}`)
-            .toLowerCase()
-            .includes(q) ||
+          // Transaction type
+          transactionType.toLowerCase().includes(q) ||
+          // Tag
           tagName.toLowerCase().includes(q) ||
+          // Debt / Credit state
           ((tagInfo?.transactionType === TransactionEnum.DEBT ||
             tagInfo?.transactionType === TransactionEnum.CREDIT) &&
-            !Boolean(transaction.settled) &&
-            i18n.t("transactionList.settled").toLowerCase().includes(q))
+            !transaction.settled &&
+            i18n.t("transactionList.settled").toLowerCase().includes(q)) ||
+          (Boolean(transaction.settled) &&
+            i18n.t("transactionList.settledHint").toLowerCase().includes(q))
         );
       });
 

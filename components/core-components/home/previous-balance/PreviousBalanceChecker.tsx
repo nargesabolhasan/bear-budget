@@ -6,6 +6,7 @@ import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum } from "@/types/global";
 import PreviousBalanceModal from "./previousBalanceModal";
+import { SYSTEM_TAG } from "@/constant/global";
 
 export default function PreviousBalanceChecker({
   previousBalance,
@@ -26,7 +27,7 @@ export default function PreviousBalanceChecker({
       answer(choice);
       return;
     }
-    const tagName = "previousMonth";
+    const tagName = SYSTEM_TAG;
 
     const tagDescription =
       choice === TransactionEnum.INCOME

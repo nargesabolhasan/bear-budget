@@ -69,6 +69,17 @@ const useCalendarUtils = () => {
     return date.format(format ? formatType : "dddd D MMMM YYYY");
   };
 
+  const formatSearchDate = (value?: string | number | Date): string => {
+    if (!value) return "";
+
+    const date = new DateObject({
+      date: value,
+      calendar,
+      locale,
+    });
+
+    return date.format("YYYY/MM/DD");
+  };
   /* ---------------- ISO Conversion ---------------- */
 
   /**
@@ -132,6 +143,7 @@ const useCalendarUtils = () => {
     getCurrentMonthName,
     getCurrentMonthNumber,
     formatDate,
+    formatSearchDate,
     toStandardISO,
     calenderMonthList: isJalali ? PERSIAN_MONTHS : MONTHS,
   };
