@@ -36,15 +36,17 @@ type FormTypes = {
   [ModalFormEnum.SETTLED]: boolean;
 };
 
-const schema = yup.object({
+const schema: yup.ObjectSchema<FormTypes> = yup.object({
   [ModalFormEnum.SETTLED]: yup
     .boolean()
+    .required()
     .oneOf([true], i18next.t("transactionList.mustAccept")),
-  [ModalFormEnum.DATE]: yup
-    .string()
-    .required(
-      i18next.t("global.required", { value: i18next.t("addTransaction.date") }),
-    ),
+
+  [ModalFormEnum.DATE]: yup.string().required(
+    i18next.t("global.required", {
+      value: i18next.t("addTransaction.date"),
+    }),
+  ),
 });
 
 const MainTransactionInfo = ({
@@ -153,7 +155,6 @@ const MainTransactionInfo = ({
       {/*----modal for settled-------*/}
       <IModal open={open} onClose={() => setOpen(false)}>
         <form
-          //@ts-ignore
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-col items-start justify-center gap-3 px-1 py-3 md:px-3"
         >

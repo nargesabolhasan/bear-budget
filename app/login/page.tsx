@@ -29,7 +29,7 @@ export default function LoginPage() {
       toast.success(i18next.t("login.welcome"));
     },
 
-    onError: (err: any) => {
+    onError: (err: Error) => {
       toast.error(err.message || i18next.t("login.somethingWentWrong"));
     },
   });

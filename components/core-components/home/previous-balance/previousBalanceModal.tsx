@@ -8,14 +8,13 @@ import { convertToCurrency } from "@/utils/utils";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
+type PreviousBalanceChoice =
+  TransactionEnum.INCOME | TransactionEnum.SAVE | "skip";
+
 type Props = {
   open: boolean;
-
   balance: number;
-
-  onSubmit: (
-    value: TransactionEnum.INCOME | TransactionEnum.SAVE | "skip",
-  ) => void;
+  onSubmit: (value: PreviousBalanceChoice) => void;
 };
 
 export default function PreviousBalanceModal({
@@ -29,7 +28,7 @@ export default function PreviousBalanceModal({
 
   const { t } = useTranslation();
 
-  const select = (v: any) => {
+  const select = (v: PreviousBalanceChoice) => {
     setValue(v);
   };
 

@@ -1,4 +1,4 @@
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 import { EnumPrinterInputs } from "@/components/core-components/print-summery/type";
 import ICheckbox from "@/components/atoms/checkbox";
 import i18next from "i18next";
@@ -13,7 +13,7 @@ export type FormDataFiltering = {
 };
 
 type Props = {
-  control: Control<FormDataFiltering, any, FormDataFiltering>;
+  control: Control<FormDataFiltering, FieldValues, FormDataFiltering>;
 };
 
 const PrinterFilterSetting = ({ control }: Props) => {

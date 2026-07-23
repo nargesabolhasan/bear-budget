@@ -1,17 +1,17 @@
 import React from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-export type ISwitchProps = {
-  value: string;
-  onChange: (val: string | any) => void;
+export type ISwitchProps<T extends string> = {
+  value: T;
+  onChange: (val: T) => void;
   color: "primary" | "secondary";
   leftTitle: string;
-  leftValue: string;
+  leftValue: T;
   rightTitle: string;
-  rightValue: string;
+  rightValue: T;
 };
 
-const ISwitch = ({
+const ISwitch = <T extends string>({
   value,
   onChange,
   color = "primary",
@@ -19,15 +19,24 @@ const ISwitch = ({
   leftValue,
   rightTitle,
   rightValue,
-}: ISwitchProps) => {
+}: ISwitchProps<T>) => {
+  const handleChange = (
+    _: React.MouseEvent<HTMLElement>,
+    newValue: T | null,
+  ) => {
+    if (newValue !== null) {
+      onChange(newValue);
+    }
+  };
+
   return (
-    <section className={"w-full"}>
+    <section className="w-full">
       <ToggleButtonGroup
-        className={"w-full"}
+        className="w-full"
         color={color}
         value={value}
         exclusive
-        onChange={(_, value) => value && onChange(value)}
+        onChange={handleChange}
         sx={{
           borderRadius: "999px",
           backgroundColor: "var(--color-neutral)",
@@ -64,4 +73,5 @@ const ISwitch = ({
     </section>
   );
 };
+
 export default ISwitch;
