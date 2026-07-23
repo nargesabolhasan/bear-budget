@@ -1,6 +1,8 @@
 "use client";
 import ContextMenu from "@/components/molecules/contextMenu";
 import { openDialog } from "@/components/molecules/dialogContainer";
+import { SYSTEM_TAG } from "@/constant/global";
+import i18n from "@/i18n/config";
 import { transactionRoutes } from "@/routes/routes";
 import { TagsListType } from "@/store/tags/type";
 import { useTransactionStore } from "@/store/transaction";
@@ -31,7 +33,9 @@ const ActionButtons = ({
         <span>
           {i18next.t("transactionList.removeHint", {
             amount: convertToCurrency(transaction.amount),
-            tag: tags?.[transaction.tag]?.name,
+            tag: tags?.[transaction.tag]?.name.includes(SYSTEM_TAG)
+              ? i18n.t(`transactions.system.previousMonth`)
+              : tags?.[transaction.tag]?.name,
             type: i18next.t(
               `transactions.${tags?.[transaction.tag]?.transactionType}`,
             ),
