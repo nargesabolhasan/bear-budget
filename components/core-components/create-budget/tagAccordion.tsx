@@ -24,7 +24,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       panelHeaderId: "tag-picker-header",
       ariaControl: "tag-picker-aria",
       summary: (
-        <div className={"flex h-full w-full flex-col gap-3"}>
+        <div className={"mb-3 flex h-full w-full flex-col gap-3"}>
           <h4 className={"text-placeholder"}>
             {i18next.t("addTransaction.selectTag")}
           </h4>
@@ -50,7 +50,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
             </Link>
           }
         >
-          <div className={"mr-5"}>
+          <div className={"flex flex-col justify-center gap-2"}>
             {Object.values(tags).slice(tagsCount).length !== 0 && (
               <Controller
                 name={FormTransactionEnum.TAG}
@@ -85,7 +85,6 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
   return (
     <IAccordion
       items={accordionItem}
-      detailClassName={"py-3! pr-5!"}
       showExpandIcon={Object.values(tags).slice(tagsCount).length !== 0}
       className={"border-placeholder_light border p-4"}
     />
