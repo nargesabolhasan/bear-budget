@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -36,10 +37,12 @@ const IAccordion = ({
         <Accordion
           key={`I-Accordion-item-${item.id}`}
           expanded={expanded === item.panel}
-          onChange={handleChange(item.panel, item?.onExpandPanel)}
+          onChange={handleChange(item.panel, item.onExpandPanel)}
           className={className}
+          disableGutters
           sx={{
-            boxShadow: 0,
+            position: "relative",
+            boxShadow: "none",
             borderRadius: "20px",
             "&:before": {
               display: "none",
@@ -47,29 +50,49 @@ const IAccordion = ({
           }}
         >
           <AccordionSummary
-            sx={{
-              padding: 0,
-              "& .MuiAccordionSummary-content.Mui-expanded": {
-                margin: 0,
-              },
-            }}
             expandIcon={
-              showExpandIcon && (
-                <span className={"p-2"}>
-                  <ExpandMoreIconComponent />
-                </span>
-              )
+              showExpandIcon ? <ExpandMoreIconComponent /> : undefined
             }
             aria-controls={item.ariaControl}
             id={item.panelHeaderId}
             className={summeryClassName}
+            sx={{
+              p: 0,
+              minHeight: "unset",
+
+              "&.Mui-expanded": {
+                minHeight: "unset",
+              },
+
+              "& .MuiAccordionSummary-content": {
+                margin: 0,
+              },
+
+              "& .MuiAccordionSummary-content.Mui-expanded": {
+                margin: 0,
+              },
+
+              "& .MuiAccordionSummary-expandIconWrapper": {
+                position: "absolute",
+                right: 16,
+                top: "3px",
+                transform: "translateY(-3px)",
+                transition: "transform 200ms ease",
+              },
+
+              "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                transform: "translateY(-3px) rotate(180deg)",
+              },
+            }}
           >
             {item.summary}
           </AccordionSummary>
+
           <AccordionDetails
             className={detailClassName}
             sx={{
-              padding: 0,
+              p: 0,
+              justifyContent: "center",
             }}
           >
             {item.detail}

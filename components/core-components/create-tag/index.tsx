@@ -108,11 +108,13 @@ const CreateTagForm = ({
           control={control}
           name={FormTagEnum.ICON}
           render={({ field }) => (
-            <IconPicker
-              icons={Array.from(iconList.values()).slice(iconCount)}
-              value={field.value}
-              onChange={field.onChange}
-            />
+            <div className="mb-3">
+              <IconPicker
+                icons={Array.from(iconList.values()).slice(iconCount)}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            </div>
           )}
         />
       ),
@@ -143,11 +145,13 @@ const CreateTagForm = ({
           control={control}
           name={FormTagEnum.COLOR}
           render={({ field }) => (
-            <ColorPicker
-              colorList={colorList.slice(colorCount)}
-              value={field.value}
-              onChange={field.onChange}
-            />
+            <div className="mb-3">
+              <ColorPicker
+                colorList={colorList.slice(colorCount)}
+                value={field.value}
+                onChange={field.onChange}
+              />
+            </div>
           )}
         />
       ),

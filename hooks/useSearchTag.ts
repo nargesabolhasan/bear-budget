@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { TransactionEnum } from "@/types/global";
 import { GroupedTagsByType } from "@/store/tags/type";
 import i18n from "i18next";
+import { SYSTEM_TAG } from "@/constant/global";
 
 type UseSearchTagProps = {
   groups: GroupedTagsByType;
@@ -13,7 +14,7 @@ type UseSearchTagReturn = {
   notFound: boolean;
 };
 
-const SYSTEM_TAGS = ["previousMonth"];
+const SYSTEM_TAGS = [SYSTEM_TAG];
 
 const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
   const [searchQuery, setSearchQuery] = useState("");
