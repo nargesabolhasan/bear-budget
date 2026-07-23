@@ -50,7 +50,7 @@ const EditTransaction = ({ params }: Props) => {
       title={
         <span className={"flex flex-row items-center"} dir={"ltr"}>
           <BackButton />
-          <h4 className={"text-center grow"}>Edit Transaction</h4>
+          <h4 className={"grow text-center"}>Edit Transaction</h4>
         </span>
       }
       submitHandler={submitHandler}

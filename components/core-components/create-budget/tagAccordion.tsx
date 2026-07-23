@@ -24,7 +24,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       panelHeaderId: "tag-picker-header",
       ariaControl: "tag-picker-aria",
       summary: (
-        <div className={"h-full w-full flex flex-col gap-3"}>
+        <div className={"flex h-full w-full flex-col gap-3"}>
           <h4 className={"text-placeholder"}>
             {i18next.t("addTransaction.selectTag")}
           </h4>
@@ -67,7 +67,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
             <Link
               href={tagRoutes.createTag.href}
               className={
-                "text-xs md:text-sm cursor-pointer flex flex-row items-center justify-center gap-1 mt-4 text-placeholder"
+                "text-placeholder mt-4 flex cursor-pointer flex-row items-center justify-center gap-1 text-xs md:text-sm"
               }
             >
               <AddCircleTwoToneIcon
@@ -87,7 +87,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       items={accordionItem}
       detailClassName={"py-3! pr-5!"}
       showExpandIcon={Object.values(tags).slice(tagsCount).length !== 0}
-      className={"p-4 border border-placeholder_light"}
+      className={"border-placeholder_light border p-4"}
     />
   );
 };

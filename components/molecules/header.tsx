@@ -44,9 +44,9 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
         component={NextLink}
         href={item.href}
         className={twMerge(
-          "!text-brown_secondary italic p-2 shadow shadow-brown_secondary !rounded-full mx-auto !m-3 transition",
+          "!text-brown_secondary shadow-brown_secondary !m-3 mx-auto !rounded-full p-2 italic shadow transition",
           item.color,
-          isActive && "!bg-primary !text-brown font-bold !border border-brown"
+          isActive && "!bg-primary !text-brown border-brown !border font-bold",
         )}
       >
         {Icon && (
@@ -72,9 +72,9 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
       <NextLink
         href={item.href}
         className={twMerge(
-          "flex items-center justify-center text-center text-brown shadow shadow-brown p-2 rounded-full hover:bg-primary_light transition",
+          "text-brown shadow-brown hover:bg-primary_light flex items-center justify-center rounded-full p-2 text-center shadow transition",
           item.color,
-          isActive && "bg-primary_light font-bold border border-brown"
+          isActive && "bg-primary_light border-brown border font-bold",
         )}
       >
         {Icon && (
@@ -107,17 +107,17 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
   );
 
   return (
-    <AppBar position="fixed" className="top-0 w-full z-50 print:!hidden">
-      <Toolbar className="flex flex-row justify-around gap-5 md:gap-0 md:justify-between items-center py-6">
+    <AppBar position="fixed" className="top-0 z-50 w-full print:!hidden">
+      <Toolbar className="flex flex-row items-center justify-around gap-5 py-6 md:justify-between md:gap-0">
         {/* Logo + Title */}
         <Typography
           sx={{
             fontWeight: 700,
             fontFamily: '"PlaywriteNZGuides", sans-serif !important',
           }}
-          className="w-fit text-brown cursor-pointer font-playwrite italic !text-2xl"
+          className="text-brown font-playwrite w-fit cursor-pointer !text-2xl italic"
         >
-          <NextLink href="/" className="w-fit flex flex-row items-center gap-1">
+          <NextLink href="/" className="flex w-fit flex-row items-center gap-1">
             <Image
               src="/favicon.svg"
               alt="icon"
@@ -137,7 +137,7 @@ const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
               edge="start"
               aria-label="menu"
               onClick={toggleDrawer(true)}
-              className="shadow shadow-brown p-2"
+              className="shadow-brown p-2 shadow"
             >
               <MenuIcon className="text-brown" />
             </IconButton>

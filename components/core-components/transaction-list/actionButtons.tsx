@@ -56,7 +56,7 @@ const ActionButtons = ({
         router.push(transactionRoutes.editTransaction(transaction.id)),
       title: (
         <span
-          className={"w-full flex flex-row gap-2 items-center justify-start"}
+          className={"flex w-full flex-row items-center justify-start gap-2"}
         >
           <Edit2
             size="30"
@@ -72,7 +72,7 @@ const ActionButtons = ({
       onClick: () => handleDelete(transaction),
       title: (
         <span
-          className={"!text-sm flex flex-row gap-2 items-center justify-start"}
+          className={"flex flex-row items-center justify-start gap-2 !text-sm"}
         >
           <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
           {i18next.t("contextMenu.delete")}

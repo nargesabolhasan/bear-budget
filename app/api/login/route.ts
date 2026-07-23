@@ -12,7 +12,7 @@ export async function POST(req: Request) {
           value: i18next.t("global.name"),
         }),
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

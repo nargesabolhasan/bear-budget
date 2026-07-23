@@ -8,6 +8,6 @@ export const useCalenderModeStore = create(
       mode: "gregorian",
       setMode: (mode) => set({ mode }),
     }),
-    { name: "calendar-mode" }
-  )
+    { name: "calendar-mode" },
+  ),
 );

@@ -41,11 +41,11 @@ export default function PreviousBalanceModal({
 
   return (
     <IModal open={open} onClose={() => {}} showCloseButton={false}>
-      <form className="flex flex-col gap-5 w-[250px]">
-        <h3 className="font-semibold text-lg text-center text-primary">
+      <form className="flex w-[250px] flex-col gap-5">
+        <h3 className="text-primary text-center text-lg font-semibold">
           {t("home.balanceModal.title")}
         </h3>
-        <h4 className="text-sm md:text-base leading-7 font-medium text-placeholder text-center border-b border-dashed pb-2">
+        <h4 className="text-placeholder border-b border-dashed pb-2 text-center text-sm leading-7 font-medium md:text-base">
           <Trans
             i18nKey="home.balanceModal.description"
             values={{
@@ -71,7 +71,7 @@ export default function PreviousBalanceModal({
           label={t("home.balanceModal.skip")}
         />
 
-        <IButton onClick={submit} className="btn-primary w-full !text-dark">
+        <IButton onClick={submit} className="btn-primary !text-dark w-full">
           {t("dialog.confirm")}
         </IButton>
       </form>

@@ -21,7 +21,7 @@ const EmptyList = ({
   return (
     <section
       className={
-        "mt-[80px] print:mt-0 flex flex-col items-center justify-center gap-4"
+        "mt-[80px] flex flex-col items-center justify-center gap-4 print:mt-0"
       }
     >
       <IButton
@@ -34,7 +34,7 @@ const EmptyList = ({
         {IconComponent && <IconComponent />}
         <span>{title}</span>
       </IButton>
-      <h3 className={"select-none text-center text-brown_secondary"}>{hint}</h3>
+      <h3 className={"text-brown_secondary text-center select-none"}>{hint}</h3>
       <Image
         src="/add.png"
         alt="icon"

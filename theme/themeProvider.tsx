@@ -36,7 +36,7 @@ export default function IThemeProvider({ children }: ThemeProviderProps) {
   const muiTheme = useMemo(() => {
     const theme = getTheme(
       (resolvedTheme ?? "light") as "light" | "dark",
-      direction
+      direction,
     );
     return { ...theme, direction };
   }, [resolvedTheme, direction]);

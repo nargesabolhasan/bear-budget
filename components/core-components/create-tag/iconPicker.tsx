@@ -34,7 +34,7 @@ const IconPicker: React.FC<IconPickerProps> = ({
       className={twMerge(
         "icon-wrapper",
         PICKER_WRAPPER_CLASS,
-        className && className
+        className && className,
       )}
     >
       {icons.map((item) => {
@@ -43,8 +43,8 @@ const IconPicker: React.FC<IconPickerProps> = ({
           <div
             key={item.id}
             className={twMerge(
-              "icon-picker-item flex items-center justify-center border bg-neutral border-placeholder_light p-2 rounded-lg hover:bg-placeholder_light",
-              value === item.id && "border-dark! bg-placeholder_light"
+              "icon-picker-item bg-neutral border-placeholder_light hover:bg-placeholder_light flex items-center justify-center rounded-lg border p-2",
+              value === item.id && "border-dark! bg-placeholder_light",
             )}
             data-icon-id={item.id}
             color={value === item.id ? "primary" : "default"}

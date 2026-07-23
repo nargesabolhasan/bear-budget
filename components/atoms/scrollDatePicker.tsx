@@ -27,7 +27,7 @@ export default function ScrollDatePicker({
 
   // Selected state
   const [selected, setSelected] = useState<string | number>(
-    defaultValue ?? dateList[0]
+    defaultValue ?? dateList[0],
   );
 
   // Set form initial value safely
@@ -108,9 +108,9 @@ export default function ScrollDatePicker({
   };
 
   return (
-    <div className="flex flex-col items-center my-2 transition-all duration-500">
+    <div className="my-2 flex flex-col items-center transition-all duration-500">
       {showTitle && (
-        <h2 className="text-md md:text-xl mb-4 text-placeholder">
+        <h2 className="text-md text-placeholder mb-4 md:text-xl">
           {i18next.t("modal.select", {
             value: i18next.t(`modal.${title}`),
           })}
@@ -119,16 +119,16 @@ export default function ScrollDatePicker({
 
       <div
         ref={containerRef}
-        className="relative h-48 w-30 md:w-40 overflow-y-scroll no-scrollbar border-2 border-dashed border-placeholder rounded-2xl"
+        className="no-scrollbar border-placeholder relative h-48 w-30 overflow-y-scroll rounded-2xl border-2 border-dashed md:w-40"
       >
         {extendedDates.map((date, index) => (
           <div
             key={index}
             onClick={() => handleClick(date)}
             className={twMerge(
-              "w-full h-12 flex items-center justify-center transition-colors cursor-pointer text-xs md:text-sm",
+              "flex h-12 w-full cursor-pointer items-center justify-center text-xs transition-colors md:text-sm",
               selected === date &&
-                "bg-primary_light text-sm md:text-lg shadow-lg shadow-primary_light text-dark"
+                "bg-primary_light shadow-primary_light text-dark text-sm shadow-lg md:text-lg",
             )}
           >
             {date}
@@ -136,7 +136,7 @@ export default function ScrollDatePicker({
         ))}
       </div>
 
-      <p className="mt-4 text-xs md:text-base text-placeholder">
+      <p className="text-placeholder mt-4 text-xs md:text-base">
         {i18next.t("modal.selected")}:{" "}
         <b className="text-xs md:text-sm">{watch(title)}</b>
       </p>

@@ -30,10 +30,10 @@ const BudgetInfoList = ({ selectedDate }: PrintInfoProps) => {
   return (
     <section
       className={
-        "border border-placeholder_light2 border-dashed w-full p-2 md:p-4 rounded-2xl"
+        "border-placeholder_light2 w-full rounded-2xl border border-dashed p-2 md:p-4"
       }
     >
-      <table className={"w-full text-xs md:text-md"} cellSpacing={5}>
+      <table className={"md:text-md w-full text-xs"} cellSpacing={5}>
         <thead>
           <tr>
             {th.map((item) => (

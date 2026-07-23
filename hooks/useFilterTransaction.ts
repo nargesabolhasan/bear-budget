@@ -60,7 +60,7 @@ const useFilterTransaction = ({
       isoDate.year,
       isoDate.month,
       isJalali,
-      notIsoMonth
+      notIsoMonth,
     )) {
       const tagId = transaction.tag;
       if (!tagId) continue;

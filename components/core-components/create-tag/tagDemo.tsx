@@ -22,7 +22,7 @@ const TagDemo = ({
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-2 mx-auto justify-center items-center border border-dashed border-placeholder p-4 rounded-2xl",
+        "border-placeholder mx-auto flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed p-4",
         className && className,
       )}
       dir={"auto"}
@@ -30,13 +30,13 @@ const TagDemo = ({
         onClick?.();
       }}
     >
-      <div className={"flex flex-col gap-2 items-start w-full"}>
-        {demoTitle && <h3 className={"text-center w-full"}>{demoTitle}</h3>}
+      <div className={"flex w-full flex-col items-start gap-2"}>
+        {demoTitle && <h3 className={"w-full text-center"}>{demoTitle}</h3>}
       </div>
       {!!name && (
         <span
           className={
-            "block text-md text-dark_surface text-pretty break-words whitespace-normal overflow-wrap break-all"
+            "text-md text-dark_surface overflow-wrap block text-pretty break-words break-all whitespace-normal"
           }
         >
           {name === "previousMonth"
@@ -46,13 +46,13 @@ const TagDemo = ({
       )}
       <i
         className={twMerge(
-          "size-[50px] rounded-full flex justify-center items-center",
+          "flex size-[50px] items-center justify-center rounded-full",
           color.color,
         )}
       >
         {Icon ? <Icon sx={{ fontSize: 30 }} /> : <></>}
       </i>
-      <h4 className={"mx-auto text-placeholder"}>
+      <h4 className={"text-placeholder mx-auto"}>
         {i18next.t(`transactions.${transactionType}`)}
       </h4>
     </div>

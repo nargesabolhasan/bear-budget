@@ -26,8 +26,8 @@ const ScrollToTopButton = () => {
       onClick={scrollToTop}
       aria-label="scroll-to-top"
       className={twMerge(
-        "w-fit bg-primary_light rounded-full p-3 !border-6 !border-primary print:!hidden drop-shadow-sm fixed bottom-4 right-4 transition-opacity opacity-100",
-        !showButton && "opacity-0 pointer-events-none"
+        "bg-primary_light !border-primary fixed right-4 bottom-4 w-fit rounded-full !border-6 p-3 opacity-100 drop-shadow-sm transition-opacity print:!hidden",
+        !showButton && "pointer-events-none opacity-0",
       )}
     >
       <KeyboardDoubleArrowDownTwoToneIcon className="text-olive_darb rotate-180" />

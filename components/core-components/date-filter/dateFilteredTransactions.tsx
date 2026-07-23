@@ -12,7 +12,7 @@ export type DatePickerForm = { Month: string; Year: number };
 type Props = {
   submitSearch: (
     formData: DatePickerForm,
-    formatedDate: FilteredDateContextType["notIso"]
+    formatedDate: FilteredDateContextType["notIso"],
   ) => void;
 };
 
@@ -41,7 +41,7 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
     >
       <section
         className={
-          "w-full flex flex-row items-center justify-center gap-6 md:gap-10"
+          "flex w-full flex-row items-center justify-center gap-6 md:gap-10"
         }
       >
         <ScrollDatePicker
@@ -61,7 +61,7 @@ const DateFilteredTransactions = ({ submitSearch }: Props) => {
       </section>
       <IButton
         type={"submit"}
-        className={"!rounded-full !bg-primary_light !text-dark"}
+        className={"!bg-primary_light !text-dark !rounded-full"}
         sx={{
           fontWeight: 400,
         }}

@@ -17,7 +17,7 @@ export const useBudgetStore = create<BudgetStore>()(
               return { budgets: update };
             },
             false,
-            "addBudget"
+            "addBudget",
           ),
 
         removeBudget: (id, currentMonth) =>
@@ -28,7 +28,7 @@ export const useBudgetStore = create<BudgetStore>()(
               return { budgets: update };
             },
             false,
-            "removeBudget"
+            "removeBudget",
           ),
 
         editBudget: (newTagId, oldTagId, oldMonth, data) => {
@@ -53,7 +53,7 @@ export const useBudgetStore = create<BudgetStore>()(
               }
             },
             false,
-            "removeBudget"
+            "removeBudget",
           );
         },
         removeThisMonth: (month: number) =>
@@ -63,12 +63,12 @@ export const useBudgetStore = create<BudgetStore>()(
               return { budgets };
             },
             false,
-            "removeBudget"
+            "removeBudget",
           ),
         clear: () => set({ budgets: {} }, false, "clear"),
       }),
-      { name: "budgets" }
+      { name: "budgets" },
     ),
-    { name: "BudgetsStore" }
-  )
+    { name: "BudgetsStore" },
+  ),
 );

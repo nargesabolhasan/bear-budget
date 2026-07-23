@@ -7,7 +7,7 @@ export const settingItems = (
   clearAllTransactions: () => void,
   clear: () => void,
   clearBudgets: () => void,
-  handlePrint: () => void
+  handlePrint: () => void,
 ) => {
   return [
     {
@@ -34,7 +34,7 @@ export const settingItems = (
             toast.success(
               i18n.t("setting.successDelete", {
                 value: i18n.t("global.transactions"),
-              })
+              }),
             );
           },
         });
@@ -56,7 +56,7 @@ export const settingItems = (
             toast.success(
               i18n.t("setting.successDelete", {
                 value: i18n.t("global.tags"),
-              })
+              }),
             );
           },
         });
@@ -78,7 +78,7 @@ export const settingItems = (
             toast.success(
               i18n.t("setting.successDelete", {
                 value: i18n.t("global.budgets"),
-              })
+              }),
             );
           },
         });

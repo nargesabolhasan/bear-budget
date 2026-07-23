@@ -51,10 +51,10 @@ const TransactionSummery = () => {
   return (
     <section
       className={
-        "bg-gradient-to-b from-primary to-primary_light rounded-2xl p-3 pb-6"
+        "from-primary to-primary_light rounded-2xl bg-gradient-to-b p-3 pb-6"
       }
     >
-      <div className={"flex flex-row justify-center items-center gap-1"}>
+      <div className={"flex flex-row items-center justify-center gap-1"}>
         <Image
           src="/bear.png"
           alt="icon"
@@ -63,10 +63,10 @@ const TransactionSummery = () => {
           priority
           unoptimized
         />
-        <h2 className={"text-xl grow text-brown"}>
+        <h2 className={"text-brown grow text-xl"}>
           {i18n.t("home.hello")}{" "}
           {isLoading ? (
-            <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
+            <div className="bg-placeholder_light h-5 w-32 animate-pulse rounded-full"></div>
           ) : (
             username
           )}

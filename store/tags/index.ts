@@ -17,7 +17,7 @@ export const useTagsStore = create<TagStore>()(
               },
             },
             false,
-            "createTag"
+            "createTag",
           ),
 
         removeTag: (id) =>
@@ -29,7 +29,7 @@ export const useTagsStore = create<TagStore>()(
               return { tags: updated };
             },
             false,
-            "removeTag"
+            "removeTag",
           ),
 
         editTag: (id, data) => {
@@ -44,7 +44,7 @@ export const useTagsStore = create<TagStore>()(
               },
             },
             false,
-            "editTag"
+            "editTag",
           );
         },
 
@@ -64,8 +64,8 @@ export const useTagsStore = create<TagStore>()(
 
         clear: () => set({ tags: {} }, false, "clear"),
       }),
-      { name: "tags" }
+      { name: "tags" },
     ),
-    { name: "TagsStore" }
-  )
+    { name: "TagsStore" },
+  ),
 );

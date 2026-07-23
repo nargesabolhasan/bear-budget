@@ -15,7 +15,7 @@ export default function IPagination({
   return (
     <>
       {showPagination && (
-        <Stack spacing={2} className={"flex items-center my-5 print:!hidden"}>
+        <Stack spacing={2} className={"my-5 flex items-center print:!hidden"}>
           <Pagination
             {...props}
             count={props.count || ROWS_PER_PAGE}

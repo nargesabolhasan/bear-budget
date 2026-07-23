@@ -32,16 +32,16 @@ const MainTransactionTitle = ({
   const { formatDate } = useCalendarUtils();
   return (
     <>
-      <div className={"w-full flex flex-row gap-3 justify-between items-start"}>
+      <div className={"flex w-full flex-row items-start justify-between gap-3"}>
         <div className={"flex flex-col gap-1"}>
-          <span className={"flex flex-row justify-start items-center gap-2"}>
+          <span className={"flex flex-row items-center justify-start gap-2"}>
             {showTagIcon && (
               <Icon
                 fontSize={"large"}
                 className={twMerge(
-                  "opacity-90 rounded-full p-1",
+                  "rounded-full p-1 opacity-90",
                   showTagIconColor
-                    ? "bg-transparent border-2 border-dotted border-placeholder"
+                    ? "border-placeholder border-2 border-dotted bg-transparent"
                     : twMerge("text-dark", groupedStyles(tag?.transactionType)),
                 )}
               />
@@ -52,7 +52,7 @@ const MainTransactionTitle = ({
                 : tag.name}
             </span>
           </span>
-          <time className={"text-xs text-placeholder"}>{formatDate(date)}</time>
+          <time className={"text-placeholder text-xs"}>{formatDate(date)}</time>
         </div>
         <span className={"flex flex-row items-center"}>
           <h4>

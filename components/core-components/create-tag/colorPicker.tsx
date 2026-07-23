@@ -17,7 +17,7 @@ const ColorPicker = ({
   const handleSelect = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const button = (e.target as HTMLButtonElement).closest(
-      ".color-picker-item"
+      ".color-picker-item",
     );
     if (button) {
       const color = button.getAttribute("data-color") || "";
@@ -40,10 +40,10 @@ const ColorPicker = ({
           data-color={color.color}
           data-color-id={color.id}
           className={twMerge(
-            `color-picker-item w-[40px] h-[40px] rounded-full border border-placeholder hover:scale-130`,
+            `color-picker-item border-placeholder h-[40px] w-[40px] rounded-full border hover:scale-130`,
             value?.id === color.id &&
-              "border-3 border-dashed !border-dark scale-130 !shadow-md shadow-placeholder dark:!shadow-[0_0_10px_rgba(0,0,0,0.15)]",
-            color.color
+              "!border-dark shadow-placeholder scale-130 border-3 border-dashed !shadow-md dark:!shadow-[0_0_10px_rgba(0,0,0,0.15)]",
+            color.color,
           )}
         />
       ))}

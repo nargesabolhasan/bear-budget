@@ -36,7 +36,7 @@ const dark = cssVar("--color-dark", "#050505");
 
 const getTheme = (
   mode: "light" | "dark" = "light",
-  direction: "ltr" | "rtl" = "ltr"
+  direction: "ltr" | "rtl" = "ltr",
 ) => {
   return createTheme({
     direction,

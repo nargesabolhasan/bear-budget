@@ -21,7 +21,7 @@ const useCalendarUtils = () => {
     if (isJalali) {
       const persianYear = new Intl.DateTimeFormat(
         "fa-IR-u-ca-persian-nu-latn",
-        { year: "numeric" }
+        { year: "numeric" },
       ).format(new Date());
 
       return parseInt(persianYear);
@@ -57,7 +57,7 @@ const useCalendarUtils = () => {
 
   const formatDate = (
     value: string | number | Date,
-    format: boolean = false
+    format: boolean = false,
   ): string => {
     const formatType = isJalali ? "YYYY/MM/DD" : "MM/DD/YYYY";
     const date = new DateObject({

@@ -21,7 +21,7 @@ const ToggleCalendarMode: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col gap-2 items-center w-full">
+    <section className="flex w-full flex-col items-center gap-2">
       <p>{t("setting.calender")} </p>
       <ISwitch
         color={"primary"}

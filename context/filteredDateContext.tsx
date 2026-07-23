@@ -79,7 +79,7 @@ export function useFilteredDateContext() {
 
   if (!context) {
     throw new Error(
-      "useFilteredDateContext must be used within a FilteredDateProvider"
+      "useFilteredDateContext must be used within a FilteredDateProvider",
     );
   }
 

@@ -5,10 +5,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export type PreviousBalanceChoice =
-  | TransactionEnum.INCOME
-  | TransactionEnum.SAVE
-  | "skip"
-  | null;
+  TransactionEnum.INCOME | TransactionEnum.SAVE | "skip" | null;
 
 interface PreviousBalanceQuestionStore {
   answeredMonth: string | null;

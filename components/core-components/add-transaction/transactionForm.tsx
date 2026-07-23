@@ -75,7 +75,7 @@ const TransactionForm = ({
       //@ts-ignore
       onSubmit={handleSubmit(onSubmit)}
       className={
-        "w-full flex flex-col gap-3 p-3 transaction transition-all delay-100 duration-200"
+        "transaction flex w-full flex-col gap-3 p-3 transition-all delay-100 duration-200"
       }
     >
       <div className={"mx-auto w-full text-center"}>{title}</div>

@@ -33,18 +33,18 @@ const ILinearProgress: React.FC<LinearProgressProps> = ({
             "h-full rounded-full transition-all duration-300 print:border",
             filledColor,
             value > 85 && "bg-danger_light2",
-            overFlow && "bg-hover_danger"
+            overFlow && "bg-hover_danger",
           )}
           style={{ width: `${clampedValue}%` }}
         />
       </div>
       <div className={"flex flex-row justify-between"} dir={"ltr"}>
         {overFlow && (
-          <div className="mt-1 text-xs md:text-sm text-hover_danger">
+          <div className="text-hover_danger mt-1 text-xs md:text-sm">
             {i18next.t("budgets.overflow")}
           </div>
         )}
-        <div className="mt-1 text-xs md:text-sm text-right grow">
+        <div className="mt-1 grow text-right text-xs md:text-sm">
           {clampedValue.toFixed(1)}%
         </div>
       </div>

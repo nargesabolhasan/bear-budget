@@ -4,7 +4,7 @@ import { ROWS_PER_PAGE } from "@/components/molecules/pagination";
 
 export default function usePaginationData<T>(
   list: T[] = [],
-  rowsPerPage: number = ROWS_PER_PAGE
+  rowsPerPage: number = ROWS_PER_PAGE,
 ) {
   const [page, setPage] = useState(1);
 

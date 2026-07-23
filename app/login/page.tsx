@@ -40,10 +40,10 @@ export default function LoginPage() {
   return (
     <div
       className={
-        "md:w-2/5 flex flex-col gap-20 items-start justify-center mx-auto mt-20 md:mt-45"
+        "mx-auto mt-20 flex flex-col items-start justify-center gap-20 md:mt-45 md:w-2/5"
       }
     >
-      <div className={"flex flex-col gap-2 items-center justify-center w-full"}>
+      <div className={"flex w-full flex-col items-center justify-center gap-2"}>
         <Image
           unoptimized
           priority
@@ -53,7 +53,7 @@ export default function LoginPage() {
           height={120}
         />
         <b
-          className={"text-2xl text-center"}
+          className={"text-center text-2xl"}
           style={{
             fontFamily:
               i18next.language === "en-US"

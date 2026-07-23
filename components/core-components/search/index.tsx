@@ -19,7 +19,7 @@ const SearchBar = ({
 
   return (
     <div
-      className={twMerge("w-full block print:hidden", className && className)}
+      className={twMerge("block w-full print:hidden", className && className)}
     >
       <Controller
         name="search"

@@ -91,7 +91,7 @@ const SettingComponent = () => {
   return (
     <div
       className={
-        "mb-8 flex flex-col items-center gap-8 mt-5 md:mt-10 w-[260px] mx-auto"
+        "mx-auto mt-5 mb-8 flex w-[260px] flex-col items-center gap-8 md:mt-10"
       }
     >
       <section
@@ -107,10 +107,10 @@ const SettingComponent = () => {
           unoptimized
         />
 
-        <div className="flex flex-row gap-2 items-end justify-center">
+        <div className="flex flex-row items-end justify-center gap-2">
           <span className="text-2xl">
             {isLoading ? (
-              <div className="animate-pulse bg-placeholder_light h-5 w-32 rounded-full"></div>
+              <div className="bg-placeholder_light h-5 w-32 animate-pulse rounded-full"></div>
             ) : (
               username
             )}
@@ -128,14 +128,14 @@ const SettingComponent = () => {
       <ThemeToggle />
       <ToggleLanguage />
       <ToggleCalendarMode />
-      <section className="flex flex-col items-center justify-center w-full">
-        <ul className="flex flex-col gap-3 items-start w-full">
+      <section className="flex w-full flex-col items-center justify-center">
+        <ul className="flex w-full flex-col items-start gap-3">
           {items.map((item) => {
             const Icon = item?.icon;
             return (
               <li
                 key={item.id}
-                className="flex flex-row gap-3 justify-between items-center w-full p-3 bg-neutral_dark border border-olive cursor-pointer rounded-full hover:bg-surface"
+                className="bg-neutral_dark border-olive hover:bg-surface flex w-full cursor-pointer flex-row items-center justify-between gap-3 rounded-full border p-3"
                 onClick={() => item.onClick()}
               >
                 <span>{item.title}</span>

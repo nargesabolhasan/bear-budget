@@ -41,7 +41,7 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
       : value || "";
 
   return (
-    <div className="flex flex-col gap-1 w-full">
+    <div className="flex w-full flex-col gap-1">
       <DatePicker
         {...props}
         className="green"
@@ -54,7 +54,7 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
         calendarPosition="bottom-center"
         inputClass={twMerge(
           "h-[56px] p-3 rounded-2xl border border-placeholder_dark w-full bg-[var(--color-surface)]",
-          error && "border-danger"
+          error && "border-danger",
         )}
         monthYearSeparator="|"
         onChange={(date) => {
@@ -67,7 +67,7 @@ const IDatePicker: React.FC<IDatePickerProps> = ({
           onChange?.(isoString);
         }}
       />
-      {error && <span className="text-red-700 text-xs">{error}</span>}
+      {error && <span className="text-xs text-red-700">{error}</span>}
     </div>
   );
 };

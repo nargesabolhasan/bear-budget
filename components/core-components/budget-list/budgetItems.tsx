@@ -36,7 +36,7 @@ const BudgetItems = ({
       onClick: () => handleEdit(tagId),
       title: (
         <span
-          className={"w-full flex flex-row gap-2 items-center justify-start"}
+          className={"flex w-full flex-row items-center justify-start gap-2"}
         >
           <Edit2
             size="30"
@@ -52,7 +52,7 @@ const BudgetItems = ({
       onClick: () => handleDelete(tagId),
       title: (
         <span
-          className={"!text-sm flex flex-row gap-2 items-center justify-start"}
+          className={"flex flex-row items-center justify-start gap-2 !text-sm"}
         >
           <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
           {i18next.t("contextMenu.delete")}
@@ -65,19 +65,19 @@ const BudgetItems = ({
     <li
       key={tagId}
       className={
-        "flex flex-col border-b border-dashed border-placeholder py-4 px-3"
+        "border-placeholder flex flex-col border-b border-dashed px-3 py-4"
       }
     >
-      <div className={"w-full flex justify-end print:hidden"}>
+      <div className={"flex w-full justify-end print:hidden"}>
         <ContextMenu menuItems={menuItems} resetAfterSelect>
           <MoreHorizTwoToneIcon className={"cursor-pointer"} />
         </ContextMenu>
       </div>
-      <section className={"grid grid-cols-3 items-center gap-2 md:gap-4 mb-8"}>
+      <section className={"mb-8 grid grid-cols-3 items-center gap-2 md:gap-4"}>
         <span>
           <i
             className={twMerge(
-              "flex justify-center items-center p-2 rounded-full size-[40]",
+              "flex size-[40] items-center justify-center rounded-full p-2",
               tag?.color.color,
             )}
           >

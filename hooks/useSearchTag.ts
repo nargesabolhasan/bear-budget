@@ -15,9 +15,7 @@ type UseSearchTagReturn = {
 
 const SYSTEM_TAGS = ["previousMonth"];
 
-const useSearchTag = ({
-  groups,
-}: UseSearchTagProps): UseSearchTagReturn => {
+const useSearchTag = ({ groups }: UseSearchTagProps): UseSearchTagReturn => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);

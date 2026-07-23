@@ -68,7 +68,7 @@ const TagListDemo = () => {
                       : "playpenSansArabic",
                 }}
                 className={
-                  "text-dark mx-auto w-full md:w-1/2 font-bold my-2 p-2 text-center bg-primary_light rounded-full"
+                  "text-dark bg-primary_light mx-auto my-2 w-full rounded-full p-2 text-center font-bold md:w-1/2"
                 }
               >
                 {i18next.t(`transactions.${tagType}`)}
@@ -81,16 +81,16 @@ const TagListDemo = () => {
                   <li key={`tag-list-${tag.id}`}>
                     <div
                       className={
-                        "list-item-block force-block flex justify-between items-center gap-1 p-2 border border-primary rounded-full print:rounded-2xl"
+                        "list-item-block force-block border-primary flex items-center justify-between gap-1 rounded-full border p-2 print:rounded-2xl"
                       }
                     >
                       <span
-                        className={"grow grid grid-cols-3 items-center gap-2"}
+                        className={"grid grow grid-cols-3 items-center gap-2"}
                       >
                         <Icon className={"!hidden print:!block"} />
                         <i
                           className={twMerge(
-                            "print:hidden size-[50px] rounded-full flex justify-center items-center border border-placeholder_light",
+                            "border-placeholder_light flex size-[50px] items-center justify-center rounded-full border print:hidden",
                             tag.color.color,
                           )}
                         >
@@ -104,7 +104,7 @@ const TagListDemo = () => {
                       </span>
                       <span
                         className={
-                          "flex flex-row gap-3 justify-between items-center print:hidden"
+                          "flex flex-row items-center justify-between gap-3 print:hidden"
                         }
                       >
                         <IconButton onClick={() => handleDelete(tag)}>

@@ -39,7 +39,7 @@ const TagList = () => {
 
   return (
     <div
-      className={"p-1 md:p-4 mb-20 mx-auto w-full md:w-1/2 flex flex-col gap-3"}
+      className={"mx-auto mb-20 flex w-full flex-col gap-3 p-1 md:w-1/2 md:p-4"}
     >
       <Render
         when={Object.values(tags).length !== 0}

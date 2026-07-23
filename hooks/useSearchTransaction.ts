@@ -47,13 +47,13 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
         const tagName =
           tagInfo && SYSTEM_TAGS.includes(tagInfo.name)
             ? i18n.t(`transactions.system.${tagInfo.name}`)
-            : tagInfo?.name ?? "";
+            : (tagInfo?.name ?? "");
 
         const description =
           transaction.description &&
           SYSTEM_DESCRIPTIONS.includes(transaction.description)
             ? i18n.t(`transactions.system.${transaction.description}`)
-            : transaction.description ?? "";
+            : (transaction.description ?? "");
 
         return (
           formatDate(transaction.date)?.toLowerCase().includes(q) ||
@@ -82,8 +82,7 @@ const useSearchTransaction = ({ allTransactions, tags }: Props) => {
   return {
     searchResult,
     onSearch,
-    notFound:
-      allTransactions.length > 0 && searchResult.length === 0,
+    notFound: allTransactions.length > 0 && searchResult.length === 0,
   };
 };
 
