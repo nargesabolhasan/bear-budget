@@ -26,19 +26,19 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
   return (
     <div
       className={
-        "w-full md:w-full flex flex-col items-center justify-center mx-auto"
+        "mx-auto flex w-full flex-col items-center justify-center md:w-full"
       }
     >
       <div
         className={twMerge(
-          "flex flex-row items-center justify-between overflow-x-auto text-lg w-full p-3 rounded-xl rounded-b-none",
+          "flex w-full flex-row items-center justify-between overflow-x-auto rounded-xl rounded-b-none p-3 text-lg",
           groupedStyles(transactionType),
         )}
       >
-        <span className={"flex flex-row gap-2 items-center"}>
+        <span className={"flex flex-row items-center gap-2"}>
           <i>{transactionTypeIcon(transactionType)}</i>
           <h3
-            className={"font-semibold text-dark"}
+            className={"text-dark font-semibold"}
             style={{
               fontFamily:
                 i18next.language === "en-US"
@@ -49,7 +49,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
             {i18next.t(`transactions.${transactionType}`)}
           </h3>
         </span>
-        <h3 className="flex flex-row gap-3 text-dark">
+        <h3 className="text-dark flex flex-row gap-3">
           {convertToCurrency(transactions?.totalAmount)}
         </h3>
       </div>
@@ -58,7 +58,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
         fallback={
           <span
             className={twMerge(
-              "p-3 text-dark text-center w-full rounded-b-xl",
+              "text-dark w-full rounded-b-xl p-3 text-center",
               groupedStyles(transactionType),
             )}
           >
@@ -69,7 +69,7 @@ const FilterView = ({ transactions, transactionType, tags }: Props) => {
         <>
           <div
             className={twMerge(
-              "w-full p-1 rounded-b-xl",
+              "w-full rounded-b-xl p-1",
               groupedStyles(transactionType),
             )}
           >

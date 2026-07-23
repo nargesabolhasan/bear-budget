@@ -35,19 +35,19 @@ const PrintInfo = ({ selectedDate }: PrintInfoProps) => {
   return (
     <div
       className={
-        "flex flex-col gap-2 items-center justify-center md:w-2/3 mx-auto my-3 transaction transition-opacity delay-100 duration-200"
+        "transaction mx-auto my-3 flex flex-col items-center justify-center gap-2 transition-opacity delay-100 duration-200 md:w-2/3"
       }
     >
       <nav
         className={
-          "w-full grid grid-cols-6 items-start justify-start gap-3 font-semibold text-lg"
+          "grid w-full grid-cols-6 items-start justify-start gap-3 text-lg font-semibold"
         }
         dir={"ltr"}
       >
         <Link href={settingRoute.href} className={"text-start"}>
           <ArrowBackIcon className="print:hidden" />
         </Link>
-        <span className={"text-center col-span-4"}>
+        <span className={"col-span-4 text-center"}>
           {t("setting.printDemo")}: {calenderMonthList[selectedDate.month - 1]}{" "}
           {selectedDate.year}
         </span>

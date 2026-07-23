@@ -88,9 +88,9 @@ const MainTransactionInfo = ({
   return (
     <div
       className={twMerge(
-        "overflow-x-auto p-3 grow flex flex-col items-end",
+        "flex grow flex-col items-end overflow-x-auto p-3",
         showTransactionIndicator &&
-          "border-b border-dashed border-placeholder_light2 rounded-br-xl",
+          "border-placeholder_light2 rounded-br-xl border-b border-dashed",
       )}
     >
       <MainTransactionTitle
@@ -104,13 +104,13 @@ const MainTransactionInfo = ({
       />
       {showTagIcon && !!transaction?.description && (
         <hr
-          className={"opacity-30 my-2 h-0.5 border-0 rounded bg-placeholder"}
+          className={"bg-placeholder my-2 h-0.5 rounded border-0 opacity-30"}
         />
       )}
       <p
         dir="auto"
         style={{ unicodeBidi: "plaintext" }}
-        className="mt-2 w-full text-placeholder text-pretty break-words whitespace-normal overflow-wrap break-all text-start"
+        className="text-placeholder overflow-wrap mt-2 w-full text-start text-pretty break-words break-all whitespace-normal"
       >
         {transaction.systemKey
           ? i18n.t(`transactions.system.${transaction.systemKey}`)
@@ -118,14 +118,14 @@ const MainTransactionInfo = ({
       </p>
       <div
         className={twMerge(
-          "flex flex-row justify-between items-center gap-2 w-full",
+          "flex w-full flex-row items-center justify-between gap-2",
           (showSettledButton || showSettledDescription) && "mt-3",
         )}
       >
         {showSettledButton && (
           <span
             className={
-              "cursor-pointer text-brown bg-burly_wood border border-brown p-1 rounded-full text-xs"
+              "text-brown bg-burly_wood border-brown cursor-pointer rounded-full border p-1 text-xs"
             }
             onClick={() => setOpen(true)}
           >
@@ -134,7 +134,7 @@ const MainTransactionInfo = ({
         )}
         {showSettledDescription && (
           <div
-            className={"border-4 border-double border-primary p-1 rounded-lg"}
+            className={"border-primary rounded-lg border-4 border-double p-1"}
           >
             <p className={"text-olive text-sm"}>
               <BeenhereIcon
@@ -146,7 +146,7 @@ const MainTransactionInfo = ({
             </p>
           </div>
         )}
-        <div className={"grow flex justify-end"}>
+        <div className={"flex grow justify-end"}>
           <ActionButtons transaction={transaction} tags={tags} />
         </div>
       </div>
@@ -155,11 +155,11 @@ const MainTransactionInfo = ({
         <form
           //@ts-ignore
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-start justify-center w-full px-1 py-3 md:px-3 gap-3"
+          className="flex w-full flex-col items-start justify-center gap-3 px-1 py-3 md:px-3"
         >
           <p
             className={
-              "text-center text-placeholder text-md border-b border-placeholder pb-2"
+              "text-placeholder text-md border-placeholder border-b pb-2 text-center"
             }
           >
             <BeenhereIcon className={"text-primary mr-2"} />
@@ -195,7 +195,7 @@ const MainTransactionInfo = ({
             )}
           />
           <div
-            className={"flex flex-row gap-2 item-center justify-center w-full"}
+            className={"item-center flex w-full flex-row justify-center gap-2"}
           >
             <IButton type={"submit"} disabled={!isValid}>
               {i18next.t("dialog.confirm")}

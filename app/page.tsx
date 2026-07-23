@@ -6,7 +6,7 @@ import FinancialSummery from "@/components/core-components/home/financial-summer
 export default function Home() {
   return (
     <div
-      className={"mt-5 mx-auto flex flex-col gap-3 w-full md:w-[500px] pb-10"}
+      className={"mx-auto mt-5 flex w-full flex-col gap-3 pb-10 md:w-[500px]"}
     >
       <TransactionSummery />
       {/* <NewItemCards /> */}

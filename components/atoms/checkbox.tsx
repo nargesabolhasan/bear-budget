@@ -48,9 +48,9 @@ export default function ICheckbox({
     <label
       htmlFor={id}
       className={twMerge(
-        "inline-flex items-center gap-2 cursor-pointer select-none",
-        disabled && "opacity-50 cursor-not-allowed",
-        className
+        "inline-flex cursor-pointer items-center gap-2 select-none",
+        disabled && "cursor-not-allowed opacity-50",
+        className,
       )}
     >
       {/* Circle */}
@@ -59,7 +59,7 @@ export default function ICheckbox({
           "relative flex items-center justify-center rounded-full border transition-all",
           sizeMap[size],
           "border-gray-400",
-          disabled ? "bg-gray-100" : "bg-surface hover:border-gray-500"
+          disabled ? "bg-gray-100" : "bg-surface hover:border-gray-500",
         )}
       >
         {/* Hidden native checkbox */}
@@ -68,7 +68,7 @@ export default function ICheckbox({
           id={id}
           name={name}
           type="checkbox"
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           checked={isControlled ? checked : undefined}
           defaultChecked={!isControlled ? defaultChecked : undefined}
           onChange={handleChange}
@@ -85,10 +85,10 @@ export default function ICheckbox({
                 : "opacity-0"
               : "opacity-0",
             size === "sm"
-              ? "w-2 h-2"
+              ? "h-2 w-2"
               : size === "md"
-              ? "w-3 h-3"
-              : "w-3.5 h-3.5"
+                ? "h-3 w-3"
+                : "h-3.5 w-3.5",
           )}
         />
       </span>

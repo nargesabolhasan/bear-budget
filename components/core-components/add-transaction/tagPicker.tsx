@@ -25,7 +25,7 @@ const TagPicker = ({
   return (
     <div
       className={twMerge(
-        "tag-wrapper w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3",
+        "tag-wrapper grid w-full grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-3",
         className,
       )}
     >
@@ -33,9 +33,9 @@ const TagPicker = ({
         <TagDemo
           key={tag.id}
           className={twMerge(
-            "tag-picker-item w-[100px] p-2! hover:bg-neutral_light",
+            "tag-picker-item hover:bg-neutral_light w-[100px] p-2!",
             value === tag.id &&
-              "bg-neutral_light border-solid border-3 !border-primary scale-105 shadow-md",
+              "bg-neutral_light !border-primary scale-105 border-3 border-solid shadow-md",
           )}
           icon={tag.icon}
           name={tag.name}

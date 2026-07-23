@@ -11,9 +11,9 @@ type Props = {
 const TransactionBalance = ({ budgetAmount, spent, remining }: Props) => {
   return (
     <section
-      className={"grid grid-cols-3 items-start gap-4 text-sm md:text-md"}
+      className={"md:text-md grid grid-cols-3 items-start gap-4 text-sm"}
     >
-      <span className={"flex flex-col lg:flex-row gap-2"}>
+      <span className={"flex flex-col gap-2 lg:flex-row"}>
         <span
           className={"text-placeholder"}
           style={{
@@ -27,7 +27,7 @@ const TransactionBalance = ({ budgetAmount, spent, remining }: Props) => {
         </span>
         {convertToCurrency(budgetAmount)}
       </span>
-      <span className={"flex flex-col lg:flex-row gap-2"}>
+      <span className={"flex flex-col gap-2 lg:flex-row"}>
         <span
           className={"text-placeholder"}
           style={{
@@ -41,7 +41,7 @@ const TransactionBalance = ({ budgetAmount, spent, remining }: Props) => {
         </span>
         {convertToCurrency(spent)}
       </span>
-      <span className={"flex flex-col lg:flex-row gap-2"}>
+      <span className={"flex flex-col gap-2 lg:flex-row"}>
         <span
           className={"text-placeholder"}
           style={{

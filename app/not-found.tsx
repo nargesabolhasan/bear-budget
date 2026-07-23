@@ -5,11 +5,11 @@ const NotFound = () => {
   return (
     <div
       className={
-        "bg-neutral_light h-full flex items-center justify-center overflow-y-hidden"
+        "bg-neutral_light flex h-full items-center justify-center overflow-y-hidden"
       }
     >
       <div className={"flex flex-col items-center justify-between"}>
-        <h4 className={"text-[130px] text-brown_secondary"}>404</h4>
+        <h4 className={"text-brown_secondary text-[130px]"}>404</h4>
         <Image
           priority
           unoptimized
@@ -20,7 +20,7 @@ const NotFound = () => {
           height={300}
           style={{ height: "auto" }}
         />
-        <h3 className={"font-semibold text-[50px] text-brown_secondary"}>
+        <h3 className={"text-brown_secondary text-[50px] font-semibold"}>
           Not Found
         </h3>
       </div>

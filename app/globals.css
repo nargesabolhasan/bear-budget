@@ -7,151 +7,150 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "playpenSansArabic";
-    src: url("/fonts/PlaypenSansArabic/PlaypenSansArabic-Regular.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: "playpenSansArabic";
+  src: url("/fonts/PlaypenSansArabic/PlaypenSansArabic-Regular.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "PlaywriteNZGuides";
-    src: url("/fonts/PlaywriteNZGuides/PlaywriteNZGuides-Regular.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: "PlaywriteNZGuides";
+  src: url("/fonts/PlaywriteNZGuides/PlaywriteNZGuides-Regular.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "satisfy";
-    src: url("/fonts/Satisfy/Satisfy-Regular.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: "satisfy";
+  src: url("/fonts/Satisfy/Satisfy-Regular.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "elms";
-    src: url("/fonts/Elms/ElmsSans-VariableFont_wght.ttf") format("truetype");
-    font-weight: 100 900;
-    font-style: normal;
+  font-family: "elms";
+  src: url("/fonts/Elms/ElmsSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 :root {
-    --vh: 100%;
+  --vh: 100%;
 }
 
 html[dir="ltr"] body {
-    font-family: "elms", sans-serif;
-    height: calc(var(--vh, 1vh) * 100);
+  font-family: "elms", sans-serif;
+  height: calc(var(--vh, 1vh) * 100);
 }
-html[dir="rtl"] body{
-    font-family: "playpenSansArabic", sans-serif;
-    height: calc(var(--vh, 1vh) * 100);
+html[dir="rtl"] body {
+  font-family: "playpenSansArabic", sans-serif;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 /*----scrollbar------*/
 .no-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+  display: none; /* Chrome, Safari */
 }
 
 .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-
 ::-webkit-scrollbar {
-    width: 3px; /* Width of the scrollbar */
+  width: 3px; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-    background: #d4cfcf; /* Track color */
+  background: #d4cfcf; /* Track color */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-primary); /* Thumb color */
-    border-radius: 10px;
+  background: var(--color-primary); /* Thumb color */
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Thumb color on hover */
+  background: #555; /* Thumb color on hover */
 }
 
 /*--------MUI override----------*/
 .MuiDrawer-paperAnchorRight {
-    @apply !bg-primary_light p-2
+  @apply !bg-primary_light p-2;
 }
 
 .dark .MuiDrawer-paperAnchorRight {
-    @apply !bg-neutral_light
+  @apply !bg-neutral_light;
 }
 
-.mui-1mp97ga-MuiPaper-root-MuiAccordion-root.Mui-expanded{
-    @apply !m-0
+.mui-1mp97ga-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  @apply !m-0;
 }
 
 /*--------date picker---------*/
 .dark .rmdp-day {
-    @apply text-white;
+  @apply text-white;
 }
 
 .dark .rmdp-month-picker,
 .dark .rmdp-year-picker,
 .dark .rmdp-calendar,
 .dark .rmdp-ep-arrow::after {
-    @apply bg-[var(--color-placeholder_dark)];
+  @apply bg-[var(--color-placeholder_dark)];
 }
 
 .dark .rmdp-header-values {
-    @apply text-white;
+  @apply text-white;
 }
 
 /*---------languages----------*/
 html[dir="rtl"] {
-    direction: rtl;
-    text-align: right;
+  direction: rtl;
+  text-align: right;
 }
 
 html[dir="ltr"] {
-    direction: ltr;
-    text-align: left;
+  direction: ltr;
+  text-align: left;
 }
 
 /*--------print demo----------*/
 
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
 
-    @page {
-        size: A4 portrait;
-        margin: 12mm;
-    }
+  /* Proper block wrapper to prevent slicing */
+  .list-item-block {
+    display: block;
 
-    /* Proper block wrapper to prevent slicing */
-    .list-item-block {
-        display: block;
+    /* Standard print break control */
+    break-inside: avoid;
+    page-break-inside: avoid;
+    break-after: auto;
 
-        /* Standard print break control */
-        break-inside: avoid;
-        page-break-inside: avoid;
-        break-after: auto;
+    /* Safari + WebKit print hacks */
+    -webkit-region-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    -webkit-page-break-inside: avoid;
+  }
 
-        /* Safari + WebKit print hacks */
-        -webkit-region-break-inside: avoid;
-        -webkit-column-break-inside: avoid;
-        -webkit-page-break-inside: avoid;
-    }
+  /* Clean list */
+  .print-list {
+    padding: 0;
+    margin: 0;
+  }
 
-    /* Clean list */
-    .print-list {
-        padding: 0;
-        margin: 0;
-    }
+  .print-list > li {
+    list-style: none;
+    margin-bottom: 12px;
+    display: block;
 
-    .print-list > li {
-        list-style: none;
-        margin-bottom: 12px;
-        display: block;
-
-        /* helps Safari treat <li> as atomic block */
-        -webkit-column-break-inside: avoid;
-    }
+    /* helps Safari treat <li> as atomic block */
+    -webkit-column-break-inside: avoid;
+  }
 }
-

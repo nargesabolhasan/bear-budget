@@ -19,13 +19,13 @@ const HelperButtons = ({
   disableDelete = false,
 }: Props) => {
   return (
-    <div className={"mt-4 flex flex-row justify-between print:hidden gap-1"}>
+    <div className={"mt-4 flex flex-row justify-between gap-1 print:hidden"}>
       <PrintComponent disablePrint={disableDelete} />
       <CreateTagButton handleAddMore={handleAddMore} />
       <IButton
         size="small"
         variant={"outlined"}
-        className={"flex flex-row gap-1 items-center justify-center"}
+        className={"flex flex-row items-center justify-center gap-1"}
         onClick={clearAllTags}
         disabled={disableDelete}
       >

@@ -44,7 +44,7 @@ const NewItemCards = () => {
     isoCurrentDate.year,
     isoCurrentDate.month,
     isJalali,
-    getCurrentMonthNumber()
+    getCurrentMonthNumber(),
   )[0];
   const lastTag = Object.values(tags).reverse()[0];
   const secondTag = Object.values(tags).reverse()[1];
@@ -75,7 +75,7 @@ const NewItemCards = () => {
     <Link
       href={href}
       className={
-        "text-dark flex flex-col items-center justify-center h-full gap-3"
+        "text-dark flex h-full flex-col items-center justify-center gap-3"
       }
     >
       <AutoFixHighIcon /> {title}
@@ -83,10 +83,10 @@ const NewItemCards = () => {
   );
 
   return (
-    <section className={"grid grid-cols-1 sm:grid-cols-2 gap-3"}>
+    <section className={"grid grid-cols-1 gap-3 sm:grid-cols-2"}>
       <div
         className={
-          "bg-gradient-to-t from-secondary to-burly_wood rounded-2xl p-3 flex flex-col"
+          "from-secondary to-burly_wood flex flex-col rounded-2xl bg-gradient-to-t p-3"
         }
       >
         {/*   Transaction   */}
@@ -102,13 +102,13 @@ const NewItemCards = () => {
             />
           }
         >
-          <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
+          <span className={"text-dark mb-5 flex flex-row items-center gap-2"}>
             <TipsAndUpdatesIcon />
             <h4 className={"grow"}> {i18next.t("home.recent")} :</h4>
             <Link
               href={transactionRoutes.translationList.href}
               className={
-                "bg-neutral text-secondary p-1 text-sm mx-auto rounded-full px-2"
+                "bg-neutral text-secondary mx-auto rounded-full p-1 px-2 text-sm"
               }
             >
               {i18next.t("home.seeMore")}
@@ -144,7 +144,7 @@ const NewItemCards = () => {
       </div>
       <div
         className={
-          "bg-gradient-to-b from-secondary to-burly_wood rounded-2xl p-3 flex flex-col gap-2"
+          "from-secondary to-burly_wood flex flex-col gap-2 rounded-2xl bg-gradient-to-b p-3"
         }
       >
         {/*   Tags   */}
@@ -159,13 +159,13 @@ const NewItemCards = () => {
             />
           }
         >
-          <span className={"text-dark flex flex-row gap-2 items-center mb-5"}>
+          <span className={"text-dark mb-5 flex flex-row items-center gap-2"}>
             <AssistantIcon />
             <h4 className={"grow"}>{i18next.t("home.recent")}</h4>
             <Link
               href={tagRoutes.tagList.href}
               className={
-                "bg-neutral text-secondary py-1 px-2 text-sm rounded-full"
+                "bg-neutral text-secondary rounded-full px-2 py-1 text-sm"
               }
             >
               {i18next.t("home.seeMore")}
@@ -173,7 +173,7 @@ const NewItemCards = () => {
           </span>
           <span
             className={
-              "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center text-dark"
+              "border-neutral text-dark flex flex-row items-center justify-center gap-3 rounded-full border p-2"
             }
           >
             <Icon /> <h4 className={"grow text-start"}>{lastTag?.name} </h4>
@@ -181,7 +181,7 @@ const NewItemCards = () => {
           {secondTag && (
             <span
               className={
-                "p-2 rounded-full border border-neutral flex flex-row gap-3 items-center justify-center text-dark"
+                "border-neutral text-dark flex flex-row items-center justify-center gap-3 rounded-full border p-2"
               }
             >
               <IconSecond />

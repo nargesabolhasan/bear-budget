@@ -9,7 +9,7 @@ const SelectedDateTitle = ({ month, year }: Props) => {
   return (
     <section
       className={
-        "w-full flex flex-row items-center justify-center gap-1 border-b border-dashed border-b-primary pb-2 mb-3"
+        "border-b-primary mb-3 flex w-full flex-row items-center justify-center gap-1 border-b border-dashed pb-2"
       }
     >
       <h4>

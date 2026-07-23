@@ -116,18 +116,18 @@ const BudgetList = () => {
   };
 
   return (
-    <div className="w-fit mx-auto flex flex-col items-center justify-center">
+    <div className="mx-auto flex w-fit flex-col items-center justify-center">
       {/* Header */}
       <PrinterViewTitle
         title={
           i18next.t("transactionList.all") + " " + i18next.t("global.budgets")
         }
       />
-      <section className="flex flex-col sm:flex-row items-center gap-1 sm:justify-between py-2 print:!hidden">
+      <section className="flex flex-col items-center gap-1 py-2 sm:flex-row sm:justify-between print:!hidden">
         <IButton
           size="small"
           variant="outlined"
-          className="w-full sm:w-fit flex flex-row gap-1 items-center justify-center !mt-4"
+          className="!mt-4 flex w-full flex-row items-center justify-center gap-1 sm:w-fit"
           onClick={handleOpen}
         >
           {i18next.t("transactionList.selectMonth")}
@@ -154,7 +154,7 @@ const BudgetList = () => {
       <Render
         when={filteredTransactions.size > 0}
         fallback={
-          <div className="w-full animate-pulse bg-placeholder rounded-md" />
+          <div className="bg-placeholder w-full animate-pulse rounded-md" />
         }
       >
         <ul className={"w-full sm:w-fit"}>
@@ -191,7 +191,7 @@ const BudgetList = () => {
       <IModal open={open} onClose={handleClose}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center justify-center px-10 gap-8"
+          className="flex flex-col items-center justify-center gap-8 px-10"
         >
           <ScrollDatePicker
             dateList={calenderMonthList}

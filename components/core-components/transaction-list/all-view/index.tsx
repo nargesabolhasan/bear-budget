@@ -28,7 +28,7 @@ const AllTransactions = ({
     usePaginationData(searchResult, ROWS_PER_PAGE);
 
   return (
-    <div className={"md:w-full flex flex-col gap-3"}>
+    <div className={"flex flex-col gap-3 md:w-full"}>
       <PrinterViewTitle
         title={
           i18next.t("transactionList.all") +

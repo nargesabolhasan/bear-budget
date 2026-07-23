@@ -14,7 +14,7 @@ export async function POST(req: Request) {
             value: i18next.t("global.name"),
           }),
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   } catch (err) {
     return NextResponse.json(
       { ok: false, error: "Server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -93,19 +93,19 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
 
   return (
     <form
-      className="w-full md:w-2/3 lg:w-1/3 mx-auto flex flex-col gap-1 p-8 mb-5"
+      className="mx-auto mb-5 flex w-full flex-col gap-1 p-8 md:w-2/3 lg:w-1/3"
       //@ts-ignore
       onSubmit={handleSubmit(onSubmitHandler)}
     >
       {/*-------month---------*/}
-      <span className={"w-full font-bold mt-3 text-start"}>
+      <span className={"mt-3 w-full text-start font-bold"}>
         {i18next.t("helperButtons.selectMonth")}{" "}
         <span className={"text-placeholder text-sm"}>
           ({i18next.t("createBudget.inTheYear")} {getCurrentYear()})
         </span>{" "}
         :
       </span>
-      <div className="flex flex-col items-center justify-center w-full bg-surface p-3 rounded-3xl border border-placeholder_light">
+      <div className="bg-surface border-placeholder_light flex w-full flex-col items-center justify-center rounded-3xl border p-3">
         <ScrollDatePicker
           dateList={calenderMonthList}
           defaultValue={defaultMonth || getCurrentMonthName()}
@@ -117,12 +117,12 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
       </div>
 
       {/*-------tag---------*/}
-      <span className={"w-full md:w-1/2 font-bold my-2 text-start"}>
+      <span className={"my-2 w-full text-start font-bold md:w-1/2"}>
         {i18next.t("addTransaction.selectTag")}:
       </span>
       <TagAccordion control={control} tags={tags} tagsCount={tagsCount} />
       {/*-------budget------*/}
-      <span className={"w-full md:w-1/2 font-bold my-2 text-start"}>
+      <span className={"my-2 w-full text-start font-bold md:w-1/2"}>
         {i18next.t("createBudget.budgetAmount")}:
       </span>
       <Controller

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Loading = () => {
   return (
-    <div className={"flex flex-col items-center justify-center h-full mt-20"}>
+    <div className={"mt-20 flex h-full flex-col items-center justify-center"}>
       <Image
         priority
         unoptimized
@@ -14,12 +14,12 @@ const Loading = () => {
         height={100}
       />
       <div className={"flex flex-row items-center justify-center"}>
-        <div className="loader border-r-2 rounded-full text-xl border-olive bg-primary_light animate-bounce aspect-square w-10 flex justify-center items-center text-brown">
+        <div className="loader border-olive bg-primary_light text-brown flex aspect-square w-10 animate-bounce items-center justify-center rounded-full border-r-2 text-xl">
           $
         </div>
         {/*----text---------*/}
 
-        <div className="p-2.5 text-2xl text-brown_secondary">
+        <div className="text-brown_secondary p-2.5 text-2xl">
           <div>
             <span className="mr-2">Loading</span>
             <span className="animate-[ping_1.5s_0.5s_ease-in-out_infinite]">

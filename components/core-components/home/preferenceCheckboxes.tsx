@@ -18,7 +18,7 @@ const PreferenceCheckboxes = () => {
   );
 
   const renderGroup = (title: string, data: typeof items) => (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex w-full flex-col gap-3">
       <div className="flex items-center gap-2 text-sm font-semibold">
         <span className="text-dark">{title}</span>
       </div>
@@ -28,9 +28,9 @@ const PreferenceCheckboxes = () => {
           <label
             htmlFor={`pref-${item.id}`}
             key={`${item.label}-${item.id}`}
-            className="cursor-pointer flex items-center gap-3 text-dark_surface rounded-3xl bg-neutral p-2 hover:bg-placeholder_dark transition"
+            className="text-dark_surface bg-neutral hover:bg-placeholder_dark flex cursor-pointer items-center gap-3 rounded-3xl p-2 transition"
           >
-            <div className="w-8 h-8 flex items-center justify-center">
+            <div className="flex h-8 w-8 items-center justify-center">
               {item.icon}
             </div>
             <ICheckbox
@@ -47,13 +47,13 @@ const PreferenceCheckboxes = () => {
   );
 
   return (
-    <section className="print:hidden w-full p-5 bg-primary_light rounded-4xl my-3">
+    <section className="bg-primary_light my-3 w-full rounded-4xl p-5 print:hidden">
       <div className="flex flex-col gap-6">
         <div>
-          <h3 className="font-semibold text-dark">
+          <h3 className="text-dark font-semibold">
             {t("home.transactionPreference")}
           </h3>
-          <p className="text-sm opacity-70 mt-1 text-dark">
+          <p className="text-dark mt-1 text-sm opacity-70">
             {t("home.transactionPreferenceDescription")}
           </p>
         </div>

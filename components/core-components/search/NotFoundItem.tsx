@@ -6,7 +6,7 @@ const NotFoundItem = () => {
   return (
     <div
       className={
-        "text-center text-brown_secondary flex flex-col gap-3 items-center"
+        "text-brown_secondary flex flex-col items-center gap-3 text-center"
       }
     >
       {i18next.t("global.notFound")}

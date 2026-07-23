@@ -10,7 +10,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full max-w-3xl mx-auto">
+    <div className="mx-auto flex h-full w-full max-w-3xl flex-col items-center justify-center">
       <Image
         priority
         unoptimized
@@ -20,7 +20,7 @@ export default function Error({
         height={300}
         style={{ height: "auto" }}
       />
-      <h2 className="text-2xl lg:text-3xl font-bold">Something went wrong!</h2>
+      <h2 className="text-2xl font-bold lg:text-3xl">Something went wrong!</h2>
       <p className="text-gray-500">Please try again later.</p>
       <IButton onClick={reset}>Try again</IButton>
     </div>

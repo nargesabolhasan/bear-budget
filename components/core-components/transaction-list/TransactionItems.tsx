@@ -32,17 +32,17 @@ const TransactionItems = ({
   return (
     <ul
       className={twMerge(
-        "print-list w-full flex flex-col items-center justify-center gap-4 print:!gap-1 rounded-xl",
+        "print-list flex w-full flex-col items-center justify-center gap-4 rounded-xl print:!gap-1",
         showPrimaryBG &&
-          "border border-dashed border-placeholder_light2 p-2 print:!p-3",
+          "border-placeholder_light2 border border-dashed p-2 print:!p-3",
       )}
     >
       {transactionList.map((transaction) => (
         <li
           key={`${transaction.id}-list-item`}
           className={twMerge(
-            "w-full flex flex-col bg-neutral_light rounded-xl",
-            showDivider && "border border-t-0 border-dashed border-placeholder",
+            "bg-neutral_light flex w-full flex-col rounded-xl",
+            showDivider && "border-placeholder border border-t-0 border-dashed",
           )}
         >
           <div className={"list-item-block force-block"}>
@@ -53,7 +53,7 @@ const TransactionItems = ({
             )}
 
             <div
-              className={"gap-1 md:gap-3 flex flex-row items-stretch w-full"}
+              className={"flex w-full flex-row items-stretch gap-1 md:gap-3"}
             >
               {showTransactionIndicator && (
                 <TransactionTypeIndicator tag={tags?.[transaction.tag]} />

@@ -12,7 +12,7 @@ const schema = yup.object({
   username: yup
     .string()
     .required(
-      i18next.t("global.required", { value: i18next.t("login.username") })
+      i18next.t("global.required", { value: i18next.t("login.username") }),
     )
     .max(20, i18next.t("global.charLimit", { value: 20 })),
 });
@@ -39,7 +39,7 @@ const LoginForm = ({ onSubmit, loading, title }: LoginFormProps) => {
 
   return (
     <form
-      className={"w-full flex flex-col gap-2 items-center"}
+      className={"flex w-full flex-col items-center gap-2"}
       onSubmit={handleSubmit(handleEditUsername)}
     >
       {!!title && <span>{title}</span>}

@@ -12,7 +12,7 @@ export default function ToggleLanguage() {
   };
 
   return (
-    <section className="flex flex-col gap-2 items-center w-full">
+    <section className="flex w-full flex-col items-center gap-2">
       <p>{i18n.t("setting.language")} </p>
       <ISwitch
         color={"primary"}

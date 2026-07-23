@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const useIconCount = (
   iconSize: number = 40,
-  wrapperId = ".icon-wrapper"
+  wrapperId = ".icon-wrapper",
 ): number => {
   const [iconCount, setIconCount] = useState<number>(0);
 

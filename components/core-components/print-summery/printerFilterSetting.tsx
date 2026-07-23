@@ -46,16 +46,16 @@ const PrinterFilterSetting = ({ control }: Props) => {
   return (
     <section
       className={
-        "print:hidden w-full md:w-fit p-6 bg-primary_light rounded-4xl my-3"
+        "bg-primary_light my-3 w-full rounded-4xl p-6 md:w-fit print:hidden"
       }
     >
       <form
         className={
-          "text-dark flex flex-col gap-5 items-center justify-center w-fit mx-auto"
+          "text-dark mx-auto flex w-fit flex-col items-center justify-center gap-5"
         }
         onSubmit={submitForm}
       >
-        <div className="flex md:flex-row flex-col items-start gap-3">
+        <div className="flex flex-col items-start gap-3 md:flex-row">
           {items.map((item) => (
             <Controller
               key={item.id}
@@ -79,7 +79,7 @@ const PrinterFilterSetting = ({ control }: Props) => {
         <IButton
           type={"submit"}
           size={"small"}
-          className={"self-center w-full"}
+          className={"w-full self-center"}
           color={"primary"}
           variant={"outlined"}
         >

@@ -36,7 +36,7 @@ export default function LogoutButton() {
       toast.error(
         <span>
           <strong>Failed to logout.</strong> Try again.
-        </span>
+        </span>,
       );
     },
   });
@@ -55,7 +55,7 @@ export default function LogoutButton() {
     <IButton
       onClick={handleLogout}
       disabled={isPending}
-      className={"w-full !text-dark"}
+      className={"!text-dark w-full"}
     >
       {isPending ? (
         <CircularProgress color={"info"} size={30} />

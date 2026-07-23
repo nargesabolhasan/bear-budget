@@ -17,7 +17,7 @@ const SuperGroupList = ({ groupedItems, tags }: Props) => {
   return (
     <ul
       className={
-        "print-list w-full md:w-full flex flex-col gap-5 mx-auto px-2 md:px-0"
+        "print-list mx-auto flex w-full flex-col gap-5 px-2 md:w-full md:px-0"
       }
     >
       <PrinterViewTitle title={i18next.t("transactionList.groupedByType")} />
@@ -25,7 +25,7 @@ const SuperGroupList = ({ groupedItems, tags }: Props) => {
         <li key={`${type}-${index}`}>
           <div
             className={
-              "list-item-block force-block rounded-2xl p-2 flex flex-col gap-y-4 border border-placeholder_light2 shadow-md print:p-1"
+              "list-item-block force-block border-placeholder_light2 flex flex-col gap-y-4 rounded-2xl border p-2 shadow-md print:p-1"
             }
           >
             <TransactionHeader title={type} totalAmount={items?.totalAmount} />

@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
   },
-  ref: React.Ref<unknown>
+  ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -54,7 +54,7 @@ const IDialog = ({
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle
-        className={"flex flex-row justify-center items-center gap-2"}
+        className={"flex flex-row items-center justify-center gap-2"}
       >
         <>{props.icon || <ErrorIcon color={"primary"} />}</>
         <span className={"text-primary font-bold"}>{props.title}</span>
@@ -68,7 +68,7 @@ const IDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions
-        className={"gap-2 flex flex-row !items-center !justify-center"}
+        className={"flex flex-row !items-center !justify-center gap-2"}
       >
         {showCancelButton && (
           <IButton
@@ -83,7 +83,7 @@ const IDialog = ({
           <IButton
             onClick={handleOpen}
             variant="contained"
-            className={"!mr-0 !text-dark"}
+            className={"!text-dark !mr-0"}
           >
             {props.confirmButtonText || i18next.t("dialog.confirm")}
           </IButton>

@@ -88,7 +88,7 @@ const CreateTagForm = ({
       id: 1,
       panel: "panel-icon",
       summary: (
-        <div className={"h-full w-full flex flex-col gap-2"}>
+        <div className={"flex h-full w-full flex-col gap-2"}>
           <h4>{i18next.t("createTag.selectIcon")}</h4>
           <Controller
             control={control}
@@ -123,7 +123,7 @@ const CreateTagForm = ({
       id: 2,
       panel: "panel-color",
       summary: (
-        <div className={"h-full w-full flex flex-col gap-2"}>
+        <div className={"flex h-full w-full flex-col gap-2"}>
           <h4>{i18next.t("createTag.selectColor")}</h4>
           <Controller
             control={control}
@@ -159,7 +159,7 @@ const CreateTagForm = ({
   return (
     <form
       className={
-        "flex flex-col gap-3 w-full transaction transition-all delay-100 duration-200"
+        "transaction flex w-full flex-col gap-3 transition-all delay-100 duration-200"
       }
       onSubmit={handleSubmit(onSubmit)}
       dir={"auto"}
@@ -183,7 +183,7 @@ const CreateTagForm = ({
       <IAccordion
         items={items}
         summeryClassName={"m-0! h-fit"}
-        className={"p-4 border border-placeholder_light"}
+        className={"border-placeholder_light border p-4"}
       />
       <FormControl fullWidth variant="outlined">
         <InputLabel id="transaction-type-label">
@@ -224,7 +224,7 @@ const CreateTagForm = ({
         transactionType={watch(FormTagEnum.TRANSACTION_TYPE)}
         icon={watch(FormTagEnum.ICON)}
         color={watch(FormTagEnum.COLOR)}
-        className={"w-full md:w-1/2 rounded-4xl"}
+        className={"w-full rounded-4xl md:w-1/2"}
       />
       <IButton
         className={"w-full !rounded-full"}

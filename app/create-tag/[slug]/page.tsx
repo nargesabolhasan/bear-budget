@@ -43,7 +43,7 @@ const EditTagPage = ({ params }: Props) => {
         title={
           <span className={"flex flex-row items-center"} dir={"ltr"}>
             <BackButton />
-            <h4 className={"text-center grow"}>
+            <h4 className={"grow text-center"}>
               {i18next.t("createTag.edit")}
             </h4>
           </span>

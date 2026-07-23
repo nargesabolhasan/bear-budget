@@ -13,7 +13,7 @@ export interface BudgetStore {
     tag: BudgetType["tag"],
     newTagId: BudgetType["tag"],
     oldMonth: number,
-    data: BudgetType
+    data: BudgetType,
   ) => void;
   clear: () => void;
 }

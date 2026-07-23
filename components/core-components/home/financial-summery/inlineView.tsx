@@ -7,25 +7,25 @@ const InlineView = ({ list, onClick }: SummeryViewProps) => {
   return (
     <div
       className={
-        "flex flex-col border border-placeholder_light2 border-dashed w-full p-5 rounded-2xl mx-auto"
+        "border-placeholder_light2 mx-auto flex w-full flex-col rounded-2xl border border-dashed p-5"
       }
     >
       <MoreHorizTwoToneIcon
-        className={"self-end cursor-pointer print:hidden"}
+        className={"cursor-pointer self-end print:hidden"}
         onClick={onClick}
       />
       <div>
-        <h2 className={"italic font-semibold mb-4"}>
+        <h2 className={"mb-4 font-semibold italic"}>
           {i18next.t("home.financialSummary")} :
         </h2>
-        <section className="flex flex-col items-start justify-between lg:space-x-3 lg:flex-row lg:items-center ">
+        <section className="flex flex-col items-start justify-between lg:flex-row lg:items-center lg:space-x-3">
           {list.map((item) => {
             const Icon = item.icon;
             return (
               <span
                 key={item.id}
                 className={twMerge(
-                  "flex flex-row items-center gap-2 border-b-2 w-fit pb-1",
+                  "flex w-fit flex-row items-center gap-2 border-b-2 pb-1",
                   item.border,
                 )}
               >

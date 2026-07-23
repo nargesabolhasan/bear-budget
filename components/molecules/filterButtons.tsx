@@ -56,7 +56,7 @@ const FilterButtons = ({
         i18n.t(
           selectedMenuFilter
             ? `transactions.${selectedMenuFilter}`
-            : `transactionList.${item.title}`
+            : `transactionList.${item.title}`,
         )) ||
         i18n.t(`transactionList.${item.title}`)}
       {showContextMenu && <ArrowDropDownIcon />}
@@ -77,7 +77,7 @@ const FilterButtons = ({
   return (
     <nav
       className={
-        "text-dark print:hidden border border-primary w-full rounded-full bg-primary_light flex flex-row gap-2 sm:gap-3 justify-between items-center my-5"
+        "text-dark border-primary bg-primary_light my-5 flex w-full flex-row items-center justify-between gap-2 rounded-full border sm:gap-3 print:hidden"
       }
     >
       {navItems.map((item, index) => {

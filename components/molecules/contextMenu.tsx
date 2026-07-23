@@ -36,7 +36,7 @@ export default function ContextMenu({
 }: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedId, setSelectedId] = React.useState<number | string>(
-    defaultSelect
+    defaultSelect,
   );
 
   const open = Boolean(anchorEl);
@@ -90,7 +90,7 @@ export default function ContextMenu({
             }}
             className={twMerge(
               "!text-sm",
-              item.id === selectedId && "!bg-primary"
+              item.id === selectedId && "!bg-primary",
             )}
           >
             {translateMode ? (

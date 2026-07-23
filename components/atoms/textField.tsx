@@ -29,7 +29,7 @@ const ITextField = ({
         {...props}
       />
 
-      {showHint && <p className="text-xs text-placeholder">{hint}</p>}
+      {showHint && <p className="text-placeholder text-xs">{hint}</p>}
     </>
   );
 };
