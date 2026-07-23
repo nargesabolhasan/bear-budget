@@ -2,7 +2,7 @@
 
 import React from "react";
 import ITextField from "@/components/atoms/textField";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, Resolver, useForm } from "react-hook-form";
 import {
   FormTransactionEnum,
   TransactionFormData,
@@ -61,8 +61,7 @@ const TransactionForm = ({
       [FormTransactionEnum.DATE]: props.date || "",
       [FormTransactionEnum.DESCRIPTION]: descriptionText || "",
     },
-    //@ts-ignore
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as Resolver<TransactionFormData>,
     mode: "onChange",
   });
 
@@ -77,7 +76,6 @@ const TransactionForm = ({
 
   return (
     <form
-      //@ts-ignore
       onSubmit={handleSubmit(onSubmit)}
       className={
         "transaction flex w-full flex-col gap-3 transition-all delay-100 duration-200 md:p-3"
@@ -94,18 +92,13 @@ const TransactionForm = ({
           return (
             <ITextField
               {...rest}
-              value={
-                value === "" || value === null
-                  ? ""
-                  : convertToCurrency(Number(value))
-              }
+              value={value === "" ? "" : convertToCurrency(Number(value))}
               onChange={(e) => {
                 const raw = e.target.value.replace(/,/g, "");
                 if (raw.length > 15) {
                   return;
                 }
-                const numberValue = raw === "" ? "" : Number(raw);
-                onChange(numberValue);
+                onChange(raw);
               }}
               label={i18next.t("home.amount")}
               fullWidth

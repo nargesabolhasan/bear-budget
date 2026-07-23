@@ -1,5 +1,5 @@
 import React from "react";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { FormTransactionEnum } from "@/components/core-components/add-transaction/type";
 import TagPicker from "@/components/core-components/add-transaction/tagPicker";
 import { Render } from "@/utils/render";
@@ -10,13 +10,25 @@ import { TagsListType } from "@/store/tags/type";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import i18next from "i18next";
 
-type Props = {
-  control: Control<any, any, any>;
+type Props<
+  TFieldValues extends FieldValues,
+  TContext = unknown,
+  TTransformedValues extends FieldValues = TFieldValues,
+> = {
+  control: Control<TFieldValues, TContext, TTransformedValues>;
   tags: TagsListType;
   tagsCount: number;
 };
 
-const TagAccordion = ({ control, tags, tagsCount }: Props) => {
+const TagAccordion = <
+  TFieldValues extends FieldValues,
+  TContext = unknown,
+  TTransformedValues extends FieldValues = TFieldValues,
+>({
+  control,
+  tags,
+  tagsCount,
+}: Props<TFieldValues, TContext, TTransformedValues>) => {
   const accordionItem = [
     {
       id: 1,
@@ -24,12 +36,13 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
       panelHeaderId: "tag-picker-header",
       ariaControl: "tag-picker-aria",
       summary: (
-        <div className={"mb-3 flex h-full w-full flex-col gap-3"}>
-          <h4 className={"text-placeholder"}>
+        <div className="mb-3 flex h-full w-full flex-col gap-3">
+          <h4 className="text-placeholder">
             {i18next.t("addTransaction.selectTag")}
           </h4>
+
           <Controller
-            name={FormTransactionEnum.TAG}
+            name={FormTransactionEnum.TAG as Path<TFieldValues>}
             control={control}
             render={({ field }) => (
               <TagPicker
@@ -50,10 +63,10 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
             </Link>
           }
         >
-          <div className={"flex flex-col justify-center gap-2"}>
+          <div className="flex flex-col justify-center gap-2">
             {Object.values(tags).slice(tagsCount).length !== 0 && (
               <Controller
-                name={FormTransactionEnum.TAG}
+                name={FormTransactionEnum.TAG as Path<TFieldValues>}
                 control={control}
                 render={({ field }) => (
                   <TagPicker
@@ -64,16 +77,12 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
                 )}
               />
             )}
+
             <Link
               href={tagRoutes.createTag.href}
-              className={
-                "text-placeholder mx-auto mt-4 flex w-fit cursor-pointer flex-row items-center justify-center gap-1 text-xs md:text-sm"
-              }
+              className="text-placeholder mx-auto mt-4 flex w-fit cursor-pointer flex-row items-center justify-center gap-1 text-xs md:text-sm"
             >
-              <AddCircleTwoToneIcon
-                className={"text-primary"}
-                fontSize={"small"}
-              />
+              <AddCircleTwoToneIcon className="text-primary" fontSize="small" />
               {i18next.t("global.add")}
             </Link>
           </div>
@@ -86,7 +95,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
     <IAccordion
       items={accordionItem}
       showExpandIcon={Object.values(tags).slice(tagsCount).length !== 0}
-      className={"border-placeholder_light border p-4"}
+      className="border-placeholder_light border p-4"
     />
   );
 };

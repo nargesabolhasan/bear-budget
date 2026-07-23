@@ -39,23 +39,25 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
     ? calenderMonthList[(index ?? 0) - 1]
     : calenderMonthList[getCurrentMonthNumber() - 1];
 
-  const schema = yup.object({
-    [FormBudgetTypeEnum.AMOUNT]: yup
-      .string()
-      .required(
-        i18next.t("global.required", { value: i18next.t("home.amount") }),
-      ),
-    [FormBudgetTypeEnum.MONTH]: yup
-      .string()
-      .required(
-        i18next.t("global.required", { value: i18next.t("modal.month") }),
-      ),
-    [FormBudgetTypeEnum.TAG]: yup
-      .string()
-      .required(
-        i18next.t("global.required", { value: i18next.t("global.tag") }),
-      ),
-  });
+  const schema: yup.ObjectSchema<BudgetFormType> = yup.object({
+    [FormBudgetTypeEnum.AMOUNT]: yup.string().required(
+      i18next.t("global.required", {
+        value: i18next.t("home.amount"),
+      }),
+    ),
+
+    [FormBudgetTypeEnum.MONTH]: yup.string().required(
+      i18next.t("global.required", {
+        value: i18next.t("modal.month"),
+      }),
+    ),
+
+    [FormBudgetTypeEnum.TAG]: yup.string().required(
+      i18next.t("global.required", {
+        value: i18next.t("global.tag"),
+      }),
+    ),
+  }) as yup.ObjectSchema<BudgetFormType>;
 
   const {
     control,
@@ -70,7 +72,6 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
       [FormBudgetTypeEnum.MONTH]: defaultMonth,
       [FormBudgetTypeEnum.TAG]: defaultValue?.tag,
     },
-    //@ts-ignore
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -94,7 +95,6 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
   return (
     <form
       className="mx-auto mb-5 flex w-full flex-col gap-1 p-2 md:w-2/3 md:p-8 lg:w-1/3"
-      //@ts-ignore
       onSubmit={handleSubmit(onSubmitHandler)}
     >
       {/*-------month---------*/}

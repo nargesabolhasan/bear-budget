@@ -1,49 +1,52 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { UseFormSetValue, UseFormWatch } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import i18next from "i18next";
 
-type Props = {
-  dateList: string[] | number[];
+type Props<T extends FieldValues> = {
+  dateList: Array<string | number>;
   defaultValue?: string | number;
-  title?: string;
-  setValue: UseFormSetValue<any>;
-  watch: UseFormWatch<any>;
+  title: Path<T>;
+  setValue: UseFormSetValue<T>;
+  watch: UseFormWatch<T>;
   showTitle?: boolean;
 };
 
-export default function ScrollDatePicker({
+export default function ScrollDatePicker<T extends FieldValues>({
   dateList,
   defaultValue,
-  title = "Date",
+  title,
   setValue,
   watch,
   showTitle = true,
-}: Props) {
+}: Props<T>) {
   const itemHeight = 48;
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Selected state
   const [selected, setSelected] = useState<string | number>(
     defaultValue ?? dateList[0],
   );
 
-  // Set form initial value safely
-  useEffect(() => {
-    const newValue = defaultValue ?? dateList[0];
-    if (watch(title) !== newValue) {
-      setValue(title, newValue);
-    }
-    setSelected(newValue);
-  }, [defaultValue]);
-
-  // Infinite list
   const extendedDates = [...dateList, ...dateList, ...dateList];
   const middleOffset = dateList.length * itemHeight;
 
-  // Scroll handler
+  useEffect(() => {
+    const newValue = defaultValue ?? dateList[0];
+
+    if (watch(title) !== newValue) {
+      setValue(title, newValue as T[Path<T>]);
+    }
+
+    setSelected(newValue);
+  }, [defaultValue, dateList, setValue, title, watch]);
+
   const handleScroll = () => {
     if (!containerRef.current) return;
 
@@ -52,13 +55,11 @@ export default function ScrollDatePicker({
     const index = (rawIndex + dateList.length) % dateList.length;
     const selectedDate = dateList[index];
 
-    // Update selection
     if (selected !== selectedDate) {
       setSelected(selectedDate);
-      setValue(title, selectedDate);
+      setValue(title, selectedDate as T[Path<T>]);
     }
 
-    // Infinite scroll loop logic
     if (scrollTop < dateList.length * itemHeight) {
       containerRef.current.scrollTop = scrollTop + middleOffset;
     } else if (scrollTop > dateList.length * itemHeight * 2) {
@@ -66,45 +67,39 @@ export default function ScrollDatePicker({
     }
   };
 
-  // Register scroll only once
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
 
     ref.addEventListener("scroll", handleScroll);
-    return () => ref.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  // Set initial scroll position
+    return () => ref.removeEventListener("scroll", handleScroll);
+  }, [selected]);
+
   useEffect(() => {
     const ref = containerRef.current;
     if (!ref) return;
 
     const initialValue = defaultValue ?? dateList[0];
-    //@ts-ignore
-    const index = dateList.indexOf(initialValue);
 
-    const initialScrollTop =
+    const index = dateList.findIndex((item) => item === initialValue);
+
+    ref.scrollTop =
       index >= 0 ? middleOffset + index * itemHeight : middleOffset;
+  }, [defaultValue, dateList]);
 
-    ref.scrollTop = initialScrollTop;
-  }, []);
-
-  // Click item → scroll to it
   const handleClick = (date: string | number) => {
     if (!containerRef.current) return;
-    //@ts-ignore
-    const index = dateList.indexOf(date);
 
-    const newScrollTop = middleOffset + index * itemHeight;
+    const index = dateList.findIndex((item) => item === date);
 
     containerRef.current.scrollTo({
-      top: newScrollTop,
+      top: middleOffset + index * itemHeight,
       behavior: "smooth",
     });
 
     setSelected(date);
-    setValue(title, date);
+    setValue(title, date as T[Path<T>]);
   };
 
   return (
@@ -138,7 +133,7 @@ export default function ScrollDatePicker({
 
       <p className="text-placeholder mt-4 text-xs md:text-base">
         {i18next.t("modal.selected")}:{" "}
-        <b className="text-xs md:text-sm">{watch(title)}</b>
+        <b className="text-xs md:text-sm">{String(watch(title) ?? "")}</b>
       </p>
     </div>
   );

@@ -16,7 +16,7 @@ import i18next from "i18next";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement<any, any>;
+    children: React.ReactElement<unknown>;
   },
   ref: React.Ref<unknown>,
 ) {

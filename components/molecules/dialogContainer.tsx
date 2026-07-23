@@ -8,24 +8,24 @@ export let openDialog: OpenDialogFunc = () => {};
 
 const DialogContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dialog, setDialog] = useState<DialogDataProps | {}>();
+  const [dialog, setDialog] = useState<DialogDataProps | null>(null);
 
   useEffect(() => {
     openDialog = (data) => {
-      setIsOpen(true);
       setDialog(data);
+      setIsOpen(true);
     };
+
     closeDialog = () => {
       setIsOpen(false);
-      setDialog({});
+      setDialog(null);
     };
   }, []);
 
   const Component = isOpen ? lazy(() => import("./dialog")) : undefined;
+
   return (
-    <Suspense>
-      {Component && <Component {...(dialog as DialogDataProps)} />}
-    </Suspense>
+    <Suspense>{Component && dialog && <Component {...dialog} />}</Suspense>
   );
 };
 
