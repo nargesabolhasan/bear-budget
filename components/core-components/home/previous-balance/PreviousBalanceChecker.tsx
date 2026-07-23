@@ -7,14 +7,29 @@ import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum } from "@/types/global";
 import PreviousBalanceModal from "./previousBalanceModal";
 import { SYSTEM_TAG } from "@/constant/global";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
+import { GroupedTransactionType } from "@/store/transaction/type";
+import { TramTwoTone } from "@mui/icons-material";
+import { convertToCurrency } from "@/utils/utils";
 
-export default function PreviousBalanceChecker({
-  previousBalance,
-}: {
-  previousBalance: number;
-}) {
-  const { showModal, balance, answer } =
-    usePreviousBalanceQuestion(previousBalance);
+export default function PreviousBalanceChecker() {
+  const { groupedByType } = useTransactionStore();
+  const { isJalali, getPreviousMonth } = useCalendarUtils();
+
+  const { isoYear, isoMonth, notIsoMonth } = getPreviousMonth();
+
+  const previousMonthTransactions = groupedByType(
+    isoYear,
+    isoMonth,
+    isJalali,
+    notIsoMonth,
+  );
+  const remining =
+    previousMonthTransactions[TransactionEnum.INCOME]?.totalAmount ||
+    0 - previousMonthTransactions[TransactionEnum.EXPENSE]?.totalAmount ||
+    0;
+
+  const { showModal, balance, answer } = usePreviousBalanceQuestion(remining);
 
   const { addTransaction } = useTransactionStore();
 

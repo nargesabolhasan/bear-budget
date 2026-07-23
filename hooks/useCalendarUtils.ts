@@ -53,6 +53,38 @@ const useCalendarUtils = () => {
     return now.month.number;
   };
 
+  const getPreviousMonth = (
+    currentMonth: number = getCurrentMonthNumber(),
+    currentYear: number = getCurrentYear(),
+  ) => {
+    let previousYear = currentYear;
+    let previousMonth = currentMonth;
+
+    if (currentMonth === 1) {
+      previousYear = currentYear - 1;
+      previousMonth = 12;
+    } else {
+      previousMonth = currentMonth - 1;
+    }
+
+    const isoDate = toStandardISO({
+      year: previousYear,
+      month: previousMonth,
+    });
+
+    return {
+      // Current calendar system (Jalali/Gregorian)
+      year: previousYear,
+      month: previousMonth,
+
+      // Real Gregorian date used in transaction store
+      isoYear: isoDate.year,
+      isoMonth: isoDate.month,
+
+      // Needed for Jalali filtering in getTransactions
+      notIsoMonth: previousMonth,
+    };
+  };
   /* ---------------- Date format ---------------- */
 
   const formatDate = (
@@ -145,6 +177,7 @@ const useCalendarUtils = () => {
     formatDate,
     formatSearchDate,
     toStandardISO,
+    getPreviousMonth,
     calenderMonthList: isJalali ? PERSIAN_MONTHS : MONTHS,
   };
 };

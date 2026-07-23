@@ -10,6 +10,7 @@ import { ThemeModeProvider } from "@/context/themeSwitchProvider";
 import "@/i18n/client";
 import LanguageProvider from "@/context/i18nextProvider";
 import { FilteredDateProvider } from "@/context/filteredDateContext";
+import PreviousBalanceChecker from "@/components/core-components/home/previous-balance/PreviousBalanceChecker";
 
 export const metadata = {
   title: "Bear Budget",
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <FilteredDateProvider>
                 <main className="-webkit-overflow-scrolling-touch mt-[100px] flex-1 overflow-y-auto p-1 md:p-4 print:mt-0">
                   {children}
+                  <PreviousBalanceChecker />
                 </main>
               </FilteredDateProvider>
 
