@@ -79,7 +79,7 @@ const colors = [
   "bg-blue-200 text-dark",
   "bg-blue-300 text-dark",
   "bg-blue-400 text-dark",
-  "bg-blue-600 text-dark",
+  "bg-blue-600 text-white",
   "bg-blue-700 text-white",
   "bg-blue-800 text-white",
 

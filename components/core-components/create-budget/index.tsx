@@ -93,7 +93,7 @@ const CreateBudget = ({ onSubmit, defaultValue }: Props) => {
 
   return (
     <form
-      className="mx-auto mb-5 flex w-full flex-col gap-1 p-8 md:w-2/3 lg:w-1/3"
+      className="mx-auto mb-5 flex w-full flex-col gap-1 p-2 md:w-2/3 md:p-8 lg:w-1/3"
       //@ts-ignore
       onSubmit={handleSubmit(onSubmitHandler)}
     >

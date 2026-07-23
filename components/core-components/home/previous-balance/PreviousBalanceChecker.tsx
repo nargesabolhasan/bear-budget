@@ -25,9 +25,8 @@ export default function PreviousBalanceChecker() {
     notIsoMonth,
   );
   const remining =
-    previousMonthTransactions[TransactionEnum.INCOME]?.totalAmount ||
-    0 - previousMonthTransactions[TransactionEnum.EXPENSE]?.totalAmount ||
-    0;
+    (previousMonthTransactions[TransactionEnum.INCOME]?.totalAmount || 0) -
+    (previousMonthTransactions[TransactionEnum.EXPENSE]?.totalAmount || 0);
 
   const { showModal, balance, answer } = usePreviousBalanceQuestion(remining);
 

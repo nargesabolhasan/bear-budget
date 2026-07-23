@@ -20,6 +20,7 @@ import IAccordion from "@/components/molecules/accordion";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import i18next from "i18next";
+import { SYSTEM_TAG } from "@/constant/global";
 
 const CreateTagForm = ({
   submitHandler,
@@ -56,6 +57,11 @@ const CreateTagForm = ({
       ),
   });
 
+  const tagName =
+    props?.name === SYSTEM_TAG
+      ? i18next.t(`transactions.system.previousMonth`)
+      : props?.name;
+  console.log(props.color);
   const {
     control,
     handleSubmit,
@@ -68,7 +74,7 @@ const CreateTagForm = ({
       [FormTagEnum.COLOR]: props?.color || colorList[0],
       [FormTagEnum.TRANSACTION_TYPE]:
         props?.transactionType || TransactionEnum.INCOME,
-      [FormTagEnum.NAME]: props?.name || "",
+      [FormTagEnum.NAME]: tagName || "",
     },
     resolver: yupResolver(schema),
     mode: "onChange",

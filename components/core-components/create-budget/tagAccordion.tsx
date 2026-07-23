@@ -67,7 +67,7 @@ const TagAccordion = ({ control, tags, tagsCount }: Props) => {
             <Link
               href={tagRoutes.createTag.href}
               className={
-                "text-placeholder mt-4 flex cursor-pointer flex-row items-center justify-center gap-1 text-xs md:text-sm"
+                "text-placeholder mx-auto mt-4 flex w-fit cursor-pointer flex-row items-center justify-center gap-1 text-xs md:text-sm"
               }
             >
               <AddCircleTwoToneIcon
