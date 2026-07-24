@@ -9,7 +9,9 @@ type Props = {
   dateList: (string | number)[];
   defaultValue?: string | number;
   title?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setValue: UseFormSetValue<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   watch: UseFormWatch<any>;
   showTitle?: boolean;
 };
