@@ -33,9 +33,9 @@ const TagPicker = ({
         <TagDemo
           key={tag.id}
           className={twMerge(
-            "tag-picker-item hover:bg-neutral_light w-[100px] p-2!",
+            "tag-picker-item hover:bg-neutral_light w-25 p-2!",
             value === tag.id &&
-              "bg-neutral_light !border-primary scale-105 border-3 border-solid shadow-md",
+              "bg-neutral_light border-primary scale-105 border-3 border-solid shadow-md",
           )}
           icon={tag.icon}
           name={tag.name}
