@@ -14,7 +14,7 @@ export function middleware(req: NextRequest) {
   }
 
   if (isLoggedIn && isAuthPage) {
-    return NextResponse.redirect(new URL("/setting", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   const response = NextResponse.next();
@@ -23,5 +23,8 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|favicon.svg|fonts|images|robots.txt).*)"],
+  // Keep PWA/manifest/icons public so install works before login
+  matcher: [
+    "/((?!_next|api|fonts|images|robots\\.txt|manifest\\.json|.*\\.(?:png|jpg|jpeg|svg|ico|webp|webmanifest)$).*)",
+  ],
 };

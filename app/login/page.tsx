@@ -1,7 +1,6 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import React from "react";
 import LoginForm from "@/components/core-components/login/loginForm";
 import api, { API_URL } from "@/utils/axios";
@@ -10,8 +9,6 @@ import { toast } from "sonner";
 import i18next from "i18next";
 
 export default function LoginPage() {
-  const router = useRouter();
-
   const loginMutation = useMutation({
     mutationFn: async (username: string) => {
       const res = await api.post(API_URL.login.api, { username });
@@ -24,9 +21,9 @@ export default function LoginPage() {
     },
 
     onSuccess: () => {
-      router.refresh();
-      router.push("/");
       toast.success(i18next.t("login.welcome"));
+      // Hard navigation after cookie is set so middleware allows home
+      window.location.href = "/";
     },
 
     onError: (err: Error) => {
