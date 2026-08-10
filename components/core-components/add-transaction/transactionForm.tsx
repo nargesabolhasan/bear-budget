@@ -12,11 +12,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IDatePicker from "@/components/atoms/datePicker";
 import { useTagsStore } from "@/store/tags";
-import { convertToCurrency } from "@/utils/utils";
+import { convertToCurrency, parseAmountInput } from "@/utils/utils";
 import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import TagAccordion from "@/components/core-components/create-budget/tagAccordion";
-import { FormBudgetTypeEnum } from "@/components/core-components/create-budget/types";
 import i18next from "i18next";
 import i18n from "@/i18n/config";
 
@@ -94,18 +93,14 @@ const TransactionForm = ({
               {...rest}
               value={value === "" ? "" : convertToCurrency(Number(value))}
               onChange={(e) => {
-                const raw = e.target.value.replace(/,/g, "");
-                if (raw.length > 15) {
-                  return;
-                }
-                onChange(raw);
+                onChange(parseAmountInput(e.target.value));
               }}
               label={i18next.t("home.amount")}
               fullWidth
               error={!!errors[FormTransactionEnum.AMOUNT]}
               helperText={errors[FormTransactionEnum.AMOUNT]?.message}
               showHint={
-                watch(FormBudgetTypeEnum.AMOUNT).toString().length === 15
+                watch(FormTransactionEnum.AMOUNT).toString().length === 15
               }
               hint={i18next.t("global.charLimit", { value: 15 })}
             />
