@@ -17,6 +17,7 @@ type Props = {
   showDivider?: boolean;
   showTagIcon?: boolean;
   showTagIconColor?: boolean;
+  showTagTitle?: boolean;
 };
 
 const TransactionItems = ({
@@ -28,6 +29,7 @@ const TransactionItems = ({
   showDivider = false,
   showTagIcon = false,
   showTagIconColor = false,
+  showTagTitle = true,
 }: Props) => {
   return (
     <ul
@@ -64,6 +66,7 @@ const TransactionItems = ({
                 showTagIcon={showTagIcon}
                 showTagIconColor={showTagIconColor}
                 showTransactionIndicator={showTransactionIndicator}
+                showTagTitle={showTagTitle}
               />
             </div>
           </div>

@@ -94,6 +94,7 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
                 showTransactionHeader={false}
                 showPrimaryBG={false}
                 showDivider
+                showTagTitle={false}
               />
             </div>
           </li>
