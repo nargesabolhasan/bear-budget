@@ -17,6 +17,7 @@ type Props = {
   showTagIcon?: boolean;
   showTagIconColor?: boolean;
   isSystemtransaction?: boolean;
+  showTagTitle?: boolean;
 };
 
 const MainTransactionTitle = ({
@@ -27,6 +28,7 @@ const MainTransactionTitle = ({
   showTagIcon = false,
   showTagIconColor = false,
   isSystemtransaction = false,
+  showTagTitle = true,
 }: Props) => {
   const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
   const { formatDate } = useCalendarUtils();
@@ -46,11 +48,13 @@ const MainTransactionTitle = ({
                 )}
               />
             )}
-            <span className={"text-lg"}>
-              {isSystemtransaction
-                ? i18n.t(`transactions.system.previousMonth`)
-                : tag.name}
-            </span>
+            {showTagTitle && (
+              <span className={"text-lg"}>
+                {isSystemtransaction
+                  ? i18n.t(`transactions.system.previousMonth`)
+                  : tag.name}
+              </span>
+            )}
           </span>
           <time className={"text-placeholder text-xs"}>{formatDate(date)}</time>
         </div>
