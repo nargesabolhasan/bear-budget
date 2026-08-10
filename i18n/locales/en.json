@@ -143,6 +143,8 @@
     "settledOn": "Settled on",
     "removeHint": "Do you want to remove {{amount}} in {{tag}} tag as {{type}} ?",
     "groupedByType": "Grouped by Type of transactions :",
+    "groupedByTag": "Grouped by tags :",
+    "uncategorized": "Uncategorized",
     "mustAccept": "You must accept this"
   },
   "createBudget": {

@@ -17,10 +17,7 @@ import { openDialog } from "@/components/molecules/dialogContainer";
 import { filterTransactionList } from "@/constant";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import {
-  GroupedTransactionType,
-  TransactionInfoType,
-} from "@/store/transaction/type";
+import { GroupedTransactionType } from "@/store/transaction/type";
 import { useTagsStore } from "@/store/tags";
 import { useTranslation } from "react-i18next";
 import { useFilteredDateContext } from "@/context/filteredDateContext";
@@ -119,15 +116,7 @@ const TransactionListComponent = ({
           {
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
             render: (
-              <SuperGroupList
-                tags={tags}
-                groupedItems={
-                  Object.entries(groupedTransactions) as [
-                    TransactionEnum,
-                    TransactionInfoType,
-                  ][]
-                }
-              />
+              <SuperGroupList tags={tags} transactions={transactions} />
             ),
           },
           {
