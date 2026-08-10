@@ -115,9 +115,7 @@ const TransactionListComponent = ({
           },
           {
             when: viewMode === ViewEnums.GROUPED && transactions.length > 0,
-            render: (
-              <SuperGroupList tags={tags} transactions={transactions} />
-            ),
+            render: <SuperGroupList tags={tags} transactions={transactions} />,
           },
           {
             when: viewMode === ViewEnums.FILTERS && transactions.length > 0,

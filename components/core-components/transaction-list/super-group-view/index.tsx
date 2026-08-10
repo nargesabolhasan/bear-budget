@@ -9,6 +9,7 @@ import { iconList } from "@/constant/icons";
 import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { twMerge } from "tailwind-merge";
 import i18next from "i18next";
+import TagIcon from "../../create-tag/tagIcon";
 
 type TagGroup = {
   tag: TagType | null;
@@ -50,52 +51,49 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
     >
       <PrinterViewTitle title={i18next.t("transactionList.groupedByTag")} />
       {groupedByTag.map(([tagId, group]) => {
-        const Icon =
-          iconList.get(group.tag?.icon || "0")?.icon || (() => <></>);
         const title =
           group.tag?.name || i18next.t("transactionList.uncategorized");
 
         return (
           <li key={tagId}>
             <div
-              className={
-                "list-item-block force-block border-placeholder_light2 flex flex-col gap-y-4 rounded-2xl border p-2 shadow-md print:p-1"
-              }
+              className={twMerge(
+                "list-item-block force-block flex flex-col gap-y-4 rounded-3xl p-3 shadow-md print:p-1",
+                group.tag?.color?.color ?? "",
+              )}
             >
               <div
                 className={twMerge(
                   "border-placeholder flex flex-row items-center justify-between gap-3 rounded-t-lg border-b border-dashed p-2",
                 )}
               >
+                {/* <TransactionTypeIndicator tag={group?.tag as TagType} /> */}
+
                 <span
                   className={"flex flex-row items-center justify-center gap-3"}
                 >
-                  <Icon
-                    fontSize="large"
-                    className={twMerge(
-                      "rounded-full p-1 opacity-90",
-                      group.tag?.transactionType
-                        ? groupedStyles(group.tag.transactionType)
-                        : "bg-primary_light",
-                    )}
-                  />
+                  <TagIcon tag={group.tag} />
                   <h3 className={"text-xl"}>{title}</h3>
                 </span>
                 <h3
                   className={
-                    "overflow-wrap text-pretty break-words break-all whitespace-normal"
+                    "overflow-wrap text-pretty wrap-break-word break-all whitespace-normal"
                   }
                 >
                   T : {convertToCurrency(group.totalAmount)}
                 </h3>
               </div>
+              <span>
+                {"("}
+                {i18next.t(`transactions.${group?.tag?.transactionType}`)}
+                {")"}
+              </span>
               <TransactionItems
                 tags={tags}
                 transactionList={group.transactions}
                 showTransactionHeader={false}
                 showPrimaryBG={false}
                 showDivider
-                showTransactionIndicator
               />
             </div>
           </li>

@@ -61,7 +61,7 @@ const CreateTagForm = ({
     props?.name === SYSTEM_TAG
       ? i18next.t(`transactions.system.previousMonth`)
       : props?.name;
-  console.log(props.color);
+
   const {
     control,
     handleSubmit,
