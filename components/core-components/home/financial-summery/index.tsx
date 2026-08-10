@@ -15,8 +15,8 @@ import PreferenceCheckboxes from "../preferenceCheckboxes";
 
 const FinancialSummery = ({
   inlineView,
-  year = new Date().getFullYear(),
-  month = new Date().getMonth() + 1,
+  year,
+  month,
   notIsoMonth,
 }: {
   inlineView?: boolean;
@@ -27,13 +27,20 @@ const FinancialSummery = ({
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const { groupedByType } = useTransactionStore();
-  const { getCurrentMonthNumber, isJalali } = useCalendarUtils();
+  const { getCurrentMonthNumber, getCurrentYear, toStandardISO, isJalali } =
+    useCalendarUtils();
 
-  const targetedMonth =
-    notIsoMonth || (isJalali ? getCurrentMonthNumber() : month);
+  const currentIso = toStandardISO({
+    year: getCurrentYear(),
+    month: getCurrentMonthNumber(),
+  });
+
+  const resolvedYear = year ?? currentIso.year;
+  const resolvedMonth = month ?? currentIso.month;
+  const targetedMonth = notIsoMonth ?? getCurrentMonthNumber();
 
   const data: GroupedTransactionType =
-    groupedByType(year, month, isJalali, targetedMonth) || {};
+    groupedByType(resolvedYear, resolvedMonth, isJalali, targetedMonth) || {};
 
   const { income, outgoing, save, remaining } = useFinancialSummary(data);
 
