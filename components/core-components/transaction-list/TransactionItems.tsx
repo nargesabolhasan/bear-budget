@@ -45,7 +45,7 @@ const TransactionItems = ({
             showDivider && "border-placeholder border border-t-0 border-dashed",
           )}
         >
-          <div className={"list-item-block force-block"}>
+          <div className={"list-item-block force-block text-placeholder"}>
             {showTransactionHeader && (
               <TransactionHeader
                 title={tags?.[transaction.tag].transactionType}
