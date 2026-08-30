@@ -115,7 +115,7 @@ const MainTransactionInfo = ({
       <p
         dir="auto"
         style={{ unicodeBidi: "plaintext" }}
-        className="text-placeholder overflow-wrap mt-2 w-full text-start text-pretty break-words break-all whitespace-normal"
+        className="text-placeholder overflow-wrap mt-2 w-full text-start text-pretty wrap-break-word break-all whitespace-normal"
       >
         {transaction.systemKey
           ? i18n.t(`transactions.system.${transaction.systemKey}`)

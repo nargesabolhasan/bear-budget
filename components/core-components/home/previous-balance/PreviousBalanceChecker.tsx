@@ -1,16 +1,16 @@
 "use client";
 
 import { colorList } from "@/constant/colors";
+import { SYSTEM_TAG } from "@/constant/global";
+import useCalendarUtils from "@/hooks/useCalendarUtils";
 import { usePreviousBalanceQuestion } from "@/hooks/usePreviousBalanceQuestion";
 import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum } from "@/types/global";
 import PreviousBalanceModal from "./previousBalanceModal";
-import { SYSTEM_TAG } from "@/constant/global";
-import useCalendarUtils from "@/hooks/useCalendarUtils";
-import { GroupedTransactionType } from "@/store/transaction/type";
-import { TramTwoTone } from "@mui/icons-material";
-import { convertToCurrency } from "@/utils/utils";
+
+export const PREVIOUS_MONTH_TAG_ID_INCOME = "abcd1405";
+export const PREVIOUS_MONTH_TAG_ID_SAVINGS = "abcd1406";
 
 export default function PreviousBalanceChecker() {
   const { groupedByType } = useTransactionStore();
@@ -37,6 +37,10 @@ export default function PreviousBalanceChecker() {
   const handleSubmit = (
     choice: TransactionEnum.INCOME | TransactionEnum.SAVE | "skip",
   ) => {
+    const previousMonthTagId =
+      choice === TransactionEnum.INCOME
+        ? PREVIOUS_MONTH_TAG_ID_INCOME
+        : PREVIOUS_MONTH_TAG_ID_SAVINGS;
     if (choice === "skip") {
       answer(choice);
       return;
@@ -48,9 +52,7 @@ export default function PreviousBalanceChecker() {
         ? "previousMonthBalance"
         : "previousMonthSavings";
 
-    let tag = Object.values(tags).find(
-      (item) => item.name === tagName && item.transactionType === choice,
-    );
+    let tag = tags[previousMonthTagId];
 
     // Create tag if missing
 
@@ -61,16 +63,12 @@ export default function PreviousBalanceChecker() {
           : colorList.find((item) => item.color === "bg-secondary text-dark");
 
       createTag({
-        id: crypto.randomUUID(),
+        id: previousMonthTagId,
         name: tagName,
         transactionType: choice,
-        icon: "",
+        icon: "1",
         color: selectedColor ?? colorList[0],
       });
-
-      tag = Object.values(useTagsStore.getState().tags).find(
-        (item) => item.name === tagName && item.transactionType === choice,
-      );
     }
 
     if (!tag) {

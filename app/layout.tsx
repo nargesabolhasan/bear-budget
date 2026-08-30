@@ -48,14 +48,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
 
-      <body className="!bg-neutral_light flex h-screen flex-col">
+      <body className="bg-neutral_light! flex h-screen flex-col">
         <LanguageProvider>
           <ThemeModeProvider>
             <IThemeProvider>
               <IHeader />
 
               <FilteredDateProvider>
-                <main className="-webkit-overflow-scrolling-touch mt-[100px] flex-1 overflow-y-auto p-1 md:p-4 print:mt-0">
+                <main className="-webkit-overflow-scrolling-touch mt-25 flex-1 overflow-y-auto p-1 md:p-4 print:mt-0">
                   {children}
                   <PreviousBalanceChecker />
                 </main>

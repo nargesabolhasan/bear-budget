@@ -37,7 +37,7 @@ const IconPicker: React.FC<IconPickerProps> = ({
         className && className,
       )}
     >
-      {icons.map((item) => {
+      {icons.slice(2).map((item) => {
         const Icon = item.icon;
         return (
           <div

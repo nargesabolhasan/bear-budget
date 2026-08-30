@@ -146,6 +146,7 @@
     "groupedByType": "دسته بندی شده بر اساس نوع تراکنش",
     "groupedByTag": "دسته بندی شده بر اساس برچسب",
     "uncategorized": "بدون برچسب",
+    "unknown": "نامشخص",
     "mustAccept": "باید حتما انتخاب شود."
   },
   "createBudget": {

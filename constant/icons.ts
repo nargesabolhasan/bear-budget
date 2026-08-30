@@ -192,8 +192,12 @@ import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import MedicationLiquidIcon from "@mui/icons-material/MedicationLiquid";
 import ScaleIcon from "@mui/icons-material/Scale";
 import { IconOptionMap } from "@/types/global";
+import HelpIcon from "@mui/icons-material/Help";
+import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 
 const icons = [
+  HelpIcon,
+  MilitaryTechIcon,
   HomeIcon,
   FaceIcon,
   FavoriteIcon,

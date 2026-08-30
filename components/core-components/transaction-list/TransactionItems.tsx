@@ -34,9 +34,9 @@ const TransactionItems = ({
   return (
     <ul
       className={twMerge(
-        "print-list flex w-full flex-col items-center justify-center gap-4 rounded-xl print:!gap-1",
+        "print-list flex w-full flex-col items-center justify-center gap-4 rounded-xl print:gap-1!",
         showPrimaryBG &&
-          "border-placeholder_light2 border border-dashed p-2 print:!p-3",
+          "border-placeholder_light2 border border-dashed p-2 print:p-3!",
       )}
     >
       {transactionList.map((transaction) => (

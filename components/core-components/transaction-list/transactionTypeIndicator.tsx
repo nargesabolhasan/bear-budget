@@ -15,7 +15,9 @@ const TransactionTypeIndicator = ({ tag }: { tag: TagType }) => {
               : "playpenSansArabic",
         }}
       >
-        {i18next.t(`transactions.${tag?.transactionType}`)}
+        {tag?.transactionType
+          ? i18next.t(`transactions.${tag?.transactionType}`)
+          : i18next.t("transactionList.unknown")}
       </span>
     </div>
   );

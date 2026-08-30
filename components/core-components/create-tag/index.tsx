@@ -21,13 +21,19 @@ import useIconCount from "@/hooks/useIconCount";
 import IButton from "@/components/atoms/button";
 import i18next from "i18next";
 import { SYSTEM_TAG } from "@/constant/global";
+import {
+  PREVIOUS_MONTH_TAG_ID_INCOME,
+  PREVIOUS_MONTH_TAG_ID_SAVINGS,
+} from "../home/previous-balance/PreviousBalanceChecker";
 
 const CreateTagForm = ({
   submitHandler,
   title = i18next.t("home.create", { value: i18next.t("global.tag") }),
+  slug,
   ...props
 }: Partial<TagFormData> & {
   submitHandler: (data: TagFormData) => void;
+  slug?: string;
   title?: string | ReactNode;
 }) => {
   const schema = yup.object({
@@ -226,6 +232,10 @@ const CreateTagForm = ({
               ))}
             </Select>
           )}
+          disabled={
+            slug === PREVIOUS_MONTH_TAG_ID_INCOME ||
+            slug === PREVIOUS_MONTH_TAG_ID_SAVINGS
+          }
         />
       </FormControl>
       <TagDemo

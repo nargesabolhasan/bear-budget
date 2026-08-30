@@ -40,6 +40,7 @@ const EditTagPage = ({ params }: Props) => {
     <div className={FORMS_WRAPPER_CLASS}>
       <CreateTagForm
         submitHandler={submitHandler}
+        slug={slug}
         title={
           <span className={"flex flex-row items-center"} dir={"ltr"}>
             <BackButton />

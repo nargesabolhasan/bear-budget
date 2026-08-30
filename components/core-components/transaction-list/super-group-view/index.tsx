@@ -1,14 +1,12 @@
 "use client";
-import React, { useMemo } from "react";
-import TransactionItems from "@/components/core-components/transaction-list/TransactionItems";
-import { TagType, TransactionType } from "@/types/global";
 import PrinterViewTitle from "@/components/core-components/printer-demo/printerViewTitle";
+import TransactionItems from "@/components/core-components/transaction-list/TransactionItems";
 import { TagsListType } from "@/store/tags/type";
+import { TagType, TransactionType } from "@/types/global";
 import { convertToCurrency } from "@/utils/utils";
-import { iconList } from "@/constant/icons";
-import { groupedStyles } from "@/utils/transactionGroupedStyles";
-import { twMerge } from "tailwind-merge";
 import i18next from "i18next";
+import { useMemo } from "react";
+import { twMerge } from "tailwind-merge";
 import TagIcon from "../../create-tag/tagIcon";
 
 type TagGroup = {
@@ -52,14 +50,14 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
       <PrinterViewTitle title={i18next.t("transactionList.groupedByTag")} />
       {groupedByTag.map(([tagId, group]) => {
         const title =
-          group.tag?.name || i18next.t("transactionList.uncategorized");
+          group?.tag?.name || i18next.t("transactionList.uncategorized");
 
         return (
           <li key={tagId}>
             <div
               className={twMerge(
                 "list-item-block force-block flex flex-col gap-y-4 rounded-3xl p-3 shadow-md print:p-1",
-                group.tag?.color?.color ?? "",
+                group.tag?.color?.color ?? "border-primary border-2",
               )}
             >
               <div
@@ -67,8 +65,6 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
                   "border-placeholder flex flex-row items-center justify-between gap-3 rounded-t-lg border-b border-dashed p-2",
                 )}
               >
-                {/* <TransactionTypeIndicator tag={group?.tag as TagType} /> */}
-
                 <span
                   className={"flex flex-row items-center justify-center gap-3"}
                 >
@@ -85,7 +81,9 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
               </div>
               <span>
                 {"("}
-                {i18next.t(`transactions.${group?.tag?.transactionType}`)}
+                {group?.tag?.transactionType
+                  ? i18next.t(`transactions.${group?.tag?.transactionType}`)
+                  : i18next.t("transactionList.unknown")}
                 {")"}
               </span>
               <TransactionItems

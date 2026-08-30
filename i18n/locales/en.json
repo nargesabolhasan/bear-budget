@@ -145,6 +145,7 @@
     "groupedByType": "Grouped by Type of transactions :",
     "groupedByTag": "Grouped by tags :",
     "uncategorized": "Uncategorized",
+    "unknown": "Unknown",
     "mustAccept": "You must accept this"
   },
   "createBudget": {

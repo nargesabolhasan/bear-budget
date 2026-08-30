@@ -219,7 +219,7 @@ export const useTransactionStore = create<TransactionStore>()(
           const { tags } = useTagsStore();
           const handleGroupedTransactionType = (list: TransactionType[]) => {
             return list.reduce((acc: GroupedTransactionType, tx) => {
-              const key = tags?.[tx.tag]?.transactionType || "Uncategorized";
+              const key = tags?.[tx.tag]?.transactionType || "uncategorized";
               if (!acc[key]) {
                 acc[key] = { transactions: [], totalAmount: 0 };
               }

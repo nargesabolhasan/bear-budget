@@ -105,9 +105,11 @@ const TransactionSummery = () => {
                           borderBottom: "1px solid var(--color-neutral_light)",
                         }}
                       >
-                        {i18n.t(
-                          `transactions.${key.charAt(0).toUpperCase() + key.slice(1)}`,
-                        )}
+                        {key === "uncategorized"
+                          ? i18n.t("transactionList.unknown")
+                          : i18n.t(
+                              `transactions.${key.charAt(0).toUpperCase() + key.slice(1)}`,
+                            )}
                       </TableCell>
                       <TableCell
                         align="inherit"

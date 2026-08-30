@@ -52,7 +52,7 @@ const MainTransactionTitle = ({
               <span className={"text-lg"}>
                 {isSystemtransaction
                   ? i18n.t(`transactions.system.previousMonth`)
-                  : tag.name}
+                  : tag?.name || i18n.t("transactionList.uncategorized")}
               </span>
             )}
           </span>
