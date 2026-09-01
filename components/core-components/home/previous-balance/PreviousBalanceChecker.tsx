@@ -69,6 +69,8 @@ export default function PreviousBalanceChecker() {
         icon: "1",
         color: selectedColor ?? colorList[0],
       });
+
+      tag = useTagsStore.getState().tags[previousMonthTagId];
     }
 
     if (!tag) {
