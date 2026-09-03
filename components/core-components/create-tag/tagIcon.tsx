@@ -22,7 +22,7 @@ const TagIcon = ({
   return (
     <div
       className={twMerge(
-        "shadow-dark top-1 flex flex-col items-center justify-center rounded-full p-3 shadow-sm print:left-0",
+        "shadow-dark top-1 flex flex-col items-center justify-center rounded-full p-3 shadow-xs print:left-0",
         (!iconClassName && tag?.color?.color) || "",
         size,
       )}
