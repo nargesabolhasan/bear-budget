@@ -8,6 +8,7 @@ type Props = {
   size?: string;
   iconClassName?: string;
   fontSize?: "large" | "small" | "inherit" | "medium";
+  showIconColor?: boolean;
 };
 
 const TagIcon = ({
@@ -15,6 +16,7 @@ const TagIcon = ({
   size = "size-11.25",
   iconClassName,
   fontSize = "large",
+  showIconColor = true,
 }: Props) => {
   const Icon =
     iconList.get(tag?.icon || DEFAULT_ICON_ID)?.icon || (() => <></>);
@@ -22,8 +24,8 @@ const TagIcon = ({
   return (
     <div
       className={twMerge(
-        "shadow-dark top-1 flex flex-col items-center justify-center rounded-full p-3 shadow-xs print:left-0",
-        (!iconClassName && tag?.color?.color) || "",
+        "shadow-dark top-1 flex flex-col items-center justify-center rounded-full p-3 shadow-xs print:top-0! print:left-0!",
+        (showIconColor && tag?.color?.color) || "",
         size,
       )}
     >

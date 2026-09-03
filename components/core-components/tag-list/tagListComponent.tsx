@@ -85,7 +85,16 @@ const TagListDemo = () => {
                       <span
                         className={"grid grow grid-cols-3 items-center gap-2"}
                       >
-                        <TagIcon size="size-[50px]" tag={tag} />
+                        <span className="block print:hidden!">
+                          <TagIcon tag={tag} />
+                        </span>
+                        <div className="hidden print:block!">
+                          <TagIcon
+                            size="size-[25px]"
+                            tag={tag}
+                            fontSize="small"
+                          />
+                        </div>
                         <h3 className={"col-span-2"}>
                           {tag.name === "previousMonth"
                             ? i18n.t(`transactions.system.previousMonth`)
