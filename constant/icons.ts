@@ -196,8 +196,6 @@ import HelpIcon from "@mui/icons-material/Help";
 import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 
 const icons = [
-  HelpIcon,
-  MilitaryTechIcon,
   HomeIcon,
   FaceIcon,
   FavoriteIcon,
@@ -391,7 +389,13 @@ const icons = [
   EnergySavingsLeafIcon,
   MedicationLiquidIcon,
   ScaleIcon,
+  // default icons
+  HelpIcon,
+  MilitaryTechIcon,
 ];
+
+export const DEFAULT_ICON_ID = "193";
+export const DEFAULT_ICON_PREV_ID = "194";
 
 export const iconListGenerator = (): IconOptionMap => {
   const list: IconOptionMap = new Map([]);

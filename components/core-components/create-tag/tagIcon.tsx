@@ -1,19 +1,33 @@
-import { iconList } from "@/constant/icons";
+import { DEFAULT_ICON_ID, iconList } from "@/constant/icons";
 import { TagType } from "@/types/global";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-const TagIcon = ({ tag }: { tag: TagType | null }) => {
-  const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
+type Props = {
+  tag: TagType | null;
+  size?: string;
+  iconClassName?: string;
+  fontSize?: "large" | "small" | "inherit" | "medium";
+};
+
+const TagIcon = ({
+  tag,
+  size = "size-11.25",
+  iconClassName,
+  fontSize = "large",
+}: Props) => {
+  const Icon =
+    iconList.get(tag?.icon || DEFAULT_ICON_ID)?.icon || (() => <></>);
 
   return (
     <div
       className={twMerge(
-        "shadow-dark top-1 flex size-11.25 flex-col items-center justify-center rounded-full p-3 shadow-sm print:left-0",
-        tag?.color?.color || "",
+        "shadow-dark top-1 flex flex-col items-center justify-center rounded-full p-3 shadow-sm print:left-0",
+        (!iconClassName && tag?.color?.color) || "",
+        size,
       )}
     >
-      <Icon fontSize={"large"} />
+      <Icon fontSize={fontSize} className={iconClassName && iconClassName} />
     </div>
   );
 };

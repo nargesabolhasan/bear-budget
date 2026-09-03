@@ -1,26 +1,26 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import IButton from "@/components/atoms/button";
+import ITextField from "@/components/atoms/textField";
+import ColorPicker from "@/components/core-components/create-tag/colorPicker";
 import IconPicker from "@/components/core-components/create-tag/iconPicker";
-import { iconList } from "@/constant/icons";
-import { Controller, useForm } from "react-hook-form";
-import { ColorOption, TransactionEnum } from "@/types/global";
+import TagDemo from "@/components/core-components/create-tag/tagDemo";
 import {
   FormTagEnum,
   TagFormData,
 } from "@/components/core-components/create-tag/type";
-import ColorPicker from "@/components/core-components/create-tag/colorPicker";
-import { colorList } from "@/constant/colors";
-import TagDemo from "@/components/core-components/create-tag/tagDemo";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import ITextField from "@/components/atoms/textField";
 import IAccordion from "@/components/molecules/accordion";
-import useIconCount from "@/hooks/useIconCount";
-import IButton from "@/components/atoms/button";
-import i18next from "i18next";
+import { colorList } from "@/constant/colors";
 import { SYSTEM_TAG } from "@/constant/global";
+import { DEFAULT_ICON_ID, iconList } from "@/constant/icons";
+import useIconCount from "@/hooks/useIconCount";
+import { ColorOption, TransactionEnum } from "@/types/global";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import i18next from "i18next";
+import { ReactNode } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
 import {
   PREVIOUS_MONTH_TAG_ID_INCOME,
   PREVIOUS_MONTH_TAG_ID_SAVINGS,
@@ -76,7 +76,7 @@ const CreateTagForm = ({
     formState: { isValid, errors },
   } = useForm<TagFormData>({
     defaultValues: {
-      [FormTagEnum.ICON]: props?.icon || iconList.get("0")?.id,
+      [FormTagEnum.ICON]: props?.icon || iconList.get(DEFAULT_ICON_ID)?.id,
       [FormTagEnum.COLOR]: props?.color || colorList[0],
       [FormTagEnum.TRANSACTION_TYPE]:
         props?.transactionType || TransactionEnum.INCOME,
@@ -247,7 +247,7 @@ const CreateTagForm = ({
         className={"w-full rounded-4xl md:w-1/2"}
       />
       <IButton
-        className={"w-full !rounded-full"}
+        className={"w-full rounded-full!"}
         variant={"contained"}
         type="submit"
         size={"large"}
