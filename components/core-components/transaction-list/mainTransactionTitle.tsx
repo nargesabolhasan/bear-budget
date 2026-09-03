@@ -41,6 +41,7 @@ const MainTransactionTitle = ({
               <TagIcon
                 tag={tag}
                 size="size-[35px]"
+                showIconColor={false}
                 iconClassName={twMerge(
                   "rounded-full p-1 opacity-90",
                   showTagIconColor
