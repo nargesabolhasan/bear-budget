@@ -18,6 +18,7 @@ import { Render } from "@/utils/render";
 import NotFoundItem from "@/components/core-components/search/NotFoundItem";
 import i18next from "i18next";
 import i18n from "@/i18n/config";
+import TagIcon from "../create-tag/tagIcon";
 
 const TagListDemo = () => {
   const { removeTag, groupedByType } = useTagsStore();
@@ -74,9 +75,6 @@ const TagListDemo = () => {
                 {i18next.t(`transactions.${tagType}`)}
               </h2>
               {Object.values(tags).map((tag) => {
-                const Icon =
-                  iconList.get(tag.icon || "0")?.icon || (() => <span></span>);
-
                 return (
                   <li key={`tag-list-${tag.id}`}>
                     <div
@@ -87,15 +85,7 @@ const TagListDemo = () => {
                       <span
                         className={"grid grow grid-cols-3 items-center gap-2"}
                       >
-                        <Icon className={"!hidden print:!block"} />
-                        <i
-                          className={twMerge(
-                            "border-placeholder_light flex size-[50px] items-center justify-center rounded-full border print:hidden",
-                            tag.color.color,
-                          )}
-                        >
-                          {<Icon sx={{ fontSize: 30 }} />}
-                        </i>
+                        <TagIcon size="size-[50px]" tag={tag} />
                         <h3 className={"col-span-2"}>
                           {tag.name === "previousMonth"
                             ? i18n.t(`transactions.system.previousMonth`)

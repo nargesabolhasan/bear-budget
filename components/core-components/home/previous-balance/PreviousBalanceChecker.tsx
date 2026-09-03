@@ -8,6 +8,7 @@ import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
 import { TransactionEnum } from "@/types/global";
 import PreviousBalanceModal from "./previousBalanceModal";
+import { DEFAULT_ICON_PREV_ID } from "@/constant/icons";
 
 export const PREVIOUS_MONTH_TAG_ID_INCOME = "abcd1405";
 export const PREVIOUS_MONTH_TAG_ID_SAVINGS = "abcd1406";
@@ -66,7 +67,7 @@ export default function PreviousBalanceChecker() {
         id: previousMonthTagId,
         name: tagName,
         transactionType: choice,
-        icon: "1",
+        icon: DEFAULT_ICON_PREV_ID,
         color: selectedColor ?? colorList[0],
       });
 

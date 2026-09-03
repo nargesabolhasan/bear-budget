@@ -8,7 +8,7 @@ import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import Link from "next/link";
 import { useTagsStore } from "@/store/tags";
 import { useTransactionStore } from "@/store/transaction";
-import { iconList } from "@/constant/icons";
+import { DEFAULT_ICON_ID, iconList } from "@/constant/icons";
 import { convertToCurrency } from "@/utils/utils";
 import {
   Table,
@@ -49,9 +49,11 @@ const NewItemCards = () => {
   const lastTag = Object.values(tags).reverse()[0];
   const secondTag = Object.values(tags).reverse()[1];
 
-  const Icon = iconList.get(lastTag?.icon || "0")?.icon || (() => <></>);
+  const Icon =
+    iconList.get(lastTag?.icon || DEFAULT_ICON_ID)?.icon || (() => <></>);
   const IconSecond =
-    (secondTag && iconList.get(secondTag?.icon || "0")?.icon) || (() => <></>);
+    (secondTag && iconList.get(secondTag?.icon || DEFAULT_ICON_ID)?.icon) ||
+    (() => <></>);
 
   const tableRows = [
     {

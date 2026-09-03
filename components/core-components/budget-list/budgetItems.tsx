@@ -1,13 +1,12 @@
-import React from "react";
-import { iconList } from "@/constant/icons";
-import { twMerge } from "tailwind-merge";
 import ILinearProgress from "@/components/atoms/linearProgress";
-import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
-import ContextMenu from "@/components/molecules/contextMenu";
-import { Edit2, Trash } from "iconsax-react";
-import { TagType } from "@/types/global";
-import i18next from "i18next";
 import TransactionBalance from "@/components/core-components/budget-list/transactionBalance";
+import ContextMenu from "@/components/molecules/contextMenu";
+import { TagType } from "@/types/global";
+import MoreHorizTwoToneIcon from "@mui/icons-material/MoreHorizTwoTone";
+import i18next from "i18next";
+import { Edit2, Trash } from "iconsax-react";
+import { twMerge } from "tailwind-merge";
+import TagIcon from "../create-tag/tagIcon";
 
 type Props = {
   handleEdit: (id: string) => void;
@@ -26,7 +25,6 @@ const BudgetItems = ({
   budgetAmount,
   spent,
 }: Props) => {
-  const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
   const usagePercent = Math.min((spent / budgetAmount) * 100, 100) || 0;
   const remining = budgetAmount - spent;
 
@@ -52,7 +50,7 @@ const BudgetItems = ({
       onClick: () => handleDelete(tagId),
       title: (
         <span
-          className={"flex flex-row items-center justify-start gap-2 !text-sm"}
+          className={"flex flex-row items-center justify-start gap-2 text-sm!"}
         >
           <Trash size="30" color={"var(--color-primary)"} variant="Bulk" />
           {i18next.t("contextMenu.delete")}
@@ -75,14 +73,7 @@ const BudgetItems = ({
       </div>
       <section className={"mb-8 grid grid-cols-3 items-center gap-2 md:gap-4"}>
         <span>
-          <i
-            className={twMerge(
-              "flex size-[40] items-center justify-center rounded-full p-2",
-              tag?.color.color,
-            )}
-          >
-            <Icon />
-          </i>
+          <TagIcon fontSize="medium" tag={tag} />
           {tag?.name}
         </span>
         <div className={"col-span-2 w-full grow"}>

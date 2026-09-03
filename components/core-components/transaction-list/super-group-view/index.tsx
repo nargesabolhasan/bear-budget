@@ -68,7 +68,7 @@ const SuperGroupList = ({ transactions, tags }: Props) => {
                 <span
                   className={"flex flex-row items-center justify-center gap-3"}
                 >
-                  <TagIcon tag={group.tag} />
+                  <TagIcon tag={group.tag} fontSize="medium" />
                   <h3 className={"text-xl"}>{title}</h3>
                 </span>
                 <h3

@@ -8,6 +8,7 @@ import { groupedStyles } from "@/utils/transactionGroupedStyles";
 import { Render } from "@/utils/render";
 import useCalendarUtils from "@/hooks/useCalendarUtils";
 import i18n from "@/i18n/config";
+import TagIcon from "../create-tag/tagIcon";
 
 type Props = {
   tag: TagType;
@@ -30,7 +31,6 @@ const MainTransactionTitle = ({
   isSystemtransaction = false,
   showTagTitle = true,
 }: Props) => {
-  const Icon = iconList.get(tag?.icon || "0")?.icon || (() => <></>);
   const { formatDate } = useCalendarUtils();
   return (
     <>
@@ -38,9 +38,10 @@ const MainTransactionTitle = ({
         <div className={"flex flex-col gap-1"}>
           <span className={"flex flex-row items-center justify-start gap-2"}>
             {showTagIcon && (
-              <Icon
-                fontSize={"large"}
-                className={twMerge(
+              <TagIcon
+                tag={tag}
+                size="size-[35px]"
+                iconClassName={twMerge(
                   "rounded-full p-1 opacity-90",
                   showTagIconColor
                     ? "border-placeholder border-2 border-dotted bg-transparent"

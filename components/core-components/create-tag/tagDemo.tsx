@@ -1,10 +1,10 @@
-import React from "react";
 import { TagFormData } from "@/components/core-components/create-tag/type";
-import { twMerge } from "tailwind-merge";
-import { iconList } from "@/constant/icons";
-import i18next from "i18next";
-import i18n from "@/i18n/config";
 import { SYSTEM_TAG } from "@/constant/global";
+import i18n from "@/i18n/config";
+import { TransactionEnum } from "@/types/global";
+import i18next from "i18next";
+import { twMerge } from "tailwind-merge";
+import TagIcon from "./tagIcon";
 
 const TagDemo = ({
   demoTitle,
@@ -19,7 +19,6 @@ const TagDemo = ({
   className?: string;
   onClick?: () => void;
 }) => {
-  const Icon = iconList.get(icon || "0")?.icon;
   return (
     <div
       className={twMerge(
@@ -37,7 +36,7 @@ const TagDemo = ({
       {!!name && (
         <span
           className={
-            "text-md text-dark_surface overflow-wrap block text-pretty break-words break-all whitespace-normal"
+            "text-md text-dark_surface overflow-wrap block text-pretty wrap-break-word break-all whitespace-normal"
           }
         >
           {name === SYSTEM_TAG
@@ -45,14 +44,16 @@ const TagDemo = ({
             : name}
         </span>
       )}
-      <i
-        className={twMerge(
-          "flex size-[50px] items-center justify-center rounded-full",
-          color.color,
-        )}
-      >
-        {Icon ? <Icon sx={{ fontSize: 30 }} /> : <></>}
-      </i>
+      <TagIcon
+        tag={{
+          id: "string",
+          name: "string",
+          transactionType: TransactionEnum["INCOME"],
+          icon: icon,
+          color,
+        }}
+        size="size-12.5"
+      />
       <h4 className={"text-placeholder mx-auto"}>
         {i18next.t(`transactions.${transactionType}`)}
       </h4>
