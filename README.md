@@ -8,8 +8,9 @@
 
 Track income, expenses, savings, debts, and credits. Create tags and monthly budgets. Works in **English** and **Persian (Farsi)** with **Gregorian** and **Jalali** calendars.
 
-[Features](#features) · [Install](#installation) · [Usage](#usage) · [Tech stack](#tech-stack)
+[Features](#features) · [Install](#installation) · [Usage](#usage) · [Tech stack](#tech-stack) · [License](#license)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -160,6 +161,10 @@ Issues and pull requests are welcome.
 3. Keep changes focused. Run `yarn lint` before you open a PR.
 
 CI on `main` runs `yarn lint` and `yarn build` (Node.js 22).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). You can use, copy, modify, and share Bear Budget, including in commercial projects, as long as you keep the copyright notice.
 
 ## GitHub topics
 
