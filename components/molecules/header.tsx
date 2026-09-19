@@ -11,8 +11,6 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
@@ -21,14 +19,14 @@ import { NavItemType } from "@/types/global";
 import { usePathname } from "next/navigation";
 import { navItems } from "@/constant/navItems";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "react-mobile-viewport";
 
 export type HeaderProps = {
   title?: string;
 };
 
 const IHeader = ({ title = "Bear Budget" }: HeaderProps) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useIsMobile();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
   const { t } = useTranslation();

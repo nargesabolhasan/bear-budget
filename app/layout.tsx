@@ -1,5 +1,11 @@
 import "./globals.css";
 import { ReactNode } from "react";
+import { cookies } from "next/headers";
+import {
+  getViewportCookieScript,
+  parseViewportCookie,
+} from "react-mobile-viewport/script";
+import { ViewportProvider } from "react-mobile-viewport";
 
 import GlobalToaster from "@/components/atoms/toaster";
 import IHeader from "@/components/molecules/header";
@@ -22,10 +28,20 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const cookieStore = await cookies();
+  const ssrIsMobile = parseViewportCookie(cookieStore.get("viewport")?.value);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: getViewportCookieScript() }}
+        />
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
 
@@ -49,23 +65,25 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
 
       <body className="bg-neutral_light! flex h-screen flex-col">
-        <LanguageProvider>
-          <ThemeModeProvider>
-            <IThemeProvider>
-              <IHeader />
+        <ViewportProvider ssrIsMobile={ssrIsMobile ?? false}>
+          <LanguageProvider>
+            <ThemeModeProvider>
+              <IThemeProvider>
+                <IHeader />
 
-              <FilteredDateProvider>
-                <main className="-webkit-overflow-scrolling-touch mt-25 flex-1 overflow-y-auto p-1 md:p-4 print:mt-0">
-                  {children}
-                  <PreviousBalanceChecker />
-                </main>
-              </FilteredDateProvider>
+                <FilteredDateProvider>
+                  <main className="-webkit-overflow-scrolling-touch mt-25 flex-1 overflow-y-auto p-1 md:p-4 print:mt-0">
+                    {children}
+                    <PreviousBalanceChecker />
+                  </main>
+                </FilteredDateProvider>
 
-              <GlobalToaster />
-              <DialogContainer />
-            </IThemeProvider>
-          </ThemeModeProvider>
-        </LanguageProvider>
+                <GlobalToaster />
+                <DialogContainer />
+              </IThemeProvider>
+            </ThemeModeProvider>
+          </LanguageProvider>
+        </ViewportProvider>
       </body>
     </html>
   );

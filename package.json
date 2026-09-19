@@ -29,6 +29,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "react-i18next": "^16.5.0",
+    "react-mobile-viewport": "^0.1.0",
     "react-multi-date-picker": "^4.5.2",
     "sonner": "^2.0.7",
     "stylis": "^4.3.6",
